@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!-- based on a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
+author: Marius 
+last modified: 04.11.2019
+//
+-->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="icequine.css">
+
+<title>Quine graphs</title>
+</head>
+
+
+<body style="overflow: scroll;">
+
+<script src="d3.v5.9.4.min.js"></script>
+<script src="jquery.min.js"></script>
+
+<div style="padding: 8px 26px;">
+ Last modified: 04.11.2019.  &nbsp; <img alt="chemlambda v2 graph" style="width:30px;"  src="chemlambdav2.png"/> &nbsp; Part of <a href="http://imar.ro/~mbuliga/pages.html" target="_blank">(my pages to play and learn)</a> 
+</div>
+
+<div style="padding: 8px 26px;">
+  <div class="flex">
+    <div class="box60">
+      <span2>
+        <select class="image" id="listofmols" onchange="voidMolToScreenAfter(); molSelect(); exportMolToScreen();">
+          <option value="SKK">  SKK -> I </option>
+          <option value="omegaSKI"> omega combinator from S,K combinators </option>
+          <option value="ishan_example_foe">duplication with FOE of \x.((\y.yy)(xx)) </option>
+          <option value="alexo_example"> (\a.aa)(\x.((\b.bb)(\y.yx))) </option>
+          <option value="ishan_example">duplication with FO of \x.((\y.yy)(xx)) </option>
+          <option value="ishan_example_2_foe">duplication with FOE of \x.(\f.ff)(\y.xy) </option>
+          <option value="ishan_example_2">duplication with FO of \x.(\f.ff)(\y.xy) </option>
+          <option value="ishan_example_2_A">duplication of M, then applied to id, for M = \x.(\f.ff)(\y.xy) </option>
+          <option value="ishan_example_2_pair">first (pair a b) where a and b come from FOE duplication of  \x.(\f.ff)(\y.xy) </option>
+          <option value="first_pair">first (pair a b) with pair = \x.\y.\z. z x y and first = \p.(p (\x.\y.x)), a = 5, b = 0 </option>
+          <option value="y_comb">Y combinator applied to something </option>
+          <option value="y_comb_id">Y combinator applied to id </option>
+          <option value="omega">omega combinator </option>
+          <option value="ackermann_2_2">ackermann_2_2  </option>
+          <option value="ackermann_3_2">ackermann_3_2  </option>
+          <option value="10_quine_bubbles">the 10-nodes quine (sometimes it duplicates) </option>
+          <option value="shuffle_10_290C1735B6A4DE8">10 nodes sometimes becomes quine from [graph A-L-FI-FOE 540213] </option>
+          <option value="dodecahedron">dodecahedron </option>
+          <option value="times_only_short">5 X 5 = (\m.\n.\f.m(nf)) 5 5  </option>
+          <option value="times_only_long">5 X 5 = (\m.\n.m (PLUS n) 0) 5 5, with PLUS = \m.\n.m SUCC n  </option>
+          <option value="GAMMAGAMMA"> GAMMA-GAMMA </option>
+          <option value="DELTADELTA"> DELTA-DELTA </option>
+          <option value="GAMMADELTA"> GAMMA-DELTA </option>
+          <option value="DELTAGAMMA"> DELTA-GAMMA </option>
+          <option value="DELTAT"> DELTA-T </option>
+          <option value="GAMMAT"> GAMMA-T </option>
+          <option value="Lafont-quine"> Lafont' quine </option>
+        </select>
+      </span2>
+      <span> &nbsp; &nbsp; (stops at max.  </span><span id="maxnodenumber">1024</span> nodes<span>)</span> 
+    </div>
+    <div class="box40">
+      <span2>  gravity: &nbsp; </span2><input class="slider" type="range" min="1" max="250" value="150" id="gravRange">
+    </div>
+  </div>
+</div>
+
+<div class="flex">
+  <div class="box40"> <span id="svgdiv"> </span> <br>
+    <div style="padding: 8px 26px;"><span2>CODE: </span2><span id="molyoulookat"></span><br><br>
+      <div class="flex">
+        <div class="box50"><span2>MOL NOW: </span2> <br> <br> <span id="molexport"></span></div>
+        <div class="box50"><span2>MOL AFTER: </span2> <br> <br> <span id="molexportafter"></span></div>
+      </div>
+    </div>
+  </div> 
+  <div class="box10">
+    <button class="image" onclick="setSpeed(0); setStart(0); voidMolToScreenAfter(); molSelect(); exportMolToScreen();"><span3>load</span3></button><br><br> 
+    <button class="image" onclick="setSpeed(0); setStart(0);  exportMolToScreen();  reloadCode(); exportMolToScreen();"><span3>reload</span3></button><br><br>
+    <button class="image" onclick="setStart(0); loop2()"><span3>step</span3></button><br><br>
+    <button class="image" onclick="setSpeed(1); setStart(1); loop()"><span3>start</span3></button> <br><br>
+    <button class="image" onclick="setSpeed(0); setStart(0)"><span3>stop</span3></button>
+  </div>
+  <div class="box50">
+    <div class="flex">
+      <div class="box33"><span2>before: <br></span2> <span id="puttransformcachealt"></span> </div> 
+      <div class="box33"><span2>chosen: <br></span2><span id="chosentransform"></span></div>
+      <div class="box33"><span2>after: <br></span2><span id="puttransformcachealtafter"></span></div>
+    </div>
+  </div>
+</div>
+
+<script src="kaliLib.js"></script>
+<script src="icequine.js"></script>
+
+</body>
+</html>
