@@ -39,6 +39,10 @@ switch (molName) {
   var mol = "L 1 1 2^A 2 7 8^FRIN 7^FO 8 3 4^FOE 3 9 10^FROUT 9^FROUT 10^FOE 4 5 6^FROUT 5^FROUT 6";
   break;
 
+  case "alexo_example":
+  var mol = "FROUT out^A 1 2 out^L 3 a 1^A 4 5 3^FO a 4 5^L 6 x 2^A 7 8 6^L 9 b 7^A 10 11 9^FO b 10 11^L 12 y 8^A y x 12";
+  break;
+    
   case "ishan_example":
   var mol = "FO 0 11 12^FO 5 6 7^L 8 5 0^A 7 6 9^A 10 9 8^L 1 2 10^A 3 4 1^FO 2 4 3^FROUT 11^FROUT 12";
   break;
