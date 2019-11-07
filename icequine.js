@@ -1,16 +1,16 @@
-//chemlambda + IC version of the kali system, or anharmonic lambda, grown from: 
+//chemlambda + IC only version of the kali system, or anharmonic lambda, grown from: 
 // https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md
 // https://arxiv.org/abs/1807.02058
 //
 // this program is forked and modified from https://mbuliga.github.io/kali-try.js on 24.10.2019, which is 
 // a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
-// author: Marius Buliga
-// last modified: 04.11.2019
+// author: Marius Buliga http://imar.ro/~mbuliga/index.html
+// last modified: 07.11.2019
 // 
 
 // set up the D3 visualisation
-var w = 500,
-    h = 500;
+var w = 600,
+    h = 400;
 
 // force parameters
 
@@ -35,8 +35,8 @@ var violetCol = "#D503FF";
 
 var whiteCol = "#fff";
 
-//priority of rewrites, for the moment only eta
-var etaPriority = 0;
+//priority of rewrites, for the moment only COMB
+var combPriority = 1;
 
 var graph;
 var mode = "transform";
@@ -67,8 +67,8 @@ var nodeValence = {
 }
 
 var transformListOrig = [
-  {left:"L",right:"A",action:"beta", named:"L-A"},
-  {left:"FI",right:"FOE",action:"beta", named:"FI-FOE"},
+  {left:"L",right:"A",action:"beta-arrow-X", named:"L-A", t1:"Arrow",t2:"Arrow"},      // action modified from "beta" to "beta-arrow-X" which is the original beta rewrite from chemlambda
+  {left:"FI",right:"FOE",action:"beta-arrow", named:"FI-FOE", t1:"Arrow",t2:"Arrow"},  // action modified from "beta" to "beta-arrow" which is the original FI-FOE rewrite from chemlambda
 // DIST rewrites
   {left:"L",right:"FOE",action:"DIST7", named:"L-FOE", t1:"FOE",t2:"FI",t3:"L",t4:"L",blocks:["FOE-L"]},
   {left:"L",right:"FO",action:"DIST7", named:"L-FO", t1:"FOE",t2:"FI",t3:"L",t4:"L",blocks:["FO-L"]}, // 
@@ -84,7 +84,7 @@ var transformListOrig = [
   {left:"T",right:"FO",action:"termin2", named:"T-FO"}, // 
   {left:"T",right:"FOE",action:"termin2", named:"T-FOE"}, //  
   {left:"FRIN",right:"FO",action:"terminfrin", named:"FRIN-FO"}, //    
-  {left:"FRIN",right:"FOE",action:"terminfrin", named:"FRIN-FOE"}, // 
+//  {left:"FRIN",right:"FOE",action:"terminfrin", named:"FRIN-FOE"}, // 
   {left:"FRIN",right:"FI",action:"termFI", named:"FRIN-FI"}, // 
 //
   {left:"L",right:"T",action:"termL", named:"L-T"},
@@ -100,9 +100,9 @@ var transformListOrig = [
 // COMB
   {left:"any",right:"Arrow",action:"arrow", named:"COMB"},
 // IC rewrites
-  {left:"GAMMA",right:"GAMMA",action:"GAMMA-GAMMA", named:"GAMMA-GAMMA"},
-  {left:"DELTA",right:"DELTA",action:"DELTA-DELTA", named:"DELTA-DELTA"},
-  {left:"GAMMA",right:"DELTA",action:"GAMMA-DELTA", named:"GAMMA-DELTA", t1:"DELTA",t2:"DELTA",t3:"GAMMA",t4:"GAMMA"},
+  {left:"GAMMA",right:"GAMMA",action:"GAMMA-GAMMA-arrow", named:"GAMMA-GAMMA", t1:"Arrow",t2:"Arrow",t3:"Arrow",t4:"Arrow"}, // action modified from "GAMMA-GAMMA" with 2 pairs Arrow-Arrow added, in order to be sure that COMB rewrite, as is, eliminates all arrows
+  {left:"DELTA",right:"DELTA",action:"DELTA-DELTA-arrow", named:"DELTA-DELTA", t1:"Arrow",t2:"Arrow",t3:"Arrow",t4:"Arrow"}, // action modified from "DELTA-DELTA" with 2 pairs Arrow-Arrow added, in order to be sure that COMB rewrite, as is, eliminates all arrows
+  {left:"GAMMA",right:"DELTA",action:"GAMMA-DELTA", named:"GAMMA-DELTA", t1:"DELTA",t2:"DELTA",t3:"GAMMA",t4:"GAMMA"}, // notice that due to symmetry there is no need for DELTA-GAMMA
   {left:"GAMMA",right:"T",action:"term3", named:"GAMMA-T"},
   {left:"DELTA",right:"T",action:"term3", named:"DELTA-T"},
 ]
@@ -200,6 +200,7 @@ function myGraph(selector) {
   .domain(["in","out","middle","L","A","FI","D","FOE","FOX","FO","T","FRIN","FROUT","Arrow","GAMMA","DELTA"])
   .range([yellowCol,blueCol,middleCol,redCol,greenCol,violetCol,blueCol,yellowCol,orangeCol,orange2Col,"#345",yellowCol,blueCol,whiteCol,"#ff9933","#0099ff"]);
 
+
   var svg = d3.select(selector)
     .append("svg:svg")
     .attr("width", w)
@@ -207,8 +208,10 @@ function myGraph(selector) {
     .attr("id", "svg")
     .attr("pointer-events", "all")
     .attr("viewBox", "0 0 " + w + " " + h)
-    .attr("perserveAspectRatio", "xMinYMid")
+    .attr("preserveAspectRatio", "xMinYMin meet")  //mod
     .on("click",backClick)
+
+
   
   var vis = svg.append('svg:g');
 
@@ -454,11 +457,11 @@ function findTransform(n1) {
     var trans = transformList[i];
     if (trans.left == n2type && trans.right == n1.type) {
       switch (trans.action) {
-        case "beta": case "DIST0": case "DIST1": case "DIST2":  case "DIST3": case "DIST4": case "DIST5": case "DIST6": case "DIST7": case "termsplit": case "term": case "termL": 
+        case "beta": case "beta-arrow": case "beta-arrow-X": case "DIST0": case "DIST1": case "DIST2":  case "DIST3": case "DIST4": case "DIST5": case "DIST6": case "DIST7": case "termsplit": case "term": case "termL": 
           if (e2type == "out") return trans;
         break;
 
-        case "GAMMA-GAMMA": case "DELTA-DELTA": case "GAMMA-DELTA":  
+        case "GAMMA-GAMMA": case "GAMMA-GAMMA-arrow": case "DELTA-DELTA": case "DELTA-DELTA-arrow": case "GAMMA-DELTA":  
           if (e2type == "in") return trans;
         break;
         
@@ -552,6 +555,34 @@ function doTransform(n1, trans) {
       // Link in to out and middle to middle
       moveLink2(a,d);
       moveLink2(b,c);
+      
+      removeNodeAndEdges(n1);
+      removeNodeAndEdges(n2);
+      break;
+    case "beta-arrow-X":
+      // L-A transitions:
+      // Arrow a d^Arrow c b
+      var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
+      var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
+
+      moveLink1(a,ar1[1]);
+      moveLink1(b,ar2[2]);
+      moveLink1(c,ar2[1]);
+      moveLink1(d,ar1[2]);
+      
+      removeNodeAndEdges(n1);
+      removeNodeAndEdges(n2);
+      break;
+    case "beta-arrow":
+      // D-FOX and FI-FOE transitions:
+      // Arrow a d^Arrow b c
+      var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
+      var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
+
+      moveLink1(a,ar1[1]);
+      moveLink1(b,ar2[1]);
+      moveLink1(c,ar2[2]);
+      moveLink1(d,ar1[2]);
       
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
@@ -701,6 +732,27 @@ function doTransform(n1, trans) {
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
+
+    case "GAMMA-GAMMA-arrow":
+      // GAMMA-GAMMA transition:
+      // Arrow b f^Arrow d f^Arrow b1 g^Arrow c g
+      var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
+      var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
+      var ar4 = addNodeAndEdges(trans.t2,n2.x,n2.y);
+      var ar3 = addNodeAndEdges(trans.t1,n1.x,n1.y);
+
+      addLink(ar1[2],ar2[2],2);
+      addLink(ar3[2],ar4[2],2);
+
+      moveLink1(b,ar2[1]);
+      moveLink1(d,ar1[1]);
+      moveLink1(b1,ar3[1]);
+      moveLink1(c,ar4[1]);
+      
+      removeNodeAndEdges(n1);
+      removeNodeAndEdges(n2);
+      break;
+
     case "DELTA-DELTA":
       // DELTA-DELTA transition:
       // Link out n1 to out n2 and middle n1 to middle n2
@@ -710,6 +762,27 @@ function doTransform(n1, trans) {
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
+
+    case "DELTA-DELTA-arrow":
+      // DELTA-DELTA transition:
+      // Arrow b1 f^Arrow d f^Arrow b g^Arrow c g
+      var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
+      var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
+      var ar4 = addNodeAndEdges(trans.t2,n2.x,n2.y);
+      var ar3 = addNodeAndEdges(trans.t1,n1.x,n1.y);
+
+      addLink(ar1[2],ar2[2],2);
+      addLink(ar3[2],ar4[2],2);
+
+      moveLink1(b1,ar2[1]);
+      moveLink1(d,ar1[1]);
+      moveLink1(b,ar3[1]);
+      moveLink1(c,ar4[1]);
+      
+      removeNodeAndEdges(n1);
+      removeNodeAndEdges(n2);
+      break;
+
     case "GAMMA-DELTA":
       //  Distributive transition GAMMA-DELTA,
 
@@ -988,12 +1061,14 @@ function nodeClick(d,i) {
 
 function nodeHover(d,i) {
   var e = d3.event;
+//  exportMolToScreen();
   switch (mode) {
     case "transform":
       var trans = findTransform(d);
       if (trans) {
         doTransform(d, trans);
         update();
+        exportMolToScreenAfter();
       }
 
       break;
@@ -1066,7 +1141,8 @@ function exportMol() {
   for (var i=0; i<nodes.length; i++) {
     if (isCenter(nodes[i])) {
       var linked = getLinked(nodes[i]);
-      var line = nodes[i].id + " : " + nodes[i].type;
+//      var line = nodes[i].id + " : " + nodes[i].type;
+      var line = nodes[i].type;
 
       linked.sort(function (a,b) { return a.id - b.id;});
       
@@ -1105,7 +1181,9 @@ document.getElementById("puttransformcachealtafter").innerHTML = "";
 function doClearImportFromLib(molname) {
   removeAllNodes();
   var molL = molLibrary(molname);
+  var molCom = molComments(molname);
 document.getElementById("molyoulookat").innerHTML = molL; 
+document.getElementById("comments").innerHTML = molCom; 
   importMolFromLib(molL);
 }
 
@@ -1170,8 +1248,28 @@ function loop(dt) {
 
   document.getElementById("puttransformcachealt").innerHTML = putTransformCacheAlt;
 
+// added priority to COMB rewrites
+    var priority = 0;
+
+    if (combPriority == 1) {
+      for (var iprior=0; iprior<transformCache.length; iprior++) {
+        if (priority == 0) {
+          var transPrior = transformCache[iprior].trans.action;
+          if (transPrior == "arrow") {
+            var choice = iprior;
+            priority = 1;
+          }
+        }
+      }
+    }
+
+
+
+    if (priority == 0) {
     var choice = Math.floor(Math.random() * transformCache.length);
-    
+    }    
+
+
     var node = transformCache[choice].node;
     var trans = transformCache[choice].trans;
     
