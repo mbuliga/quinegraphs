@@ -1,5 +1,7 @@
 /* 
-mol library, some mol files from https://github.com/chorasimilarity/chemlambda-gui/tree/gh-pages/dynamic/mol
+mol library, some mol files from https://github.com/chorasimilarity/chemlambda-gui/tree/gh-pages/dynamic/mol 
+author: Marius Buliga http://imar.ro/~mbuliga/index.html
+last modified: 07.11.2019
 */
 
 
@@ -503,6 +505,10 @@ case "random_egg_A_L_FI_FOE":
   var mol = "A 1 2 3^FO 3 4 5^FRIN 1^FRIN 2^FROUT 4^FROUT 5";
   break;
 
+  case "AFOE":
+  var mol = "A 1 2 3^FOE 3 4 5^FRIN 1^FRIN 2^FROUT 4^FROUT 5";
+  break;
+
   case "LFO":
   var mol = "L 1 2 3^FO 3 4 5^FRIN 1^FROUT 2^FROUT 4^FROUT 5";
   break;
@@ -591,6 +597,10 @@ case "random_egg_A_L_FI_FOE":
 
   case "4_IC_41580936B2A7":
   var mol = "GAMMA 0 1 2^GAMMA 3 1 5^DELTA 3 7 5^DELTA 0 7 2";
+  break;
+
+  default:
+  var mol = "";
   break;
 }
 return mol;
