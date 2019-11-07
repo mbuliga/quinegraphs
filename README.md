@@ -1,3 +1,3 @@
 # quinegraphs
 
-Repository for the work Quine graphs, in preparation.
+Repository for the work "Quine graphs", in preparation.
