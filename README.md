@@ -7,7 +7,7 @@ We invite you to  explore some of their properties, with examples taken from lam
 
 ## Relevant links
 
-- Intro (pdf): Quine graphs
+- Intro (pdf): Quine graphs: https://mbuliga.github.io/quinegraphs/quinegraph.pdf
 
 - Interaction Combinators and chemlambda quine graphs: https://mbuliga.github.io/quinegraphs/ice.html 
 
