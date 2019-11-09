@@ -13,7 +13,7 @@ last modified: 09.11.2019
 
 <link rel="stylesheet" type="text/css" href="css/icequine.css">
 
-<title>Quine graphs</title>
+<title>Ouroboros</title>
 </head>
 
 
@@ -34,21 +34,12 @@ last modified: 09.11.2019
         <span2> 
           <select  class="image2" id="listofmols" onchange="setSpeed(0); setStart(0); whichButtons(); voidMolToScreenAfter(); molSelect(); exportMolToScreen();">
       <option value="howto">MENU</option>
-      <option value="omega">&lambda; quine: omega combinator </option>
-      <option value="Lafont-quine"> Lafont' quine </option>
-      <option value="4_IC_6B784A053912"> IC quine: "4_IC_6B784A053912" </option>
-      <option value="4_IC_84B7362190A5"> IC quine: "4_IC_84B7362190A5" </option>
-      <option value="4_IC_60852B93A714"> IC quine: "4_IC_60852B93A714" </option>
-      <option value="4_IC_5AB718246309"> IC quine:  "4_IC_5AB718246309" </option>
-      <option value="random_egg_G_G_D_D"> random 2 GAMMA + 2 DELTA nodes IC graph </option>
-      <option value="spark_243501">chemlambda quine: "spark_243501"
-      <option value="10_quine_bubbles">chemlambda quine: "10_quine_bubbles"
-      <option value="16_quine_A_L_FI_FO">chemlambda quine: "16_quine_A_L_FI_FO"
-      <option value="16_quine_A_L_FI_FO_duplicate">"16_quine_A_L_FI_FO_duplicate"
-      <option value="shuffle_10_0A8E7D9132C546B">""shuffle_10_0A8E7D9132C546B"
-      <option value="shuffle_10_51D3E60BA74C928">"shuffle_10_51D3E60BA74C928"
-      <option value="shuffle_10_D870619BC345AE2">"shuffle_10_D870619BC345AE2"
-      <option value="random_10_quine_bubbles">"random_10_quine_bubbles"
+      <option value="bigpred">&lambda; inspiration: the predecessor </option>
+      <option value="bigpred_train"> first quine: the ouroboros </option>
+      <option value="bigpred_train_fun"> ouroboros analyzed </option>
+      <option value="bigpred_propagator"> what is a propagator </option>
+      <option value="bigpred_multipropagator"> propagation takes time </option>
+      <option value="bigpred_circularpropagator"> circular propagation </option>
           </select>
         </span2> 
     </li>
@@ -56,7 +47,7 @@ last modified: 09.11.2019
   </div>
 
   <div class="col-4 menu">
-<span2>IC &amp; chemlambda quines. &copy; <a href="http://imar.ro/~mbuliga/index.html">M. Buliga</a> (2019)</span2>
+<span2>The Ouroboros. &copy; <a href="http://imar.ro/~mbuliga/index.html">M. Buliga</a> (2019)</span2>
   </div>
 
 </div>
@@ -77,7 +68,7 @@ last modified: 09.11.2019
       <li> <div id="svgdiv"> </div></li>
       <li><span3>gravity slider </span3> <input class="slider" type="range" min="1" max="250" value="150" id="gravRange"></li>
       <li><span2>CODE: </span2><span id="molyoulookat"></span></li>
-      <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">512</span> nodes<span>)</span></li>
+      <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">1024</span> nodes<span>)</span></li>
     </ul>
   </div>
 
