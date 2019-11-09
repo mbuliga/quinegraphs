@@ -1,12 +1,20 @@
 /* 
-page look (buttons, etc) for ice.html, a web page support for the article "Quine graphs", in preparation.
-author: Marius Buliga http://imar.ro/~mbuliga/index.html
-last modified: 07.11.2019
+page look (buttons, etc)
 */
+
+function selectionStarter() {
+setSpeed(0); setStart(0); whichButtons(); voidMolToScreenAfter(); molSelect(); exportMolToScreen();
+}
+
+function selectionLink(link) {
+document.getElementById("listofmols").value = link;
+selectionStarter();
+}
+
 
 
 var ButtonOriginal = [
-  {"Id":"button3", "Class":"image2", "Visibility":"hidden", "Onclick": function () {setSpeed(0); setStart(0); voidMolToScreenAfter(); molSelect(); exportMolToScreen();}, "Text":"new"},
+  {"Id":"button3", "Class":"image2", "Visibility":"hidden", "Onclick": function () {selectionStarter();}, "Text":"new"},
   {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1); loop();}, "Text":"start"},
   {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
@@ -16,7 +24,7 @@ var ButtonOriginal = [
 
 
 var ButtonRandomGraph = [
-  {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); voidMolToScreenAfter(); molSelect(); exportMolToScreen();}, "Text":"new"},
+  {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {selectionStarter();}, "Text":"new"},
   {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1); loop();}, "Text":"start"},
   {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
@@ -25,7 +33,7 @@ var ButtonRandomGraph = [
 
 
 var ButtonGreedyAlgorithm = [
-  {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); voidMolToScreenAfter(); molSelect(); exportMolToScreen();}, "Text":"greedy"},
+  {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {selectionStarter();}, "Text":"greedy"},
   {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1); loop();}, "Text":"start"},
   {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
@@ -113,6 +121,7 @@ switch (choiceButtons) {
 showAllButtons(selectedButtons);
 
 }
+
 
 
 
