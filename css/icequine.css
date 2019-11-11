@@ -128,11 +128,11 @@ html {
 }
 
 
-.image {border-width:2; padding: 8px; border-radius: 6px; border: 2px solid #f55;  background-color: #010101; color: #93CCEA;  opacity: 0.3;}
+.image {padding: 8px; border-radius: 6px; border: 2px solid #f55; /*border-width: thick;*/  background-color: #010101; color: #93CCEA;  opacity: 0.3;}
 
-.image2 {border-width:2; padding: 8px; border-radius: 6px; border: 2px solid #f55;  background-color: #010101; color: #93CCEA; cursor: pointer;}
+.image2 { padding: 8px; border-radius: 6px; border: 2px solid #f55; /*border-width: thick;*/ background-color: #010101; color: #93CCEA; cursor: pointer;}
 
-.image2:hover {border-width:2; padding: 8px; border-radius: 6px; border: 2px solid #ff5;  background-color: #010101;  color: #93CCEA; cursor: pointer;}
+.image2:hover { padding: 8px; border-radius: 6px; border: 2px solid #ff5; /*border-width: thick;*/ background-color: #010101;  color: #93CCEA; cursor: pointer;}
 
 a:active, a:link, a:visited		{color: #ff5;}
 
@@ -148,6 +148,11 @@ button {
  width: 70px;
 }
 
+        selectspan {
+           color: #ff5;
+           cursor: pointer;
+        }
+
         span0 {
             color: #ff0000;
         }
@@ -160,9 +165,15 @@ button {
         span3 {
             color: #93CCEA;
         }
+        span4 {
+            color: #9fc952;
+        }
+        span5 {
+            color: #D503FF;
+        }
         .link {
             stroke: #6495ED;
-            stroke-width: 2px;
+            stroke-width: 2px; 
         }
 
         .node {            stroke: #000;
@@ -198,6 +209,10 @@ button {
     left: 0;
 }
 
+.slidecontainer {
+  width: 100%;
+}
+
 .slider {
   -webkit-appearance: none;
   width: 60%;
@@ -214,25 +229,20 @@ button {
   background: #ff5;
 }
 
+
+
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 15px;
-  height: 15px;
-  border-radius: 3px;
-  border: 2px solid #ff5;
-  background: #93CCEA 
-  opacity: 0;
+  width: 20px;
+  height: 20px;
+  background:  #93CCEA;
   cursor: pointer;
 }
-
 .slider::-moz-range-thumb {
-  width: 15px;
-  height: 15px;
-  border-radius: 3px;
-  border: 2px solid #ff5;
-  background: #93CCEA 
-  opacity: 0;
+  width: 20px;
+  height: 20px;
+  background: #93CCEA;
   cursor: pointer;
 }
 
