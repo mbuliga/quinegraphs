@@ -984,7 +984,7 @@ function addNodeAndEdges(type,x,y) {
   addNode(i, type, x, y);
   
   for (k=0; k<valence.length; k++) {
-    addLink(i, i+k+1)
+    addLink(i, i+k+1, 2)
   }
   
   newNodeIndex += valence.length + 1;
@@ -1096,7 +1096,7 @@ function importMol(str) {
     var newNode = addNodeAndEdges(line[0]);
     
     for (var k=1; k<newNode.length; k++) {
-      if (edges['e'+line[k]]) addLink(edges['e'+line[k]], newNode[k]);
+      if (edges['e'+line[k]]) addLink(edges['e'+line[k]], newNode[k], 2);
       else edges['e'+line[k]] = newNode[k];
     }
   }
@@ -1125,7 +1125,7 @@ function importMolFromLib(str) {
     var newNode = addNodeAndEdges(line[0]);
     
     for (var k=1; k<newNode.length; k++) {
-      if (edges['e'+line[k]]) addLink(edges['e'+line[k]], newNode[k]);
+      if (edges['e'+line[k]]) addLink(edges['e'+line[k]], newNode[k], 2);
       else edges['e'+line[k]] = newNode[k];
     }
   }
