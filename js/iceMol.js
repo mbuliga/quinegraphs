@@ -30,11 +30,6 @@ switch (molName) {
   var mol = "FROUT out^A 1 2 out^L 3 a 1^A 4 5 3^FO a 4 5^L 6 x 2^A 7 8 6^L 9 b 7^A 10 11 9^FO b 10 11^L 12 y 8^A y x 12";
   break;
 
-//  case "alexo_example":
-//  var mol = "FROUT 2^L 6 x 2^A 7 8 6^L 9 b 7^A 10 11 9^FO b 10 11^L 12 y 8^A y x 12";
-//  break;
-
-
 
   case "ishan_example":
   var mol = "FO 0 11 12^FO 5 6 7^L 8 5 0^A 7 6 9^A 10 9 8^L 1 2 10^A 3 4 1^FO 2 4 3^FROUT 11^FROUT 12";
@@ -218,6 +213,14 @@ switch (molName) {
 
   case "bigpred_propagator":
   var mol = "A in x c^L c x out^FRIN in^FOE out out1 out2^FROUT out1^FROUT out2";
+  break;
+
+  case "bigpred_generator":
+  var mol = "A in x c^L c x out^FOE out out1 in^A out1 out2 out2";
+  break;
+
+  case "bigpred_generator2":
+  var mol = "A in x c^L c x out^FOE out out1 out3^A out1 out5 out2^FOE out3 out4 in^A out4 out2 out5";
   break;
 
   case "bigpred_multipropagator":
@@ -448,6 +451,10 @@ case "random_egg_A_L_FI_FOE":
 
   case "sparkFOE_540213":
   var mol = "A 0 1 5^L 2 4 0^FI 3 4 2^FOE 5 1 3";
+  break;
+
+  case "sparkFOE_530142":                          // comes from bigpred_generator
+  var mol = "A 0 1 5^L 2 3 0^FI 3 4 1^FOE 5 4 2";
   break;
 
   case "bubble_214503":
