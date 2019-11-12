@@ -3,7 +3,7 @@
 
 <!-- based on a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
 author: Marius 
-last modified: 09.11.2019
+last modified: 12.11.2019
 //
 -->
 
@@ -23,8 +23,6 @@ last modified: 09.11.2019
 <script src="js/jquery.min.js"></script>
 <script src="js/pagelook.js"></script>
 
-
-
 <div class="row">
   <div class="col-1 col-s-2 menu">
   </div>
@@ -32,38 +30,34 @@ last modified: 09.11.2019
     <ul>
       <li>    
         <span2> 
-          <select  class="image2" id="listofmols" onchange="setSpeed(0); setStart(0); whichButtons(); voidMolToScreenAfter(); molSelect(); exportMolToScreen();">
-      <option value="howto">MENU</option>
-      <option value="omega">&lambda; quine: omega combinator </option>
-      <option value="Lafont-quine"> Lafont' quine </option>
-      <option value="4_IC_6B784A053912"> IC quine: "4_IC_6B784A053912" </option>
-      <option value="4_IC_84B7362190A5"> IC quine: "4_IC_84B7362190A5" </option>
-      <option value="4_IC_60852B93A714"> IC quine: "4_IC_60852B93A714" </option>
-      <option value="4_IC_5AB718246309"> IC quine:  "4_IC_5AB718246309" </option>
-      <option value="random_egg_G_G_D_D"> random 2 GAMMA + 2 DELTA nodes IC graph </option>
-      <option value="spark_243501">chemlambda quine: "spark_243501"
-      <option value="10_quine_bubbles">chemlambda quine: "10_quine_bubbles"
-      <option value="16_quine_A_L_FI_FO">chemlambda quine: "16_quine_A_L_FI_FO"
-      <option value="16_quine_A_L_FI_FO_duplicate">"16_quine_A_L_FI_FO_duplicate"
-      <option value="shuffle_10_0A8E7D9132C546B">""shuffle_10_0A8E7D9132C546B"
-      <option value="shuffle_10_51D3E60BA74C928">"shuffle_10_51D3E60BA74C928"
-      <option value="shuffle_10_D870619BC345AE2">"shuffle_10_D870619BC345AE2"
-      <option value="random_10_quine_bubbles">"random_10_quine_bubbles"
+          <select  class="image2" id="listofmols" onchange="selectionStarter();">
+            <option value="howto">MENU</option>
+            <option value="omega">&lambda; quine: omega combinator </option>
+            <option value="Lafont-quine"> Lafont' quine </option>
+            <option value="4_IC_6B784A053912"> IC quine: "4_IC_6B784A053912" </option>
+            <option value="4_IC_84B7362190A5"> IC quine: "4_IC_84B7362190A5" </option>
+            <option value="4_IC_60852B93A714"> IC quine: "4_IC_60852B93A714" </option>
+            <option value="4_IC_5AB718246309"> IC quine:  "4_IC_5AB718246309" </option>
+            <option value="random_egg_G_G_D_D"> random 2 GAMMA + 2 DELTA nodes IC graph </option>
+            <option value="spark_243501">chemlambda quine: "spark_243501"
+            <option value="10_quine_bubbles">chemlambda quine: "10_quine_bubbles"
+            <option value="16_quine_A_L_FI_FO">chemlambda quine: "16_quine_A_L_FI_FO"
+            <option value="16_quine_A_L_FI_FO_duplicate">"16_quine_A_L_FI_FO_duplicate"
+            <option value="shuffle_10_0A8E7D9132C546B">""shuffle_10_0A8E7D9132C546B"
+            <option value="shuffle_10_51D3E60BA74C928">"shuffle_10_51D3E60BA74C928"
+            <option value="shuffle_10_D870619BC345AE2">"shuffle_10_D870619BC345AE2"
+            <option value="random_10_quine_bubbles">"random_10_quine_bubbles"
           </select>
         </span2> 
-    </li>
-  </ul>
+      </li>
+    </ul>
   </div>
-
   <div class="col-4 menu">
-<span2>IC &amp; chemlambda quines. &copy; <a href="http://imar.ro/~mbuliga/index.html">M. Buliga</a> (2019)</span2>
+    <span2>IC &amp; chemlambda quines. &copy; <a href="http://imar.ro/~mbuliga/index.html">M. Buliga</a> (2019)</span2>
   </div>
-
 </div>
 
-
 <div class="row">
-
   <div class="col-1 col-s-2 menu">
     <div class="scol-12"> <span3  id="button0" class="image2" ></span3></div>
     <div class="scol-12"> <span3  id="button1" class="image2" ></span3></div>
@@ -71,7 +65,6 @@ last modified: 09.11.2019
     <div class="scol-12"> <span3  id="button3" class="image2" ></span3></div>
     <div class="scol-12"> <span3  id="button4" class="image2" ></span3></div>
   </div>
-
   <div class="col-7 col-s-9 menu">
     <ul>
       <li> <div id="svgdiv"> </div></li>
@@ -80,48 +73,50 @@ last modified: 09.11.2019
       <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">512</span> nodes<span>)</span></li>
     </ul>
   </div>
-
   <div class="col-4 col-s-4 menu" style="text-align: left;">
     <span id="comments" ></span>
   </div>
-
 </div>
 
 <div class="row">
       <div class="scol-6" style="text-align: left;">
-        <span2>before:</span2><br>
-        <br><span id="puttransformcachealt"></span>
+        <span2>before:</span2><br><br>
+        <span id="puttransformcachealt"></span>
       </div> 
       <div class="scol-6" style="text-align: left;">
-        <span2>chosen:</span2><br>
-        <br><span id="chosentransform"></span>
+        <span2>chosen:</span2><br><br>
+        <span id="chosentransform"></span>
       </div>
       <div class="scol-6" style="text-align: left;">
-        <span2>after:</span2><br>
-        <br><span id="puttransformcachealtafter"></span>
+        <span2>after:</span2><br><br>
+        <span id="puttransformcachealtafter"></span>
       </div>
     <div class="scol-6" style="text-align: left;">
-      <span2>mol before:</span2><br>
-      <br><span id="molexport"></span>
+      <span2>mol before:</span2><br><br>
+      <span id="molexport"></span>
     </div>
     <div class="scol-6" style="text-align: left;">
-      <span2>mol after:</span2><br>
-      <br><span id="molexportafter"></span>
+      <span2>mol after:</span2><br><br>
+      <span id="molexportafter"></span>
     </div>
 </div>
 
 
 <script src="js/iceMol.js"></script>
 <script src="js/iceComments.js"></script>
+<script src="js/parameters.js"></script>
+<script src="js/nodes.js"></script>
+<script src="js/chemistry.js"></script>
+<script src="js/reactions.js"></script>
+<script src="js/myD3Graph.js"></script>
 <script src="js/icequine.js"></script>
 
 <script>
-
 whichButtons();
-
 setSpeed(0); setStart(0); voidMolToScreenAfter(); molSelect(); exportMolToScreen();
 </script>
 
 </body>
 </html>
+
 
