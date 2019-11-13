@@ -3,6 +3,11 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #010101;
+  color: #6495ED;
+}
+
 .row::after {
   content: "";
   clear: both;
@@ -128,13 +133,37 @@ html {
 }
 
 
-.image {padding: 8px; border-radius: 6px; border: 2px solid #f55; /*border-width: thick;*/  background-color: #010101; color: #93CCEA;  opacity: 0.3;}
+.image {
+  padding: 8px;
+  border-radius: 20px; 
+  border: 2px solid #f55; 
+  /*border-width: thick;*/  
+  background-color: #010101; 
+  color: #93CCEA;  
+  opacity: 0.3;
+}
 
-.image2 { padding: 8px; border-radius: 6px; border: 2px solid #f55; /*border-width: thick;*/ background-color: #010101; color: #93CCEA; cursor: pointer;}
+.image2 {
+  padding: 8px; 
+  border-radius: 20px; 
+  border: 2px solid #f55; 
+  /*border-width: thick;*/ 
+  background-color: #010101; 
+  color: #93CCEA; 
+  cursor: pointer;
+}
 
-.image2:hover { padding: 8px; border-radius: 6px; border: 2px solid #ff5; /*border-width: thick;*/ background-color: #010101;  color: #93CCEA; cursor: pointer;}
+.image2:hover {
+  padding: 8px;
+  border-radius: 20px; 
+  border: 2px solid #ff5; 
+  /*border-width: thick;*/ 
+  background-color: #010101;  
+  color: #93CCEA; 
+  cursor: pointer;
+}
 
-a:active, a:link, a:visited		{color: #ff5;}
+a:active, a:link, a:visited  {color: #ff5;}
 
 select option {
  background-color: #010101; 
@@ -148,65 +177,72 @@ button {
  width: 70px;
 }
 
-        selectspan {
-           color: #ff5;
-           cursor: pointer;
-        }
+selectspan {
+  color: #ff5;
+  cursor: pointer;
+}
 
-        span0 {
-            color: #ff0000;
-        }
-        span {
-            color: #6495ED; 
-        }
-        span2 {
-            color: #b80000;
-        }
-        span3 {
-            color: #93CCEA;
-        }
-        span4 {
-            color: #9fc952;
-        }
-        span5 {
-            color: #D503FF;
-        }
-        .link {
-            stroke: #6495ED;
-            stroke-width: 2px; 
-        }
+span0 {
+  color: #ff0000;
+}
 
-        .node {            stroke: #000;
-            stroke-width: 1px;
-        }
-        .textClass {
-            stroke: #323232;
-            fill: white;
-            font-family: "Lucida Grande", "Droid Sans", Arial, Helvetica, sans-serif;
-            font-weight: normal;
-            stroke-width: .5;
-            font-size: 14px;
-        }
-        body {
-            background-color: #010101; color: #6495ED;
-        }
-        #svgdiv .svg {
-          border: 2px solid #888
-        }
+span {
+  color: #6495ED; 
+}
+
+span2 {
+  color: #b80000;
+}
+
+span3 {
+  color: #93CCEA;
+}
+
+span4 {
+  color: #9fc952;
+}
+
+span5 {
+  color: #D503FF;
+}
+
+.link {
+  stroke: #6495ED;
+  stroke-width: 2px; 
+}
+
+.node {
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+.textClass {
+  stroke: #323232;
+  fill: white;
+  font-family: "Lucida Grande", "Droid Sans", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  stroke-width: .5;
+  font-size: 14px;
+}
+
+#svgdiv .svg {
+  border: 2px solid #888;
+}
 
 .svg-container {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%;   /*  aspect ratio */
-    vertical-align: top;
-    overflow: hidden;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  vertical-align: top;
+  overflow: hidden;
 }
+
 .svg-content-responsive {
-    display: inline-block;
-    position: absolute;
-    top: 10px;
-    left: 0;
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  left: 0;
 }
 
 .slidecontainer {
@@ -227,6 +263,7 @@ button {
 .slider:hover {
   opacity: 1;
   background: #ff5;
+ 
 }
 
 
@@ -234,15 +271,19 @@ button {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
+  width: 30px;
   height: 20px;
-  background:  #93CCEA;
+  border-radius: 10px; 
+  border: 2px solid #f55; 
+  background:  #010101;
   cursor: pointer;
 }
 .slider::-moz-range-thumb {
-  width: 20px;
+  width: 30px;
   height: 20px;
-  background: #93CCEA;
+  border-radius: 10px; 
+  border: 2px solid #f55; 
+  background: #010101;
   cursor: pointer;
 }
 
