@@ -2,8 +2,20 @@
 page look (buttons, etc), import-export mol
 */
 
+var versusVar = "<br><br> VS. <br><br>";
+
 function selectionStarter() {
-setSpeed(0); setStart(0); whichButtons(); voidMolToScreenAfter(); molSelect(); exportMolToScreen();
+  setSpeed(0); 
+  setStart(0); 
+  if ( arenaVar == 0 ) {
+  whichButtons(); 
+  }
+  voidMolToScreenAfter(); 
+  molSelect(); 
+  exportMolToScreen();
+  if (arenaVar == 1) {
+    document.getElementById("listofmols").value = "arena";
+  }
 }
 
 function selectionLink(link) {
@@ -30,6 +42,14 @@ var ButtonRandomGraph = [
 ];
 
 
+var ButtonArena = [
+  {"Id":"button1", "Class":"image2", "Visibility":"hidden", "Onclick": function () {document.getElementById("listofmols").value = "arena"; setArena(1); selectionStarter();}, "Text":"add"},
+  {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1); loop();}, "Text":"fight"},
+  {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
+  {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
+  {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); reloadCode();}, "Text":"purge"}
+];
+
 var ButtonGreedyAlgorithm = [
   {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {selectionStarter();}, "Text":"greedy"},
   {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1); loop();}, "Text":"start"},
@@ -55,6 +75,10 @@ function showButton(buttt) {
 function whichButtons() {
   var choiceButtons = document.getElementById("listofmols").value;
   switch (choiceButtons) {
+
+    case "arena":
+    var selectedButtons = ButtonArena;
+    break;
 
     case "greedy":
     var selectedButtons = ButtonGreedyAlgorithm;
@@ -88,13 +112,30 @@ function whichButtons() {
 }
 
 function voidMolToScreenAfter() {
-  document.getElementById("molexport").innerHTML = ""; 
-  document.getElementById("molexportafter").innerHTML = ""; 
   document.getElementById("puttransformcachealt").innerHTML = "";
   document.getElementById("chosentransform").innerHTML = "";
   document.getElementById("puttransformcachealtafter").innerHTML = "";
+//  document.getElementById("nodenumber").innerHTML = 0; 
+  if (arenaVar == 0) { 
+    document.getElementById("molexport").innerHTML = ""; 
+    document.getElementById("molexportafter").innerHTML = ""; 
+  } else {
+    document.getElementById("molexport").innerHTML += "<br>"; 
+    document.getElementById("molexportafter").innerHTML += "<br>"; 
+  }
 }
 
+function setSpeed(newSpeed) {
+  speed = newSpeed;
+}
+
+function setStart(varStart) {
+  startVar = varStart;
+}
+
+function setArena(varArena) {
+  arenaVar = varArena;
+}
 
 // IO functions
 function importMol(str) {
@@ -190,27 +231,58 @@ function exportMol() {
 }
 
 function doClearImportFromLib(molname) {
-  removeAllNodes();
   var molL = molLibrary(molname);
   var molCom = molComments(molname);
+  if (arenaVar == 0) {
+  removeAllNodes();
   document.getElementById("molyoulookat").innerHTML = molL; 
   document.getElementById("comments").innerHTML = molCom; 
+  } else {
+    document.getElementById("molyoulookat").innerHTML = ""; 
+    if (molname != "arena") {
+      fightersVar += 1;
+      if (fightersVar <= 1) { 
+        var versusAdd = "<br>"; 
+      } else {
+        var versusAdd = versusVar;
+      }
+      document.getElementById("comments").innerHTML += versusAdd + molname;
+    } 
+  }
   importMolFromLib(molL);
 }
+
+
 
 function reloadCode() {
   removeAllNodes();
   setSpeed(0);
-  voidMolToScreenAfter(); 
+  if (arenaVar == 0) {
+    voidMolToScreenAfter();
+  } else {
+    document.getElementById("puttransformcachealt").innerHTML = "";
+    document.getElementById("chosentransform").innerHTML = "";
+    document.getElementById("puttransformcachealtafter").innerHTML = "";
+    document.getElementById("molexport").innerHTML = ""; 
+    document.getElementById("molexportafter").innerHTML = ""; 
+    document.getElementById("comments").innerHTML = "";
+    fightersVar = 0;
+  }
   var molL = document.getElementById("molyoulookat").innerHTML;
   importMolFromLib(molL);
+  var initNrOfCenterNodes = Math.floor(nodes.length / 4);
+  document.getElementById("nodenumber").innerHTML = initNrOfCenterNodes;
 }
 
 function molSelect() {
   setSpeed(0);
   var molN = document.getElementById("listofmols").value;
   doClearImportFromLib(molN);
+  var initNrOfCenterNodes = Math.floor(nodes.length / 4);
+  document.getElementById("nodenumber").innerHTML = initNrOfCenterNodes;
 }
+
+
 
 function doClearImport(textarea) {
   removeAllNodes();
