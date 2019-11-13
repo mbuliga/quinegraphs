@@ -31,3 +31,5 @@ var whiteCol = "#fff";
 
 var speed = 0;
 var startVar = 0;
+var arenaVar = 0;
+var fightersVar = 0;

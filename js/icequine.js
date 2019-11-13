@@ -43,6 +43,8 @@ function loop(dt) {
 
   var maxNumberOfNodesStr = document.getElementById("maxnodenumber").innerHTML;
   var maxNumberOfNodes = maxNumberOfNodesStr - 2;
+  var numberOfCenterNodes = Math.floor(nodes.length / 4);
+  document.getElementById("nodenumber").innerHTML = numberOfCenterNodes;
 
   if (nodes.length > 4*maxNumberOfNodes) { setSpeed(0);}
 

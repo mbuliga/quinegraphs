@@ -283,13 +283,7 @@ function setMode(newMode, newType) {
   selection = null;
 }
 
-function setSpeed(newSpeed) {
-  speed = newSpeed;
-}
 
-function setStart(varStart) {
-  startVar = varStart;
-}
 
 function findLinkedOfType(node, type) {
   var linked = getLinked(node);
@@ -370,7 +364,31 @@ function addNodeAndEdges(type,x,y) {
 }
 
 
+  function moveLink1(s1,d2i) {
+    // Connect the other side of s1 to d2
+    var s2 = findLinkedHalfEdge(s1);
+    if (s2 != null) {
+      removeLink(s1.id,s2.id);
+      removeLink(s2.id,s1.id);
+      addLink(s2.id,d2i,2);
+    }
+  }
 
+  function moveLink2(s1,d1) {
+    // Connect the other side of two half-edges to each other
+    var s2 = findLinkedHalfEdge(s1);
+    var d2 = findLinkedHalfEdge(d1);
+    if (s2 != null) {
+      removeLink(s1.id,s2.id);
+      removeLink(s2.id,s1.id);
+    }
+    if (d2 != null) {
+      removeLink(d1.id,d2.id);
+      removeLink(d2.id,d1.id);
+    }
+    if (s2 != null && d2 != null && s2 != d1)
+      addLink(s2.id,d2.id,2);
+  }
 
 function backClick(d,i) {
   var e = d3.event;
