@@ -24,9 +24,9 @@ last modified: 12.11.2019
 <script src="js/pagelook.js"></script>
 
 <div class="row">
-  <div class="col-1 col-s-2 menu">
+  <div class="col-1 menu">
   </div>
-  <div class="col-7 col-s-9 menu">
+  <div class="col-7 menu">
     <ul>
       <li>    
         <span2> 
@@ -50,14 +50,14 @@ last modified: 12.11.2019
 </div>
 
 <div class="row">
-  <div class="col-1 col-s-2 menu">
+  <div class="col-1 menu">
     <div class="scol-12"> <span3  id="button0" class="image2" ></span3></div>
     <div class="scol-12"> <span3  id="button1" class="image2" ></span3></div>
     <div class="scol-12"> <span3  id="button2" class="image2" ></span3></div>
     <div class="scol-12"> <span3  id="button3" class="image2" ></span3></div>
     <div class="scol-12"> <span3  id="button4" class="image2" ></span3></div>
   </div>
-  <div class="col-7 col-s-9 menu">
+  <div class="col-7 menu">
     <ul>
       <li> <div id="svgdiv"> </div></li>
       <li><span3>gravity slider</span3> <div class="slidecontainer"><input class="slider" type="range" min="1" max="250" value="150" id="gravRange"></div></li>
@@ -65,7 +65,8 @@ last modified: 12.11.2019
       <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">512</span> nodes<span>)</span></li>
     </ul>
   </div>
-  <div class="col-4 col-s-4 menu" style="text-align: left;">
+  <div class="col-4 menu" style="text-align: left;">
+    <span2 style="text-align: left;"> nodes &sim; </span2><span2 id="nodenumber"></span2><br><br> 
     <span id="comments" ></span>
   </div>
 </div>
@@ -99,13 +100,12 @@ last modified: 12.11.2019
 <script src="js/parameters.js"></script>
 <script src="js/nodes.js"></script>
 <script src="js/chemistry.js"></script>
-<script src="js/reactions.js"></script>
+<!-- <script src="js/reactions.js"></script> -->
 <script src="js/myD3Graph.js"></script>
 <script src="js/icequine.js"></script>
 
 <script>
-whichButtons();
-setSpeed(0); setStart(0); voidMolToScreenAfter(); molSelect(); exportMolToScreen();
+selectionStarter();
 </script>
 
 </body>
