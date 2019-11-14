@@ -196,6 +196,8 @@ function importMolFromLib(str) {
 
 function exportMol() {
   var edgeCount = 0;
+  var numberOfCenterNodes = 0;
+
   var result = "";
   var edges = {};
   
@@ -225,8 +227,10 @@ function exportMol() {
       
       line += "<br>";
       result += line;
+      numberOfCenterNodes +=1;
     }
   }  
+  document.getElementById("nodenumber").innerHTML = numberOfCenterNodes;
   return result;
 }
 
@@ -270,8 +274,7 @@ function reloadCode() {
   }
   var molL = document.getElementById("molyoulookat").innerHTML;
   importMolFromLib(molL);
-  var initNrOfCenterNodes = Math.floor(nodes.length / 4);
-  document.getElementById("nodenumber").innerHTML = initNrOfCenterNodes;
+  exportMolToScreen();
 }
 
 function molSelect() {
