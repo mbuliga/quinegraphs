@@ -13,5 +13,7 @@ We invite you to  explore some of their properties, with examples taken from lam
 
 - The Ouroboros: https://mbuliga.github.io/quinegraphs/ouroboros.html
 
-- Graphs figth arena (in preparation):  https://mbuliga.github.io/quinegraphs/arena.html
+- Graphs figth arena (will turn into a tool to explore communities of quines):  https://mbuliga.github.io/quinegraphs/arena.html
+
+- Lambda terms reduced with chemlambda: https://mbuliga.github.io/quinegraphs/lambda.html 
 
