@@ -3,7 +3,7 @@
 
 <!-- based on a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
 author: Marius 
-last modified: 12.11.2019
+last modified: 14.11.2019
 //
 -->
 
@@ -23,6 +23,11 @@ last modified: 12.11.2019
 <script src="js/jquery.min.js"></script>
 <script src="js/pagelook.js"></script>
 
+<div class="header">
+    <span2>Quines fight arena &copy; <a href="http://imar.ro/~mbuliga/index.html">M. Buliga</a> (2019)</span2>
+</div>
+
+
 <div class="row">
   <div class="col-1 menu" style="text-align: left;">
   </div>
@@ -32,26 +37,33 @@ last modified: 12.11.2019
         <span2> 
           <select  class="image2" id="listofmols" onchange="selectionStarter();">
             <option value="arena">fight arena</option>
-            <option value="omega">&lambda;  omega combinator </option>
+            <option value="omega">&lambda; quine: omega combinator </option>
+            <option value="Lafont-quine"> Lafont' quine </option>
+            <option value="4_IC_6B784A053912"> IC quine: "4_IC_6B784A053912" </option>
+            <option value="4_IC_84B7362190A5"> IC quine: "4_IC_84B7362190A5" </option>
+            <option value="4_IC_60852B93A714"> IC quine: "4_IC_60852B93A714" </option>
+            <option value="4_IC_5AB718246309"> IC quine:  "4_IC_5AB718246309" </option>
+            <option value="random_egg_G_G_D_D"> random 2 GAMMA + 2 DELTA nodes IC graph </option>
             <option value="bigpred_circularpropagator"> circular propagator </option>
             <option value="bigpred_train_fun"> the ouroboros </option>
-            <option value="spark_243501">"spark_243501"
-            <option value="10_quine_bubbles">"10_quine_bubbles"
-            <option value="16_quine_A_L_FI_FO">"16_quine_A_L_FI_FO"
+            <option value="spark_243501">chemlambda quine: "spark_243501"
+            <option value="10_quine_bubbles">chemlambda quine: "10_quine_bubbles"
+            <option value="16_quine_A_L_FI_FO">chemlambda quine: "16_quine_A_L_FI_FO"
             <option value="16_quine_A_L_FI_FO_duplicate">"16_quine_A_L_FI_FO_duplicate"
-            <option value="shuffle_10_290C1735B6A4DE8">10 nodes sometimes becomes quine from [graph A-L-FI-FOE 540213]
-            <option value="shuffle_10_6937A42C15B08DE">10 nodes graph with only 4 nodes active (the other 6 nodes deleted)
-            <option value="spark_234501">"spark_234501"
-            <option value="spark_214530">"spark_214530"
             <option value="shuffle_10_0A8E7D9132C546B">""shuffle_10_0A8E7D9132C546B"
+            <option value="shuffle_10_51D3E60BA74C928">"shuffle_10_51D3E60BA74C928"
             <option value="shuffle_10_D870619BC345AE2">"shuffle_10_D870619BC345AE2"
+            <option value="random_10_quine_bubbles">"random_10_quine_bubbles"
           </select>
         </span2> 
+      </li>
+      <li>
+         <span3>rewrites weights slider</span3> <div class="slidecontainer">DIST &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &beta;</div>
       </li>
     </ul>
   </div>
   <div class="col-4 menu">
-    <span2>Graphs fight arena &copy; <a href="http://imar.ro/~mbuliga/index.html">M. Buliga</a> (2019)</span2>
+    <span3 style="text-align: left;"> nodes &sim; </span3><span id="nodenumber"></span>
   </div>
 </div>
 
@@ -66,14 +78,13 @@ last modified: 12.11.2019
   <div class="col-7 menu">
     <ul>
       <li> <div id="svgdiv"> </div></li>
-      <li><span3>gravity slider</span3> <div class="slidecontainer"><input class="slider" type="range" min="1" max="250" value="50" id="gravRange"></div></li>
+      <li><span3>gravity slider</span3> <div class="slidecontainer"><input class="slider" type="range" min="1" max="250" value="150" id="gravRange"></div></li>
       <li><span2>CODE: </span2><span id="molyoulookat"></span></li>
       <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">512</span> nodes<span>)</span></li>
     </ul>
   </div>
   <div class="col-4 menu" style="text-align: left;">
-    <span2 style="text-align: left;"> nodes &sim; </span2><span2 id="nodenumber"></span2><br><br> 
-    <span>When you put several graphs in the same arena, they will fight for the rewrites.<br><br> This modifies their evolution.<br><br> Pick your fighters from the menu (you may choose the same graph several times). <br><br> Click "fight" to fight.<br><br>Click "purge" to purge the arena.</span><br><br>
+    <span>When you put several quines in the same arena, they will fight for the rewrites.<br><br> This modifies their evolution.<br><br> Pick your fighters from the menu (you may choose the same quine several times). <br><br> Click "fight" to fight.<br><br>Click "purge" to purge the arena.</span><br><br>
     <span5 id="comments" ></span5>
   </div>
 </div>

@@ -3,7 +3,7 @@
 
 <!-- based on a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
 author: Marius 
-last modified: 12.11.2019
+last modified: 14.11.2019
 //
 -->
 
@@ -22,6 +22,12 @@ last modified: 12.11.2019
 <script src="js/d3.v5.9.4.min.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/pagelook.js"></script>
+
+
+<div class="header">
+    <span2>The Ouroboros. &copy; <a href="http://imar.ro/~mbuliga/index.html">M. Buliga</a> (2019)</span2>
+</div>
+
 
 <div class="row">
   <div class="col-1 menu">
@@ -42,10 +48,13 @@ last modified: 12.11.2019
           </select>
         </span2> 
     </li>
+    <li>
+         <span3>rewrites weights slider</span3> <div class="slidecontainer">DIST &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &beta;</div>
+    </li>
   </ul>
   </div>
   <div class="col-4 menu">
-    <span2>The Ouroboros. &copy; <a href="http://imar.ro/~mbuliga/index.html">M. Buliga</a> (2019)</span2>
+    <span3 style="text-align: left;"> nodes &sim; </span3><span id="nodenumber"></span>
   </div>
 </div>
 
@@ -66,7 +75,6 @@ last modified: 12.11.2019
     </ul>
   </div>
   <div class="col-4 menu" style="text-align: left;">
-    <span2 style="text-align: left;"> nodes &sim; </span2><span2 id="nodenumber"></span2><br><br> 
     <span id="comments" ></span>
   </div>
 </div>
