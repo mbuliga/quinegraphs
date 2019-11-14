@@ -112,8 +112,11 @@ function myGraph(selector) {
   this.nodes = force.nodes()
   this.links = [];
 
-  d3.select("input[type=range]")
+  d3.select("input[id='gravRange']")
     .on("input", inputted);
+
+//  d3.select("input[id='rewritesRange']")
+//    .on("input", inputted);
 
   this.update = function () {
     // Update transform list
@@ -459,18 +462,18 @@ function nodeClick(d,i) {
 
 function nodeHover(d,i) {
   var e = d3.event;
-//  exportMolToScreen();
+  exportMolToScreen();
   switch (mode) {
     case "transform":
       var trans = findTransform(d);
       if (trans) {
         doTransform(d, trans);
         update();
-        exportMolToScreenAfter();
       }
 
       break;
   }
+  exportMolToScreenAfter();
 }
 
 
