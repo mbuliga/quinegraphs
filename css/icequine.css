@@ -1,3 +1,58 @@
+.theme-construction {
+  --radius: 20px;
+  --baseFg: #93CCEA;
+  --baseBd: #f55;
+  --baseBg: black;
+  --accentFg: black;
+  --accentBg: #ff5;
+}
+
+select {
+  font: 400 14px/1.3 sans-serif;
+  -webkit-appearance: none;
+  /* appearance: none; */
+  -moz-appearance: none;
+  color: var(--baseFg);
+  border: 2px solid var(--baseBd);
+  line-height: 1;
+  outline: 0;
+  padding: 0.65em 2.5em 0.55em 0.75em;
+  border-radius: var(--radius);
+  background-color: var(--baseBg);
+  background-image: linear-gradient(var(--baseFg), var(--baseFg)),
+    linear-gradient(-135deg, transparent 50%, var(--accentBg) 50%),
+    linear-gradient(-225deg, transparent 50%, var(--accentBg) 50%),
+    linear-gradient(var(--accentBg) 40%, var(--accentFg) 40%);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 1px 100%, 20px 22px, 20px 22px, 20px 100%;
+  background-position: right 20px center, right bottom, right bottom, right bottom;   
+}
+
+select:hover {
+  background-image: linear-gradient(var(--accentFg), var(--accentFg)),
+    linear-gradient(-135deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(-225deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(var(--accentFg) 42%, var(--accentBg) 42%);
+  border: 2px solid var(--accentBg);
+}
+
+select:active {
+  background-image: linear-gradient(var(--accentFg), var(--accentFg)),
+    linear-gradient(-135deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(-225deg, transparent 50%, var(--accentFg) 50%),
+    linear-gradient(var(--accentFg) 42%, var(--accentBg) 42%);
+  color: var(--accentBg);
+  border-color: var(--accentFg);
+  background-color: var(--accentFg);
+}
+
+select option {
+ background-color: #010101; 
+ color: #6495ED;
+}
+
+
+/* from here the old css */
 
 * {
   box-sizing: border-box;
@@ -16,12 +71,12 @@ body {
 
 [class*="col-"] {
   float: left;
-  padding: 5px;
+  padding: 4px;
 }
 
 [class*="scol-"] {
   float: left;
-  padding: 5px;
+  padding: 4px;
 }
 
 html {
@@ -31,7 +86,7 @@ html {
 .header {
   background-color: #010101; 
   color: #ffffff;
-  padding: 15px;
+  padding: 8px;
 }
 
 .menu ul {
@@ -42,7 +97,7 @@ html {
 
 .menu li {
   padding: 8px; 
-  margin-bottom: 18px;
+  margin-bottom: 1px;
   background-color: #010101; 
   color: #6495ED;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -69,15 +124,15 @@ html {
 /* For mobile phones: */
 [class*="col-"] {
   width: 100%;
-  padding: 8px; 
-  margin-bottom: 18px;
+  padding: 4px; 
+  margin-bottom: 4px;
   text-align: center; 
 }
 
 [class*="scol-"] {
   width: 20%;
   padding: 8px; 
-  margin-bottom: 18px;
+  margin-bottom: 1px;
   text-align: center;
 }
 
@@ -94,7 +149,7 @@ html {
   padding: 8px; 
   margin-bottom: 18px;}
   .col-4 {width: 33.33%;
-  padding: 8px; 
+  padding: 20px; 
   margin-bottom: 18px;}
   .col-5 {width: 41.66%;
   padding: 8px; 
@@ -144,23 +199,17 @@ html {
 }
 
 .image2 {
-  padding: 8px; 
+ padding: 8px; 
   border-radius: 20px; 
   border: 2px solid #f55; 
-  /*border-width: thick;*/ 
+ /* border-width: thick;*/ 
   background-color: #010101; 
   color: #93CCEA; 
   cursor: pointer;
 }
 
 .image2:hover {
-  padding: 8px;
-  border-radius: 20px; 
   border: 2px solid #ff5; 
-  /*border-width: thick;*/ 
-  background-color: #010101;  
-  color: #93CCEA; 
-  cursor: pointer;
 }
 
 a:active, a:link, a:visited  {color: #ff5;}
@@ -247,6 +296,7 @@ span5 {
 
 .slidecontainer {
   width: 100%;
+  padding: 8px; 
 }
 
 .slider {
@@ -258,6 +308,8 @@ span5 {
   opacity: 0.8;
   -webkit-transition: .1s;
   transition: opacity .1s;
+
+
 }
 
 .slider:hover {
@@ -270,7 +322,8 @@ span5 {
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
+  /* appearance: none; */
+  -moz-appearance: none;
   width: 30px;
   height: 20px;
   border-radius: 10px; 
