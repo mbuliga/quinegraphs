@@ -3,7 +3,7 @@
 
 <!-- based on a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
 author: Marius 
-last modified: 14.11.2019
+last modified: 20.11.2019
 //
 -->
 
@@ -24,7 +24,7 @@ last modified: 14.11.2019
 <script src="js/pagelook.js"></script>
 
 <div class="header">
-    <span2>Quines fight arena &copy; <a href="http://imar.ro/~mbuliga/index.html">M. Buliga</a> (2019)</span2>
+    <span2>Quines fight arena &copy;  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2019)</span2>
 </div>
 
 
@@ -35,30 +35,31 @@ last modified: 14.11.2019
     <ul>
       <li>    
         <span2> 
-          <select  class="image2" id="listofmols" onchange="selectionStarter();">
+            <select  class="theme-construction" id="listofmols" onchange="selectionStarter();">
             <option value="arena">fight arena</option>
             <option value="omega">&lambda; quine: omega combinator </option>
+            <option value="bigpred_circularpropagator"> circular propagator </option>
+            <option value="bigpred_train_fun"> the ouroboros </option>
+            <option value="spark_243501">chemlambda quine: "spark_243501"</option>
+            <option value="10_quine_bubbles">chemlambda quine: "10_quine_bubbles"</option>
+            <option value="16_quine_A_L_FI_FO">chemlambda quine: "16_quine_A_L_FI_FO"</option>
+            <option value="16_quine_A_L_FI_FO_duplicate">"16_quine_A_L_FI_FO_duplicate"</option>
+            <option value="shuffle_10_0A8E7D9132C546B">""shuffle_10_0A8E7D9132C546B"</option>
+            <option value="shuffle_10_6AC0379E12D5B48">"shuffle_10_6AC0379E12D5B48"</option>
+            <option value="shuffle_10_D870619BC345AE2">"shuffle_10_D870619BC345AE2"</option>
+            <option value="shuffle_10_8639A7BC024DE51">"shuffle_10_8639A7BC024DE51"</option>
+            <option value="20_quine">"20_quine"</option>
+            <option value="9_quine">"9_quine"</option>
             <option value="Lafont-quine"> Lafont' quine </option>
             <option value="4_IC_6B784A053912"> IC quine: "4_IC_6B784A053912" </option>
             <option value="4_IC_84B7362190A5"> IC quine: "4_IC_84B7362190A5" </option>
             <option value="4_IC_60852B93A714"> IC quine: "4_IC_60852B93A714" </option>
             <option value="4_IC_5AB718246309"> IC quine:  "4_IC_5AB718246309" </option>
-            <option value="random_egg_G_G_D_D"> random 2 GAMMA + 2 DELTA nodes IC graph </option>
-            <option value="bigpred_circularpropagator"> circular propagator </option>
-            <option value="bigpred_train_fun"> the ouroboros </option>
-            <option value="spark_243501">chemlambda quine: "spark_243501"
-            <option value="10_quine_bubbles">chemlambda quine: "10_quine_bubbles"
-            <option value="16_quine_A_L_FI_FO">chemlambda quine: "16_quine_A_L_FI_FO"
-            <option value="16_quine_A_L_FI_FO_duplicate">"16_quine_A_L_FI_FO_duplicate"
-            <option value="shuffle_10_0A8E7D9132C546B">""shuffle_10_0A8E7D9132C546B"
-            <option value="shuffle_10_51D3E60BA74C928">"shuffle_10_51D3E60BA74C928"
-            <option value="shuffle_10_D870619BC345AE2">"shuffle_10_D870619BC345AE2"
-            <option value="random_10_quine_bubbles">"random_10_quine_bubbles"
           </select>
         </span2> 
       </li>
       <li>
-         <span3>rewrites weights slider</span3> <div class="slidecontainer">DIST &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &beta;</div>
+         <span3>rewrites weights slider</span3> <div class="slidecontainer">GROW &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &nbsp; SLIM</div>
       </li>
     </ul>
   </div>
@@ -78,7 +79,7 @@ last modified: 14.11.2019
   <div class="col-7 menu">
     <ul>
       <li> <div id="svgdiv"> </div></li>
-      <li><span3>gravity slider</span3> <div class="slidecontainer"><input class="slider" type="range" min="1" max="250" value="150" id="gravRange"></div></li>
+      <li><span3>gravity slider</span3> <div class="slidecontainer">MIN &nbsp;<input class="slider" type="range" min="1" max="250" value="150" id="gravRange"> &nbsp; MAX</div></li>
       <li><span2>CODE: </span2><span id="molyoulookat"></span></li>
       <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">512</span> nodes<span>)</span></li>
     </ul>

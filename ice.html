@@ -3,7 +3,7 @@
 
 <!-- based on a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
 author: Marius 
-last modified: 14.11.2019
+last modified: 20.11.2019
 //
 -->
 
@@ -24,7 +24,7 @@ last modified: 14.11.2019
 <script src="js/pagelook.js"></script>
 
 <div class="header">
-  <span2>IC &amp; chemlambda quines. &copy; <a href="http://imar.ro/~mbuliga/index.html">M. Buliga</a> (2019)</span2>
+  <span2>IC &amp; chemlambda quines.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2019)</span2>
 </div>
 
 <div class="row">
@@ -34,7 +34,7 @@ last modified: 14.11.2019
     <ul>
       <li>    
         <span2> 
-          <select  class="image2" id="listofmols" onchange="selectionStarter();">
+          <select  class="theme-construction" id="listofmols" onchange="selectionStarter();">
             <option value="howto">MENU</option>
             <option value="omega">&lambda; quine: omega combinator </option>
             <option value="Lafont-quine"> Lafont' quine </option>
@@ -55,7 +55,7 @@ last modified: 14.11.2019
         </span2> 
       </li>
       <li>
-         <span3>rewrites weights slider</span3> <div class="slidecontainer">DIST &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &beta;</div>
+         <span3>rewrites weights slider</span3> <div class="slidecontainer">GROW &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &nbsp; SLIM</div>
       </li>
     </ul>
   </div>
@@ -75,7 +75,7 @@ last modified: 14.11.2019
   <div class="col-7 menu">
     <ul>
       <li> <div id="svgdiv"> </div></li>
-      <li><span3>gravity slider</span3> <div class="slidecontainer">0 &nbsp;<input class="slider" type="range" min="1" max="250" value="150" id="gravRange"> 100</div></li>
+      <li><span3>gravity slider</span3> <div class="slidecontainer">MIN &nbsp;<input class="slider" type="range" min="1" max="250" value="150" id="gravRange"> &nbsp; MAX</div></li>
       <li><span2>CODE: </span2><span id="molyoulookat"></span></li>
       <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">512</span> nodes<span>)</span></li>
     </ul>
