@@ -17,3 +17,5 @@ We invite you to  explore some of their properties, with examples taken from lam
 
 - Lambda terms reduced with chemlambda: https://mbuliga.github.io/quinegraphs/lambda.html 
 
+- Lambda calculus  to chemlambda parser: https://mbuliga.github.io/quinegraphs/lambda2mol.html 
+
