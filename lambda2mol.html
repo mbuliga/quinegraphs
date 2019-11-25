@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!-- based on a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
+author: Marius Buliga
+last modified: 25.11.2019
+//
+-->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="css/icequine.css">
+
+<title>Lambda2mol</title>
+</head>
+
+
+<body style="overflow: scroll;">
+
+<script src="js/d3.v5.9.4.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/pagelook.js"></script>
+
+<div class="header">
+  <span>Lambda calculus to mol.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2019)</span>
+</div>
+
+<div class="row">
+  <div class="col-1 menu" style="text-align: left;">
+  </div>
+  <div class="col-7 menu">
+    <ul>
+      <li>    
+        <span2> 
+          <select  class="theme-construction" id="listofmols" onchange="selectionStarter();">
+            <option value="howto">MENU</option>
+            <option value="omega"> omega combinator </option>
+            <option value="bigpred">the predecessor </option>
+            <option value="omegaSKI"> omega from S,K combinators</option>
+            <option value="y_comb_id">Y combinator applied to id</option>
+            <option value="ackermann_2_2">ackermann_2_2 </option>
+            <option value="ackermann_3_2">ackermann_3_2 </option>
+            <option value="times_only_short">5 X 5 = (&lambda;m.&lambda;n.&lambda;f.m(nf)) 5 5 </option>
+            <option value="times_only_long">5 X 5 = (&lambda;m.&lambda;n.m (PLUS n) 0) 5 5, with PLUS = &lambda;m.&lambda;n.m SUCC n </option>
+            <option value="SKK">SKK </option>
+            <option value="alexo_example">(&lambda;a.aa)(&lambda;x.((&lambda;b.bb)(&lambda;y.yx))) </option>
+          </select>
+        </span2> 
+      </li>
+      <li><div><textarea id="inputlambda" style="height: 80px; width: 100%;  background-color: #010101; 
+ color: #6495ED;  font-size: 14px;"></textarea> </div>
+      </li>
+      <li>
+         <span3>rewrites weights slider</span3> <div class="slidecontainer">GROW &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &nbsp; SLIM</div>
+      </li>
+    </ul>
+  </div>
+  <div class="col-4 menu" style="text-align: left;">
+    <span3 style="text-align: left;"> nodes &sim; </span3><span id="nodenumber"></span><br><br><br>
+    <span3 style="text-align: left;"> (\x.x x) (\x.x x) &nbsp;&nbsp;&nbsp; OK! <br><br>
+                                      (\x.xx) (\x.xx) &nbsp;&nbsp;&nbsp; NOT OK!<br><br>
+                                      (\x.\y.x) y (\x.y z y) &nbsp;&nbsp;&nbsp; OK!<br><br>
+                                      (\x.x x) \x.x x &nbsp;&nbsp;&nbsp;NOT OK!<br><br></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-1 menu">
+    <div class="scol-12"> <span3  id="lambdatomolbutton" class="image2" ></span3></div>
+  </div>
+  <div class="col-7 menu">
+<!--<div><textarea id="inputlambda" style="height: 50px; width: 100%;"></textarea> </div> -->
+  </div>
+  <div class="col-4 menu" style="text-align: left;">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-1 menu">
+    <div class="scol-12"> <span3  id="button0" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button1" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button2" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button3" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button4" class="image2" ></span3></div>
+  </div>
+  <div class="col-7 menu">
+    <ul>
+      <li> <div id="svgdiv"> </div></li>
+      <li><span3>gravity slider</span3> <div class="slidecontainer">MIN &nbsp;<input class="slider" type="range" min="1" max="250" value="150" id="gravRange"> &nbsp; MAX</div></li>
+      <li><span2>CODE: </span2><span id="molyoulookat"></span></li>
+      <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">512</span> nodes<span>)</span></li>
+    </ul>
+  </div>
+  <div class="col-4 menu" style="text-align: left;">
+    <span id="comments" ></span>
+  </div>
+</div>
+
+<div class="row">
+      <div class="scol-6" style="text-align: left;">
+        <span2>before:</span2><br><br>
+        <span id="puttransformcachealt"></span>
+      </div> 
+      <div class="scol-6" style="text-align: left;">
+        <span2>chosen:</span2><br><br>
+        <span id="chosentransform"></span>
+      </div>
+      <div class="scol-6" style="text-align: left;">
+        <span2>after:</span2><br><br>
+        <span id="puttransformcachealtafter"></span>
+      </div>
+    <div class="scol-6" style="text-align: left;">
+      <span2>mol before:</span2><br><br>
+      <span id="molexport"></span>
+    </div>
+    <div class="scol-6" style="text-align: left;">
+      <span2>mol after:</span2><br><br>
+      <span id="molexportafter"></span>
+    </div>
+</div>
+
+
+<script src="js/iceMol.js"></script>
+<script src="js/iceComments.js"></script>
+<script src="js/parameters.js"></script>
+<script src="js/nodes.js"></script>
+<script src="js/chemistry.js"></script>
+<!-- <script src="js/reactions.js"></script> -->
+<script src="js/myD3Graph.js"></script>
+<script src="js/icequine.js"></script>
+<script src="js/0parser.js"></script>
+
+<script>
+selectionStarter();
+</script>
+
+</body>
+</html>
+
+
