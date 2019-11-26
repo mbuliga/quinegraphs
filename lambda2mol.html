@@ -13,7 +13,7 @@ last modified: 25.11.2019
 
 <link rel="stylesheet" type="text/css" href="css/icequine.css">
 
-<title>Lambda2mol</title>
+<title>Lambda2chemlambda</title>
 </head>
 
 
@@ -24,7 +24,7 @@ last modified: 25.11.2019
 <script src="js/pagelook.js"></script>
 
 <div class="header">
-  <span>Lambda calculus to mol.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2019)</span>
+  <span>Lambda calculus to chemlambda.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2019)</span>
 </div>
 
 <div class="row">
@@ -35,22 +35,22 @@ last modified: 25.11.2019
       <li>    
         <span2> 
           <select  class="theme-construction" id="listofmols" onchange="selectionStarter();">
-            <option value="howto">MENU</option>
+            <option value="lambdanote">MENU</option>
             <option value="omega"> omega combinator </option>
             <option value="bigpred">the predecessor </option>
             <option value="omegaSKI"> omega from S,K combinators</option>
             <option value="y_comb_id">Y combinator applied to id</option>
             <option value="ackermann_2_2">ackermann_2_2 </option>
             <option value="ackermann_3_2">ackermann_3_2 </option>
-            <option value="times_only_short">5 X 5 = (&lambda;m.&lambda;n.&lambda;f.m(nf)) 5 5 </option>
-            <option value="times_only_long">5 X 5 = (&lambda;m.&lambda;n.m (PLUS n) 0) 5 5, with PLUS = &lambda;m.&lambda;n.m SUCC n </option>
+            <option value="times_only_short">5 X 5 = (\m.(\n.(\f.(m (n f))))) 5 5 </option>
+            <option value="times_only_long">5 X 5 = (\m.(\n.((m (PLUS n)) 0))) 5 5, with PLUS = (\m.(\n.((m SUCC) n))) </option>
             <option value="SKK">SKK </option>
-            <option value="alexo_example">(&lambda;a.aa)(&lambda;x.((&lambda;b.bb)(&lambda;y.yx))) </option>
+            <option value="alexo_example">(\\a.a a)(\\x.((\\b.b b)(\\y.y x)))  </option>
           </select>
         </span2> 
       </li>
-      <li><div><textarea id="inputlambda" style="height: 80px; width: 100%;  background-color: #010101; 
- color: #6495ED;  font-size: 14px;"></textarea> </div>
+      <li><div><textarea id="inputlambda" class="image2" style="height: 80px; width: 100%;  background-color: #010101; 
+ color: #6495ED;  font-size: 14px;">(\n.(\f.(\x.(((n (\g.(\h.(h (g f))))) (\u.x)) (\u.u))))) (((\b.(\e.(e b))) (\f.(\x.(f (f (f x)))))) (\f.(\x.(f(f (f (f x)))))))</textarea> </div>
       </li>
       <li>
          <span3>rewrites weights slider</span3> <div class="slidecontainer">GROW &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &nbsp; SLIM</div>
@@ -58,11 +58,7 @@ last modified: 25.11.2019
     </ul>
   </div>
   <div class="col-4 menu" style="text-align: left;">
-    <span3 style="text-align: left;"> nodes &sim; </span3><span id="nodenumber"></span><br><br><br>
-    <span3 style="text-align: left;"> (\x.x x) (\x.x x) &nbsp;&nbsp;&nbsp; OK! <br><br>
-                                      (\x.xx) (\x.xx) &nbsp;&nbsp;&nbsp; NOT OK!<br><br>
-                                      (\x.\y.x) y (\x.y z y) &nbsp;&nbsp;&nbsp; NOT OK!<br><br>
-                                      (\x.x x) \x.x x &nbsp;&nbsp;&nbsp;NOT OK!<br><br></span>
+    <span3 style="text-align: left;"> nodes &sim; </span3><span id="nodenumber"></span3>
   </div>
 </div>
 
@@ -90,7 +86,7 @@ last modified: 25.11.2019
       <li> <div id="svgdiv"> </div></li>
       <li><span3>gravity slider</span3> <div class="slidecontainer">MIN &nbsp;<input class="slider" type="range" min="1" max="250" value="150" id="gravRange"> &nbsp; MAX</div></li>
       <li><span2>CODE: </span2><span id="molyoulookat"></span></li>
-      <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">512</span> nodes<span>)</span></li>
+      <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">1024</span> nodes<span>)</span></li>
     </ul>
   </div>
   <div class="col-4 menu" style="text-align: left;">
