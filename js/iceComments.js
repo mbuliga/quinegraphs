@@ -8,15 +8,19 @@ comments of the mol library. For more mol files see my original library https://
 function molComments(molName) {
 
 switch (molName) {
+  case "lambdanote":
+  var mol = "In the textarea is PRED ((POW 3) 4)<br><br>This is a parser from lambda calculus to chemlambda<br><br>It is rather sensible for the moment...<br><br>It surely works if you put ALL the parantheses.<br><br>Examples:<br><br>(\\x.x x) (\\x.x x) is OK! <br>(\\x.xx) (\\x.xx) is NOT OK, because it believes \"xx\" is a variable<br><br>(\\x.\\y.x) z blows out the computer<br><br> but (\\x.(\\y.x)) z works OK! <br><br>Part of the repository <a href=\"https://github.com/mbuliga/quinegraphs\">Quine graphs</a>.<br><br>Type terms in textarea, click buttons!<br><br>Hover with the mouse over nodes to trigger rewrites.<br><br>Click+drag the nodes to arrange the graph.<br><br>Click on the background and drag to translate the graph.<br><br> Mouse wheel to resize the graph.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
+  break;
+
   case "howto":
   var mol = "If you know how to use this page then select one of the graphs from the drop-down menu.<br><br>After you select a graph...<br><br>Click on \"step\" for one random rewrite.<br><br>Click on \"start\" to apply random rewrites as long as there is any possible rewrite left.<br><br>Click on \"stop\" to stop.<br><br>Click on \"reload\" to reload the same graph.<br><br>There is a manual use too:<br><br>Hover with the mouse over nodes to trigger rewrites.<br><br>Click+drag the nodes to arrange the graph.<br><br>Click on the background and drag to translate the graph.<br><br> Mouse wheel to resize the graph.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
   break;
 
   case "SKK":
-  var mol = "In lambda calculus, define the combinators S and K by: <br><br> S = &lambda;x.&lambda;y.&lambda;z.x z (y z) <br><br> K =  &lambda;x.&lambda;y.x <br> <br> Then SKK reduces to <br><br> I = &lambda;x.x <br><br> Here we see this reduction in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>.";
+  var mol = "In lambda calculus, define the combinators S and K by: <br><br>  S = (\\x(.\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x)) <br> <br> Then (S K) K reduces to <br><br> I = \\x.x <br><br> Here we see this reduction in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>.";
   break;
   case "omegaSKI":
-  var mol = "In lambda calculus, we can use the combinators: <br><br> S = &lambda;x.&lambda;y.&lambda;z.x z (y z) <br><br> K =  &lambda;x.&lambda;y.x<br><br> to express the combinator &Omega; = (&lambda; x.x x) (&lambda; x.x x)  as the result of reduction of (S (SKK) (SKK) (S (SKK) (SKK))) <br><br> In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> this works most of the times (remember that we use the random rewrites algorithm), but not always.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
+  var mol = "In lambda calculus, we can use the combinators: <br><br> S = (\\x(.\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x))<br><br> to express the combinator &Omega; = (\\ x.x x) (\\ x.x x)  as the result of reduction of <br> (((S ((S K) K)) ((S K) K)) ((S ((S K) K)) ((S K) K))) <br><br> In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> this works most of the times (remember that we use the random rewrites algorithm), but not always.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
   break;
   case "rewrite-L-T":
   var mol = "A rewrite L-T";
@@ -31,41 +35,41 @@ switch (molName) {
   break;
 
   case "alexo_example":
-  var mol = "The lambda term  (&lambda;a.aa)(&lambda;x.((&lambda;b.bb)(&lambda;y.yx)))  should reduce to the &Omega; combinator, but instead in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> it eventually produce a FOE node.<br><br> This is a problem which all (known?) purely local graph rewrite  systems applied to lambda calculus have. Here by \"purely local\" I mean by using only local graph rewrites, only the random rewrites algorithm and the transformation of a lambda term into a graph should also be local, in the sense that the graph of the term CD should consist on only a new node A (for application) with inputs connected to outputs of the graphs of C and D, and the graph of the term &lambda;x.C, where x is a free variable of C, should be made of only a new node L (for lambda abstraction) connected to the output of the graph of C and to the edge corresponding to the variable x. <br><br> I saw this lambda term, with a similar behaviour, in <a href=\"https://arxiv.org/pdf/1701.04691.pdf\">[arXiv:1701.04691]</a>, section 4.<br><br> Contrary to other lambda terms, it seems that the rewduction works if you move the rewrites weights slider more to the DIST extremity. This forces any rewrite which enlarges the number of nodes (DIST rewrites) to be done before those which reduce the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites), whenever there is a choice. ";
+  var mol = "The lambda term  (\\a.a a)(\\x.((\\b.b b)(\\y.y x)))  should reduce to the &Omega; combinator, but instead in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> it eventually produce a FOE node.<br><br> This is a problem which all (known?) purely local graph rewrite  systems applied to lambda calculus have. Here by \"purely local\" I mean by using only local graph rewrites, only the random rewrites algorithm and the transformation of a lambda term into a graph should also be local, in the sense that the graph of the term CD should consist on only a new node A (for application) with inputs connected to outputs of the graphs of C and D, and the graph of the term \\x.C, where x is a free variable of C, should be made of only a new node L (for lambda abstraction) connected to the output of the graph of C and to the edge corresponding to the variable x. <br><br> I saw this lambda term, with a similar behaviour, in <a href=\"https://arxiv.org/pdf/1701.04691.pdf\">[arXiv:1701.04691]</a>, section 4.<br><br> Contrary to other lambda terms, it seems that the rewduction works if you move the rewrites weights slider more to the DIST extremity. This forces any rewrite which enlarges the number of nodes (DIST rewrites) to be done before those which reduce the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites), whenever there is a choice. ";
   break;
 
 
 
   case "ishan_example":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term &lambda;x.((&lambda;.yy)(xx)). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-504575084\">here</a>. ";
+  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term \\x.((\\.yy)(xx)). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-504575084\">here</a>. ";
   break;
 
   case "ishan_example_foe":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FOE node is used to duplicate (the graph of) the lambda term &lambda;x.((&lambda;.yy)(xx)). It works sometimes and other times it does not. Reload the graph and reduce it again to see this.<br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-504575084\">here</a>. ";
+  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FOE node is used to duplicate (the graph of) the lambda term \\x.((\\.yy)(xx)). It works sometimes and other times it does not. Reload the graph and reduce it again to see this.<br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-504575084\">here</a>. ";
   break;
 
   case "ishan_example_2":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term &lambda;x.(&lambda;f.ff)(&lambda;y.xy). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. ";
+  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term \\x.(\\f.ff)(\\y.xy). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. ";
   break;
 
   case "ishan_example_2_foe":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term &lambda;x.(&lambda;f.ff)(&lambda;y.xy). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. ";
+  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term \\x.(\\f.ff)(\\y.xy). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. ";
   break;
 
   case "ishan_example_2_A":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FO node the term M = &lambda;x.(&lambda;f.ff)(&lambda;y.xy), then we apply the copies (outputs) to I = &lambda;x.x. Reload the graph and reduce it several times to see what happens.";
+  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FO node the term M = \\x.(\\f.ff)(\\y.xy), then we apply the copies (outputs) to I = \\x.x. Reload the graph and reduce it several times to see what happens.";
   break;
 
   case "ishan_example_2_pair":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FOE node the term M = &lambda;x.(&lambda;f.ff)(&lambda;y.xy), then we plug the copies (outputs) a and b to the term<br><br> FIRST (PAIR a b)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = &lambda;p.(p (&lambda;x.&lambda;y.x)) <br><br> PAIR =  &lambda;x.&lambda;y.&lambda;z. z x y<br><br> Reload the graph and reduce it several times to see if you get the term M reduced.";
+  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FOE node the term M = \\x.(\\f.ff)(\\y.xy), then we plug the copies (outputs) a and b to the term<br><br> FIRST (PAIR a b)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = \\p.(p (\\x.\\y.x)) <br><br> PAIR =  \\x.\\y.\\z. z x y<br><br> Reload the graph and reduce it several times to see if you get the term M reduced.";
   break;
 
   case "ishan_example_2_pair_fo":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FO node the term M = &lambda;x.(&lambda;f.ff)(&lambda;y.xy), then we plug the copies (outputs) a and b to the term<br><br> FIRST (PAIR a b)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = &lambda;p.(p (&lambda;x.&lambda;y.x)) <br><br> PAIR =  &lambda;x.&lambda;y.&lambda;z. z x y<br><br> Reload the graph and reduce it several times to see if you get the term M reduced.";
+  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FO node the term M = \\x.(\\f.ff)(\\y.xy), then we plug the copies (outputs) a and b to the term<br><br> FIRST (PAIR a b)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = \\p.(p (\\x.\\y.x)) <br><br> PAIR =  \\x.\\y.\\z. z x y<br><br> Reload the graph and reduce it several times to see if you get the term M reduced.";
   break;
 
   case "first_pair":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if we can graphically reduce the term<br><br> FIRST (PAIR 5 0)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = &lambda;p.(p (&lambda;x.&lambda;y.x)) <br><br> PAIR =  &lambda;x.&lambda;y.&lambda;z. z x y<br><br>The terms 5 and 0 are Church numbers. Reload the graph and reduce it several times to see if you get the term 5.";
+  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if we can graphically reduce the term<br><br> FIRST (PAIR 5 0)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = \\p.(p (\\x.\\y.x)) <br><br> PAIR =  \\x.\\y.\\z. z x y<br><br>The terms 5 and 0 are Church numbers. Reload the graph and reduce it several times to see if you get the term 5.";
   break;
 
   case "dodecahedron":
@@ -75,7 +79,7 @@ switch (molName) {
 
 
   case "y_comb_id":
-  var mol = "The Y combinator<br><br> Y =  &lambda;g.(&lambda;x.g (x x)) (&lambda;x.g (x x))<br><br> applied to I = &lambda;x.x gives the<br><br> &Omega; = (&lambda; x.x x) (&lambda; x.x x)<br><br> combinator in lambda calculus. Here we do this reduction in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>. Reload the graph and reduce it several times to see what happens.";
+  var mol = "The Y combinator<br><br> Y =  (\\g.((\\x.(g (x x))) (\\x.(g (x x)))))<br><br> applied to I = (\\x.x) gives the<br><br> &Omega; = (\\ x.x x) (\\ x.x x)<br><br> combinator in lambda calculus. Here we do this reduction in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>. Reload the graph and reduce it several times to see what happens.";
   break;
 
   case "16_quine_A_L_FI_FO":
@@ -83,7 +87,7 @@ switch (molName) {
   break;
 
   case "20_quine":
-  var mol = "This is a chemlambda quine obtained from the graph of PRED N, where PRED is the predecessor term<br><br>PRED = &lambda;n.&lambda;f.&lambda;x.n (&lambda;g.&lambda;h.h (g f)) (&lambda;u.x) (&lambda;u.u) <br><br> and N is a not small Church number. During this reduction I noticed that there is a pattern of periodic graph reductions which seemed to propagate in the bigger graph.<br><br> The 20 quine is a chemlambda quine with 20 nodes which is obtained from that pattern. Similar to the 28_quine, but smaller.";
+  var mol = "This is a chemlambda quine obtained from the graph of PRED N, where PRED is the predecessor term<br><br>PRED = \\n.\\f.\\x.n (\\g.\\h.h (g f)) (\\u.x) (\\u.u) <br><br> and N is a not small Church number. During this reduction I noticed that there is a pattern of periodic graph reductions which seemed to propagate in the bigger graph.<br><br> The 20 quine is a chemlambda quine with 20 nodes which is obtained from that pattern. Similar to the 28_quine, but smaller.";
   break;
 
   case "A":
@@ -95,7 +99,7 @@ switch (molName) {
   break;
 
   case "28_quine":
-  var mol = "This is a chemlambda quine obtained from the graph of PRED N, where PRED is the predecessor term<br><br>PRED = &lambda;n.&lambda;f.&lambda;x.n (&lambda;g.&lambda;h.h (g f)) (&lambda;u.x) (&lambda;u.u) <br><br> and N is a not small Church number. During this reduction I noticed that there is a pattern of periodic graph reductions which seemed to propagate in the bigger graph.<br><br> The 20 quine is a chemlambda quine with 20 nodes which is obtained from that pattern. Similar to the 20_quine but bigger.";
+  var mol = "This is a chemlambda quine obtained from the graph of PRED N, where PRED is the predecessor term<br><br>PRED = \\n.\\f.\\x.n (\\g.\\h.h (g f)) (\\u.x) (\\u.u) <br><br> and N is a not small Church number. During this reduction I noticed that there is a pattern of periodic graph reductions which seemed to propagate in the bigger graph.<br><br> The 20 quine is a chemlambda quine with 20 nodes which is obtained from that pattern. Similar to the 20_quine but bigger.";
   break;
 
 
@@ -141,11 +145,11 @@ switch (molName) {
   break;
 
   case "times_only_short":
-  var mol = "In chemlambda, 5 X 5 = 25, by using the lambda term<br><br> 5 X 5 = (&lambda;m.&lambda;n.&lambda;f.m(nf)) 5 5<br><br> where 5 is a Church number.";
+  var mol = "In chemlambda, 5 X 5 = 25, by using the lambda term<br><br> 5 X 5 = (\\m.\\n.\\f.m(nf)) 5 5<br><br> where 5 is a Church number.";
   break;
 
   case "times_only_long":
-  var mol = "In chemlambda, 5 X 5 = 25, by using the lambda term<br><br> 5 X 5 = (&lambda;m.&lambda;n.m (PLUS n) 0) 5 5<br><br> where 5 and 0 are Church numbers, <br><br> PLUS = &lambda;m.&lambda;n.m SUCC n<br><br> is the  addition lambda term (multiplication is repeated addition) and <br><br> SUCC =  &lambda;n.&lambda;f.&lambda;x.f (n f x)<br><br> is the successor term (addition is repeated application of successor).  Reload the graph and reduce it several times to see what happens.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
+  var mol = "In chemlambda, 5 X 5 = 25, by using the lambda term<br><br> 5 X 5 = (\\m.(\\n.(\\f.(m (n f))))) 5 5 <br><br> where 5 and 0 are Church numbers, <br><br> PLUS = (\\m.(\\n.((m SUCC) n)))<br><br> is the  addition lambda term (multiplication is repeated addition) and <br><br> SUCC =  (\\n.(\\f.(\\x.(f ((n f) x)))))<br><br> is the successor term (addition is repeated application of successor).  Reload the graph and reduce it several times to see what happens.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
   break;
 
 
@@ -155,7 +159,7 @@ switch (molName) {
   break;
 
   case "omega":
-  var mol = "In lambda calculus there is only one quine, the <br><br> &Omega; = (&lambda; x.x x) (&lambda; x.x x) <br><br> combinator.<br><br>It gives a <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> quine too.";
+  var mol = "In lambda calculus there is only one quine, the <br><br> &Omega; = (\\ x.x x) (\\ x.x x) <br><br> combinator.<br><br>It gives a <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> quine too.";
   break;
 
 
@@ -354,11 +358,11 @@ case "random_egg_A_L_FI_FOE":
 
 
   case "bigpred":
-  var mol = "This is a chemlambda graph obtained from the lambda term PRED N, where PRED is the predecessor term<br><br>PRED = &lambda;n.&lambda;f.&lambda;x.n (&lambda;g.&lambda;h.h (g f)) (&lambda;u.x) (&lambda;u.u) <br><br> and N is a not small Church number.<br><br> After the translation of PRED N to chemlambda, there are only two initial graph rewrites possible, namely two A-L rewrites, corresponding to two beta rewrites. This is the graph you are looking at.<br><br>The interesting part is in the middle of the computation, where you see something which propagates along the graph. <br><br> This led to the idea of <a href=\"ice.html\">IC &amp;chemlambda quines</a>. ";
+  var mol = "This is a chemlambda graph obtained from the lambda term PRED N, where PRED is the predecessor term<br><br>PRED = (\\n.(\\f.(\\x.(((n (\\g.(\\h.(h (g f))))) (\\u.x)) (\\u.u))))) <br><br> and N is a Church number, like <br><br>4 = (\\f.(\\x.(f(f (f (f x))))))<br><br> After the translation of PRED N to chemlambda, there are only two initial graph rewrites possible, namely two A-L rewrites, corresponding to two beta rewrites. This is the graph you are looking at.<br><br>The interesting part is in the middle of the computation, where you see something which propagates along the graph. <br><br> This led to the idea of <a href=\"ice.html\">IC &amp;chemlambda quines</a>. ";
   break;
 
   case "bigpred_train":
-  var mol = "We take the graph of the lambda term PRED N, where PRED is the predecessor term<br><br>PRED = &lambda;n.&lambda;f.&lambda;x.n (&lambda;g.&lambda;h.h (g f)) (&lambda;u.x) (&lambda;u.u) <br><br> we let it reduce until it exhibits a repeated pattern, then we cut only the interesting part and we glue back the free edges.<br><br> This is the \"ouroboros\" graph, the first discovered chemlambda quine.";
+  var mol = "We take the graph of the lambda term PRED N, where PRED is the predecessor term<br><br>PRED = \\n.\\f.\\x.n (\\g.\\h.h (g f)) (\\u.x) (\\u.u) <br><br> we let it reduce until it exhibits a repeated pattern, then we cut only the interesting part and we glue back the free edges.<br><br> This is the \"ouroboros\" graph, the first discovered chemlambda quine.";
   break;
 
 
@@ -367,11 +371,11 @@ case "bigpred_bif":
   break;
 
   case "bigpred_train_fun":
-  var mol = "The pattern which circulates in the ouroboros can be reduced to a pair of nodes<br><br>A in x c<br>L c x out<br><br>This has a translation in lambda calculus, as<br><br> out = f(in) = &lambda; x.(in x)<br><br>The ouroboros can be understood as the passage of this term through a gate G with two inputs, two outputs,all lambda terms:<br><br>G(in1, in2) = (in1, in1 in2)<br><br>Then we have<br><br> G  (f &#215; id) (in1, in2) = (f(in1), f(in1) in2),<br><br> but f(in1) in2 = (&lambda; x.(in1 x)) in2 -> in1 in2<br><br>therefore we get:<br><br>G (f &#215; id) = (f &#215; id) G";
+  var mol = "The pattern which circulates in the ouroboros can be reduced to a pair of nodes<br><br>A in x c<br>L c x out<br><br>This has a translation in lambda calculus, as<br><br> out = f(in) = \\ x.(in x)<br><br>The ouroboros can be understood as the passage of this term through a gate G with two inputs, two outputs,all lambda terms:<br><br>G(in1, in2) = (in1, in1 in2)<br><br>Then we have<br><br> G  (f &#215; id) (in1, in2) = (f(in1), f(in1) in2),<br><br> but f(in1) in2 = (\\ x.(in1 x)) in2 -> in1 in2<br><br>therefore we get:<br><br>G (f &#215; id) = (f &#215; id) G";
   break;
 
   case "bigpred_propagator":
-  var mol = "In  \"<selectspan  onclick=\"selectionLink('bigpred_train_fun');\">ouroboros analyzed</selectspan>\" we used the pair of nodes <br><br>A in x c<br>L c x out<br><br> and the interpretation in lambda calculus<br><br> out = f(in) = &lambda; x.(in x)<br><br>You see how this pattern is duplicated via a (yellow) FOE node.<br><br>This pattern is an example of a propagator.<br><br>Propagators were introduced in <a href=\"https://www.mitpressjournals.org/doi/pdf/10.1162/978-0-262-32621-6-ch079\">Chemlambda, universality and self-multiplication</a><br><br> (Mind that the article uses a previous version of chemlambda, with some global rewrites, basically a simplification of <a href=\"http://www.complex-systems.com/abstracts/v22_i04_a01.html\">Graphic lambda calculus</a>.)";
+  var mol = "In  \"<selectspan  onclick=\"selectionLink('bigpred_train_fun');\">ouroboros analyzed</selectspan>\" we used the pair of nodes <br><br>A in x c<br>L c x out<br><br> and the interpretation in lambda calculus<br><br> out = f(in) = \\ x.(in x)<br><br>You see how this pattern is duplicated via a (yellow) FOE node.<br><br>This pattern is an example of a propagator.<br><br>Propagators were introduced in <a href=\"https://www.mitpressjournals.org/doi/pdf/10.1162/978-0-262-32621-6-ch079\">Chemlambda, universality and self-multiplication</a><br><br> (Mind that the article uses a previous version of chemlambda, with some global rewrites, basically a simplification of <a href=\"http://www.complex-systems.com/abstracts/v22_i04_a01.html\">Graphic lambda calculus</a>.)";
   break;
 
   case "bigpred_multipropagator":
@@ -379,7 +383,7 @@ case "bigpred_bif":
   break;
 
   case "bigpred_circularpropagator":
-  var mol = "If we close the path of FOE nodes from the \"<selectspan  onclick=\"selectionLink('bigpred_multipropagator');\">propagation takes time</selectspan>\" example, then we obtain a half of the ouroboros, missing the other circular path of (green) A nodes.<br><br>Because the path of FOE nodes is circular, the propagator will eventually interact with itself.<br><br>This means we shall have a pattern<br><br>L c1 x1 out<br>A out x2 c2<br><br> or in lambda calculus, a term<br><br>c2 = (&lambda; x1. c1) x2<br><br> which reduces through &beta; or L-A rewrite. The propagation will continue until all the green A nodes will be cancelled (by L red nodes).<br><br>At the end we shall have L (red), FOE (yellow) and FI (fanin, magenta) nodes.<br><br>We need the other half of the ouroboros if we want to have a quine which lives longer.<br><br>Half of the ouroboros is though a quine, see <a href=\"ice.html\">other examples of quines</a>.";
+  var mol = "If we close the path of FOE nodes from the \"<selectspan  onclick=\"selectionLink('bigpred_multipropagator');\">propagation takes time</selectspan>\" example, then we obtain a half of the ouroboros, missing the other circular path of (green) A nodes.<br><br>Because the path of FOE nodes is circular, the propagator will eventually interact with itself.<br><br>This means we shall have a pattern<br><br>L c1 x1 out<br>A out x2 c2<br><br> or in lambda calculus, a term<br><br>c2 = (\\ x1. c1) x2<br><br> which reduces through &beta; or L-A rewrite. The propagation will continue until all the green A nodes will be cancelled (by L red nodes).<br><br>At the end we shall have L (red), FOE (yellow) and FI (fanin, magenta) nodes.<br><br>We need the other half of the ouroboros if we want to have a quine which lives longer.<br><br>Half of the ouroboros is though a quine, see <a href=\"ice.html\">other examples of quines</a>.";
   break;
 
   case "bigpred_generator":
