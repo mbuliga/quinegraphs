@@ -9,7 +9,7 @@ function molComments(molName) {
 
 switch (molName) {
   case "lambdanote":
-  var mol = "In the textarea is PRED ((POW 3) 4)<br><br>This is a parser from lambda calculus to chemlambda<br><br>It is rather sensible for the moment...<br><br>It surely works if you put ALL the parantheses.<br><br>Examples:<br><br>(\\x.x x) (\\x.x x) is OK! <br>(\\x.xx) (\\x.xx) is NOT OK, because it believes \"xx\" is a variable<br><br>(\\x.\\y.x) z blows out the computer<br><br> but (\\x.(\\y.x)) z works OK! <br><br>Part of the repository <a href=\"https://github.com/mbuliga/quinegraphs\">Quine graphs</a>.<br><br>Type terms in textarea, click buttons!<br><br>Hover with the mouse over nodes to trigger rewrites.<br><br>Click+drag the nodes to arrange the graph.<br><br>Click on the background and drag to translate the graph.<br><br> Mouse wheel to resize the graph.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
+  var mol = "In the textarea is PRED ((POW 3) 4)<br><br>This is a parser from lambda calculus to chemlambda<br><br>It is rather sensible for the moment...<br><br>It surely works if you put ALL the parantheses.<br><br>Examples:<br><br>(\\x.x x) (\\x.x x) is OK! <br>(\\x.xx) (\\x.xx) is NOT OK, because it believes \"xx\" is a variable<br><br>(\\x.\\y.x) z throws an error<br><br> but (\\x.(\\y.x)) z works OK! <br><br>Part of the repository <a href=\"https://github.com/mbuliga/quinegraphs\">Quine graphs</a>.<br><br>Type terms in textarea, click buttons!<br><br>Hover with the mouse over nodes to trigger rewrites.<br><br>Click+drag the nodes to arrange the graph.<br><br>Click on the background and drag to translate the graph.<br><br> Mouse wheel to resize the graph.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
   break;
 
   case "howto":
@@ -17,10 +17,10 @@ switch (molName) {
   break;
 
   case "SKK":
-  var mol = "In lambda calculus, define the combinators S and K by: <br><br>  S = (\\x(.\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x)) <br> <br> Then (S K) K reduces to <br><br> I = \\x.x <br><br> Here we see this reduction in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>.";
+  var mol = "In lambda calculus, define the combinators S and K by: <br><br>  S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x)) <br> <br> Then (S K) K reduces to <br><br> I = (\\x.x) <br><br> Here we see this reduction in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>.";
   break;
   case "omegaSKI":
-  var mol = "In lambda calculus, we can use the combinators: <br><br> S = (\\x(.\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x))<br><br> to express the combinator &Omega; = (\\ x.x x) (\\ x.x x)  as the result of reduction of <br> (((S ((S K) K)) ((S K) K)) ((S ((S K) K)) ((S K) K))) <br><br> In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> this works most of the times (remember that we use the random rewrites algorithm), but not always.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
+  var mol = "In lambda calculus, we can use the combinators: <br><br> S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x))<br><br> to express the combinator &Omega; = (\\x.x x) (\\x.x x)  as the result of reduction of <br> (((S ((S K) K)) ((S K) K)) ((S ((S K) K)) ((S K) K))) <br><br> In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> this works most of the times (remember that we use the random rewrites algorithm), but not always.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
   break;
   case "rewrite-L-T":
   var mol = "A rewrite L-T";
@@ -145,11 +145,11 @@ switch (molName) {
   break;
 
   case "times_only_short":
-  var mol = "In chemlambda, 5 X 5 = 25, by using the lambda term<br><br> 5 X 5 = (\\m.\\n.\\f.m(nf)) 5 5<br><br> where 5 is a Church number.";
+  var mol = "In chemlambda, 5 X 5 = 25, by using the lambda term<br><br> 5 X 5 = ((MULT 5) 5)<br><br> where MULT is a multiplication term<br><br> MULT = (\\m.(\\n.(\\f.(m (n f)))))<br><br>and 5 is a Church number<br><br>5 = (\\f.(\\x.(f(f (f (f (f x)))))))";
   break;
 
   case "times_only_long":
-  var mol = "In chemlambda, 5 X 5 = 25, by using the lambda term<br><br> 5 X 5 = (\\m.(\\n.(\\f.(m (n f))))) 5 5 <br><br> where 5 and 0 are Church numbers, <br><br> PLUS = (\\m.(\\n.((m SUCC) n)))<br><br> is the  addition lambda term (multiplication is repeated addition) and <br><br> SUCC =  (\\n.(\\f.(\\x.(f ((n f) x)))))<br><br> is the successor term (addition is repeated application of successor).  Reload the graph and reduce it several times to see what happens.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
+  var mol = "In chemlambda, 5 X 5 = 25, by using the lambda term<br><br> 5 X 5 = (((\\m.(\\n.((m (PLUSLONG n)) 0))) 5) 5) <br><br> where 5 and 0 are Church numbers<br><br>5 = (\\f.(\\x.(f(f (f (f (f x)))))))<br>0 = (\\f.(\\x.x)) <br><br> PLUSLONG = (\\m.(\\n.((m (\\n.(\\f.(\\x.(f ((n f) x)))))) n))) <br> =  (\\m.(\\n.((m SUCC) n)))<br><br> is the  addition lambda term (multiplication is repeated addition) and <br><br> SUCC =  (\\n.(\\f.(\\x.(f ((n f) x)))))<br><br> is the successor term (addition is repeated application of successor).  Reload the graph and reduce it several times to see what happens.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
   break;
 
 
@@ -159,7 +159,7 @@ switch (molName) {
   break;
 
   case "omega":
-  var mol = "In lambda calculus there is only one quine, the <br><br> &Omega; = (\\ x.x x) (\\ x.x x) <br><br> combinator.<br><br>It gives a <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> quine too.";
+  var mol = "In lambda calculus there is only one quine, the <br><br> &Omega; = (\\x.x x) (\\x.x x) <br><br> combinator.<br><br>It gives a <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> quine too.";
   break;
 
 
@@ -358,7 +358,7 @@ case "random_egg_A_L_FI_FOE":
 
 
   case "bigpred":
-  var mol = "This is a chemlambda graph obtained from the lambda term PRED N, where PRED is the predecessor term<br><br>PRED = (\\n.(\\f.(\\x.(((n (\\g.(\\h.(h (g f))))) (\\u.x)) (\\u.u))))) <br><br> and N is a Church number, like <br><br>4 = (\\f.(\\x.(f(f (f (f x))))))<br><br> After the translation of PRED N to chemlambda, there are only two initial graph rewrites possible, namely two A-L rewrites, corresponding to two beta rewrites. This is the graph you are looking at.<br><br>The interesting part is in the middle of the computation, where you see something which propagates along the graph. <br><br> This led to the idea of <a href=\"ice.html\">IC &amp;chemlambda quines</a>. ";
+  var mol = "This is a chemlambda graph obtained from the lambda term PRED N, where PRED is the predecessor term<br><br>PRED = (\\n.(\\f.(\\x.(((n (\\g.(\\h.(h (g f))))) (\\u.x)) (\\u.u))))) <br><br> and N is a Church number, like 28 (long one) or like <br><br>4 = (\\f.(\\x.(f(f (f (f x))))))<br><br> After the translation of PRED N to chemlambda, there are only two initial graph rewrites possible, namely two A-L rewrites, corresponding to two beta rewrites. This is the graph you are looking at.<br><br>The interesting part is in the middle of the computation, where you see something which propagates along the graph. <br><br> This led to the idea of <a href=\"ice.html\">IC &amp;chemlambda quines</a>. ";
   break;
 
   case "bigpred_train":
