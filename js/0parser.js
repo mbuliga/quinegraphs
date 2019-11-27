@@ -1,7 +1,7 @@
 // parser for lambda calculus to mol
 // usable but has a problem with (term) \x.term, likes instead (term) (\x.term)
 // author: Marius Buliga
-// last updated: 25.11.2019
+// last updated: 27.11.2019
 
 var op = {
 "lparen": "(",
@@ -53,13 +53,15 @@ function lexer(input) {
     if (lexA[i] == op.lparen) parens = parens + 1;
     if (lexA[i] == op.rparen) parens = parens - 1;
     if (parens < 0) {
-      document.getElementById("output").innerHTML =  "Wrong parentheses";
+      errorsline = "Wrong parentheses";
+      document.getElementById("errors").innerHTML += errorsline;
       throw "Wrong parentheses";
       break;
     }
   }
   if (parens > 0) {
-    document.getElementById("output").innerHTML =  "Missing parentheses";
+    errorsline = "Missing parentheses";
+    document.getElementById("errors").innerHTML += errorsline;
     throw "Missing parentheses";
   } else {
     for (var i=0; i<lexA.length - 1; i++) {
@@ -83,17 +85,29 @@ function lexer(input) {
     if (lex2A[i] == op.app || lex2A[i] == op.dot) {
       ji = i + 2;
       if (ji >= lex2A.length) {
+        errorsline = "Malformed expression";
+        document.getElementById("errors").innerHTML += errorsline;
         throw "Malformed expression";
       } else {
-        if (!(isVar(lex2A[i+1]) || lex2A[i+1] == op.lparen || lex2A[i+1] == op.lambda)) throw "Malformed expression";
+        if (!(isVar(lex2A[i+1]) || lex2A[i+1] == op.lparen || lex2A[i+1] == op.lambda)) { 
+          errorsline = "Malformed expression";
+          document.getElementById("errors").innerHTML += errorsline;
+          throw "Malformed expression";
+        }
       }
     }
     if (lex2A[i] == op.lambda) {
       ji = i + 4;
       if (ji >= lex2A.length) {
+        errorsline = "Malformed expression";
+        document.getElementById("errors").innerHTML += errorsline;
         throw "Malformed expression";
       } else {
-        if ( isOp(lex2A[i+1]) || lex2A[i+2] !== op.dot) throw "Malformed expression";
+        if ( isOp(lex2A[i+1]) || lex2A[i+2] !== op.dot) {
+          errorsline = "Malformed expression";
+          document.getElementById("errors").innerHTML += errorsline;
+          throw "Malformed expression";
+        }
       }     
     }
   }
@@ -175,9 +189,13 @@ function parser(term) {
           term.middle = term.right;
           current = stack[term.right];
         } else {
+              errorsline = "Not a variable in lambda: \"\\" + next + " " + stack[term.middle] + stack[term.left] + "\"";
+              document.getElementById("errors").innerHTML += errorsline;
               throw "Not a variable in lambda: \"\\" + next + " " + stack[term.middle] + stack[term.left] + "\"";
         }
       } else {
+              errorsline = "Not a variable in lambda: \"\\" + stack[term.middle] + "\"";
+              document.getElementById("errors").innerHTML += errorsline;
               throw "Not a variable in lambda: \"\\" + stack[term.middle] + "\"";
       }
     } else if (current == op.app) {
@@ -213,6 +231,7 @@ function parser(term) {
 
 function lambdaToMol() {
 var input = document.getElementById("inputlambda").value;
+document.getElementById("errors").innerHTML = "";
 
 var inputArray = sanitize(input);
 var lexArray = lexer(inputArray);
@@ -279,6 +298,35 @@ for (var i=0; i<molvDet.length; i++) {
     break;
   }
 }
+// check if every edve variable appears exactly twice, otherwise throw an error
+  var edgesprettyline = "", errorsline = "";
+for (var i=0; i<molVedges.length; i++) {
+  edgesprettyline = "";
+  if (molVedges[i].length > 0) { 
+    edgesprettyline = "";
+    for (var j=0; j<molVedges[i].length; j++) {
+    edgesprettyline += " (" + molVedges[i][j].line + "," + molVedges[i][j].position + ")";
+    }
+  }
+  switch (molVedges[i].length){
+    case 2: case 0:
+    continue;
+    break;
+
+    case 1:
+      errorsline = "Probably the graph is disconnected, because of missing parantheses.";
+      document.getElementById("errors").innerHTML += errorsline;
+//      throw "edge " + i + " has only one end. Probably the graph is disconnected, because of missing parantheses?";
+    break;
+
+    default:
+      errorsline = "Malformed graph. Try to add parantheses in textarea.";
+      document.getElementById("errors").innerHTML += errorsline;
+      throw "edge " + i + " has " + molVedges[i].length + " ends: " +  edgesprettyline + " Malformed graph. Try to add parantheses in textarea.";
+    break;
+  }
+}
+var walkCount = 0, maxwalkCount = 2 * molvDet.length;
 var stopb, jwalk;
 for (var i=0; i<molvDet.length; i++) {
   molvL = molvDet[i];
@@ -287,7 +335,15 @@ for (var i=0; i<molvDet.length; i++) {
     varNm = molvL[1];
     varIn = molvL[2];
     varOut = molvOtherEnd(i,2);
+    walkCount = 0;
     while (stopb) {
+      walkCount += 1;
+      if (walkCount > maxwalkCount) { 
+        errorsline = "Running circles in the graph. Stopped.";
+        document.getElementById("errors").innerHTML += errorsline;
+        throw "From " + molvL + " ,running circles in the graph. Stopped.";
+        stopb = false;
+      }
       jwalk = varOut.line;
       molvC = molvDet[jwalk];
       switch (molvC[0]) {
@@ -310,10 +366,17 @@ for (var i=0; i<molvDet.length; i++) {
         freeEdges[i] = true;
         stopb = false;
         break;
+        default:
+        errorsline = "Enter through a FRIN node and exited in a weird place. Stopped. Put parantheses in the textarea?";
+        document.getElementById("errors").innerHTML += errorsline;
+        throw "From "  + molvL + " ,exit through " + molvC + " which is weird. Stopped.";
+        break;
       }
     }
   }
 }
+
+
 var nodeCnt = maxCount + 1;
 // add FO and T nodes for the bounded vars
 for (var i=0; i<boundEdges.length; i++) {
