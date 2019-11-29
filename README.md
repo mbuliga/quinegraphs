@@ -15,5 +15,5 @@ We invite you to  explore some of their properties, with examples taken from lam
 
 - Graphs figth arena (will turn into a tool to explore communities of quines):  https://mbuliga.github.io/quinegraphs/arena.html
 
-- Lambda terms reduced with chemlambda. Still has some problems: https://mbuliga.github.io/quinegraphs/lambda.html 
+- Lambda terms parser to chemlambda.  https://mbuliga.github.io/quinegraphs/lambda2mol.html 
 
