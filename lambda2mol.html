@@ -34,17 +34,15 @@ last modified: 27.11.2019
     <ul>
       <li>    
         <span2> 
-          <select  class="theme-construction" id="listofmols" onchange="selectionStarter();">
+          <select  class="theme-construction" id="listofmols" onchange="selectionLambda();">
             <option value="lambdanote">MENU</option>
             <option value="omega"> omega combinator </option>
-            <option value="bigpred">the predecessor </option>
             <option value="omegaSKI"> omega from S,K combinators</option>
             <option value="y_comb_id">Y combinator applied to id</option>
-            <option value="ackermann_2_2">ackermann_2_2 </option>
-            <option value="ackermann_3_2">ackermann_3_2 </option>
+            <option value="bigpred">the predecessor </option>
+            <option value="SKK">SKK </option>
             <option value="times_only_short">5 X 5 = (\m.(\n.(\f.(m (n f))))) 5 5 </option>
             <option value="times_only_long">5 X 5 = (\m.(\n.((m (PLUS n)) 0))) 5 5, with PLUS = (\m.(\n.((m SUCC) n))) </option>
-            <option value="SKK">SKK </option>
             <option value="alexo_example">(\a.a a)(\x.((\b.b b)(\y.y x)))  </option>
           </select>
         </span2> 
@@ -128,9 +126,12 @@ last modified: 27.11.2019
 <script src="js/myD3Graph.js"></script>
 <script src="js/icequine.js"></script>
 <script src="js/0parser.js"></script>
+<script src="js/lambdaTerms.js"></script>
 
 <script>
-selectionStarter();
+document.getElementById("listofmols").value = "lambdanote";
+whichButtons(); 
+selectionLambda();
 </script>
 
 </body>
