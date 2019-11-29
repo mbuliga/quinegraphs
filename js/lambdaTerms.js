@@ -4,7 +4,7 @@
 function termLibrary(lambdaName) {
 
 switch (lambdaName) {
-  case "PRED (POW 3 4)":
+  case "lambdanote":
   var lambdaTerm = "(\\n.(\\f.(\\x.(((n (\\g.(\\h.(h (g f))))) (\\u.x)) (\\u.u))))) (((\\b.(\\e.(e b))) (\\f.(\\x.(f (f (f x)))))) (\\f.(\\x.(f(f (f (f x)))))))";
   break;
 
@@ -17,7 +17,7 @@ switch (lambdaName) {
   break;
 
   case "times_only_short":
-  var lambdaTerm = "(((\m.(\n.(\f.(m (n f))))) (\f.(\x.(f(f (f (f (f x)))))))) (\f.(\x.(f(f (f (f (f x))))))))";
+  var lambdaTerm = "(((\\m.(\\n.(\\f.(m (n f))))) (\\f.(\\x.(f(f (f (f (f x)))))))) (\\f.(\\x.(f(f (f (f (f x))))))))";
   break;
 
   case "times_only_long":
@@ -44,6 +44,9 @@ switch (lambdaName) {
   var lambdaTerm = "(\\a.a a)(\\x.((\\b.b b)(\\y.y x)))";
   break;
 
+  case "false (Y A)":
+  var lambdaTerm = "((\\x.(\\y.y)) ((\\g.((\\x.(g (x x))) (\\x.(g (x x))))) A))";
+  break;
 
 
   default:
@@ -52,4 +55,3 @@ switch (lambdaName) {
 }
 return lambdaTerm;
 }
-"alexo_example"
