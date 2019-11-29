@@ -4,6 +4,25 @@ page look (buttons, etc), import-export mol
 
 var versusVar = "<br><br> VS. <br><br>";
 
+function selectionLambda() {
+
+setSpeed(0); 
+setStart(0); 
+var lambdatext = document.getElementById('listofmols').value; 
+document.getElementById('inputlambda').value = termLibrary(lambdatext); 
+if (termLibrary(lambdatext) == "") {
+  voidMolToScreenAfter(); 
+  molSelect(); 
+  exportMolToScreen();
+} else {
+lambdaToMol(); 
+reloadCode();
+var molCom = molComments(lambdatext);
+document.getElementById("comments").innerHTML = molCom; 
+}
+}
+
+
 function selectionStarter() {
   setSpeed(0); 
   setStart(0); 
@@ -29,9 +48,17 @@ var ButtonOriginal = [
   {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); reloadCode();}, "Text":"reload"},
-  {"Id":"lambdatomolbutton", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); lambdaToMol(); reloadCode();}, "Text":"&lambda;>mol"}
+//  {"Id":"lambdatomolbutton", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); lambdaToMol(); reloadCode();}, "Text":"&lambda;>mol"}
 ];
 
+var ButtonLambda = [
+  {"Id":"button3", "Class":"image2", "Visibility":"hidden", "Onclick": function () {selectionStarter();}, "Text":"new"},
+  {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1); loop();}, "Text":"start"},
+  {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
+  {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
+  {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); reloadCode();}, "Text":"reload"},
+  {"Id":"lambdatomolbutton", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); lambdaToMol(); reloadCode();}, "Text":"&lambda;>mol"}
+];
 
 
 var ButtonRandomGraph = [
@@ -76,6 +103,11 @@ function showButton(buttt) {
 function whichButtons() {
   var choiceButtons = document.getElementById("listofmols").value;
   switch (choiceButtons) {
+
+    case "lambdanote":
+    var selectedButtons = ButtonLambda;
+    break;
+
 
     case "arena":
     var selectedButtons = ButtonArena;
