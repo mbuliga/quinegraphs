@@ -9,7 +9,7 @@ function molComments(molName) {
 
 switch (molName) {
   case "lambdanote":
-  var mol = "In the textarea is PRED ((POW 3) 4)<br><br>This is a parser from lambda calculus to chemlambda<br><br>It is rather sensible for the moment...<br><br>It surely works if you put ALL the parantheses.<br><br>Examples:<br><br>(\\x.x x) (\\x.x x) is OK! <br>(\\x.xx) (\\x.xx) is NOT OK, because it believes \"xx\" is a variable<br><br>(\\x.\\y.x) z throws an error<br><br> but (\\x.(\\y.x)) z works OK! <br><br>Part of the repository <a href=\"https://github.com/mbuliga/quinegraphs\">Quine graphs</a>.<br><br>Type terms in textarea, click buttons!<br><br>Hover with the mouse over nodes to trigger rewrites.<br><br>Click+drag the nodes to arrange the graph.<br><br>Click on the background and drag to translate the graph.<br><br> Mouse wheel to resize the graph.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
+  var mol = "In the textarea is PRED ((POW 3) 4)<br><br>This is a parser from lambda calculus to chemlambda<br><br>Examples:<br><br>(\\x.x x) (\\x.x x) is OK! <br>(\\x.xx) (\\x.xx) is NOT OK, because it believes \"xx\" is a variable<br><br>(\\x.\\y.x) z  works OK! <br><br>Part of the repository <a href=\"https://github.com/mbuliga/quinegraphs\">Quine graphs</a>.<br><br>Type terms in textarea, click buttons!<br><br>Hover with the mouse over nodes to trigger rewrites.<br><br>Click+drag the nodes to arrange the graph.<br><br>Click on the background and drag to translate the graph.<br><br> Mouse wheel to resize the graph.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
   break;
 
   case "howto":
