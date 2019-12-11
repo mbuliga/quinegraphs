@@ -1,7 +1,6 @@
 // parser for lambda calculus to mol
-// usable but has a problem with (term) \x.term, likes instead (term) (\x.term)
 // author: Marius Buliga
-// last updated: 27.11.2019
+// last updated: 11.12.2019
 
 var op = {
 "lparen": "(",
@@ -47,7 +46,7 @@ function lexer(input) {
     if (input[i] !== "") lexA.push(input[i]);
   }
   lexA.push("]");
-// check for mathching parens and if OK add op.app where needed
+// check for matching parens and if OK add op.app where needed
   var parens = 0;
   for (var i=0; i<lexA.length; i++) {
     if (lexA[i] == op.lparen) parens = parens + 1;
@@ -69,7 +68,7 @@ function lexer(input) {
       current = lexA[i];
       lex2A.push(current);
       next = lexA[i+1];
-      if ( isVar(current) && ( next == op.lparen || isVar(next) || next == op.lambda)) {
+      if ( (isVar(current) || current == op.rparen) && ( next == op.lparen || isVar(next) || next == op.lambda)) {   
         addedApp = op.app;
         lex2A.push(addedApp);
       } else if (current == op.rparen && (next ==  op.lparen || isVar(next)))  {
@@ -79,6 +78,8 @@ function lexer(input) {
     }
     lex2A.push(lexA[lexA.length - 1]);
   }
+
+
 // check for malformed abstractions or applications
   var ji;
   for (var i=0; i<lex2A.length; i++) {
@@ -111,8 +112,22 @@ function lexer(input) {
       }     
     }
   }
+
+
+// <debug> print lexer result
+/*
+  document.getElementById("lexer").innerHTML = "lexer:<br><br>";
+  for (var i=0; i<lex2A.length; i++) {
+    document.getElementById("lexer").innerHTML += lex2A[i] + ",";
+  }
+*/
+// </debug>
+
   return lex2A;
+
+
 }
+
 // parser to mol with variables
 var molV = "";
 var rootAdd = true;
@@ -159,26 +174,24 @@ function parser(term) {
       parser(termout);
       term.middle = term.right;
       current = stack[term.right];
-    } else if (current == op.lambda) {
+    } else if (current == op.lambda) {                                   
       term.middle = term.right + 1;
       var next = stack[term.middle];
       iMiddleAbs = term.middle + term.absolute;
       if (isVar(next)) {
         molV += "FROUT " + next + " " + iMiddleAbs + "^";
-        term.right = term.middle + 1;
-        if (stack[term.right] == op.dot) {
-          term.left = term.right + 1;
+        term.left = term.middle + 1;
+        if (stack[term.left] == op.dot) {
           iLeftAbs =  term.left + term.absolute;
           iRightAbs = term.right + term.absolute;
           molV += "L " + iLeftAbs + " " + iMiddleAbs + " " + iRightAbs + "^";
-          term.left = term.left - 1;
-          term.right = term.right + 1;
+          term.left = term.left - 2;
+          term.right = term.right + 2;
           termout.left = 0;
           termout.middle =  0;
           termout.right =  0;  
-          termout.absolute = term.left + term.absolute;
-          termout.absolute +=1;
-          termout.content = [op.bof, stack[term.right]];
+          termout.absolute = term.right + term.absolute;
+          termout.content = [op.bof];
           term.right +=1;
           while (stack[term.right] !== op.eof) {
             termout.content.push(stack[term.right]);
@@ -203,15 +216,12 @@ function parser(term) {
       iLeftAbs = term.left+ term.absolute;
       term.middle +=1;
       if (stack[term.middle] == op.lambda) {
-        iMiddleAbs = term.middle + 2;
-        iMiddleAbs = iMiddleAbs + term.absolute;
         var itempo = term.right + term.absolute;
         if (rootAdd) {
-        molV += "Arrow" + " " + itempo + " " + term.absolute + "^";}
+        molV += "Arrow" + " " + itempo + " " + term.absolute + "^";}       
         rootAddCurrent = false;
-      } else {
-        iMiddleAbs = term.middle + term.absolute;
-      }
+      } 
+      iMiddleAbs = term.middle + term.absolute;
       iRightAbs = term.right + term.absolute;
       molV += "A " + iLeftAbs + " " + iMiddleAbs + " " + iRightAbs + "^";
       term.left = term.right;
@@ -251,9 +261,14 @@ parser(stack0);
 var molvLines = molV.split("^");
 var molvDet = [], molvL, molvC, jline, varNm, varIn, varOut, varBound;
 
+// document.getElementById("molv").innerHTML = "molvDet:<br><br>";                     // <debug>
+
 for (var i=0; i<molvLines.length; i++) {
   molvL = molvLines[i].split(" ");
-  if (molvL.length >= 2) molvDet.push(molvL);
+  if (molvL.length >= 2) {
+    molvDet.push(molvL);
+//    document.getElementById("molv").innerHTML += i + ": " + molvL + "<br>";          // <debug>
+  }
 }
 //find edges of the graph, until now, free and bound variables
 var molVedges = [], boundEdges = [],  freeEdges = [], oneEdge;
@@ -298,7 +313,10 @@ for (var i=0; i<molvDet.length; i++) {
     break;
   }
 }
-// check if every edve variable appears exactly twice, otherwise throw an error
+// check if every edge variable appears exactly twice, otherwise throw an error
+
+//  document.getElementById("edges").innerHTML = "edges:<br><br>";                        // <debug>
+
   var edgesprettyline = "", errorsline = "";
 for (var i=0; i<molVedges.length; i++) {
   edgesprettyline = "";
@@ -307,6 +325,7 @@ for (var i=0; i<molVedges.length; i++) {
     for (var j=0; j<molVedges[i].length; j++) {
     edgesprettyline += " (" + molVedges[i][j].line + "," + molVedges[i][j].position + ")";
     }
+//  document.getElementById("edges").innerHTML += edgesprettyline + "<br>";             // <debug>
   }
   switch (molVedges[i].length){
     case 2: case 0:
