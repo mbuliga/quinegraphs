@@ -99,7 +99,7 @@ function loop(dt) {
       setComb(0);
       setSpeed(0); 
       setStart(0);
-    }    
+    } else {   
     if (priority == 0) {
       var haveIchoosedBeta = 0;
       var haveIchoosedDist = 0;
@@ -156,6 +156,7 @@ function loop(dt) {
       document.getElementById("chosentransform").innerHTML = chosenTransform;
 //
     }
+  }
   } 
 
   if (anyMoves) {
