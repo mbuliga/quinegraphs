@@ -94,7 +94,12 @@ function loop(dt) {
         }
       }
     }
-      
+    if (combOnly == 1 && priority == 0) {
+      priority = 1;
+      setComb(0);
+      setSpeed(0); 
+      setStart(0);
+    }    
     if (priority == 0) {
       var haveIchoosedBeta = 0;
       var haveIchoosedDist = 0;
