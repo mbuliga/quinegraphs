@@ -25,7 +25,7 @@ switch (lambdaName) {
   break;
 
   case "omegaSI":
-  var lambdaTerm = "(\S.\I.S I I (S I I)) (\x.\y.\z.(x z) (y z)) \x.x";
+  var lambdaTerm = "(\\S.\\I.S I I (S I I)) (\\x.\\y.\\z.(x z) (y z)) \\x.x";
   break;
 
   case "SKK":
