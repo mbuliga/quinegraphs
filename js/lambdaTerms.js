@@ -24,8 +24,8 @@ switch (lambdaName) {
   var lambdaTerm = "(((\\m.(\\n.((m ((\\m.(\\n.((m (\\n.(\\f.(\\x.(f ((n f) x)))))) n))) n)) (\\f.(\\x.x))))) (\\f.(\\x.(f(f (f (f (f x)))))))) (\\f.(\\x.(f(f (f (f (f x))))))))";
   break;
 
-  case "omegaSKI":
-  var lambdaTerm = "(\S.\I.S I I (S I I)) (\x.\y.\z.(x z) (y z)) \x.x";
+  case "omegaSI":
+  var lambdaTerm = "(\\S.\\I.S I I (S I I)) (\\x.\\y.\\z.(x z) (y z)) \\x.x";
   break;
 
   case "SKK":
