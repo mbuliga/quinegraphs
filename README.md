@@ -16,7 +16,7 @@ We invite you to  explore some of their properties, with examples taken from lam
 
 ### See also
 
-* [The collection of chemlambda animations salvaged from google+](http://imar.ro/~mbuliga/collection.html)
+* [The collection of chemlambda animations salvaged from google+](https://chemlambda.github.io/collection.html)
 
 ### More here
 
