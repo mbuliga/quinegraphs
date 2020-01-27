@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!-- slides for the talk "A kaleidoscope of graph rewriting systems", Dec 4th 2019
+author: Marius Buliga
+last modified: 04.12.2019
+//
+-->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="stylesheet" type="text/css" href="css/slides.css">
+
+<title>Artificial physics</title>
+
+</head>
+<body  onkeydown="plusSlides(1)">
+
+<div class="slideshow-container">
+
+
+<!-- slide 1 -->
+<div class="mySlides fade">
+
+  <div class="numbertext"></div>
+
+  <div class="bigtext">
+    <p style="width:90%"><span style="color: #000000;">Artificial Physics for Artificial Chemistries </span> </p> 
+  </div> 
+
+  <div class="storytext">
+    <span style="color: #000000;">(1) artificial chemistries</span>
+  </div> 
+
+  <div class="storytext"><span style="color: #000000;">(2) chemlambda </span>
+  </div> 
+
+   <div class="storytext">
+     <span style="color: #000000;">(3) information content of the deviation from hamiltonian evolution </span>
+  </div> 
+
+  <div class="storytext"><span style="color: #000000;">(4) chemlambda + physics </span>
+  </div> 
+
+</div>
+
+
+<!-- slide 2 -->
+<div class="mySlides fade">
+
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>
+
+  <div class="middletextleft">
+    <a href="https://www.ncbi.nlm.nih.gov/pubmed/11712956" target="_blank">[Dittrich, P., Ziegler, J., 
+    Banzhaf, W. (2001)]</a> - an artificial chemistry is a triple (S,R,A): 
+  </div>
+
+  <div class="middletextleft"> 
+    S - a class of <span style="color: #0066ff;">molecule types</span>
+  </div> 
+
+
+  <div class="middletextleft">
+    R - a class of <span style="color: #ff0000;">chemical reactions</span>
+  </div>
+
+  <div class="middletextleft"> 
+    A - an algorithm for the application of the <span style="color: #ff0000;">chemical reactions</span> to 
+    <span style="color: #0066ff;">a multiset of molecules</span>
+  </div>
+
+  <div class="middletext"> 
+    <img src="final/artchem2.png" style="width:400px">
+  </div>
+
+</div> 
+
+
+
+
+<!-- slide 3 -->
+
+
+
+<div class="mySlides fade">
+  
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>
+ 
+  <div class="middletextleft"> 
+    <a href="https://link.springer.com/chapter/10.1007/978-3-642-01284-6_14" target="_blank">[K. Tomita, H. Kurokawa, 
+    S. Murata (2009)]</a> - a graph-rewrite automaton is a triple (S,R,A): 
+  </div>
+
+  <div class="middletextleft"> 
+     S - a class of <span style="color: #0066ff;">graphs</span> for example trivalent graphs with colored nodes
+  </div>
+
+  <div class="middletextleft">  
+    R - a class of <span style="color: #ff0000;">graph-rewrites</span> 
+  </div>
+
+  <div class="middletextleft">  A - an algorithm for the application of the 
+    <span style="color: #ff0000;">graph-rewrites</span> to <span style="color: #0066ff;">one graph</span>
+  </div>
+  <div class="middletext"> 
+    <img src="final/tomita.png" style="width:350px"> &nbsp; <img src="final/tomita2.png" style="width:350px">
+  </div>
+
+</div>
+
+
+
+
+<!-- slide 4 -->
+
+
+
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>
+
+
+  <div class="middletextleft">
+   - an asynchronous graph-rewrite automaton is a triple (S,R,A): 
+  </div>
+
+
+  <div class="middletextleft">  
+    S - a class of <span style="color: #0066ff;">"molecules" (i.e. of graphs)</span>
+  </div>
+
+  <div class="middletextleft">
+    R - a class of <span style="color: #ff0000;">"chemical reactions" (i.e. graph-rewrite rules)</span>
+  </div>
+
+  <div class="middletextleft">
+    A -  a <span style="color: #ff00ff;">random and local</span> algorithm for the application of 
+    <span style="color: #ff0000;">graph-rewrites</span> to <span style="color: #0066ff;">one graph</span> 
+  </div>
+  
+  <div class="middletext"> 
+    <img src="final/tape_long_4653_2.gif" style="width:300px">
+  </div>
+
+</div> 
+
+
+
+
+<!-- slide 5 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>
+
+
+  <div class="middletextleft">&lambda; calculus <a href="https://www.jstor.org/stable/2371045" target="_blank">[A. 
+    Church (1936)]</a>   <span style="color: #ff0000;">is a term rewrite system</span>
+  </div>
+  <div class="middletextleft"> Terms: 
+    <ul>
+      <li> variable: x, y, z, ... </li>
+      <li> term:   
+        <ul>
+          <li>variable &nbsp; &#124; &nbsp; </li>
+          <li>A B where A, B terms &nbsp; &#124; &nbsp;</li>
+          <li> &lambda;x.A where x var,  A term</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="middletextleft"> Term rewrite rule:
+    <ul>      
+      <li> &beta;-reduction:   (&lambda;x.A)B   &#8594; A[x=B] </li>
+    </ul>
+  </div>   
+
+</div>
+
+<!-- slide 6 -->
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>
+
+  <div class="middletextleft">&lambda; calculus <a href="https://www.jstor.org/stable/2371045" target="_blank">[A. 
+    Church (1936)]</a>   <span style="color: #ff0000;">is a term rewrite system</span>
+  </div>
+    <div class="middletextleft"> Term rewrite rule:
+        <ul>      
+          <li> &beta;-reduction:   (&lambda;x.D)B   &#8594; D[x=B] </li>
+        </ul>
+    </div>   
+    <div class="middletextleft"> (1971, C.P. Wadsworth, <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.90.2386&rep=rep1&type=pdf">1990, J. Lamping</a>)  <span style="color: red;">graph rewrite system</span>
+    </div>   
+    <div class="middletext"> 
+      <img src="final/lamping.jpg" style="width:350px">
+    </div>
+  </div>
+
+
+<!-- slide 7 -->
+
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>
+
+  
+
+
+  <div class="middletextleft">
+    <a href="https://www.pnas.org/content/pnas/91/2/757.full.pdf" target="_blank">[W. Fontana, L. W. Buss (1994)]</a> 
+    - <span style="color: #ff0000;">ALCHEMY</span> = ALgorithmic Chemistry: 
+  </div>
+
+  <div class="middletextleft">
+    S - a class of <span style="color: #0066ff;"> &lambda;- terms in normal form</span>
+  </div>
+
+  <div class="middletextleft">
+    R - a class of <span style="color: #ff0000;">reductions</span> 
+    <p> A + B &#8594; A + B + normal form of AB</p>
+  </div>
+
+  <div class="middletextleft">
+    A - algorithm of random application of a reaction to a random selection of terms
+  </div>
+
+
+  <div class="middletextleft">
+    <a href="https://www.sciencedirect.com/science/article/pii/030439759290185I" target="_blank">[G. Berry, 
+    G. Boudol (1992)]</a> 
+    - <span style="color: #ff0000;">CHAM</span> = Chemical Abstract Machine: a <span style="color: #0066ff;">programming
+    language</span> which uses molecules, solutions and transformation rules
+  </div> 
+
+
+</div>
+
+
+
+
+<!-- slide 8 -->
+
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>
+  
+
+
+
+  <div class="middletextleft"> 
+    <a href="https://www.sciencedirect.com/science/article/pii/S0890540197926432"  target="_blank">[Y. Lafont (1997)]</a>
+    <span style="color: #ff0000;">Interaction combinators</span>
+  </div>
+
+
+  <div class="middletextleft">
+    S - a class of <span style="color: #0066ff;">trivalent fatgraphs</span>
+  </div>
+
+  <div class="middletextleft">
+    R - a class of <span style="color: #ff0000;">graph rewrite rules</span>, without conflicts
+    <img src="final/lafont.png" style="width:500px">
+  </div>
+
+
+  <div class="middletextleft">
+    A -  any algorithm will do for graphs which reduce in a finite number of steps</li>
+  </div> 
+
+
+</div>
+
+
+
+
+
+
+
+<!-- slide 9 -->
+
+
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>  
+  
+
+
+  <div class="middletextleft"> 
+    The Matrix: <span style="color: #0066ff;">what does it mean?</span><br><br>
+    "still he'd see <span style="color: #000000;">the matrix</span> in his sleep, bright 
+    lattices  <span style="color: #000000;">of logic unfolding</span> across that colorless void" 
+    (William Gibson, Neuromancer)
+  </div>
+
+  <div class="middletextleft"> <span style="color: #ff0000;">versus</span>
+  </div>
+
+  <div class="middletextleft"> Blade Runner: 
+    <span style="color: #0066ff;">is this alive?</span><br><br>
+    <img src="final/blade_runner_1.jpg" style="width:500px">
+  </div>
+
+
+</div>
+
+
+
+
+<!-- slide 10 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>    
+  
+
+  <div class="middletext">
+    Turing machines and &lambda;-terms
+  </div>
+
+
+  <div class="bigtext">
+    <img src="final/test-105.gif" style="width:600px">
+  </div>
+
+  <div class="middletext">
+   <a href="http://chorasimilarity.github.io/chemlambda-gui/dynamic/turingchem.html">[explanation: Turing Machines, chemlambda style]</a> 
+  </div>
+
+</div>
+
+
+
+<!-- slide 11 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>    
+  
+
+
+
+  <div class="middletextleft">  
+    <a href="https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md" target="_blank">[github repository]</a> 
+    <a href="http://imar.ro/~mbuliga/chemlambda-v2.html" target="_blank">[explanations]</a> Chemlambda v2:
+  </div>
+
+
+
+  <div class="middletextleft">
+    S - a class of <span style="color: #0066ff;">trivalent fatgraphs<br><br>
+     <img src="final/nodes.jpg" style="width:500px">
+  </div>
+
+
+</div>
+
+
+
+<!-- slide 12 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>    
+   
+
+
+  <div class="middletextleft">
+    R - <span style="color: #ff0000;">two main families of graph rewrite rules</span>
+  </div>
+
+  <div class="middletext">
+    <img src="final/beta-fi-foe.jpg" style="width:300px"> &nbsp; &nbsp; <img src="final/fi-fo-foe.jpg" style="width:300px">
+  </div>
+
+  <div class="middletextleft">
+    which look like the IC rewrites
+  </div>
+
+  <div class="middletext">
+    <img src="final/deltadelta.png" style="width:200px"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="final/gammadelta.png" style="width:200px">
+  </div>
+
+
+</div>
+
+
+<!-- slide 13 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>    
+
+  <div class="middletextleft">
+    each IC node has only 1 active port, so no conflicts
+  </div>
+
+  <div class="middletextleft">
+    however chemlambda nodes have 2 active ports, leads to conflicts
+  </div>
+
+  <div class="middletext">
+    <img src="final/con-l-fo-foe-id-1.jpg" style="width:300px">  &nbsp; &nbsp; <img src="final/con-l-fo-foe-id-2.jpg" style="width:400px">
+  </div>
+
+</div>
+
+
+
+<!-- slide 14 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>   
+
+  <div class="middletextleft">
+    R -  <span style="color: #ff0000;">a COMB graph rewrite cycle</span> to eliminate the Arrow elements and loops <br><br>
+    <img src="final/comb.jpg" style="width:600px">
+  </div> 
+
+  <div class="middletextleft">
+    R -  and some <span style="color: #ff0000;">TERM rewrites</span> like the other IC rewrites <br><br>
+    <img src="final/a-t-fi-t.jpg" style="width:300px">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<img src="final/fo-t-foe-t.jpg" style="width:300px">
+  </div> 
+
+</div>
+
+
+
+
+
+
+<!-- slide 15 -->
+
+
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>    
+  
+
+  <div class="middletext">  
+    Dodecahedron multiplication
+  </div>
+
+  <div class="bigtext" style="width:100%" >       
+    <img src="final/dodecahedron.gif"  style="width:500px">
+  </div>
+       
+
+</div>
+
+
+
+
+<!-- slide 16 -->
+
+
+
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>    
+  
+
+  <div class="middletext">  
+    Tube pattern  duplication
+  </div>
+  
+  
+  <div class="bigtext" style="width:100%">
+    <img src="final/spiral_boole_short.gif"  style="width:500px">
+  </div>
+  
+
+</div>
+
+
+
+<!-- slide 17 -->
+
+
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>    
+  
+
+  <div class="middletext">  
+    Tube pattern with Turing Machines, builts itself
+  </div>
+  
+  
+
+  <div class="bigtext" style="width:100%">
+    <img src="final/spiral_boole_bb_short.gif"  style="width:500px">
+  </div>
+
+
+</div>
+
+
+<!-- slide 18 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <div class="middletextleft"> </div>    
+  
+
+  <div class="middletext">  
+    The factorial of 5: (a,b) to (a+1, ab)
+  </div>
+   
+  
+
+  <div class="bigtext" style="width:100%">
+    <img src="final/tubefact.gif"   style="width:500px">
+  </div>
+
+
+</div>
+
+<!--   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
+
+
+<!-- slide 19 -->
+
+
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  
+  
+
+
+
+
+  <div class="middletextleft"> Properties: 
+  </div>
+
+  <div class="middletextleft"> Turing universal: we can represent &lambda;-terms and rewrites, or TM.<br> 
+    <a href="http://chorasimilarity.github.io/chemlambda-gui/dynamic/expo_ackermann_2_2.html" target="_blank">
+    [Ackermann(2,2) simulation]</a>  &nbsp; &nbsp; 
+    <a href="http://chorasimilarity.github.io/chemlambda-gui/dynamic/demos.html" target="_blank">[Demos]</a> &nbsp; &nbsp;
+    <a href="http://chorasimilarity.github.io/chemlambda-gui/dynamic/molecular.html" target="_blank">[Molecular 
+    computers (2015)]</a>   &nbsp; &nbsp; 
+    <a href="https://arxiv.org/abs/1811.04960" target="_blank">arXiv:1811.04960</a>
+  </div>
+
+
+  <div class="middletextleft">
+    gives many interesting graphs  modified outside &lambda;-calculus<br> 
+    <img src="final/pred.gif" style="width:350px">&nbsp; &nbsp;<img src="final/bigpred_train-opt.gif" style="width:350px">
+  </div>
+
+  <div class="middletextleft">
+    artificial life: a chemlambda quine is a graph  deterministically periodic, evolving under the random algorithm.<br>
+    <a href="https://github.com/chorasimilarity/chemlambda-gui/tree/gh-pages/dynamic/mol" target="_blank">[Library 
+    of molecules]</a> &nbsp; &nbsp; 
+    <a href="https://doi.org/10.6084/m9.figshare.4747390.v1" target="_blank">[Collection of simulations]</a>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- slide 20 -->
+
+
+<div class="mySlides fade">
+<div class="numbertext"></div>
+  
+  
+
+  <div class="middletextleft">The information content of the deviation from hamiltonian evolution, an extension of 
+    Hamiltonian mechanics.  
+    <a href="https://arxiv.org/abs/0810.1419" target="_blank">[Buliga (2009)]</a> &nbsp; 
+    <a href="https://arxiv.org/abs/1807.10480" target="_blank">[(2018)]</a> &nbsp; 
+    <a href="https://arxiv.org/abs/1902.04598" target="_blank">[(2019)]</a> &nbsp; 
+    <a href="http://dx.doi.org/10.1177/1081286516629532" target="_blank">[Buliga, de Saxce (2017)]</a> 
+  </div>
+
+  <div class="middletextleft"> aka "Hamiltonian inclusions with convex dissipation" or 
+    "symplectic Brezis-Ekeland-Nayroles principle"
+  </div>
+
+  <div class="middletextleft">
+    define the deviation from hamiltonian evolution vector &eta;
+    <p> <img src="final/dif-ham.png" style="width:300px"></p>
+    <p> <img src="final/eta-z.png" style="width:350px"></p>
+  </div>
+
+
+  <div class="middletextleft"> 
+    impose that the evolution minimizes the information content
+    <p> <img src="final/principle.png" style="width:350px"></p>
+  </div> 
+
+</div>
+
+
+
+
+<!-- slide 21 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  
+  
+
+  <div class="middletextleft"> allows dissipation (a generalized Liouville theorem)
+    <p> <img src="final/disip-2.png" style="width:70%"></p>
+  </div>
+
+</div>
+
+
+
+<!-- slide 22 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  
+  
+
+
+
+  <div class="middletextleft">applies to: viscosity, plasticity, damage, fracture
+  </div>
+
+  <div class="middletextleft"> also to unilateral contact (and friction)
+  </div>
+
+  <div class="middletextleft"> 
+    <a href="https://doi.org/10.1007%2FBF01857727" target="_blank">[E. Fredkin, T. Toffoli (1982)]</a> 
+    billiard ball computer
+    <p> <img src="final/Toffoli_BilliardBall.gif" style="width:80%"></p>
+  </div>
+
+
+  <div class="middletextleft"> Let M be the space (billiard), then the information content function is 
+    <p> <img src="final/disip-3.png" style="width:80%"></p>
+  </div> 
+
+</div>
+
+
+
+<!-- slide 23 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  
+  
+
+  <div class="middletextleft">stochastic version
+  </div>
+
+  <div class="middletextleft"> 
+    <p> <img src="final/disip-4.png" style="width:80%"></p>
+  </div>
+
+</div>
+
+
+<!-- slide 24 -->
+
+
+<div class="mySlides fade">
+<div class="numbertext"></div>
+  
+
+  <div class="middletextleft">chemlambda+physics
+  </div>
+
+  <div class="middletextleft">
+    A <a href="https://doi.org/10.6084/m9.figshare.5751318.v1" target="_blank">version of chemlambda</a> 
+    is a billiard ball computer (with the physics as in the principle of minimal information content), 
+    with some of the state variables over a pair of 
+    <a href="https://en.wikipedia.org/wiki/Permutohedron" target="_blank">permutohedra</a>
+  </div>
+
+
+  <div class="middletextleft"> 
+    <center> <img src="final/permutohedron.png" style="width:350px"></center>
+  </div>
+
+</div>
+
+
+
+
+
+<!-- slide 25 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  
+
+  <div class="middletextleft">chemlambda+physics
+  </div>
+
+  <div class="middletextleft">anatomy of nodes and edges: 
+  </div>
+
+  <div class="middletextleft"> 
+    <center> <img src="final/node-ana.jpg" style="width:90%"></center>
+  </div>
+
+</div>
+
+
+
+<!-- slide 26 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  
+
+  <div class="middletextleft">chemlambda+physics
+  </div>
+
+  <div class="middletextleft">initial graph: 
+  </div>
+
+  <div class="middletextleft"> 
+  <center> <img src="final/diagram1.jpg" style="width:90%"></center>
+  </div>
+
+
+</div>
+
+
+<!-- slide 27 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  
+
+
+  <div class="middletextleft">chemlambda+physics
+  </div>
+
+  <div class="middletextleft">a rewrite is a pair of permutations: 
+  </div>
+
+  <div class="middletextleft"> 
+    <center> <img src="final/diagram2.jpg" style="width:90%"></center>
+  </div>
+
+  <div class="middletextleft"> 
+    <p> <a href="http://imar.ro/~mbuliga/beta.html" target="_blank">do the &beta; like a boss</a>  &nbsp; &nbsp; </p>
+    <p> <a href="http://imar.ro/~mbuliga/betaboss2.html" target="_blank">same with colored edges</a></p>
+  </div>
+
+
+</div>
+
+
+<!-- slide 28 -->
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  
+
+  <div class="middletextleft">chemlambda+physics
+  </div>
+
+  <div class="middletextleft">we modify the hamiltonian of the force graph by using the state of the graph
+  </div>
+
+  <div class="middletextleft"> 
+    we modify the information content and we use the stochastic version
+  </div>
+
+  <div class="middletextleft"> 
+    ... and it works (announcement).
+  </div>
+
+  <div class="bigtext"> 
+    CONCLUSION: is a game with a pair of permutohedron dices.
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- slide final -->
+
+
+
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  
+
+
+  <div class="bigtext">
+    <p style="width:90%"><span style="color: #000000;">Continue to my 
+    <a href="https://mbuliga.github.io/" target="_blank">homepage</a></span> </p> 
+  </div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+
+
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i, numberText;
+  var slides = document.getElementsByClassName("mySlides");
+  var numberDiv = document.getElementsByClassName("numbertext");
+//  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+
+      numberText = "<a onclick=\"plusSlides(-1)\"><img src=\"final/arr-l.png\" style=\"height:20px;\"></a>&nbsp;" + slideIndex +  "&nbsp;<a onclick=\"plusSlides(1)\"><img src=\"final/arr-r.png\" style=\"height:20px\"></a>";
+      numberDiv[i].innerHTML = numberText;
+
+  }
+//  for (i = 0; i < dots.length; i++) {
+//      dots[i].className = dots[i].className.replace(" active", "");
+//  }
+  slides[slideIndex-1].style.display = "block";  
+
+
+
+//  dots[slideIndex-1].className += " active";
+}
+
+/*
+var demo = 0;
+
+function whatIshow() {
+var changeScr, sameScr;
+  if (demo = 0) {
+    changeScr =  document.getElementById("demos");
+    sameScr = document.getElementById("slides");
+    demo = 1;
+  } else {
+    changeScr =  document.getElementById("slides");
+    sameScr = document.getElementById("demos");
+    demo = 0;
+}
+sameScr.style.display = "none";
+changeScr.style.display = "block";
+}
+*/
+</script>
+
+</body>
+</html> 
+
+
