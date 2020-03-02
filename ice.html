@@ -120,6 +120,11 @@ last modified: 20.11.2019
 
 <script>
 whichButtons();
+var whichP = location.hash;
+whichP = whichP.replace(/#/g, "");
+if (whichP != "") {
+document.getElementById("listofmols").value = whichP;
+}
 selectionStarter();
 </script>
 
