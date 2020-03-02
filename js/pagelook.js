@@ -10,6 +10,7 @@ setSpeed(0);
 setStart(0); 
 var lambdatext = document.getElementById('listofmols').value; 
   location.hash = "#" + lambdatext;
+  document.getElementById("citeas").innerHTML = location.hash;
 document.getElementById('inputlambda').value = termLibrary(lambdatext); 
 if (termLibrary(lambdatext) == "") {
   voidMolToScreenAfter(); 
@@ -30,6 +31,7 @@ function selectionStarter() {
   setStart(0); 
   var whichPost = document.getElementById("listofmols").value;
   location.hash = "#" + whichPost;
+  document.getElementById("citeas").innerHTML = location.hash;
   if ( arenaVar == 0 ) {
   whichButtons(); 
   }

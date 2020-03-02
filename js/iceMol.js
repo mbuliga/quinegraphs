@@ -185,6 +185,10 @@ switch (molName) {
   var mol = "FROUT out^A 1 2 out^L 3 x 1^FO x 5 7^A 5 7 3^L 4 y 2^FO y 6 8^A 6 8 4";
   break;
 
+  case "4omega":
+  var mol = "FROUT 1^L 2 3 4^L 5 6 2^FO 3 7 8^A 7 9 5^FO 8 10 11^A 10 12 9^FO 11 13 14^A 13 15 12^A 14 6 15^A 4 16 1^L 17 18 19^FO 18 20 21^A 20 21 17^A 19 22 16^L 23 24 22^FO 24 25 26^A 25 26 23";
+  break;
+
   case "lisfact_2_mod":
   var mol = "A 1 2c1c1 1out^A 2 3c1c1 2out^L 12c1c1 22c1c1 2c1c1^L 42c1c1 32c1c1 12c1c1^A 22c1c1 32c1c1 42c1c1^L 13c1c1 23c1c1 3c1c1^L 43c1c1 33c1c1 13c1c1^A 23c1c1 33c1c1 43c1c1^FOE 3 1 2^A num 4 3^L 2num 1num num^L 3num xnum 2num^FO 1num m1num l1pnum^A m1num r1pnum 3num^FO l1pnum m1pnum l1num^A m1pnum r1num r1pnum^FO l1num m2num l2num^A m2num r2num r1num^A l2num xnum r2num^FI 6 5 4^L tms v 6^L sp 8 5^FO 8 in1 u^L 1sp 2sp sp^L 4sp 3sp 1sp^FO 2sp 5sp 6sp^A 5sp 7sp 4sp^A 8sp 3sp 7sp^A in1 6sp 8sp^L 1times mtimes times^L 2times ntimes 1times^L 3times ftimes 2times^A mtimes 4times 3times^A ntimes ftimes 4times^A times u utms^A utms v tms^A 2out succ coco^A coco c0 outfin^L 1succ nsucc succ^L 2succ ssucc 1succ^L 3succ zsucc 2succ^A 4succ 6succ 3succ^FO ssucc 4succ 5succ^A 7succ zsucc 6succ^A nsucc 5succ 7succ^L 1c0 2c0 c0^L 3c0 3c0 1c0^T 2c0";
   break;

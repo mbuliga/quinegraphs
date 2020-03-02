@@ -162,9 +162,12 @@ switch (molName) {
   break;
 
   case "omega":
-  var mol = "In lambda calculus there is only one quine, the <br><br> &Omega; = (\\x.x x) (\\x.x x) <br><br> combinator.<br><br>It gives a <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> quine too.";
+  var mol = "An example of a lambda calculus quine is the <br><br> &Omega; = (\\x.x x) (\\x.x x) <br><br> combinator.<br><br>It gives a <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> quine too.";
   break;
 
+  case "4omega":
+  var mol = "The Church number 4 applied to the omega combinator <br><br> (\\f.(\\x.(f(f (f (f x)))))) ((\\x.x x) (\\x.x x)) <br><br> gives another lambda calculus quine.";
+  break;
 
 
 case "random_egg_A_L_FI_FO":
