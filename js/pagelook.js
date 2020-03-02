@@ -9,6 +9,7 @@ function selectionLambda() {
 setSpeed(0); 
 setStart(0); 
 var lambdatext = document.getElementById('listofmols').value; 
+  location.hash = "#" + lambdatext;
 document.getElementById('inputlambda').value = termLibrary(lambdatext); 
 if (termLibrary(lambdatext) == "") {
   voidMolToScreenAfter(); 
@@ -27,6 +28,8 @@ setComb(1);setSpeed(1); setStart(1); loop();
 function selectionStarter() {
   setSpeed(0); 
   setStart(0); 
+  var whichPost = document.getElementById("listofmols").value;
+  location.hash = "#" + whichPost;
   if ( arenaVar == 0 ) {
   whichButtons(); 
   }
