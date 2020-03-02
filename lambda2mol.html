@@ -129,7 +129,13 @@ last modified: 27.11.2019
 <script src="js/lambdaTerms.js"></script>
 
 <script>
+var whichP = location.hash;
+whichP = whichP.replace(/#/g, "");
+if (whichP != "") {
+document.getElementById("listofmols").value = whichP;
+} else {
 document.getElementById("listofmols").value = "lambdanote";
+}
 whichButtons(); 
 selectionLambda();
 </script>
