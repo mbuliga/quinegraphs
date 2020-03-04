@@ -31,7 +31,6 @@ function selectionStarter() {
   setStart(0); 
   var whichPost = document.getElementById("listofmols").value;
   location.hash = "#" + whichPost;
-  document.getElementById("citeas").innerHTML = location.hash;
   if ( arenaVar == 0 ) {
   whichButtons(whichPost); 
   }
@@ -41,7 +40,9 @@ function selectionStarter() {
   if (arenaVar == 1) {
     document.getElementById("listofmols").value = "arena";
     whichButtons("arena"); 
+    location.hash = "#arena";
   }
+  document.getElementById("citeas").innerHTML = location.hash;
 }
 
 function selectionLink(link) {
