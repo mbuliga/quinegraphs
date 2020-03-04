@@ -33,13 +33,14 @@ function selectionStarter() {
   location.hash = "#" + whichPost;
   document.getElementById("citeas").innerHTML = location.hash;
   if ( arenaVar == 0 ) {
-  whichButtons(); 
+  whichButtons(whichPost); 
   }
   voidMolToScreenAfter(); 
   molSelect(); 
   exportMolToScreen();
   if (arenaVar == 1) {
     document.getElementById("listofmols").value = "arena";
+    whichButtons("arena"); 
   }
 }
 
@@ -77,7 +78,7 @@ var ButtonRandomGraph = [
 
 
 var ButtonArena = [
-  {"Id":"button1", "Class":"image2", "Visibility":"hidden", "Onclick": function () {document.getElementById("listofmols").value = "arena"; setArena(1); selectionStarter();}, "Text":"add"},
+  {"Id":"button1", "Class":"image2", "Visibility":"hidden", "Onclick": function () {document.getElementById("listofmols").value = "arena";  setArena(1); selectionStarter();}, "Text":"add"},
   {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1); loop();}, "Text":"fight"},
   {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
@@ -106,8 +107,8 @@ function showButton(buttt) {
 
 
 
-function whichButtons() {
-  var choiceButtons = document.getElementById("listofmols").value;
+function whichButtons(choiceButtons) {
+//  var choiceButtons = document.getElementById("listofmols").value;
   switch (choiceButtons) {
 
     case "lambdanote":
