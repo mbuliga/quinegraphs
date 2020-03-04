@@ -12,7 +12,7 @@ switch (lambdaName) {
   var lambdaTerm = "(((\\m.\\n.((n (\\n.(\\f.(\\x.(((n (\\g.(\\h.(h (g f))))) (\\u.x)) (\\u.u)))))) m)) (((\\m.(\\n.((m ((\\m.(\\n.((m (\\n.(\\f.(\\x.(f ((n f) x)))))) n))) n)) (\\f.(\\x.x))))) (\\f.(\\x.(f (f (f x)))))) (\\f.(\\x.(f(f (f (f x)))))))) (\\f.(\\x.(f(f (f (f x)))))))";
   break;
 
-  case "4 Omega":
+  case "4omega":
   var lambdaTerm = "((\\f.(\\x.(f(f (f (f x)))))) ((\\ x.x x) (\\x.x x)))";
   break;
 
