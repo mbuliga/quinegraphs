@@ -120,12 +120,12 @@ last modified: 20.11.2019
 <script src="js/icequine.js"></script>
 
 <script>
-whichButtons();
 var whichP = location.hash;
 whichP = whichP.replace(/#/g, "");
 if (whichP != "") {
 document.getElementById("listofmols").value = whichP;
 }
+whichButtons(whichP);
 selectionStarter();
 </script>
 
