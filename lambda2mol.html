@@ -3,7 +3,7 @@
 
 <!-- based on a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
 author: Marius Buliga
-last modified: 27.11.2019
+last modified: 05.03.2020
 //
 -->
 
@@ -51,9 +51,11 @@ last modified: 27.11.2019
           </select>
         </span2> 
       </li>
-      <li><div><textarea id="inputlambda" class="image2" style="height: 80px; width: 100%;  background-color: #010101; 
+      <li> &lambda;>mol &nbsp;<div><textarea id="inputlambda" class="image2" style="height: 80px; width: 100%;  background-color: #010101; 
  color: #6495ED;  font-size: 14px;">(\n.(\f.(\x.(((n (\g.(\h.(h (g f))))) (\u.x)) (\u.u))))) (((\b.(\e.(e b))) (\f.(\x.(f (f (f x)))))) (\f.(\x.(f(f (f (f x)))))))</textarea> </div>
       </li>
+      <li> mol>&lambda; &nbsp;<div><textarea id="evaluation" class="image2" style="height: 80px; width: 100%;  background-color: #010101; 
+ color: #6495ED;  font-size: 14px;"></textarea> </div></li>
       <li>
          <span3>rewrites weights slider</span3> <div class="slidecontainer">GROW &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &nbsp; SLIM</div>
       </li>
