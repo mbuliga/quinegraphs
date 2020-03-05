@@ -1,6 +1,6 @@
 // parser for lambda calculus to mol
 // author: Marius Buliga
-// last updated: 12.12.2019
+// last updated: 05.03.2020
 
 var op = {
 "lparen": "(",
@@ -502,4 +502,251 @@ for (var i=0; i<molvDet.length; i++) {
   molFromLambda += molline + "^";
 }
 document.getElementById("molyoulookat").innerHTML = molFromLambda;
+}
+
+// the decorator with lambda terms
+
+function decoratorLambda(){
+
+  var varLabel = ["x","y","z","u","v","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","t","w","q"];
+  var varLabelMax = varLabel.length - 1;
+  var varLabelCounter = 0;
+  var varLabelIndex = 0;
+
+
+
+  function nextVariable() {
+    var varLabelRem = varLabelIndex % varLabelMax;
+    var varLabelQuot = (varLabelIndex - varLabelRem) / varLabelMax;
+    if (varLabelIndex < varLabelMax) {
+      var output =  varLabel[varLabelRem];
+    } else {
+    var output =  varLabel[varLabelRem] + varLabelQuot;
+    }
+    varLabelIndex +=1;
+    return output;
+  }
+
+
+// take the mol from "molexportafter", if it is not void, else take it from "molexport"
+  
+  var molString =  document.getElementById("molexportafter").innerHTML;
+  if (molString == "") { molString =  document.getElementById("molexport").innerHTML;}
+  var molStringVect = molString.split("<br>");
+
+// transform it into an array 
+  var molFinalArray = [], molLine = [];
+
+  for (var i=0; i<molStringVect.length; i++) {
+    molLine = molStringVect[i].trim().split(" ");
+    if (molLine[0] == '') continue;
+    molFinalArray.push(molLine);
+  }
+// because the mol is taken from "molexportafter", the edges are numbered starting from 1, with no gap
+  var molFinalEdgesIn = [], molFinalEdgesOut = [], molFinalEdgesInDeco = [], molFinalEdgesOutDeco = [], molFinalEdgesDeco = [], molFinalDeco = [], molFinalNodeType;
+  var equalRel = [];
+
+  molFinalEdgesIn[0] = [-1,-1];
+  molFinalEdgesOut[0]  = [-1,-1];
+  molFinalEdgesInDeco[0] = "init";
+  molFinalEdgesDeco[0]  = "init";
+
+
+  for (var i=0; i<molFinalArray.length; i++) {
+    molFinalNodeType = molFinalArray[i][0];
+    molFinalDeco[i] = "";
+    switch (molFinalNodeType) {
+      case "A":
+      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
+      molFinalEdgesIn[molFinalArray[i][2]] = [i,2];
+      molFinalEdgesOut[molFinalArray[i][3]] = [i,3];
+
+      molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
+      molFinalEdgesOutDeco[molFinalArray[i][2]] = "";
+      molFinalEdgesInDeco[molFinalArray[i][3]] = "";
+
+      molFinalEdgesDeco[molFinalArray[i][1]] = "";
+      molFinalEdgesDeco[molFinalArray[i][2]] = "";
+      break;
+
+      case "FI":
+      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
+      molFinalEdgesIn[molFinalArray[i][2]] = [i,2];
+      molFinalEdgesOut[molFinalArray[i][3]] = [i,3];
+
+      molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
+      molFinalEdgesOutDeco[molFinalArray[i][2]] = "";
+      molFinalEdgesInDeco[molFinalArray[i][3]] = nextVariable();
+
+      molFinalEdgesDeco[molFinalArray[i][1]] = "";
+      molFinalEdgesDeco[molFinalArray[i][2]] = "";
+      break;
+
+      case "L":
+      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
+      molFinalEdgesOut[molFinalArray[i][2]] = [i,2];
+      molFinalEdgesOut[molFinalArray[i][3]] = [i,3];
+
+      molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
+      molFinalEdgesInDeco[molFinalArray[i][2]] = nextVariable();
+      molFinalEdgesInDeco[molFinalArray[i][3]] = "";
+
+      molFinalEdgesDeco[molFinalArray[i][1]] = "";
+      break;
+
+      case "FO":
+      case "FOE":
+      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
+      molFinalEdgesOut[molFinalArray[i][2]] = [i,2];
+      molFinalEdgesOut[molFinalArray[i][3]] = [i,3];
+
+      molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
+      molFinalEdgesInDeco[molFinalArray[i][2]] = "";
+      molFinalEdgesInDeco[molFinalArray[i][3]] = "";
+
+      molFinalEdgesDeco[molFinalArray[i][1]] = "";
+      break;
+
+      case "Arrow":
+      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
+      molFinalEdgesOut[molFinalArray[i][2]] = [i,2];
+
+      molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
+      molFinalEdgesInDeco[molFinalArray[i][2]] = "";
+
+      molFinalEdgesDeco[molFinalArray[i][1]] = "";
+      break;
+
+      case "FROUT":
+      case "T":
+      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
+
+      molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
+
+      molFinalEdgesDeco[molFinalArray[i][1]] = "";
+      break;
+
+      case "FRIN":
+      molFinalEdgesOut[molFinalArray[i][1]] = [i,1];
+
+      molFinalEdgesInDeco[molFinalArray[i][1]] = nextVariable();
+      break;      
+    }
+  }
+
+// propagation of decoration through edges
+
+  function edgesDecoPropagation() {
+    var output = 0;
+    for (var ii=1; ii<molFinalEdgesDeco.length; ii++) {
+      if (molFinalEdgesDeco[ii] == "") {
+        if (molFinalEdgesInDeco[ii] != "") {
+          if (molFinalEdgesOutDeco[ii] == "") {
+            molFinalEdgesOutDeco[ii] = molFinalEdgesInDeco[ii];
+          } else {
+            var eqrel = molFinalEdgesOutDeco[ii] + " = " + molFinalEdgesInDeco[ii];
+            equalRel.push({elem:"edge", id:ii, rel:eqrel});
+          }
+          molFinalEdgesDeco[ii] = "deco";
+          output = 1;
+        }
+      }
+    }
+    return output;
+  }
+
+// propagation of decoration through nodes
+
+  function nodesDecoPropagation() {
+    var output = 0, leftPortDeco, midPortDeco, rightPortDeco;
+
+    for (var ino=0; ino<molFinalDeco.length; ino++) {
+      if (molFinalDeco[ino] == "") {
+        switch (molFinalArray[ino][0]) {
+          case "A":
+          leftPortDeco = molFinalEdgesOutDeco[molFinalArray[ino][1]];
+          midPortDeco = molFinalEdgesOutDeco[molFinalArray[ino][2]];
+          if ((leftPortDeco != "") && (midPortDeco != "")) {
+            molFinalEdgesInDeco[molFinalArray[ino][3]] = "(" + leftPortDeco + " " + midPortDeco + ")";
+            molFinalDeco[ino] = "deco";
+            output = 1;
+          }
+          break;
+          
+          case "L":
+          leftPortDeco = molFinalEdgesOutDeco[molFinalArray[ino][1]];
+          midPortDeco = molFinalEdgesOutDeco[molFinalArray[ino][2]];
+          if ((leftPortDeco != "") && (midPortDeco != "")) {
+            molFinalEdgesInDeco[molFinalArray[ino][3]] = "(\\" + midPortDeco + "." + leftPortDeco + ")";
+            molFinalDeco[ino] = "deco";
+            output = 1;
+          }
+          break;
+          
+          case "FO":
+          case "FOE":
+          leftPortDeco = molFinalEdgesOutDeco[molFinalArray[ino][1]];
+          if (leftPortDeco != "") {
+            molFinalEdgesInDeco[molFinalArray[ino][3]] =  leftPortDeco;
+            molFinalEdgesInDeco[molFinalArray[ino][2]] =  leftPortDeco;
+            molFinalDeco[ino] = "deco";
+            output = 1;
+          }
+          break;
+          
+          case "FI":
+          leftPortDeco = molFinalEdgesOutDeco[molFinalArray[ino][1]];
+          midPortDeco = molFinalEdgesOutDeco[molFinalArray[ino][2]];
+          if ((leftPortDeco != "") && (midPortDeco != "")) {
+            if (molFinalEdgesInDeco[molFinalArray[ino][3]] == "") {
+            molFinalEdgesInDeco[molFinalArray[ino][3]] = nextVariable();}
+            var eqrel = molFinalEdgesInDeco[molFinalArray[ino][3]] + " = " + leftPortDeco;
+            equalRel.push({elem:"node", id:ino, rel:eqrel});
+            var eqrel = molFinalEdgesInDeco[molFinalArray[ino][3]] + " = " + midPortDeco;
+            equalRel.push({elem:"node", id:ino, rel:eqrel});
+            molFinalDeco[ino] = "deco";
+            output = 1;
+          }
+          break;
+          
+          case "Arrow":
+          leftPortDeco = molFinalEdgesOutDeco[molFinalArray[ino][1]];
+          if (leftPortDeco != "") {
+            molFinalEdgesInDeco[molFinalArray[ino][2]] =  leftPortDeco;
+            molFinalDeco[ino] = "deco";
+            output = 1;
+          }
+          break;
+        }
+        
+      }
+    }  
+    return output; 
+  }
+
+// main decoration loop
+ 
+  var decoEnd = 1;
+
+  while (decoEnd != 0) {
+    decoEnd = 0;
+    decoEnd += edgesDecoPropagation();
+    decoEnd += nodesDecoPropagation();
+  }
+
+// show the FROUT nodes decoration
+
+  var outputDeco = "";
+  for (var i=0; i<molFinalDeco.length; i++) {
+    if (molFinalArray[i][0] == "FROUT") {
+//      outputDeco += "FROUT " + i + ": " + molFinalEdgesOutDeco[molFinalArray[i][1]] + "\n";
+      outputDeco += molFinalEdgesOutDeco[molFinalArray[i][1]] + "\n";
+    }
+  }
+
+  for (var i=0; i<equalRel.length; i++) {
+    outputDeco += equalRel[i].rel + "&nbsp; | &nbsp;";
+  }
+
+  document.getElementById("evaluation").innerHTML = outputDeco;
 }
