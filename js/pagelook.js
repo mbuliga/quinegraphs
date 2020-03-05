@@ -185,8 +185,9 @@ function setComb(newComb) {
 
 
 // IO functions
-function importMol(str) {
-  var lines = str.split("\n");
+
+function importMolGen(str,separator) {
+  var lines = str.split(separator);
   var edges = {};
 
   for (var i=0; i<lines.length; i++) {
@@ -213,32 +214,20 @@ function importMol(str) {
   update();
 }
 
+function importMol(str) {
+
+  importMolGen(str,"\n");
+  var molIntermed = exportMol();
+  removeAllNodes();
+  importMolGen(molIntermed,"<br>");
+}
+
 function importMolFromLib(str) {
-  var lines = str.split("^");
-  var edges = {};
 
-  for (var i=0; i<lines.length; i++) {
-    var line = lines[i].trim().split(" ");
-
-    if (line[0] == '') continue;
-    
-    var valence = nodeValence[line[0]];
-    if (!valence) { var ii=i+1;
-      showImportError("line " + ii + ": Unrecognized node type " + line[0]);
-      return;
-    }
-    if (line.length-1 < valence.length) { var ii=i+1;
-      showImportError("line " + ii + ": " + line[0] + " has " + line.length-1 + "edges, expected " + valence.length);
-    }
-    
-    var newNode = addNodeAndEdges(line[0]);
-    
-    for (var k=1; k<newNode.length; k++) {
-      if (edges['e'+line[k]]) addLink(edges['e'+line[k]], newNode[k], 2);
-      else edges['e'+line[k]] = newNode[k];
-    }
-  }
-  update();
+  importMolGen(str,"^");
+  var molIntermed = exportMol();
+  removeAllNodes();
+  importMolGen(molIntermed,"<br>");
 }
 
 function exportMol() {
@@ -268,6 +257,13 @@ function exportMol() {
             line += " " + edgeCount;
           } else {
             line += " free" + edgeCount;
+// adds FRIN or FROUT to the exported mol
+            if (nodeValence[nodes[i].type][k] == 0 ) { 
+              line += "<br>FRIN" + " free" + edgeCount;
+            } else {
+              line += "<br>FROUT" + " free" + edgeCount;
+            }
+//
           }
         }
       }
