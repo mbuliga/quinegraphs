@@ -1,6 +1,6 @@
 // parser for lambda calculus to mol
 // author: Marius Buliga
-// last updated: 05.03.2020
+// last updated: 06.03.2020
 
 var op = {
 "lparen": "(",
@@ -277,7 +277,7 @@ function makeEdgesVector(molvi,maxC) {
     }
     boundEdg.push([edgeBool]);
   }
-// here move a big chunk
+
 // check if every edge variable appears exactly twice, otherwise throw an error
 
 //  document.getElementById("edges").innerHTML = "edges:<br><br>";                        // <debug>
@@ -356,8 +356,6 @@ function makeEdgesVector(molvi,maxC) {
     }
   }
 
-// big chunk until here
-
   output = {"free":freeEdg,"bound":boundEdg,"edges":molve};
   return output;
 }
@@ -413,11 +411,6 @@ var mkEdgeV = makeEdgesVector(molvDet,maxCount);
 var molVedges = mkEdgeV.edges, 
     boundEdges = mkEdgeV.bound,  
     freeEdges = mkEdgeV.free;
-
-
-// ******************** big chunk ********************************
-
-// ******************** end big chunk ********************************
 
 var nodeCnt = maxCount + 1;
 // add FO and T nodes for the bounded vars
@@ -543,11 +536,9 @@ function decoratorLambda(){
     molFinalArray.push(molLine);
   }
 // because the mol is taken from "molexportafter", the edges are numbered starting from 1, with no gap
-  var molFinalEdgesIn = [], molFinalEdgesOut = [], molFinalEdgesInDeco = [], molFinalEdgesOutDeco = [], molFinalEdgesDeco = [], molFinalDeco = [], molFinalNodeType;
+  var molFinalEdgesInDeco = [], molFinalEdgesOutDeco = [], molFinalEdgesDeco = [], molFinalDeco = [], molFinalNodeType;
   var equalRel = [];
 
-  molFinalEdgesIn[0] = [-1,-1];
-  molFinalEdgesOut[0]  = [-1,-1];
   molFinalEdgesInDeco[0] = "init";
   molFinalEdgesDeco[0]  = "init";
 
@@ -557,10 +548,6 @@ function decoratorLambda(){
     molFinalDeco[i] = "";
     switch (molFinalNodeType) {
       case "A":
-      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
-      molFinalEdgesIn[molFinalArray[i][2]] = [i,2];
-      molFinalEdgesOut[molFinalArray[i][3]] = [i,3];
-
       molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
       molFinalEdgesOutDeco[molFinalArray[i][2]] = "";
       molFinalEdgesInDeco[molFinalArray[i][3]] = "";
@@ -570,10 +557,6 @@ function decoratorLambda(){
       break;
 
       case "FI":
-      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
-      molFinalEdgesIn[molFinalArray[i][2]] = [i,2];
-      molFinalEdgesOut[molFinalArray[i][3]] = [i,3];
-
       molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
       molFinalEdgesOutDeco[molFinalArray[i][2]] = "";
       molFinalEdgesInDeco[molFinalArray[i][3]] = nextVariable();
@@ -583,10 +566,6 @@ function decoratorLambda(){
       break;
 
       case "L":
-      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
-      molFinalEdgesOut[molFinalArray[i][2]] = [i,2];
-      molFinalEdgesOut[molFinalArray[i][3]] = [i,3];
-
       molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
       molFinalEdgesInDeco[molFinalArray[i][2]] = nextVariable();
       molFinalEdgesInDeco[molFinalArray[i][3]] = "";
@@ -596,10 +575,6 @@ function decoratorLambda(){
 
       case "FO":
       case "FOE":
-      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
-      molFinalEdgesOut[molFinalArray[i][2]] = [i,2];
-      molFinalEdgesOut[molFinalArray[i][3]] = [i,3];
-
       molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
       molFinalEdgesInDeco[molFinalArray[i][2]] = "";
       molFinalEdgesInDeco[molFinalArray[i][3]] = "";
@@ -608,9 +583,6 @@ function decoratorLambda(){
       break;
 
       case "Arrow":
-      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
-      molFinalEdgesOut[molFinalArray[i][2]] = [i,2];
-
       molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
       molFinalEdgesInDeco[molFinalArray[i][2]] = "";
 
@@ -619,16 +591,12 @@ function decoratorLambda(){
 
       case "FROUT":
       case "T":
-      molFinalEdgesIn[molFinalArray[i][1]] = [i,1];
-
       molFinalEdgesOutDeco[molFinalArray[i][1]] = "";
 
       molFinalEdgesDeco[molFinalArray[i][1]] = "";
       break;
 
       case "FRIN":
-      molFinalEdgesOut[molFinalArray[i][1]] = [i,1];
-
       molFinalEdgesInDeco[molFinalArray[i][1]] = nextVariable();
       break;      
     }

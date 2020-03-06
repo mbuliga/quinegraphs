@@ -364,11 +364,15 @@ case "random_egg_A_L_FI_FOE":
 
 
   case "bigpred":
-  var mol = "This is a chemlambda graph obtained from the lambda term PRED N, where PRED is the predecessor term<br><br>PRED = (\\n.(\\f.(\\x.(((n (\\g.(\\h.(h (g f))))) (\\u.x)) (\\u.u))))) <br><br> and N is a Church number, like 28 (long one) or like <br><br>4 = (\\f.(\\x.(f(f (f (f x))))))<br><br> After the translation of PRED N to chemlambda, there are only two initial graph rewrites possible, namely two A-L rewrites, corresponding to two beta rewrites. This is the graph you are looking at.<br><br>The interesting part is in the middle of the computation, where you see something which propagates along the graph. <br><br> This led to the idea of <a href=\"ice.html\">IC &amp;chemlambda quines</a>. ";
+  var mol = "This is a chemlambda graph <a href=\"lambda2mol.html#bigpredLambda\">obtained from the lambda term PRED N</a>, where PRED is the predecessor term<br><br>PRED = (\\n.(\\f.(\\x.(((n (\\g.(\\h.(h (g f))))) (\\u.x)) (\\u.u))))) <br><br> and N is a Church number, like 28 (long one) or like <br><br>4 = (\\f.(\\x.(f(f (f (f x))))))<br><br> After the translation of PRED N to chemlambda, there are only two initial graph rewrites possible, namely two A-L rewrites, corresponding to two beta rewrites. This is the graph you are looking at.<br><br>The interesting part is in the middle of the computation, where you see something which propagates along the graph. <br><br> This led to the idea of <a href=\"ice.html\">IC &amp;chemlambda quines</a>. ";
+  break;
+
+  case "bigpredLambda":
+  var mol = "This is a chemlambda graph obtained from the lambda term PRED N, where PRED is the predecessor term<br><br>PRED = (\\n.(\\f.(\\x.(((n (\\g.(\\h.(h (g f))))) (\\u.x)) (\\u.u))))) <br><br> and N is a Church number, like 28 (long one) or like <br><br>4 = (\\f.(\\x.(f(f (f (f x))))))<br><br>The interesting part is in the middle of the computation, where you see something which propagates along the graph. <br><br> This led to the idea of <a href=\"ouroboros.html#bigpred_train\">the \"ouroboros\" graph</a>, the first discovered chemlambda quine. ";
   break;
 
   case "bigpred_train":
-  var mol = "We take the graph of the lambda term PRED N, where PRED is the predecessor term<br><br>PRED = \\n.\\f.\\x.n (\\g.\\h.h (g f)) (\\u.x) (\\u.u) <br><br> we let it reduce until it exhibits a repeated pattern, then we cut only the interesting part and we glue back the free edges.<br><br> This is the \"ouroboros\" graph, the first discovered chemlambda quine.";
+  var mol = "We take the graph <a href=\"lambda2mol.html#bigpredLambda\">obtained from the lambda term PRED N</a>, where PRED is the predecessor term<br><br>PRED = \\n.\\f.\\x.n (\\g.\\h.h (g f)) (\\u.x) (\\u.u) <br><br> we let it reduce until it exhibits a repeated pattern, then we cut only the interesting part and we glue back the free edges.<br><br> This is the \"ouroboros\" graph, the first discovered <a href=\"ice.html\">chemlambda quine</a>.";
   break;
 
 

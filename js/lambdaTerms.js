@@ -32,7 +32,7 @@ switch (lambdaName) {
   var lambdaTerm = "(((\\x.(\\y.(((x (\\a.(\\b.((((\\c.(\\d.(\\e.(d ((c d) e))))) b) a) (\\f.(\\g.(f g))))))) (\\z.(\\u.(\\v.(u ((z u) v)))))) y))) (\\h.(\\i.(h (h (h i)))))) (\\j.(\\k.(j (j k)))))";
   break;
 
-  case "bigpred":
+  case "bigpredLambda":
   var lambdaTerm = "(\\n.(\\f.(\\x.(((n (\\g.(\\h.(h (g f))))) (\\u.x)) (\\u.u))))) (\\f.(\\x.(f(f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f (f x))))))))))))))))))))))))))))))";
   break;
 
