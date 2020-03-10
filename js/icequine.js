@@ -5,7 +5,7 @@
 // this program is forked and modified from https://mbuliga.github.io/kali-try.js on 24.10.2019, which is 
 // a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
 // author: Marius Buliga http://imar.ro/~mbuliga/index.html
-// last modified: 14.11.2019
+// last modified: 10.03.2020
 // 
 
 
@@ -42,6 +42,9 @@ graph = myGraph("#svgdiv")
 function loop(dt) {
   var anyMoves = false;
 
+// added age increase
+  age +=1;
+
   var maxNumberOfNodesStr = document.getElementById("maxnodenumber").innerHTML;
   var maxNumberOfNodes = maxNumberOfNodesStr - 2;
 //  var numberOfCenterNodes = Math.floor(nodes.length / 4);
@@ -58,7 +61,35 @@ function loop(dt) {
            
     var transformCacheLength = transformCache.length;
     var iswap, tswap;
-       
+
+// compute minimal age of transforms
+
+    var minAgeTransform = transformCache[0].age;
+    for (var i=1; i<transformCache.length; i++) { 
+      minAgeTransform = Math.min(minAgeTransform,transformCache[i].age);
+    }
+   
+// for olderFirst = 1 we keep only the oldest transforms or the COMB transforms
+
+    if (olderFirst == 1) {
+//      var transformCacheDeterministic = [];
+      var removeFromCache = [];
+      for (var i=1; i<transformCache.length; i++) { 
+        if (transformCache[i].trans.action != "arrow" && transformCache[i].age > minAgeTransform) {
+//          transformCacheDeterministic.push(transformCache[i]);
+            removeFromCache.push(i);
+        }
+      }
+      for (var i=removeFromCache.length - 1; i >=0; i--) { 
+        transformCache.splice(removeFromCache[i],1);
+      }
+
+      transformCacheLength = transformCache.length;
+    }
+  }
+
+  if (speed == 1 && transformCache.length > 0) {
+
     while (transformCacheLength) {
            
     // Pick a remaining element
@@ -72,7 +103,7 @@ function loop(dt) {
         
     var putTransformCacheAlt = "";
     for (var i=0; i<transformCache.length; i++) {      
-      putTransformCacheAlt += transformCache[i].node.id + ": " + transformCache[i].trans.named;
+      putTransformCacheAlt += transformCache[i].node.id + ": " + transformCache[i].trans.named + " age: " + transformCache[i].age;
       putTransformCacheAlt += "<br>";
     }
      
@@ -111,7 +142,7 @@ function loop(dt) {
               var varChoiceBeta = ichoo;
               haveIchoosedBeta = 1;
             break;
-
+             
             case "BETA":
               var varChoiceBeta = ichoo;
               haveIchoosedBeta = 1;

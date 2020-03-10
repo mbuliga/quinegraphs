@@ -156,14 +156,28 @@ function findAllTransforms() {
     var trans = findTransform(nodes[i]);
     
     if (trans) {
-      transformCache.push({node: nodes[i], trans: trans})
+
+// here trans AGE
+    var minAge = nodes[i].age;
+    var e1h = findLinkedOfType(nodes[i],"in");
+    minAge = Math.max(minAge,e1h.age);
+    var e2h = findLinkedHalfEdge(e1h);
+  
+    if (e2h != null) {
+      var edgAge = findLinkAge(e1h,e2h);
+      minAge = Math.max(minAge,edgAge);
+      n2h = findLinkedCenter(e2h);
+      minAge = Math.max(minAge,n2h.age);
+    }
+
+      transformCache.push({node: nodes[i], trans: trans, age: minAge})
     }
   }
   
   return transformCache;
 }
 
-
+/*
 function updateTransform(node) {
   if (!isCenter(node)) return;
 
@@ -184,7 +198,7 @@ function updateTransform(node) {
   }
 }
 
-
+*/
 
 
 

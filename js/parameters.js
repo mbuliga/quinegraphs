@@ -39,3 +39,8 @@ var startVar = 0;
 var arenaVar = 0;
 var fightersVar = 0;
 var combOnly = 0;
+var olderFirst = 0;
+
+// age
+
+var age = 0;
