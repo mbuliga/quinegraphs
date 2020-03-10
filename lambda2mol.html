@@ -3,7 +3,7 @@
 
 <!-- based on a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
 author: Marius Buliga
-last modified: 06.03.2020
+last modified: 11.03.2020
 //
 -->
 
@@ -22,6 +22,7 @@ last modified: 06.03.2020
 <script src="js/d3.v5.9.4.min.js"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/pagelook.js"></script>
+<script src="js/ioprep.js"></script>
 
 <div class="header">
   <span3>Cite as: <br></span3><div>Lambda calculus to chemlambda.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2019-2020), https://mbuliga.github.io/quinegraphs/lambda2mol.html<span id="citeas"></span></div>
@@ -29,7 +30,7 @@ last modified: 06.03.2020
 </div>
 
 <div class="row">
-  <div class="col-1 menu" style="text-align: left;">
+  <div class="col-1 menu" style="text-align: left;"><div class="scol-12"> <span3 id="agetext">random choices </span3><br><br> <span3  id="buttonAge" class="image2" ></span3></div>
   </div>
   <div class="col-7 menu">
     <ul>
