@@ -1,11 +1,11 @@
 // d3 force graphs related, i.e. visualization + physics
-
+// last updated: 10.03.2020
 
 function myGraph(selector) {
 
   // Add and remove elements on the graph object
   this.addNode = function (id, type, x, y) {
-    nodes.push({"id": id, "type": type, x: x, y: y, vx:0, vy:0, links:[]});
+    nodes.push({"id": id, "type": type, x: x, y: y, vx:0, vy:0, links:[], "age":age});
     return nodes[nodes.length-1];
   };
 
@@ -49,7 +49,7 @@ function myGraph(selector) {
   this.addLink = function (source, target, value) {
     var nsource = findNode(source);
     var ntarget = findNode(target);
-    var newLink = {"source": nsource, "target": ntarget, "value": value};
+    var newLink = {"source": nsource, "target": ntarget, "value": value, "age":age};
     nsource.links.push(newLink);
     ntarget.links.push(newLink);
     links.push(newLink);
@@ -60,6 +60,12 @@ function myGraph(selector) {
                 if (nodes[i]["id"] === id) return nodes[i];
             }
             ;
+        };
+
+  this.findLinkAge = function (id1,id2) {
+          for (var i in links) {
+            if ((links[i].source == id1 && links[i].target == id2) || (links[i].source == id2 && links[i].target == id1) ) return links[i].age;
+          }
         };
 
   var findNodeIndex = function (id) {

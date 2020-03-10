@@ -1,6 +1,6 @@
 // parser for lambda calculus to mol
 // author: Marius Buliga
-// last updated: 06.03.2020
+// last updated: 10.03.2020
 
 var op = {
 "lparen": "(",
@@ -362,21 +362,6 @@ function makeEdgesVector(molvi,maxC) {
 
 
 
-function importMolVector(str) {
-  var lines = str.split("^");
-  var output = [], line;
-
-  for (var i=0; i<lines.length; i++) {
-    line = lines[i].trim().split(" ");
-    output.push(line);
-  }
-  
-  
-
-
-  return output;
-}
-
 
 // main function
 function lambdaToMol() {
@@ -403,7 +388,7 @@ var molvOut = parserCaller(molvIn,stack0);
 // document.getElementById("molv").innerHTML = "molvDet:<br><br>";                     // <debug>
 var molvL;
 
-var molvDet = importMolVector(molvOut);
+var molvDet = importMolVector(molvOut,"^");
 
 //find edges of the graph, until now, free and bound variables
 var mkEdgeV = makeEdgesVector(molvDet,maxCount);
