@@ -10,6 +10,8 @@ We invite you to  explore some of their properties, with examples taken from lam
 
 * [Interaction Combinators and chemlambda quine graphs](https://mbuliga.github.io/quinegraphs/ice.html) 
 
+* [How to test a quine](https://mbuliga.github.io/quinegraphs/quinegraph.html) 
+
 * [The Ouroboros: from lambda terms to quine graphs](https://mbuliga.github.io/quinegraphs/ouroboros.html)
 
 * [Lambda calculus  to chemlambda parser](https://mbuliga.github.io/quinegraphs/lambda2mol.html) 
