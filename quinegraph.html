@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!-- based on a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
+author: Marius 
+last modified: 11.03.2020
+//
+-->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="css/icequine.css">
+
+<title>More quine graphs</title>
+</head>
+
+
+<body style="overflow: scroll;">
+
+<script src="js/d3.v5.9.4.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/pagelook.js"></script>
+<script src="js/ioprep.js"></script>
+
+<div class="header">
+  <span3>Cite as: </span3><div>More IC &amp; chemlambda quines.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2019-2020), https://mbuliga.github.io/quinegraphs/quinegraph.html<span id="citeas"></span></div>
+<span3>See also:</span3><br> <a href="https://chemlambda.github.io/index.html">All chemlambda projects</a>
+</div>
+
+<div class="row">
+  <div class="col-1 menu" style="text-align: left;"><div class="scol-12"> <span3 id="agetext">random choices </span3><br><br> <span3  id="buttonAge" class="image2" ></span3></div>
+  </div>
+  <div class="col-7 menu">
+    <ul>
+      <li>    
+        <span2> 
+          <select  class="theme-construction" id="listofmols" onchange="selectionStarter();">
+            <option value="howtoquine">MENU</option>
+  <option value="random_10_quine_bubbles">new random 10 nodes graph</option>
+  <option value="10_quine_bubbles">original 10_nodes quine</option>
+  <option value="shuffle_10_D870619BC345AE2">10 nodes quine 1 </option>
+  <option value="shuffle_10_0A8E7D9132C546B">10 nodes quine 2 = [A-L-FI-FO 245013]</option>
+  <option value="shuffle_10_5681ECD297AB304">10 nodes quine 3 (reload if it dies)</option>
+  <option value="shuffle_10_035B17C469E82AD">10 nodes quine 4 (reload if it dies)</option>
+  <option value="shuffle_10_3D25C769B1E804A">10 nodes quine 5 (reload if it dies)</option>
+  <option value="shuffle_10_D35C680B7AE2149">10 nodes quine 6 (reload if it dies)</option>
+  <option value="shuffle_10_2AC4D156E30789B">10 nodes quine 7 (reload if it dies)</option>
+  <option value="shuffle_10_DAB62013EC87459">10 nodes quine 8 (reload if it dies)</option>
+  <option value="shuffle_10_018C23A7B6E49D5">10 nodes quine 9 (reload if it dies)</option>
+  <option value="shuffle_10_8C72046E53B9DA1">10 nodes quine 10 (reload if it dies)</option>
+  <option value="shuffle_10_6AC0379E12D5B48">10 nodes quine 11 (reload if it dies)</option>
+  <option value="shuffle_10_8639A7BC024DE51">10 nodes quine 12 (reload if it dies)</option>
+  <option value="shuffle_10_04C92C86BE5A317">10 nodes quine 13 (reload if it dies)</option>
+  <option value="shuffle_10_0368BCDE2541A97">10 nodes quine 14 (reload if it dies)</option>
+  <option value="shuffle_10_A3E2974C16B85D0">10 nodes quine 15 (reload if it dies)</option>
+  <option value="shuffle_10_A3E2974C16B85D0">10 nodes quine 15 (reload if it dies)</option>
+  <option value="shuffle_10_D984763ABEC5120">10 nodes quine 16 </option>
+  <option value="shuffle_10_531CB7064289EDA">10 nodes quine 17 (reload if it dies)</option>
+  <option value="shuffle_10_290C1735B6A4DE8">10 nodes sometimes becomes quine from [graph A-L-FI-FOE 540213]</option>
+  <option value="random_egg_A_L_FI_FO">new random 4 nodes graph A-L-FI-FO</option>
+  <option value="spark_243501">quine from [graph A-L-FI-FO 243501]</option>
+  <option value="spark_234501">quine from [graph A-L-FI-FO 234501]</option>
+  <option value="spark_214530">quine from [graph A-L-FI-FO 214530]</option>
+  <option value="sparkFOE_540213">quine from [graph A-L-FI-FOE 540213]</option>
+  <option value="spark_301542">dirty quine [graph A-L-FI-FO 301542]</option>
+  <option value="9sparkhybrid">big hybrid quine made from 9 [graph A-L-FI-FO 243501]</option>
+  <option value="Lafont-quine">Lafont' quine (IC)</option>
+  <option value="random_egg_G_G_D_D">new random graph GAMMA-GAMMA-DELTA-DELTA (IC)</option>
+  <option value="4_IC_6B784A053912">quine from 4 nodes 6B784A053912 (IC)</option>
+  <option value="4_IC_84B7362190A5">quine from 4 nodes 84B7362190A5 (IC)</option>
+  <option value="4_IC_60852B93A714">quine from 4 nodes 60852B93A714 (IC)</option>
+  <option value="4_IC_5AB718246309">quine from 4 nodes 5AB718246309 (IC)</option>
+  <option value="4_IC_820963B71A54">quine from 4 nodes 820963B71A54 (IC)</option>
+  <option value="4_IC_45182379AB06">quine from 4 nodes 45182379AB06 (IC)</option>
+  <option value="4_IC_63407B5A9812">quine from 4 nodes 63407B5A9812 (IC)</option>
+  <option value="4_IC_41580936B2A7">quine from 4 nodes 41580936B2A7 (IC)</option>
+          </select>
+        </span2> 
+      </li>
+      <li>
+         <span3>rewrites weights slider</span3> <div class="slidecontainer">GROW &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &nbsp; SLIM</div>
+      </li>
+    </ul>
+  </div>
+  <div class="col-4 menu" style="text-align: left;">
+    <span3 style="text-align: left;"> nodes &sim; </span3><span id="nodenumber"></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-1 menu">
+    <div class="scol-12"> <span3  id="button0" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button1" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button2" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button3" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button4" class="image2" ></span3></div>
+  </div>
+  <div class="col-7 menu">
+    <ul>
+      <li> <div id="svgdiv"> </div></li>
+      <li><span3>gravity slider</span3> <div class="slidecontainer">MIN &nbsp;<input class="slider" type="range" min="1" max="250" value="150" id="gravRange"> &nbsp; MAX</div></li>
+      <li><span2>CODE: </span2><span id="molyoulookat"></span></li>
+      <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">512</span> nodes<span>)</span></li>
+    </ul>
+  </div>
+  <div class="col-4 menu" style="text-align: left;">
+    <span id="comments" ></span>
+  </div>
+</div>
+
+<div class="row">
+      <div class="scol-6" style="text-align: left;">
+        <span2>before:</span2><br><br>
+        <span id="puttransformcachealt"></span>
+      </div> 
+      <div class="scol-6" style="text-align: left;">
+        <span2>chosen:</span2><br><br>
+        <span id="chosentransform"></span>
+      </div>
+      <div class="scol-6" style="text-align: left;">
+        <span2>after:</span2><br><br>
+        <span id="puttransformcachealtafter"></span>
+      </div>
+    <div class="scol-6" style="text-align: left;">
+      <span2>mol before:</span2><br><br>
+      <span id="molexport"></span>
+    </div>
+    <div class="scol-6" style="text-align: left;">
+      <span2>mol after:</span2><br><br>
+      <span id="molexportafter"></span>
+    </div>
+</div>
+
+
+<script src="js/iceMol.js"></script>
+<script src="js/iceComments.js"></script>
+<script src="js/parameters.js"></script>
+<script src="js/nodes.js"></script>
+<script src="js/chemistry.js"></script>
+<!-- <script src="js/reactions.js"></script> -->
+<script src="js/myD3Graph.js"></script>
+<script src="js/icequine.js"></script>
+
+<script>
+var whichP = location.hash;
+whichP = whichP.replace(/#/g, "");
+if (whichP != "") {
+document.getElementById("listofmols").value = whichP;
+}
+whichButtons(whichP);
+selectionStarter();
+</script>
+
+</body>
+</html>
+
+
