@@ -17,7 +17,7 @@ switch (molName) {
   break;
 
   case "howtoquine":
-  var mol = "How to test is a graph is a quine:<br><br>After you select a graph...<br><br>Click on \"change\" to select for \"older is first\". This will force the rewrites on oldest nodes and links (excepting the \"COMB\" rewrites).<br><br>Use rewrites weights slider to privilege the rewrites which grow the no. of nodes, or those which decrease the no. of nodes. <br><br>Click on \"start\" to apply rewrites as long as there is any possible rewrite left.<br><br>Click on \"stop\" to stop.<br><br>Click on \"reload\" to reload the same graph.<br><br> The graph is a quine if the number of nodes oscilates around a value.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
+  var mol = "How to test if a graph is a quine:<br><br>After you select a graph...<br><br>Click on \"change\" to select for \"older is first\". This will force the rewrites on oldest nodes and links (excepting the \"COMB\" rewrites).<br><br>Use rewrites weights slider to privilege the rewrites which grow the no. of nodes, or those which decrease the no. of nodes. <br><br>Click on \"start\" to apply rewrites as long as there is any possible rewrite left.<br><br>Click on \"stop\" to stop.<br><br>Click on \"reload\" to reload the same graph.<br><br> The graph is a quine if the number of nodes oscilates around a value.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
   break;
 
   case "SKK":
