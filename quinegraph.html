@@ -13,7 +13,7 @@ last modified: 11.03.2020
 
 <link rel="stylesheet" type="text/css" href="css/icequine.css">
 
-<title>Quine graphs</title>
+<title>More quine graphs</title>
 </head>
 
 
@@ -25,7 +25,7 @@ last modified: 11.03.2020
 <script src="js/ioprep.js"></script>
 
 <div class="header">
-  <span3>Cite as: </span3><div>IC &amp; chemlambda quines.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2019-2020), https://mbuliga.github.io/quinegraphs/ice.html<span id="citeas"></span></div>
+  <span3>Cite as: </span3><div>More IC &amp; chemlambda quines.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2019-2020), https://mbuliga.github.io/quinegraphs/quinegraph.html<span id="citeas"></span></div>
 <span3>See also:</span3><br> <a href="https://chemlambda.github.io/index.html">All chemlambda projects</a>
 </div>
 
@@ -37,24 +37,45 @@ last modified: 11.03.2020
       <li>    
         <span2> 
           <select  class="theme-construction" id="listofmols" onchange="selectionStarter();">
-            <option value="howto">MENU</option>
-            <option value="omega">&lambda; quine: omega combinator </option>
-            <option value="bigpred_train"> first chemlambda quine: the ouroboros </option>
-            <option value="Lafont-quine"> Lafont' quine </option>
-            <option value="4_IC_6B784A053912"> IC quine: "4_IC_6B784A053912" </option>
-            <option value="4_IC_84B7362190A5"> IC quine: "4_IC_84B7362190A5" </option>
-            <option value="4_IC_60852B93A714"> IC quine: "4_IC_60852B93A714" </option>
-            <option value="4_IC_5AB718246309"> IC quine:  "4_IC_5AB718246309" </option>
-            <option value="random_egg_G_G_D_D"> random 2 GAMMA + 2 DELTA nodes IC graph </option>
-            <option value="spark_243501">chemlambda quine: "spark_243501"</option>
-            <option value="9_quine">chemlambda quine: "9_quine"</option>
-            <option value="10_quine_bubbles">chemlambda quine: "10_quine_bubbles"</option>
-            <option value="16_quine_A_L_FI_FO">chemlambda quine: "16_quine_A_L_FI_FO"</option>
-            <option value="16_quine_A_L_FI_FO_duplicate">"16_quine_A_L_FI_FO_duplicate"</option>
-            <option value="shuffle_10_0A8E7D9132C546B">"shuffle_10_0A8E7D9132C546B"</option>
-            <option value="shuffle_10_51D3E60BA74C928">"shuffle_10_51D3E60BA74C928"</option>
-            <option value="shuffle_10_D870619BC345AE2">"shuffle_10_D870619BC345AE2"</option>
-            <option value="random_10_quine_bubbles">"random_10_quine_bubbles"</option>
+            <option value="howtoquine">MENU</option>
+  <option value="random_10_quine_bubbles">new random 10 nodes graph</option>
+  <option value="10_quine_bubbles">original 10_nodes quine</option>
+  <option value="shuffle_10_D870619BC345AE2">10 nodes quine 1 </option>
+  <option value="shuffle_10_0A8E7D9132C546B">10 nodes quine 2 = [A-L-FI-FO 245013]</option>
+  <option value="shuffle_10_5681ECD297AB304">10 nodes quine 3 (reload if it dies)</option>
+  <option value="shuffle_10_035B17C469E82AD">10 nodes quine 4 (reload if it dies)</option>
+  <option value="shuffle_10_3D25C769B1E804A">10 nodes quine 5 (reload if it dies)</option>
+  <option value="shuffle_10_D35C680B7AE2149">10 nodes quine 6 (reload if it dies)</option>
+  <option value="shuffle_10_2AC4D156E30789B">10 nodes quine 7 (reload if it dies)</option>
+  <option value="shuffle_10_DAB62013EC87459">10 nodes quine 8 (reload if it dies)</option>
+  <option value="shuffle_10_018C23A7B6E49D5">10 nodes quine 9 (reload if it dies)</option>
+  <option value="shuffle_10_8C72046E53B9DA1">10 nodes quine 10 (reload if it dies)</option>
+  <option value="shuffle_10_6AC0379E12D5B48">10 nodes quine 11 (reload if it dies)</option>
+  <option value="shuffle_10_8639A7BC024DE51">10 nodes quine 12 (reload if it dies)</option>
+  <option value="shuffle_10_04C92C86BE5A317">10 nodes quine 13 (reload if it dies)</option>
+  <option value="shuffle_10_0368BCDE2541A97">10 nodes quine 14 (reload if it dies)</option>
+  <option value="shuffle_10_A3E2974C16B85D0">10 nodes quine 15 (reload if it dies)</option>
+  <option value="shuffle_10_A3E2974C16B85D0">10 nodes quine 15 (reload if it dies)</option>
+  <option value="shuffle_10_D984763ABEC5120">10 nodes quine 16 </option>
+  <option value="shuffle_10_531CB7064289EDA">10 nodes quine 17 (reload if it dies)</option>
+  <option value="shuffle_10_290C1735B6A4DE8">10 nodes sometimes becomes quine from [graph A-L-FI-FOE 540213]</option>
+  <option value="random_egg_A_L_FI_FO">new random 4 nodes graph A-L-FI-FO</option>
+  <option value="spark_243501">quine from [graph A-L-FI-FO 243501]</option>
+  <option value="spark_234501">quine from [graph A-L-FI-FO 234501]</option>
+  <option value="spark_214530">quine from [graph A-L-FI-FO 214530]</option>
+  <option value="sparkFOE_540213">quine from [graph A-L-FI-FOE 540213]</option>
+  <option value="spark_301542">dirty quine [graph A-L-FI-FO 301542]</option>
+  <option value="9sparkhybrid">big hybrid quine made from 9 [graph A-L-FI-FO 243501]</option>
+  <option value="Lafont-quine">Lafont' quine (IC)</option>
+  <option value="random_egg_G_G_D_D">new random graph GAMMA-GAMMA-DELTA-DELTA (IC)</option>
+  <option value="4_IC_6B784A053912">quine from 4 nodes 6B784A053912 (IC)</option>
+  <option value="4_IC_84B7362190A5">quine from 4 nodes 84B7362190A5 (IC)</option>
+  <option value="4_IC_60852B93A714">quine from 4 nodes 60852B93A714 (IC)</option>
+  <option value="4_IC_5AB718246309">quine from 4 nodes 5AB718246309 (IC)</option>
+  <option value="4_IC_820963B71A54">quine from 4 nodes 820963B71A54 (IC)</option>
+  <option value="4_IC_45182379AB06">quine from 4 nodes 45182379AB06 (IC)</option>
+  <option value="4_IC_63407B5A9812">quine from 4 nodes 63407B5A9812 (IC)</option>
+  <option value="4_IC_41580936B2A7">quine from 4 nodes 41580936B2A7 (IC)</option>
           </select>
         </span2> 
       </li>
