@@ -17,76 +17,76 @@ switch (molName) {
   break;
 
   case "howtoquine":
-  var mol = "How to test if a graph is a quine:<br><br>After you select a graph...<br><br>Click on \"change\" to select for \"older is first\". This will force the rewrites on oldest nodes and links (excepting the \"COMB\" rewrites).<br><br>Use rewrites weights slider to privilege the rewrites which grow the no. of nodes, or those which decrease the no. of nodes. <br><br>Click on \"start\" to apply rewrites as long as there is any possible rewrite left.<br><br>Click on \"stop\" to stop.<br><br>Click on \"reload\" to reload the same graph.<br><br> The graph is a quine if the number of nodes oscilates around a value.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
+  var mol = "How to test is a graph is a quine:<br><br>After you select a graph...<br><br>Click on \"change\" to select for \"older is first\". This will force the rewrites on oldest nodes and links (excepting the \"COMB\" rewrites).<br><br>Use rewrites weights slider to privilege the rewrites which grow the no. of nodes, or those which decrease the no. of nodes. <br><br>Click on \"start\" to apply rewrites as long as there is any possible rewrite left.<br><br>Click on \"stop\" to stop.<br><br>Click on \"reload\" to reload the same graph.<br><br> The graph is a quine if the number of nodes oscilates around a value.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
   break;
 
   case "SKK":
-  var mol = "In lambda calculus, define the combinators S and K by: <br><br>  S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x)) <br> <br> Then (S K) K reduces to <br><br> I = (\\x.x) <br><br> Here we see this reduction in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>.";
+  var mol = "In lambda calculus, define the combinators S and K by: <br><br>  S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x)) <br> <br> Then (S K) K reduces to <br><br> I = (\\x.x) <br><br> Here we see this reduction in <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>.";
   break;
   case "omegaSI":
-  var mol = "In lambda calculus, we can use the combinators: <br><br> S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> I =  (\\x.x)<br><br> to express the combinator &Omega; = (\\x.x x) (\\x.x x)  as the result of reduction of <br> (S I I (S I I)) <br><br> In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> this works most of the times (remember that we use the random rewrites algorithm), but not always.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; (i.e. \"slim\") extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
+  var mol = "In lambda calculus, we can use the combinators: <br><br> S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> I =  (\\x.x)<br><br> to express the combinator &Omega; = (\\x.x x) (\\x.x x)  as the result of reduction of <br> (S I I (S I I)) <br><br> In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a> this works most of the times (remember that we use the random rewrites algorithm), but not always.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; (i.e. \"slim\") extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
   break;
   case "omegaSKI":
-  var mol = "In lambda calculus, we can use the combinators: <br><br> S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x))<br><br> to express the combinator &Omega; = (\\x.x x) (\\x.x x)  as the result of reduction of <br> (((S ((S K) K)) ((S K) K)) ((S ((S K) K)) ((S K) K))) <br><br> In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> this works most of the times (remember that we use the random rewrites algorithm), but not always.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; (i.e. \"slim\") extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
+  var mol = "In lambda calculus, we can use the combinators: <br><br> S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x))<br><br> to express the combinator &Omega; = (\\x.x x) (\\x.x x)  as the result of reduction of <br> (((S ((S K) K)) ((S K) K)) ((S ((S K) K)) ((S K) K))) <br><br> In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a> this works most of the times (remember that we use the random rewrites algorithm), but not always.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; (i.e. \"slim\") extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
   break;
   case "rewrite-L-T":
   var mol = "A rewrite L-T";
   break;
 
   case "L-FO-FOE-conflict":
-  var mol = "Conflict in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>: there are two rewrites whose left patterns overlap: L-FO and FO-FOE";
+  var mol = "Conflict in <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>: there are two rewrites whose left patterns overlap: L-FO and FO-FOE";
   break;
 
   case "A-L-FO-FOE-conflict":
-  var mol = "Conflict in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>: the left patterns of the rewrites A-L and L-FO overlap. Moreover the left patterns of L-FO and FO-FOE overlap. Therefore there are more than one maximal  collections of non-conflicting matches in this case.";
+  var mol = "Conflict in <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>: the left patterns of the rewrites A-L and L-FO overlap. Moreover the left patterns of L-FO and FO-FOE overlap. Therefore there are more than one maximal  collections of non-conflicting matches in this case.";
   break;
 
   case "alexo_example":
-  var mol = "The lambda term  (\\a.a a)(\\x.((\\b.b b)(\\y.y x)))  should reduce to the &Omega; combinator, but instead in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> it eventually produce a FOE node.<br><br> This is a problem which all (known?) purely local graph rewrite  systems applied to lambda calculus have. Here by \"purely local\" I mean by using only local graph rewrites, only the random rewrites algorithm and the transformation of a lambda term into a graph should also be local, in the sense that the graph of the term CD should consist on only a new node A (for application) with inputs connected to outputs of the graphs of C and D, and the graph of the term \\x.C, where x is a free variable of C, should be made of only a new node L (for lambda abstraction) connected to the output of the graph of C and to the edge corresponding to the variable x. <br><br> I saw this lambda term, with a similar behaviour, in <a href=\"https://arxiv.org/pdf/1701.04691.pdf\">[arXiv:1701.04691]</a>, section 4.<br><br> Contrary to other lambda terms, it seems that the rewduction works if you move the rewrites weights slider more to the DIST extremity. This forces any rewrite which enlarges the number of nodes (DIST rewrites) to be done before those which reduce the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites), whenever there is a choice. ";
+  var mol = "The lambda term  (\\a.a a)(\\x.((\\b.b b)(\\y.y x)))  should reduce to the &Omega; combinator, but instead in <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a> it eventually produce a FOE node.<br><br> This is a problem which all (known?) purely local graph rewrite  systems applied to lambda calculus have. Here by \"purely local\" I mean by using only local graph rewrites, only the random rewrites algorithm and the transformation of a lambda term into a graph should also be local, in the sense that the graph of the term CD should consist on only a new node A (for application) with inputs connected to outputs of the graphs of C and D, and the graph of the term \\x.C, where x is a free variable of C, should be made of only a new node L (for lambda abstraction) connected to the output of the graph of C and to the edge corresponding to the variable x. <br><br> I saw this lambda term, with a similar behaviour, in <a href=\"https://arxiv.org/pdf/1701.04691.pdf\">[arXiv:1701.04691]</a>, section 4.<br><br> Contrary to other lambda terms, it seems that the rewduction works if you move the rewrites weights slider more to the DIST extremity. This forces any rewrite which enlarges the number of nodes (DIST rewrites) to be done before those which reduce the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites), whenever there is a choice. ";
   break;
 
 
 
   case "ishan_example":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term \\x.((\\.yy)(xx)). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-504575084\">here</a>. ";
+  var mol = "In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term \\x.((\\.yy)(xx)). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-504575084\">here</a>. ";
   break;
 
   case "ishan_example_foe":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FOE node is used to duplicate (the graph of) the lambda term \\x.((\\.yy)(xx)). It works sometimes and other times it does not. Reload the graph and reduce it again to see this.<br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-504575084\">here</a>. ";
+  var mol = "In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>, a FOE node is used to duplicate (the graph of) the lambda term \\x.((\\.yy)(xx)). It works sometimes and other times it does not. Reload the graph and reduce it again to see this.<br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-504575084\">here</a>. ";
   break;
 
   case "ishan_example_2":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term \\x.(\\f.ff)(\\y.xy). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. ";
+  var mol = "In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term \\x.(\\f.ff)(\\y.xy). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. ";
   break;
 
   case "ishan_example_2_foe":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term \\x.(\\f.ff)(\\y.xy). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. ";
+  var mol = "In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>, a FO node is used to duplicate (the graph of) the lambda term \\x.(\\f.ff)(\\y.xy). It works sometimes and other times it does not. Reload the graph and reduce it again to see this. <br><br> As a test for chemlambda, suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. ";
   break;
 
   case "ishan_example_2_A":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FO node the term M = \\x.(\\f.ff)(\\y.xy), then we apply the copies (outputs) to I = \\x.x. Reload the graph and reduce it several times to see what happens.";
+  var mol = "In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FO node the term M = \\x.(\\f.ff)(\\y.xy), then we apply the copies (outputs) to I = \\x.x. Reload the graph and reduce it several times to see what happens.";
   break;
 
   case "ishan_example_2_pair":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FOE node the term M = \\x.(\\f.ff)(\\y.xy), then we plug the copies (outputs) a and b to the term<br><br> FIRST (PAIR a b)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = \\p.(p (\\x.\\y.x)) <br><br> PAIR =  \\x.\\y.\\z. z x y<br><br> Reload the graph and reduce it several times to see if you get the term M reduced.";
+  var mol = "In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FOE node the term M = \\x.(\\f.ff)(\\y.xy), then we plug the copies (outputs) a and b to the term<br><br> FIRST (PAIR a b)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = \\p.(p (\\x.\\y.x)) <br><br> PAIR =  \\x.\\y.\\z. z x y<br><br> Reload the graph and reduce it several times to see if you get the term M reduced.";
   break;
 
   case "ishan_example_2_pair_fo":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FO node the term M = \\x.(\\f.ff)(\\y.xy), then we plug the copies (outputs) a and b to the term<br><br> FIRST (PAIR a b)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = \\p.(p (\\x.\\y.x)) <br><br> PAIR =  \\x.\\y.\\z. z x y<br><br> Reload the graph and reduce it several times to see if you get the term M reduced.";
+  var mol = "In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>, we use this reduction to see if there are any problems caused by the incomplete duplication of the term suggested <a href=\"https://github.com/chorasimilarity/chemlambda-gui/issues/8#issuecomment-530665120\">here</a>. Here we duplicate with a FO node the term M = \\x.(\\f.ff)(\\y.xy), then we plug the copies (outputs) a and b to the term<br><br> FIRST (PAIR a b)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = \\p.(p (\\x.\\y.x)) <br><br> PAIR =  \\x.\\y.\\z. z x y<br><br> Reload the graph and reduce it several times to see if you get the term M reduced.";
   break;
 
   case "first_pair":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, we use this reduction to see if we can graphically reduce the term<br><br> FIRST (PAIR 5 0)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = \\p.(p (\\x.\\y.x)) <br><br> PAIR =  \\x.\\y.\\z. z x y<br><br>The terms 5 and 0 are Church numbers. Reload the graph and reduce it several times to see if you get the term 5.";
+  var mol = "In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>, we use this reduction to see if we can graphically reduce the term<br><br> FIRST (PAIR 5 0)<br><br> Here FIRST and PAIR are the lambda terms<br><br> FIRST = \\p.(p (\\x.\\y.x)) <br><br> PAIR =  \\x.\\y.\\z. z x y<br><br>The terms 5 and 0 are Church numbers. Reload the graph and reduce it several times to see if you get the term 5.";
   break;
 
   case "dodecahedron":
-  var mol = "As a graph, a dodecahedron is a <a href=\"https://en.wikipedia.org/wiki/Generalized_Petersen_graph\">generalized Petersen graph</a>. In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>, this is used to construct a 4X multiplication of a dodecahedron graph. See also <a href=\"http://chorasimilarity.github.io/chemlambda-gui/dynamic/dodecahedron.html\">this demo</a> and, for the connections with the chemlambda quines, <a href=\"https://chorasimilarity.wordpress.com/2019/03/02/lambda-calculus-inspires-experiments-with-chemlambda/\">this chorasimilarity post</a>. [add details here]";
+  var mol = "As a graph, a dodecahedron is a <a href=\"https://en.wikipedia.org/wiki/Generalized_Petersen_graph\">generalized Petersen graph</a>. In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>, this is used to construct a 4X multiplication of a dodecahedron graph. See also <a href=\"http://chorasimilarity.github.io/chemlambda-gui/dynamic/dodecahedron.html\">this demo</a> and, for the connections with the chemlambda quines, <a href=\"https://chorasimilarity.wordpress.com/2019/03/02/lambda-calculus-inspires-experiments-with-chemlambda/\">this chorasimilarity post</a>. [add details here]";
   break;
 
 
 
   case "y_comb_id":
-  var mol = "The Y combinator<br><br> Y =  (\\g.((\\x.(g (x x))) (\\x.(g (x x)))))<br><br> applied to I = (\\x.x) gives the<br><br> &Omega; = (\\ x.x x) (\\ x.x x)<br><br> combinator in lambda calculus. Here we do this reduction in <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>. Reload the graph and reduce it several times to see what happens.";
+  var mol = "The Y combinator<br><br> Y =  (\\g.((\\x.(g (x x))) (\\x.(g (x x)))))<br><br> applied to I = (\\x.x) gives the<br><br> &Omega; = (\\ x.x x) (\\ x.x x)<br><br> combinator in lambda calculus. Here we do this reduction in <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>. Reload the graph and reduce it several times to see what happens.";
   break;
 
   case "16_quine_A_L_FI_FO":
@@ -166,7 +166,7 @@ switch (molName) {
   break;
 
   case "omega":
-  var mol = "An example of a lambda calculus quine is the <br><br> &Omega; = (\\x.x x) (\\x.x x) <br><br> combinator.<br><br>It gives a <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a> quine too.";
+  var mol = "An example of a lambda calculus quine is the <br><br> &Omega; = (\\x.x x) (\\x.x x) <br><br> combinator.<br><br>It gives a  <a href=\"ice.html\">chemlambda quine</a> too.";
   break;
 
   case "4omega":
@@ -191,74 +191,74 @@ case "random_egg_A_L_FI_FOE":
 
 
   case "shuffle_10_A3E2974C16B85D0":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_A3E2974C16B85D0\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Reload it in case it dies. <br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_A3E2974C16B85D0\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Reload it in case it dies. <br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_0368BCDE2541A97":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_0368BCDE2541A97\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_0368BCDE2541A97\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_04C92C86BE5A317":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_04C92C86BE5A317\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_04C92C86BE5A317\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
 
   case "shuffle_10_8639A7BC024DE51":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_8639A7BC024DE51\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_8639A7BC024DE51\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_6AC0379E12D5B48":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_6AC0379E12D5B48\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_6AC0379E12D5B48\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_8C72046E53B9DA1":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_8C72046E53B9DA1\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_8C72046E53B9DA1\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_018C23A7B6E49D5":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_018C23A7B6E49D5\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_018C23A7B6E49D5\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_5681ECD297AB304":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_5681ECD297AB304\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_5681ECD297AB304\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_035B17C469E82AD":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_035B17C469E82AD\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_035B17C469E82AD\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_3D25C769B1E804A":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_3D25C769B1E804A\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_3D25C769B1E804A\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_D35C680B7AE2149":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_D35C680B7AE2149\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_D35C680B7AE2149\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_2AC4D156E30789B":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_2AC4D156E30789B\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_2AC4D156E30789B\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
 // new one
   case "shuffle_10_5A49728D0CB361E":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_5A49728D0CB361E\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies. <br><br>Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_5A49728D0CB361E\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies. <br><br>Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_DAB62013EC87459":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_5A49728D0CB361E\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_5A49728D0CB361E\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Reload it in case it dies.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_0A8E7D9132C546B":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_0A8E7D9132C546B\".<br><br> This is an immortal chemlambda quine, the same as the one which is generated from the 4 nodes graph \"spark_245013\".<br><br>  The name means that it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!  ";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_0A8E7D9132C546B\".<br><br> This is an immortal chemlambda quine, the same as the one which is generated from the 4 nodes graph \"spark_245013\".<br><br>  The name means that it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!  ";
   break;
 
 // new one
   case "shuffle_10_51D3E60BA74C928":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  graph \"shuffle_10_51D3E60BA74C928\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Not a quine, but it dies, randomly, after it builds trees.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  graph \"shuffle_10_51D3E60BA74C928\". That means it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br>Not a quine, but it dies, randomly, after it builds trees.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!";
   break;
 
   case "shuffle_10_D870619BC345AE2":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_D870619BC345AE2\".<br><br> This seems to be an immortal chemlambda quine, despite the fact that it has conflicting rewrite patterns. <br><br>Reload it to see this, it produces different side graphs before it becomes a quine.<br><br>  The name means that it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!  ";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_D870619BC345AE2\".<br><br> This seems to be an immortal chemlambda quine, despite the fact that it has conflicting rewrite patterns. <br><br>Reload it to see this, it produces different side graphs before it becomes a quine.<br><br>  The name means that it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine. <br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!  ";
   break;
 
   case "shuffle_10_290C1735B6A4DE8":
@@ -266,14 +266,14 @@ case "random_egg_A_L_FI_FOE":
   break;
 
   case "shuffle_10_D984763ABEC5120":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  quine \"shuffle_10_D984763ABEC5120\". <br><br>This is an immortal chemlambda quine. <br><br> The name means that it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!  ";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  quine \"shuffle_10_D984763ABEC5120\". <br><br>This is an immortal chemlambda quine. <br><br> The name means that it is obtained from a random permutation \"random_10_quine_bubbles\" of the edges of the 10 nodes quine.<br><br> Recall that you may baptize a quine. Indeed, if you discover a graph which you think is a quine, please copy-paste the CODE and send me a mail at the address which is on top of <a href=\"http://imar.ro/~mbuliga/\">my homepage</a>.  <br><br>The quine, if is a new one, will be named by you!  ";
   break;
 
 
 
 
   case "LA":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  L-A, or beta rewrite.<br><br> It uses a pair of Arrow nodes which are then eliminated by COMB rewrites. <br><br> Compare with the IC GAMMA-GAMMA rewrite, which uses 2 pairs of Arrow nodes, due to the fact that the IC graphs are not oriented.";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  L-A, or beta rewrite.<br><br> It uses a pair of Arrow nodes which are then eliminated by COMB rewrites. <br><br> Compare with the IC GAMMA-GAMMA rewrite, which uses 2 pairs of Arrow nodes, due to the fact that the IC graphs are not oriented.";
   break;
 
 
@@ -282,11 +282,11 @@ case "random_egg_A_L_FI_FOE":
   break;
 
   case "AFOE":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  A-FOE rewrite.<br><br> The wiring of the right pattern (i.e. the result of the rewrite) is similar to the one of the GAMMA-DELTA rewrite from <a href=\"https://pdfs.semanticscholar.org/6cfe/09aa6e5da6ce98077b7a048cb1badd78cc76.pdf\">Interaction Combinators</a> .";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  A-FOE rewrite.<br><br> The wiring of the right pattern (i.e. the result of the rewrite) is similar to the one of the GAMMA-DELTA rewrite from <a href=\"https://pdfs.semanticscholar.org/6cfe/09aa6e5da6ce98077b7a048cb1badd78cc76.pdf\">Interaction Combinators</a> .";
   break;
 
   case "LFO":
-  var mol = "<a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">Chemlambda</a>  L-FO rewrite.<br><br> Similar wiring with the right pattern of GAMMA-DELTA, but the FO node disappears and it is replaced by two new nodes FOE ald FI.";
+  var mol = "<a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>  L-FO rewrite.<br><br> Similar wiring with the right pattern of GAMMA-DELTA, but the FO node disappears and it is replaced by two new nodes FOE ald FI.";
   break;
 
   case "GAMMAGAMMA":
@@ -372,7 +372,7 @@ case "random_egg_A_L_FI_FOE":
   break;
 
   case "bigpredLambda":
-  var mol = "This is a chemlambda graph obtained from the lambda term PRED N, where PRED is the predecessor term<br><br>PRED = (\\n.(\\f.(\\x.(((n (\\g.(\\h.(h (g f))))) (\\u.x)) (\\u.u))))) <br><br> and N is a Church number, like 28 (long one) or like <br><br>4 = (\\f.(\\x.(f(f (f (f x))))))<br><br>The interesting part is in the middle of the computation, where you see something which propagates along the graph. <br><br> This led to the idea of <a href=\"ouroboros.html#bigpred_train\">the \"ouroboros\" graph</a>, the first discovered chemlambda quine. ";
+  var mol = "This is a chemlambda graph obtained from the lambda term PRED N, where PRED is the predecessor term<br><br>PRED = (\\n.(\\f.(\\x.(((n (\\g.(\\h.(h (g f))))) (\\u.x)) (\\u.u))))) <br><br> and N is a Church number, like 28 (long one) or like <br><br>4 = (\\f.(\\x.(f(f (f (f x))))))<br><br>The interesting part is in the middle of the computation, where you see something which propagates along the graph. <br><br> This led to the idea of <a href=\"ouroboros.html#bigpred_train\">the \"ouroboros\" graph</a>, the first discovered <a href=\"ice.html\">chemlambda quine</a>. ";
   break;
 
   case "bigpred_train":
@@ -393,7 +393,7 @@ case "bigpred_bif":
   break;
 
   case "bigpred_multipropagator":
-  var mol = "In <a href=\"http://imar.ro/~mbuliga/chemlambda-v2.html\">chemlambda</a> the propagation does not happen instantaneously.<br><br> Four our propagator, there are needed 3 rewrites, followed by two COMB rewrites, for each duplication (FOE) node.<br><br> Here you see how the propagation happens through an open path of FOE nodes.<br><br> Use the gravity slider to disentangle the graph.<br><br>See what happens when <selectspan  onclick=\"selectionLink('bigpred_circularpropagator');\">the path of FOE nodes is closed</selectspan>. ";
+  var mol = "In <a href=\"https://chemlambda.github.io/index.html\">chemlambda</a> the propagation does not happen instantaneously.<br><br> Four our propagator, there are needed 3 rewrites, followed by two COMB rewrites, for each duplication (FOE) node.<br><br> Here you see how the propagation happens through an open path of FOE nodes.<br><br> Use the gravity slider to disentangle the graph.<br><br>See what happens when <selectspan  onclick=\"selectionLink('bigpred_circularpropagator');\">the path of FOE nodes is closed</selectspan>. ";
   break;
 
   case "bigpred_circularpropagator":
