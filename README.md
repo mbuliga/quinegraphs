@@ -4,6 +4,10 @@ Given a graph rewrite system, any graph has at least one maximal  collections of
 
 We invite you to  explore some of their properties, with examples taken from lambda calculus, interaction combinators and [chemlambda](https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md). 
 
+## Part of: 
+
+* [All chemlambda projects](https://chemlambda.github.io/index.html) 
+
 
 ## Demos
 
