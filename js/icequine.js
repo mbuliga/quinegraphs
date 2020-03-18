@@ -5,7 +5,9 @@
 // this program is forked and modified from https://mbuliga.github.io/kali-try.js on 24.10.2019, which is 
 // a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
 // author: Marius Buliga http://imar.ro/~mbuliga/index.html
-// last modified: 10.03.2020
+//
+//
+// last modified: 16.03.2020
 // 
 
 

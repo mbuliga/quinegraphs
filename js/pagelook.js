@@ -1,7 +1,7 @@
 /* 
 page look (buttons, etc), import-export mol
 */
-// last updated: 10.03.2020
+// last updated: 17.03.2020
 
 var versusVar = "<br><br> VS. <br><br>";
 
@@ -58,8 +58,8 @@ var ButtonOriginal = [
   {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); reloadCode();}, "Text":"reload"},
-  {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"} 
-//  {"Id":"lambdatomolbutton", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); lambdaToMol(); reloadCode();}, "Text":"&lambda;>mol"}
+  {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"},
+//  {"Id":"buttonShot", "Class":"image2", "Visibility":"visible", "Onclick": function () {screenShot();}, "Text":"photo"} 
 ];
 
 var ButtonLambda = [
@@ -68,8 +68,8 @@ var ButtonLambda = [
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2(); decoratorLambda();}, "Text":"step"},
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); decoratorLambda();}, "Text":"mol>&lambda;"},
-  {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"} 
-/*  {"Id":"lambdatomolbutton", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); lambdaToMol(); reloadCode();}, "Text":"&lambda;>mol"}*/
+  {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"}, 
+//  {"Id":"buttonShot", "Class":"image2", "Visibility":"visible", "Onclick": function () {screenShot();}, "Text":"photo"}  
 ];
 
 
@@ -79,7 +79,8 @@ var ButtonRandomGraph = [
   {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); reloadCode();}, "Text":"reload"},
-  {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"} 
+  {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"}, 
+//  {"Id":"buttonShot", "Class":"image2", "Visibility":"visible", "Onclick": function () {screenShot();}, "Text":"photo"}  
 ];
 
 
@@ -89,7 +90,8 @@ var ButtonArena = [
   {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); reloadCode();}, "Text":"purge"},
-  {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"} 
+  {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"}, 
+//  {"Id":"buttonShot", "Class":"image2", "Visibility":"visible", "Onclick": function () {screenShot();}, "Text":"photo"}  
 ];
 
 var ButtonGreedyAlgorithm = [
@@ -98,7 +100,8 @@ var ButtonGreedyAlgorithm = [
   {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); reloadCode();}, "Text":"reload"},
-  {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"} 
+  {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"}, 
+//  {"Id":"buttonShot", "Class":"image2", "Visibility":"visible", "Onclick": function () {screenShot();}, "Text":"photo"}  
 ];
 
 function showAllButtons(butto) {
@@ -163,7 +166,6 @@ function voidMolToScreenAfter() {
   document.getElementById("puttransformcachealt").innerHTML = "";
   document.getElementById("chosentransform").innerHTML = "";
   document.getElementById("puttransformcachealtafter").innerHTML = "";
-//  document.getElementById("nodenumber").innerHTML = 0; 
   if (arenaVar == 0) { 
     document.getElementById("molexport").innerHTML = ""; 
     document.getElementById("molexportafter").innerHTML = ""; 

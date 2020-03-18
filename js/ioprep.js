@@ -1,6 +1,6 @@
 // IO and preparation functions
-// author: Marius Buliga
-// last updated: 10.03.2020
+// see Acknowledgements in myD3Graph.js
+// last updated: 17.03.2020
 
 
 
@@ -8,11 +8,17 @@
 // IO functions
 
 
+/*
+Functions which convert mols and mol patterns from records into vectors of mol modes.
+
+*/
 
 
+/* Splits a record str into a vector of lines by using the separator chara. 
+Each lines element is split into a vector, by using the space character 
+(after supplimentary spaces are trimmed).
 
-
-
+*/
 
 function importMolVector(str,chara) {
   var lines = str.split(chara);
@@ -26,6 +32,11 @@ function importMolVector(str,chara) {
   return output;
 }
 
+
+/* Turns a record str, by using the separator "separator", into a d3 graph. 
+Checks if the mol nodes are well defined. Does not add FRIN or FROUT nodes.
+
+*/
 
 
 function importMolGen(str,separator) {
@@ -56,6 +67,25 @@ function importMolGen(str,separator) {
   update();
 }
 
+
+
+/* Turns a record str which has newline as separator, into a d3 graph. 
+
+It first call importMolGen(str,"\n"), which checks the correctness of 
+the mol pattern record "str" and creates a d3 graph. 
+
+This graph is exported with exportMol(), which adds 'FRIN" and "FROUT" 
+mol nodes if needed (although the d3 graph does not have them!). 
+
+The graph is removed and the exported mol is imported again 
+(this time with separator "<br>").
+
+This creates a graph which does not have free edges.
+
+*/
+
+
+
 function importMol(str) {
 
   importMolGen(str,"\n");
@@ -64,6 +94,11 @@ function importMol(str) {
   importMolGen(molIntermed,"<br>");
 }
 
+/* The same as importMol, but adapted to imports from molLibrary, 
+i.e. with separator "^". Same effect as importMol.
+
+*/
+
 function importMolFromLib(str) {
 
   importMolGen(str,"^");
@@ -71,6 +106,27 @@ function importMolFromLib(str) {
   removeAllNodes();
   importMolGen(molIntermed,"<br>");
 }
+
+/*
+This function transforms the current d3 graph into a mol with edge tags from naturals. 
+It adds "FRIN" and "FROUT" mol nodes if needed. 
+
+It does not modify the d3 graph. 
+Therefore the "FRIN" and "FROUT" mol nodes which are added to 
+the output mol do not have correspondent in the d3 graph. 
+
+The edges tags start from 1 (using the counter edgeCount) and ends at 
+some natural, say N, so that each number from 1 to N corresponds to 
+an edge (i.e. there are no gaps in this count). 
+
+This property is used in the function decoratorLambda() from 0parser.js. 
+
+The mol record produced has separator "<br>" as newline.
+
+This function also writes the number of center nodes (thus uses the predicate isCenter).
+
+*/
+
 
 function exportMol() {
   var edgeCount = 0;
@@ -119,6 +175,11 @@ function exportMol() {
   return result;
 }
 
+/* Clears the d3 graph and imports from the molLibrary. 
+Exception: if it is used in the arena.html, it adds the d3 graph 
+from the imported mol to the actual graph.
+
+*/
 function doClearImportFromLib(molname) {
   var molL = molLibrary(molname);
   var molCom = molComments(molname);
@@ -141,7 +202,13 @@ function doClearImportFromLib(molname) {
   importMolFromLib(molL);
 }
 
-
+/*
+Clears the d3 graph. 
+Stops the simulation. 
+Resets age. 
+Imports the mol record from the html element with id = "molyoulookat". 
+Exports the mol to screen.
+*/
 
 function reloadCode() {
   removeAllNodes();
@@ -164,6 +231,11 @@ function reloadCode() {
   exportMolToScreen();
 }
 
+/*
+Stops the simulation.
+Imports from molLibrary the mol from the menu with doClearImportFromLib.
+*/
+
 function molSelect() {
   setSpeed(0);
   var molN = document.getElementById("listofmols").value;
@@ -173,6 +245,9 @@ function molSelect() {
 }
 
 
+
+/*
+Imports/exports  mol from/to textarea.
 
 function doClearImport(textarea) {
   removeAllNodes();
@@ -187,6 +262,8 @@ function doExport(textarea) {
   textarea.value = exportMol();
 }
 
+*/
+
 function exportMolToScreen() {
   document.getElementById("molexport").innerHTML = exportMol(); 
 }
@@ -197,5 +274,30 @@ function exportMolToScreenAfter() {
 
 function showImportError(e) {
   alert(e);
+}
+
+/*
+takes screenshots as sgv. Needs modifications.
+*/
+
+function screenShot() {
+
+ var photo = document.getElementById("svgdiv").innerHTML;
+
+ var wrap = "<div class=\"row\"> \n  <svg width=\"" + w + "\" height=\"" + h + "\">"; 
+
+ wrap = wrap + photo;
+
+ output = wrap + "\n </svg> \n </div>";
+
+ var dimensions = "\"width=" + w + ",height=" + h + "\"";
+
+ document.getElementById("photoTaken").innerHTML = output;
+
+/*
+ var myWindow = window.open("photobooth.html", "Photo Booth", function () { return dimensions;});
+
+  myWindow.document.write(output);
+*/
 }
 
