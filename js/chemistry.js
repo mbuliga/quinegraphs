@@ -1,5 +1,6 @@
 // general COMB rewrites
 
+
 function chemistry(id) {
 
 switch (id) {
@@ -78,10 +79,51 @@ return out;
 
 // reactions, i.e. graph rewrites (find and do) transforms algorithms
 
+/*
+The LHS pattern graph notation.
+
+All patterns which trigger rewrites (aka left hand side patterns) are made of two mol nodes. 
+
+If these two mol nodes are trivalent then the pattern is  
+
+n1type e c d
+n2type a b e
+
+where  n1type and n2type are the types of the nodes. 
+
+Such a pattern has free edges a, b, c, d. 
+
+At the graph level we have two center nodes n1 and n2, of types n1type, n2type, 
+with the 3rd port node of n2 (i.e. e2) connected to the 1st port of n1 (i.e. e1).
+
+
+          a                       c
+           \_1                 2_/
+            \      e2    e1     /
+             \                 /
+  n2type  n2  o----|-----|----o   n1  n1type
+             /     3     1     \
+          2_/           "in"    \_3
+           /                     \
+          b                       d
+
+There are exceptions (like in the case of COMB rewrites, where the node n1 has valence 2), 
+but always the pattern involves the "in" node port e1 of the node n1 and the node which n2 which 
+has a node port connected to e1.
+
+
+*/
+
+/* This function finds an LHS pattern starting from the center node n1.
+
+*/
+
 function findTransform(n1) {
   if (!isCenter(n1)) return;
 
+// e1 is the port node of type "in" of the center node n1
   var e1 = findLinkedOfType(n1,"in");
+// e2 is the other port node connected to e1
   var e2 = findLinkedHalfEdge(e1);
   var n2 = null;
   var n2type = null;
@@ -90,43 +132,103 @@ function findTransform(n1) {
     e2type = "null"
     n2type = "null";
   } else {
+// n2 is the center node whose port node is e2
     n2 = findLinkedCenter(e2);
+// n2type is the type of the center node n2, likewise for e2type for e2
     n2type = n2.type;
     e2type = e2.type;
   }
+/* starts a loop through the list of possible transforms, in order to 
+   see if the LHS pattern deduced from the center node n1 matches.
 
+*/
   for (var i=0; i<transformList.length; i++) {
+// take a transform
     var trans = transformList[i];
+/* check if the "left" node, i.e. n2 and the "right" node, i.e. n1, 
+   have the type which is needed according to the transform "action". 
+   If the types are right, we check if indeed the node ports types are right.
+
+   If a match is found, return the transform.
+*/
     if (trans.left == n2type && trans.right == n1.type) {
       switch (trans.action) {
         case "beta": case "beta-arrow": case "beta-arrow-X": case "DIST0": case "DIST1": case "DIST2":  case "DIST3": case "DIST4": case "DIST5": case "DIST6": case "DIST7": case "termsplit": case "term": case "termL": 
+/*
+only matters if n1type, n2type match and if the node port e2 is of type "out"
+                               
+                   e2    e1     
+           
+  n2type  n2  o----|-----|----o   n1  n1type
+                         1     
+                 "out"  "in"                                                                   
+*/
           if (e2type == "out") return trans;
         break;
 
         case "GAMMA-GAMMA": case "GAMMA-GAMMA-arrow": case "DELTA-DELTA": case "DELTA-DELTA-arrow": case "GAMMA-DELTA":  
+/*
+For interaction combinators. Only matters if n1type, n2type match and if the node port e2 is of type "in"
+                               
+                   e2    e1     
+           
+  n2type  n2  o----|-----|----o   n1  n1type
+                         1     
+                 "in"  "in"                                                                   
+*/
           if (e2type == "in") return trans;
         break;
         
         case "termin": case "termin2": case "term3":
+/*
+For some TERMINATION rewrites, as 1-valent mol nodes (like T) have, graphically, only one node port of type "in", 
+only matters if n1type, n2type match and if the node port e2 is of type "in". 
+                               
+                   e2    e1     
+           
+  n2type  n2  o----|-----|----o   n1  n1type
+                         1     
+                 "in"  "in"                                                                   
+*/
           if (e2type == "in") return trans;
         break;
         
         case "terminfrin": case "termFI": 
+// same as previously
           if (e2type == "in") return trans;
         break;
         
         case "term1":
+/*
+For some TERMINATION rewrites, as 1-valent mol nodes (like T) have, graphically, only one node port of type "in", 
+only matters if n1type, n2type match and if the node port e2 is of type "middle" or "out". Here n1type may be "T".
+                               
+                   e2    e1     
+           
+  n2type  n2  o----|-----|----o   n1  n1type
+                         1     
+              "middle"  "in"          
+                 "out"                                                         
+*/
           if (e2type == "middle" || e2type == "out") return trans;
         break;
         
         case "remove1":
+/*
+In case the port node e1 is free (there is no e2)
+*/
           if (e2type == "null") return trans;
         break;
         
         case "remove4": 
+/*
+Only the n1type, n2type matches are enough.
+*/
           return trans;
         break;
-        
+/*
+a case  which is not used in the chemlambda or IC chemistries
+*/        
         case "eta":
           if (e2type == "out") {
           var bmid  = findLinkedOfType(n2,"middle");
@@ -136,6 +238,16 @@ function findTransform(n1) {
           }
         break;
       }
+/*
+for "arrow" (aka COMB) rewrites, all it matters if the n1type matches
+
+                   e2    e1     
+           
+any type  n2  o----|-----|----o   n1  n1type
+                         1     
+                  any   "in"          
+              port type           
+*/
     } else if (trans.left == "any" && trans.right == n1.type) {
       return trans;
     }
@@ -146,18 +258,21 @@ function findTransform(n1) {
 // end function findTransform
 }
 
+/*
+ This function makes a vector of all possible transforms. It does compute the age of each possible 
+LHS pattern.
+*/
 
 function findAllTransforms() {
   transformCache = [];
-  
+// we loop through the  nodes  
   for (var i=0; i<nodes.length; i++) {
     if (!isCenter(nodes[i])) continue;
-    
+// take each center node as n1 and use findTransform     
     var trans = findTransform(nodes[i]);
-    
+// if we get a match    
     if (trans) {
-
-// here trans AGE
+// compute the age of the pattern, which is the max over the ages of the nodes and links of the pattern.
     var minAge = nodes[i].age;
     var e1h = findLinkedOfType(nodes[i],"in");
     minAge = Math.max(minAge,e1h.age);
@@ -169,7 +284,11 @@ function findAllTransforms() {
       n2h = findLinkedCenter(e2h);
       minAge = Math.max(minAge,n2h.age);
     }
-
+/* push the transform object into the vector. 
+   The transform object has a "node" (which is the node n1 used in findTransform),
+   a transformation "trans",
+   and "age".
+*/
       transformCache.push({node: nodes[i], trans: trans, age: minAge})
     }
   }
@@ -177,57 +296,117 @@ function findAllTransforms() {
   return transformCache;
 }
 
+
 /*
-function updateTransform(node) {
-  if (!isCenter(node)) return;
+This function takes a center node n1 and a transform and performs the rewrite.
 
-  var oldTrans = transformCache.findIndex(function(e) { return e.node == node;});
+There are several kinds of rewrites considered.
 
-  var trans = findTransform(node);
-  
-  if (trans !== null) {
-    if (oldTrans == -1) {
-      transformCache.push({node: node, trans: trans})
-    } else {
-      transformCache[oldTrans].trans = trans;
-    }
-  } else {
-    if (oldTrans != -1) {
-      transformCache.splice(oldTrans, 1);
-    }
-  }
-}
 
 */
 
-
-
-
-
-
 function doTransform(n1, trans) {
 
+/* starting from the graph node n1, the LHS pattern is identified
+
+*/
   
   var e1 = findLinkedOfType(n1,"in");
   var e2 = findLinkedHalfEdge(e1);
+/*
+at this stage we have 
+
+                               
+                  e2     e1    
+                               
+  n2type  n2  o----|-----|----o   n1  n1type
+                         1     
+                       "in"                   
+
+but it is still possible that there is no e2 port node
+*/
   var n2, a, b, b1, c, d, a1;
+
+/* the center node n1, if it is 3 valent then it has the ports 
+ 
+
+               c  "middle"
+            2_/
+     e1,a1   /
+            /
+    --|----o   n1  n1type
+      1     \
+     "in"    \_3
+              \
+               d  "out"
+
+but it is not excluded that some of these ports do not exist. (see further the "arrow" rewrite)
+
+*/
+
+  a1 = findLinkedOfType(n1,"in")
+  c  = findLinkedOfType(n1,"middle")
+  d  = findLinkedOfType(n1,"out")
+
   if (e2 != null) {
+
+/* if there is an e2, it is a port node of the center node n2
+
+    "in"  a                
+           \_1               
+            \      b1     
+             \         
+  n2type  n2  o----|--
+             /     3   
+          2_/    "out"  
+           /    
+"middle"  b 
+
+but we don't know yet which of the node ports a, b, b1 are equal to e2
+*/
     n2 = findLinkedCenter(e2);
 
     a  = findLinkedOfType(n2,"in")
     b  = findLinkedOfType(n2,"middle")
     b1 = findLinkedOfType(n2,"out")
   }
-  a1 = findLinkedOfType(n1,"in")
-  c  = findLinkedOfType(n1,"middle")
-  d  = findLinkedOfType(n1,"out")
 
   switch (trans.action) {
     case "arrow":
-      // Remove those arrows
+/* - "arrow" are COMB rewrites, which remove an Arrow mol node.
+
+                   e2    e1   n1,"Arrow"
+           
+any type  n2  o----|-----|------o------|--- d
+                         1             2
+                  any   "in"         "out"     
+              port type           
+*/
       moveLink2(e1,d);
+/*
+moveLink2(e1,d), defined in myD3Graph.js, works like this: 
+- identifies the other port node connected to e1, in this case e2
+- identifies the other port connected to d
+- makes a link between these node ports.
+
+Then the following removes the node n1, its node ports and all affected links
+*/
       removeNodeAndEdges(n1);
+/*
+In mol nodes notation, the LHS pattern is 
+
+t  ...a... 
+Arrow a d
+
+which transforms into the mol node
+
+t ...d...
+*/
       break;
+
+/*
+The following is the beta rewrite, but without using Arrow nodes. Not used.
+*/
     case "beta":
       // L-A, D-FOX and FI-FOE transitions:
       // Link in to out and middle to middle
@@ -237,6 +416,37 @@ function doTransform(n1, trans) {
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
+
+/*
+This is a beta rewrite with Arrow nodes. 
+
+In mol notation, the LHS pattern is 
+
+L a b e
+A e c d
+
+which is transformed into 
+
+Arrow a d
+Arrow c b
+
+The graphical version of the LHS pattern is 
+
+"middle"  b                       d  "out"
+           \_2                 3_/
+            \    e2,b1  e1,a1   /
+             \                 /
+       L  n2  o----|-----|----o   n1  A
+             /     3     1     \
+          1_/    "out"  "in"    \_2
+           /                     \
+    "in"  a                       c  "middle"
+
+and the RHS pattern is made by two Arrow center nodes, with the node ports connected 
+to a,d, respectively to c, b. 
+
+This justifies the "beta-arrow-X" name.
+*/
     case "beta-arrow-X":
       // L-A transitions:
       // Arrow a d^Arrow c b
@@ -251,6 +461,45 @@ function doTransform(n1, trans) {
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
+
+/*
+This is another beta rewrite with Arrow nodes, where the Arrow nodes after the transform connect differently.
+
+In mol notation, the LHS pattern is 
+
+
+D a b e
+FOX e c d
+
+or 
+
+FI a b e
+FOE e c d
+
+which is transformed into 
+
+Arrow a d
+Arrow b c
+
+The graphical version of the LHS pattern is 
+
+    "in"  a                       c  "middle"
+           \_1                 2_/
+            \    e2,b1  e1,a1   /
+             \                 /
+    D/FI  n2  o----|-----|----o   n1  FOX/FOE
+             /     3     1     \
+          2_/    "out"  "in"    \_3
+           /                     \
+"middle"  b                       d  "out"
+
+and the RHS pattern is made by two Arrow center nodes, with the node ports connected 
+to a,d, respectively to b, c. 
+
+The second Arrow mol node (Arrow b c) is different than before. Also, if we would draw 
+the node ports in the same circular order as before, this time the Arrow elements would not 
+cross.
+*/
     case "beta-arrow":
       // D-FOX and FI-FOE transitions:
       // Arrow a d^Arrow b c
@@ -265,6 +514,8 @@ function doTransform(n1, trans) {
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
+
+// not used
     case "eta":
       // FOX-D-eta, A-L-eta and FOE-FI-eta transitions:
       moveLink2(a,d);
@@ -272,6 +523,8 @@ function doTransform(n1, trans) {
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
+
+
     case "DIST0":
       var na = addNodeAndEdges(trans.t1,n2.x,n2.y);
       var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);

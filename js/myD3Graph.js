@@ -1,14 +1,52 @@
 // d3 force graphs related, i.e. visualization + physics
-// last updated: 10.03.2020
+// last updated: 16.03.2020
+
+
+/*
+Acknowledgement: in my initial treatment 
+https://github.com/chorasimilarity/chemlambda-gui/tree/gh-pages/dynamic 
+the rewrites were done using awk programs (because awk has associative arrays which eliminate
+the need to use global counters or namings). Then the list of rewrites was embedded into a d3.js 
+script. This could be then visualized in a browser. 
+
+The advantage was speed, independence on the graphical part and a more flexible program (for example 
+concerning algorithms of rewrites). It was not good though that the output of the awk scripts was 
+sometimes punishing for the browser. I used as intermediary the collection of animations 
+https://chemlambda.github.io/collection.html 
+and the outputs of experiments with the awk programs are collected in 
+https://figshare.com/articles/The_Chemlambda_collection_of_simulations/4747390
+
+However, I needed a more easy to use tool. This was provided by the contribution of ishanpm with his chemlambda-editor 
+https://github.com/ishanpm/chemlambda-editor 
+who took the effort to rewrite the reduction and graphical representation in a js-only way. 
+
+Starting from his editor, I further rewritten his js scripts according to my needs, and added more of 
+them. His contribution which allowed to work in js only is thanked! 
+
+I also thank ishanpm because his initial scripts made me realize I can embedd with very little effort 
+interaction combinators rewrites.
+*/
+
+
+
+/*
+A d3 graph is an oriented, decorated graph.
+*/
 
 function myGraph(selector) {
 
-  // Add and remove elements on the graph object
+/*
+The vector of nodes is nodes. Each node is an object 
+which has an id, type, screen coordinates x, y, and velocities vx, vy, a links vector and an age. 
+*/
+
+// Adds a node. age is from a global variable
   this.addNode = function (id, type, x, y) {
     nodes.push({"id": id, "type": type, x: x, y: y, vx:0, vy:0, links:[], "age":age});
     return nodes[nodes.length-1];
   };
 
+// removes nodes based on id
   this.removeNode = function (id) {
     var n = findNode(id);
     while (n.links.length > 0) {
@@ -17,6 +55,8 @@ function myGraph(selector) {
     nodes.splice(findNodeIndex(id), 1);
   };
 
+
+// removes links based in index
   var removeLinkIndex = function(i) {
     var slinks = links[i].source.links;
     slinks.splice(slinks.indexOf(links[i]), 1);
@@ -25,6 +65,7 @@ function myGraph(selector) {
     links.splice(i, 1);
   }
 
+// removes link based on source and target
   this.removeLink = function (source, target) {
     for (var i = 0; i < links.length; i++) {
       if (links[i].source.id == source && links[i].target.id == target) {
@@ -34,11 +75,14 @@ function myGraph(selector) {
     }
   };
 
+
+// removes all links
   this.removeAllLinks = function () {
     links.splice(0, links.length);
     update();
   };
 
+// removes all nodes and all affected links
   this.removeAllNodes = function () {
     nodes.splice(0, nodes.length);
     links.splice(0, links.length);
@@ -46,6 +90,10 @@ function myGraph(selector) {
     update();
   };
 
+/*
+Each link has a source and a target. It also has a value (to be used for graphical purposes) and an age 
+(from a global variable).
+*/
   this.addLink = function (source, target, value) {
     var nsource = findNode(source);
     var ntarget = findNode(target);
@@ -55,6 +103,8 @@ function myGraph(selector) {
     links.push(newLink);
   };
 
+
+// finds node based on id
   this.findNode = function (id) {
             for (var i in nodes) {
                 if (nodes[i]["id"] === id) return nodes[i];
@@ -62,12 +112,14 @@ function myGraph(selector) {
             ;
         };
 
+// finds the age of a link between nodes with id id1 and id2
   this.findLinkAge = function (id1,id2) {
           for (var i in links) {
             if ((links[i].source == id1 && links[i].target == id2) || (links[i].source == id2 && links[i].target == id1) ) return links[i].age;
           }
         };
 
+// finds the node index of a node with id 
   var findNodeIndex = function (id) {
     for (var i = 0; i < nodes.length; i++) {
       if (nodes[i].id == id) {
@@ -77,12 +129,16 @@ function myGraph(selector) {
 
   };
 
+
+// finds linked nodes
   this.getLinked = function (node) {
     return node.links.map(function(e) {
       return (e.source === node ? e.target : e.source);
     });
   }
   
+
+// graphical use
   this.screenToWorldPoint = function(x,y) {
     var svgEl = svg.node();
     var pt = svgEl.createSVGPoint();
@@ -92,7 +148,7 @@ function myGraph(selector) {
     return pt;
   }
 
-  // set up the D3 visualisation in the specified element
+// set up the D3 visualisation in the specified element
 
   var color = d3.scaleOrdinal()
   .domain(graphNodes)
@@ -106,13 +162,14 @@ function myGraph(selector) {
     .attr("id", "svg")
     .attr("pointer-events", "all")
     .attr("viewBox", "0 0 " + w + " " + h)
-    .attr("preserveAspectRatio", "xMinYMin meet")  //mod
+    .attr("preserveAspectRatio", "xMinYMin meet")  
     .on("click",backClick)
 
 
   
   var vis = svg.append('svg:g');
 
+// defines a force simulation
   var force = d3.forceSimulation();
 
   this.nodes = force.nodes()
@@ -121,9 +178,7 @@ function myGraph(selector) {
   d3.select("input[id='gravRange']")
     .on("input", inputted);
 
-//  d3.select("input[id='rewritesRange']")
-//    .on("input", inputted);
-
+// triggers the search for rewrite patterns
   this.update = function () {
     // Update transform list
     findAllTransforms();
@@ -134,6 +189,7 @@ function myGraph(selector) {
       return d.source.id + "-" + d.target.id;
     });
 
+// adds a link representation as a line, the value is used for stroke width
     var linkEnter = link.enter()
       .append("line")
       .style("stroke-opacity",0).style("fill-opacity",0)
@@ -164,6 +220,7 @@ function myGraph(selector) {
     var nodeEnter = node.enter().append("g")
     .attr("class", "node")
 
+// adds a node representation as a circle
     nodeEnter.append("svg:circle")
       .style("stroke-opacity",0).style("fill-opacity",0)
       .transition()
@@ -182,13 +239,6 @@ function myGraph(selector) {
     })
       .attr("class", "nodeStrokeClass")
       .attr("fill", function(d) { return color(d.type); })
-    //nodeEnter.append("svg:text")
-    //        .attr("class", "textClass")
-    //        .attr("x", 14)
-    //        .attr("y", ".31em")
-    //        .text(function (d) {
-    //            return d.type;
-    //        });
 
     node.exit().remove();
     
@@ -201,6 +251,7 @@ function myGraph(selector) {
         .on("end", dragended)
       );
 
+// mouse drag behaviour
     function dragstarted(d) {
       if (!d3.event.active) force.alphaTarget(0.1).restart();
       d.fx = d.x;
@@ -218,22 +269,26 @@ function myGraph(selector) {
       d.fy = null;
     }
 
+
+// takes the value of gravity from the gravity slider
     function gravForce() {
       var gravi = (document.getElementById("gravRange").value) / 1000;
       return gravi;
     }
     
-    // Keep node objects on top of edges
+// keeps node objects on top of edges
     $(".nodeStrokeClass").each(function( index ) {
       var gnode = this.parentNode;
       gnode.parentNode.appendChild(gnode);
     });
 
+
+// zoom behaviour
     d3.zoom().on("zoom", function zoom_actions(){
       vis.attr("transform", d3.event.transform)
     })(svg)
-    // Restart the force layout.
-    
+
+// Restart the force layout.
     force
       .alpha(forceAlpha)
       .alphaDecay(forceAlphaDecay)
@@ -269,7 +324,7 @@ function myGraph(selector) {
     })
     .restart();
 
-// end definition update()
+// end function update()
   };
 
 function inputted() {
@@ -327,13 +382,15 @@ function findLinkedCenter(node) {
   }
 }
 
+
+// predicate isCenter, see in nodes.js how a graph is obtained from a mol pattern
 function isCenter(node) {
   return !(node.type == "in" || node.type == "out" || node.type == "middle");
 }
 
 
 
-
+// removes a center node and its ports and any affected links
 function removeNodeAndEdges(center) {
   var linked2 = getLinked(center);
   for (var i=0; i<linked2.length; i++) {
@@ -342,6 +399,7 @@ function removeNodeAndEdges(center) {
   removeNode(center.id);
 }
 
+// adds a center node and ports of a given type, see in nodes.js how a graph is obtained from a mol node
 function addNodeAndEdges(type,x,y) {
   x = x || w/2;
   y = y || h/2;
@@ -399,6 +457,8 @@ function addNodeAndEdges(type,x,y) {
       addLink(s2.id,d2.id,2);
   }
 
+
+//backclick behaviour
 function backClick(d,i) {
   var e = d3.event;
   var pt = screenToWorldPoint(e.offsetX,e.offsetY)
@@ -418,6 +478,7 @@ function backClick(d,i) {
   }
 }
 
+//node click behaviour
 function nodeClick(d,i) {
   var e = d3.event;
   switch (mode) {
@@ -466,6 +527,7 @@ function nodeClick(d,i) {
   e.stopPropagation();
 }
 
+// node hover behaviour
 function nodeHover(d,i) {
   var e = d3.event;
   exportMolToScreen();
