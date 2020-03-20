@@ -1,6 +1,6 @@
 // IO and preparation functions
 // see Acknowledgements in myD3Graph.js
-// last updated: 17.03.2020
+// last updated: 20.03.2020
 
 
 
