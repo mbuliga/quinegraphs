@@ -1,6 +1,6 @@
 // IO and preparation functions
 // see Acknowledgements in myD3Graph.js
-// last updated: 17.03.2020
+// last updated: 20.03.2020
 
 
 
@@ -128,19 +128,23 @@ This function also writes the number of center nodes (thus uses the predicate is
 */
 
 
+
+
 function exportMol() {
   var edgeCount = 0;
   var numberOfCenterNodes = 0;
 
   var result = "";
   var edges = {};
+  var addedFR = "";
   
   for (var i=0; i<nodes.length; i++) {
+    addedFR = "";
     if (isCenter(nodes[i])) {
       var linked = getLinked(nodes[i]);
 //      var line = nodes[i].id + " : " + nodes[i].type;
       var line = nodes[i].type;
-
+      
       linked.sort(function (a,b) { return a.id - b.id;});
       
       for (var k=0; k<linked.length; k++) {
@@ -151,22 +155,23 @@ function exportMol() {
           
           var other = findLinkedHalfEdge(linked[k]);
           if (other != null) {
-            edges[other.id] = edgeCount
+            edges[other.id] = edgeCount;
             line += " " + edgeCount;
           } else {
             line += " free" + edgeCount;
 // adds FRIN or FROUT to the exported mol
             if (nodeValence[nodes[i].type][k] == 0 ) { 
-              line += "<br>FRIN" + " free" + edgeCount;
+              addedFR += "FRIN" + " free" + edgeCount + "<br>";
             } else {
-              line += "<br>FROUT" + " free" + edgeCount;
+              addedFR += "FROUT" + " free" + edgeCount + "<br>";
             }
-//
+//          
           }
         }
       }
       
       line += "<br>";
+      line += addedFR;
       result += line;
       numberOfCenterNodes +=1;
     }
