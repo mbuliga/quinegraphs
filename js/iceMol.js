@@ -1,7 +1,16 @@
 /* 
-mol library, some mol files from https://github.com/chorasimilarity/chemlambda-gui/tree/gh-pages/dynamic/mol
+mol library, initially contained mol files from https://github.com/chorasimilarity/chemlambda-gui/tree/gh-pages/dynamic/mol
 */
+// this version: 16.03.2020
 
+
+/*
+Library of mols and mol patterns.
+
+Each mol is a record with a line separator (here we use "^") which separates the record into lines. Each line is a mol node (see nodes.js), itself a record with a field separator (here 
+we use space, therefore we can't admit space or newline in the alphabet E). 
+
+*/
 
 
 
@@ -78,6 +87,11 @@ switch (molName) {
   case "16_quine_A_L_FI_FO":
   var mol = "FO a1 a2 a3^L a4 a5 a7^FO a6 a8 a9^FOE a10 a11 a12^FI a7 a20 a10^FI a2 a8 a6^FOE a17 a13 a14^FI a3 a9 a16^A a11 a13 a21^A a12 a14 a4^FI a19 a16 a20^FI a5 a22 a17^FOE a21 a18 a23^FI a15 a24 a22^L a18 a24 a1^L a23 a15 a19";
   break;
+
+  case "10_quine_children":
+  var mol = "FI 1 2 3^A 4 5 2^A 6 7 8^FI 8 9 10^FOE 11 12 13^FOE 14 15 16^A 12 15 5^A 13 16 14^FOE 3 17 18^FI 19 20 1^L 17 20 4^L 18 19 11^FOE 21 22 23^FOE 24 25 26^A 22 25 24^A 23 26 7^FOE 10 27 28^FI 29 30 9^L 27 30 21^L 28 29 6^";
+  break;
+
 
   case "20_quine":
   var mol = "FOE 6 16 7^A 15 2 6^L 20 35 36^A 36 1 37^FOE 8 18 9^A 17 7 8^FI 28 42 26^FOE 26 30 17^FI 38 39 24^FOE 24 1 15^L 9 19 10^FOE 10 20 11^A 30 16 27^FI 33 32 38^FI 19 31 28^FI 21 35 34^FI 34 37 33^L 27 42 39^L 18 31 32^L 11 21 2";
@@ -461,6 +475,10 @@ case "random_egg_A_L_FI_FOE":
   var mol = "A 0 1 5^L 2 3 0^FI 3 4 1^FOE 5 4 2";
   break;
 
+  case "sparkFOE_540213":                          // gives the original 10_quine_bubbles
+  var mol = "A 0 1 5^L 2 4 0^FI 3 4 2^FOE 5 1 3";
+  break;
+
   case "bubble_214503":
   var mol = "A 0 1 2^L 2 1 4^FI 3 4 5^FO 5 0 3";
   break;
@@ -623,6 +641,10 @@ case "random_egg_A_L_FI_FOE":
 
   case "4_IC_41580936B2A7":
   var mol = "GAMMA 0 1 2^GAMMA 3 1 5^DELTA 3 7 5^DELTA 0 7 2";
+  break;
+
+  case "square_quine":
+  var mol = "A 1 2 3^L 4 5 1^FI 6 55 4^FOE 33 2 6^A 11 22 33^L 44 55 11^FI 66 5 44^FOE 3 22 66";  //is barely a quine
   break;
 
   default:

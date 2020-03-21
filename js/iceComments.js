@@ -20,6 +20,10 @@ switch (molName) {
   var mol = "How to test is a graph is a quine:<br><br>After you select a graph...<br><br>Click on \"change\" to select for \"older is first\". This will force the rewrites on oldest nodes and links (excepting the \"COMB\" rewrites).<br><br>Use rewrites weights slider to privilege the rewrites which grow the no. of nodes, or those which decrease the no. of nodes. <br><br>Click on \"start\" to apply rewrites as long as there is any possible rewrite left.<br><br>Click on \"stop\" to stop.<br><br>Click on \"reload\" to reload the same graph.<br><br> The graph is a quine if the number of nodes oscilates around a value.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
   break;
 
+  case "howtolab":
+  var mol = "Quine lab.<br><br>You can select a graph from the menu, or you can input a mol (write the mol and hit \"input\"). \"update\" modifies the mol input text area with the current graph.<br><br>Prepare your lab: click on \"change\" to select for \"older is first\". This will force the rewrites on oldest nodes and links (excepting the \"COMB\" rewrites).<br><br>Move rewrites weights slider to \"GROW\". <br><br>Trigger rewrites with mopuse hover, or...<br><br>click on \"start\" to apply rewrites as long as there is any possible rewrite left.Click on \"stop\" to stop.<br><br>Click on \"reload\" to reload the same graph.<br><br> The graph is a quine if the number of nodes oscilates around a value.<br><br>Move gravity slider to \"MIN\" to expand the graph.<br><br>Rescale with mouse wheel, move with mouse drag.";
+  break;
+
   case "SKK":
   var mol = "In lambda calculus, define the combinators S and K by: <br><br>  S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x)) <br> <br> Then (S K) K reduces to <br><br> I = (\\x.x) <br><br> Here we see this reduction in <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>.";
   break;
@@ -27,7 +31,7 @@ switch (molName) {
   var mol = "In lambda calculus, we can use the combinators: <br><br> S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> I =  (\\x.x)<br><br> to express the combinator &Omega; = (\\x.x x) (\\x.x x)  as the result of reduction of <br> (S I I (S I I)) <br><br> In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a> this works most of the times (remember that we use the random rewrites algorithm), but not always.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; (i.e. \"slim\") extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice. ";
   break;
   case "omegaSKI":
-  var mol = "In lambda calculus, we can use the combinators: <br><br> S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x))<br><br> to express the combinator &Omega; = (\\x.x x) (\\x.x x)  as the result of reduction of <br> (((S ((S K) K)) ((S K) K)) ((S ((S K) K)) ((S K) K))) <br><br> In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a> this works most of the times (remember that we use the random rewrites algorithm), but not always.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; (i.e. \"slim\") extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice.";
+  var mol = "In lambda calculus, we can use the combinators: <br><br> S = (\\x.(\\y.(\\z.((x z) (y z))))) <br><br> K =  (\\x.(\\y.x))<br><br> to express the combinator &Omega; = (\\x.x x) (\\x.x x)  as the result of reduction of <br> (((S ((S K) K)) ((S K) K)) ((S ((S K) K)) ((S K) K))) <br><br> In <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a> this works most of the times (remember that we use the random rewrites algorithm), but not always.<br><br> It seems that it works all the time if you move the rewrites weights slider to the &beta; (i.e. \"SLIM\") extremity. This forces any rewrite  which reduces the number of nodes (like the original &beta;, but also FI-FOE and TERMINATION rewrites) to be made before any rewrite which enlarges the number of nodes (DIST rewrites), whenever there is a choice.";
   break;
   case "rewrite-L-T":
   var mol = "A rewrite L-T";
@@ -41,8 +45,18 @@ switch (molName) {
   var mol = "Conflict in <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a>: the left patterns of the rewrites A-L and L-FO overlap. Moreover the left patterns of L-FO and FO-FOE overlap. Therefore there are more than one maximal  collections of non-conflicting matches in this case.";
   break;
 
+
+  case "square_quine":
+  var mol = "The square quine may die even with \"older rewrites first\" and rewrites slider to \"GROW\". ";
+  break;
+
+
+  case "10_quine_children":
+  var mol = "These are the children of a 10_nodes quine.";
+  break;
+
   case "alexo_example":
-  var mol = "The lambda term  (\\a.a a)(\\x.((\\b.b b)(\\y.y x)))  should reduce to the &Omega; combinator, but instead in <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a> it eventually produce a FOE node under the random choices algorithm.<br><br>You can check that it leads to a quine: use the \"change\" button to select for \"older is first\", move the rewrites weights slider to \"GROW\" and push \"start\". <br><br>This is a problem which all (known?) purely local graph rewrite  systems applied to lambda calculus have. Here by \"purely local\" I mean by using only local graph rewrites, only the random rewrites algorithm and the transformation of a lambda term into a graph should also be local, in the sense that the graph of the term CD should consist on only a new node A (for application) with inputs connected to outputs of the graphs of C and D, and the graph of the term \\x.C, where x is a free variable of C, should be made of only a new node L (for lambda abstraction) connected to the output of the graph of C and to the edge corresponding to the variable x. <br><br> I saw this lambda term in <a href=\"https://arxiv.org/pdf/1701.04691.pdf\">[arXiv:1701.04691]</a>, section 4. ";
+  var mol = "The lambda term  (\\a.a a)(\\x.((\\b.b b)(\\y.y x)))  should reduce to the &Omega; combinator, but instead in <a href=\"https://chemlambda.github.io/index.html\">Chemlambda</a> it eventually produce a FOE node under the random choices algorithm.<br><br><a href=\"quinecheck.html#alexo_example\">ou can check that it leads to a quine which is not the &Omega; combinator/a>. Use the \"change\" button to select for \"older is first\", move the rewrites weights slider to \"GROW\" and push \"start\". <br><br>This is a problem which all (known?) purely local graph rewrite  systems applied to lambda calculus have. Here by \"purely local\" I mean by using only local graph rewrites, only the random rewrites algorithm and the transformation of a lambda term into a graph should also be local, in the sense that the graph of the term CD should consist on only a new node A (for application) with inputs connected to outputs of the graphs of C and D, and the graph of the term \\x.C, where x is a free variable of C, should be made of only a new node L (for lambda abstraction) connected to the output of the graph of C and to the edge corresponding to the variable x. <br><br> I saw this lambda term in <a href=\"https://arxiv.org/pdf/1701.04691.pdf\">[arXiv:1701.04691]</a>, section 4. ";
   break;
 
 
@@ -115,7 +129,7 @@ switch (molName) {
   break;
 
   case "10_quine_bubbles":
-  var mol = "This remarkable chemlambda quine is the 10_quine. <br><br>It has two properties: it can die and it can reproduce.<br><br> Recall that we use the random rewrites algorithm. <br><br>Because chemlambda admits conflicting graph rewrites, it follows that the random evolution of a graph can lead to different outcomes. <br><br>The 10_quine can die, in the sense that it, eventually, reduces to nothing.<br><br> In rare occasions the 10_quine reproduces itself, resulting into two 10_quines. <br><br>Reload the graph and reduce it several times to see what happens.";
+  var mol = "This remarkable chemlambda quine is the 10_quine. <br><br>It has two properties: it can die and it <a href=\"quinelab.html#10_quine_children\">can produce children/a>.<br><br> Recall that we use the random rewrites algorithm. <br><br>Because chemlambda admits conflicting graph rewrites, it follows that the random evolution of a graph can lead to different outcomes. <br><br>The 10_quine can die, in the sense that it, eventually, reduces to nothing.<br><br> In rare occasions the 10_quine reproduces itself, resulting into two non-identical 10 quines. <br><br>Reload the graph and reduce it several times to see what happens.";
   break;
 
   case "20_20_hybrid":
