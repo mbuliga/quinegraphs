@@ -59,8 +59,8 @@ var ButtonOriginal = [
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); reloadCode();}, "Text":"reload"},
   {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"},
-//  {"Id":"buttonImportMol", "Class":"image2", "Visibility":"visible", "Onclick": function () {importMolTextarea("inputmol");}, "Text":"input mol"},
-//  {"Id":"buttonUpdateMol", "Class":"image2", "Visibility":"visible", "Onclick": function () {updateMolTextarea("inputmol");}, "Text":"update"},
+  {"Id":"buttonImportMol", "Class":"image2", "Visibility":"visible", "Onclick": function () {importMolTextarea("inputmol");}, "Text":"input mol"},
+  {"Id":"buttonUpdateMol", "Class":"image2", "Visibility":"visible", "Onclick": function () {updateMolTextarea("inputmol");}, "Text":"update"},
 //  {"Id":"buttonShot", "Class":"image2", "Visibility":"visible", "Onclick": function () {screenShot();}, "Text":"photo"} 
 ];
 
@@ -82,8 +82,8 @@ var ButtonRandomGraph = [
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); reloadCode();}, "Text":"reload"},
   {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"},
-//  {"Id":"buttonImportMol", "Class":"image2", "Visibility":"visible", "Onclick": function () {importMolTextarea("inputmol");}, "Text":"input mol"},
-//  {"Id":"buttonUpdateMol", "Class":"image2", "Visibility":"visible", "Onclick": function () {updateMolTextarea("inputmol");}, "Text":"update"},
+  {"Id":"buttonImportMol", "Class":"image2", "Visibility":"visible", "Onclick": function () {importMolTextarea("inputmol");}, "Text":"input mol"},
+  {"Id":"buttonUpdateMol", "Class":"image2", "Visibility":"visible", "Onclick": function () {updateMolTextarea("inputmol");}, "Text":"update"},
 //  {"Id":"buttonShot", "Class":"image2", "Visibility":"visible", "Onclick": function () {screenShot();}, "Text":"photo"}  
 ];
 

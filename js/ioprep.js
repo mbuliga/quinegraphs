@@ -1,6 +1,6 @@
 // IO and preparation functions
 // see Acknowledgements in myD3Graph.js
-// last updated: 20.03.2020
+// last updated: 17.03.2020
 
 
 
@@ -107,6 +107,52 @@ function importMolFromLib(str) {
   importMolGen(molIntermed,"<br>");
 }
 
+function importMolTextarea(textarea) {
+  setSpeed(0);
+// added age reset
+  setAge(0);
+  removeAllNodes();
+  var molIn = document.getElementById(textarea).value;
+  molIn = molIn.replace(/\^/g,"\n");
+  molIn = molIn.replace(/<br>/g,"\n");
+  molIn = molIn.replace(/[^a-z.A-Z\\0-9\s\n]/g, "");
+  var molCode = molIn.replace(/\n/g,"\^");
+  importMol(molIn);
+  exportMolToScreen();
+  exportMolToScreenAfter();
+  document.getElementById("molyoulookat").innerHTML = molCode;
+}
+
+function updateMolTextarea(textarea) {
+  setSpeed(0);
+// added age reset
+//  setAge(0);
+  removeAllNodes();
+  var molIn = document.getElementById("molexportafter").innerHTML;
+  if (molIn == "") molIn = document.getElementById("molexport").innerHTML;
+  molIn = molIn.replace(/\^/g,"\n");
+  molIn = molIn.replace(/<br>/g,"\n");
+  molIn = molIn.replace(/[^a-z.A-Z\\0-9\s\n]/g, "");
+  var molCode = molIn.replace(/\n/g,"\^");
+  importMol(molIn);
+  exportMolToScreen();
+  exportMolToScreenAfter();
+//  document.getElementById("molyoulookat").innerHTML = molCode;
+  var molCodeAr = molCode.split("^");
+  var molCodeWfree = "";
+  for (var i=0; i<molCodeAr.length; i++) {
+    var lineMol = molCodeAr[i].trim().split(" ");
+    if (lineMol[0] == "FRIN" || lineMol[0] == "FROUT") {
+      continue;
+    } else {
+      molCodeWfree += molCodeAr[i] + "^";
+    }
+  }
+  molCodeWfree = molCodeWfree.replace(/\^+/g, "\^");
+  document.getElementById(textarea).value = molCodeWfree; 
+}
+
+
 /*
 This function transforms the current d3 graph into a mol with edge tags from naturals. 
 It adds "FRIN" and "FROUT" mol nodes if needed. 
@@ -126,7 +172,6 @@ The mol record produced has separator "<br>" as newline.
 This function also writes the number of center nodes (thus uses the predicate isCenter).
 
 */
-
 
 
 
@@ -179,7 +224,6 @@ function exportMol() {
   document.getElementById("nodenumber").innerHTML = numberOfCenterNodes;
   return result;
 }
-
 
 /* Clears the d3 graph and imports from the molLibrary. 
 Exception: if it is used in the arena.html, it adds the d3 graph 
@@ -255,10 +299,6 @@ function molSelect() {
 /*
 Imports/exports  mol from/to textarea.
 
-function doClearImport(textarea) {
-  removeAllNodes();
-  importMol(textarea.value);
-}
 
 function doImport(textarea) {
   importMol(textarea.value);
