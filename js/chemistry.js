@@ -523,6 +523,52 @@ cross.
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
+// for the following DIST rewrites see the tool to choose DIST rewrites https://mbuliga.github.io/rhs.html
+
+//            THE LHS NOTATION
+//
+//          a                       c
+//           \_1                 2_/
+//            \      e2    e1     /
+//             \                 /
+//  n2type  n2  o----|-----|----o   n1  n1type
+//             /     3     1     \
+//          2_/                   \_3
+//           /                     \
+//          b                       d
+//
+
+//  THE RHS ABSOLUTE PORTS PLACEMENT AND NOTATION  (related to the "shuffle trick", or (convex) axiom from em-convex)    
+//
+//            a                       c
+//             \_1                 3_/
+//              \                   /
+//               \     2     1     /
+// n1type  na/t1  o----|-----|----o  nc/t3  n2type
+//                 \      u      /
+//                3_\           /_2
+//                   \         /
+//                    \       /  
+//                   v \     / w 
+//                      \   /  
+//                       \ /
+//                        X        
+//                       / \
+//                      /   \             
+//                     /     \
+//                  w /       \ v
+//                   /         \     
+//                2_/           \_1
+//                 /   3     2   \
+// n1type  nb/t2  o----|-----|----o  nd/t4  n2type
+//               /        p        \ 
+//            1_/                   \_3 
+//             /                     \
+//            b                       d
+//
+// at https://mbuliga.github.io/rhs.html are computed all possible such rewrites
+// which are compatible with the anharmonic group decorations of the nodes 
+// to be found at nodes.js, definition of nodeValence 
 
 
     case "DIST0":
@@ -654,6 +700,8 @@ cross.
       removeNodeAndEdges(n2);
       break;
 
+// Interaction Combinators GAMMA-GAMMA, without Arrow nodes, not used
+
     case "GAMMA-GAMMA":
       // GAMMA-GAMMA transition:
       // Link out n1 to middle n2 and middle n1 to out n2
@@ -663,6 +711,8 @@ cross.
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
+
+// Interaction Combinators GAMMA-GAMMA, with Arrow nodes, 4 Arrow nodes needed
 
     case "GAMMA-GAMMA-arrow":
       // GAMMA-GAMMA transition:
@@ -683,7 +733,7 @@ cross.
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
-
+// Interaction Combinators DELTA-DELTA, without Arrow nodes, not used
     case "DELTA-DELTA":
       // DELTA-DELTA transition:
       // Link out n1 to out n2 and middle n1 to middle n2
@@ -693,7 +743,7 @@ cross.
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
-
+// Interaction Combinators DELTA-DELTA, with Arrow nodes, 4 Arrow nodes needed
     case "DELTA-DELTA-arrow":
       // DELTA-DELTA transition:
       // Arrow b1 f^Arrow d f^Arrow b g^Arrow c g
@@ -715,7 +765,7 @@ cross.
       break;
 
     case "GAMMA-DELTA":
-      //  Distributive transition GAMMA-DELTA,
+      //  DIST like transition GAMMA-DELTA,
 
       var na = addNodeAndEdges(trans.t1,n2.x,n2.y);
       var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);
@@ -734,6 +784,8 @@ cross.
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
+
+// termination erwrites, i.e. those which involve a node T
 
     case "term3":
       // Terminator transition for GAMMA and DELTA
