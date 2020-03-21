@@ -129,7 +129,7 @@ switch (molName) {
   break;
 
   case "10_quine_bubbles":
-  var mol = "This remarkable chemlambda quine is the 10_quine. <br><br>It has two properties: it can die and it <a href=\"quinelab.html#10_quine_children\">can produce children/a>.<br><br> Recall that we use the random rewrites algorithm. <br><br>Because chemlambda admits conflicting graph rewrites, it follows that the random evolution of a graph can lead to different outcomes. <br><br>The 10_quine can die, in the sense that it, eventually, reduces to nothing.<br><br> In rare occasions the 10_quine reproduces itself, resulting into two non-identical 10 quines. <br><br>Reload the graph and reduce it several times to see what happens.";
+  var mol = "This remarkable chemlambda quine is the 10_quine. <br><br>It has two properties: it can die and it <a href=\"quinelab.html#10_quine_children\">can produce children</a>.<br><br> Recall that we use the random rewrites algorithm. <br><br>Because chemlambda admits conflicting graph rewrites, it follows that the random evolution of a graph can lead to different outcomes. <br><br>The 10_quine can die, in the sense that it, eventually, reduces to nothing.<br><br> In rare occasions the 10_quine reproduces itself, resulting into two non-identical 10 quines. <br><br>Reload the graph and reduce it several times to see what happens.";
   break;
 
   case "20_20_hybrid":
