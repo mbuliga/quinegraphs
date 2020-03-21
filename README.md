@@ -20,6 +20,8 @@ We invite you to  explore some of their properties, with examples taken from lam
 
 * [Lambda calculus  to chemlambda parser](https://mbuliga.github.io/quinegraphs/lambda2mol.html) 
 
+* [The quine lab](https://mbuliga.github.io/quinegraphs/quinelab.html) 
+
 ### See also
 
 * [The collection of chemlambda animations salvaged from google+](https://chemlambda.github.io/collection.html)
