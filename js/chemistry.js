@@ -1,3 +1,7 @@
+// chemistries
+// this version: 27.03.2020, 
+
+
 // general COMB rewrites
 
 
@@ -59,9 +63,16 @@ switch (id) {
 
   case "IC":
     var out = [
-  {left:"GAMMA",right:"GAMMA",action:"GAMMA-GAMMA-arrow", named:"GAMMA-GAMMA", t1:"Arrow",t2:"Arrow",t3:"Arrow",t4:"Arrow", kind:"BETA"}, // action modified from "GAMMA-GAMMA" with 2 pairs Arrow-Arrow added, in order to be sure that COMB rewrite, as is, eliminates all arrows
-  {left:"DELTA",right:"DELTA",action:"DELTA-DELTA-arrow", named:"DELTA-DELTA", t1:"Arrow",t2:"Arrow",t3:"Arrow",t4:"Arrow", kind:"BETA"}, // action modified from "DELTA-DELTA" with 2 pairs Arrow-Arrow added, in order to be sure that COMB rewrite, as is, eliminates all arrows
-  {left:"GAMMA",right:"DELTA",action:"GAMMA-DELTA", named:"GAMMA-DELTA", t1:"DELTA",t2:"DELTA",t3:"GAMMA",t4:"GAMMA", kind:"DIST"}, // notice that due to symmetry there is no need for DELTA-GAMMA
+// action modified from "GAMMA-GAMMA" with 2 pairs Arrow-Arrow added, in order to be sure that COMB rewrite, as is, eliminates all arrows
+//  {left:"GAMMA",right:"GAMMA",action:"GAMMA-GAMMA-arrow", named:"GAMMA-GAMMA", t1:"Arrow",t2:"Arrow",t3:"Arrow",t4:"Arrow", kind:"BETA"},
+// action modified from "DELTA-DELTA" with 2 pairs Arrow-Arrow added, in order to be sure that COMB rewrite, as is, eliminates all arrows
+//  {left:"DELTA",right:"DELTA",action:"DELTA-DELTA-arrow", named:"DELTA-DELTA", t1:"Arrow",t2:"Arrow",t3:"Arrow",t4:"Arrow", kind:"BETA"}, 
+// action modified from "GAMMA-GAMMA" with 1 pair Arrow-Arrow added, asymmetric
+  {left:"GAMMA",right:"GAMMA",action:"GAMMA-GAMMA-arrow1", named:"GAMMA-GAMMA", t1:"Arrow",t2:"Arrow", kind:"BETA"}, 
+// action modified from "DELTA-DELTA" with 1 pair Arrow-Arrow added, asymmetric
+  {left:"DELTA",right:"DELTA",action:"DELTA-DELTA-arrow1", named:"DELTA-DELTA", t1:"Arrow",t2:"Arrow", kind:"BETA"}, 
+// notice that due to symmetry there is no need for DELTA-GAMMA
+  {left:"GAMMA",right:"DELTA",action:"GAMMA-DELTA", named:"GAMMA-DELTA", t1:"DELTA",t2:"DELTA",t3:"GAMMA",t4:"GAMMA", kind:"DIST"}, 
   {left:"GAMMA",right:"T",action:"term3", named:"GAMMA-T", kind:"TERMINATION"},
   {left:"DELTA",right:"T",action:"term3", named:"DELTA-T", kind:"TERMINATION"},
 ];
@@ -166,7 +177,7 @@ only matters if n1type, n2type match and if the node port e2 is of type "out"
           if (e2type == "out") return trans;
         break;
 
-        case "GAMMA-GAMMA": case "GAMMA-GAMMA-arrow": case "DELTA-DELTA": case "DELTA-DELTA-arrow": case "GAMMA-DELTA":  
+        case "GAMMA-GAMMA": case "GAMMA-GAMMA-arrow": case "GAMMA-GAMMA-arrow1": case "DELTA-DELTA": case "DELTA-DELTA-arrow": case "DELTA-DELTA-arrow1": case "GAMMA-DELTA":  
 /*
 For interaction combinators. Only matters if n1type, n2type match and if the node port e2 is of type "in"
                                
@@ -733,6 +744,26 @@ cross.
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
+
+// Interaction Combinators GAMMA-GAMMA, with Arrow nodes, 1 Arrow nodes needed
+
+    case "GAMMA-GAMMA-arrow1":
+      // GAMMA-GAMMA transition:
+      // Arrow b f^Arrow d f^Arrow b1 g^Arrow c g
+      var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
+      var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
+
+
+      moveLink1(b,ar1[1]);
+      moveLink1(d,ar1[2]);
+      moveLink1(b1,ar2[1]);
+      moveLink1(c,ar2[2]);
+      
+      removeNodeAndEdges(n1);
+      removeNodeAndEdges(n2);
+      break;
+
+
 // Interaction Combinators DELTA-DELTA, without Arrow nodes, not used
     case "DELTA-DELTA":
       // DELTA-DELTA transition:
@@ -759,6 +790,23 @@ cross.
       moveLink1(d,ar1[1]);
       moveLink1(b,ar3[1]);
       moveLink1(c,ar4[1]);
+      
+      removeNodeAndEdges(n1);
+      removeNodeAndEdges(n2);
+      break;
+
+// Interaction Combinators DELTA-DELTA, with Arrow nodes, 4 Arrow nodes needed
+    case "DELTA-DELTA-arrow1":
+      // DELTA-DELTA transition:
+      // Arrow b1 f^Arrow d f^Arrow b g^Arrow c g
+      var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
+      var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
+
+
+      moveLink1(b1,ar1[1]);
+      moveLink1(d,ar1[2]);
+      moveLink1(b,ar2[1]);
+      moveLink1(c,ar2[2]);
       
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
