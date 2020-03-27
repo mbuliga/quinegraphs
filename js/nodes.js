@@ -1,5 +1,5 @@
 // nodes info
-// this version: 16.03.2020, 
+// this version: 27.03.2020, 
 
 /*
 In order to define mols (molecules) and mol patterns, we introduce mol node types and 
@@ -15,7 +15,7 @@ The mol nodes types are listed in the vector autofilter. For the theory, let NT 
 finite  set of mol node types.
 */
 
-var autoFilter = ["D","L","A","FI","FOX","FOE","FO","T","Arrow","GAMMA","DELTA"];
+var autoFilter = ["L","A","FI","D","FOE","FOX","FO","T","Arrow","GAMMA","DELTA"];
 
 /*
 nodeValence associates to any mol node type a valence vector, with elements 0 or 1, whose length is the valence of the mol node. 
@@ -40,13 +40,16 @@ but mind that this is work in progress.)
 
 */
 
+/*
+Only the node type arity will matter. Arity is nodeValence[node].length.
+*/
 var nodeValence = {
   "L":  [0,1,1], // (12) , 1-z 
-  "FOX": [0,1,1], // (13) , z/(z-1)
-  "FOE":[0,1,1], // (23) , 1/z 
-  "D": [0,0,1],  // ()   , z
   "A":  [0,0,1], // (231), (z-1)/z
   "FI": [0,0,1], // (312), 1/(1-z)
+  "D": [0,0,1],  // ()   , z
+  "FOE":[0,1,1], // (23) , 1/z 
+  "FOX": [0,1,1], // (13) , z/(z-1)
   "FO": [0,1,1], //
   "T":  [0],
   "FRIN":[1],
