@@ -11,7 +11,7 @@ We invite you to  explore some of their properties, with examples taken from lam
 
 ## Technical notes:
 
-* [draft 29.03.2020](https://mbuliga.github.io/quinegraphs/quine-graph-doc.pdf) 
+* [draft 29.03.2020](https://github.com/mbuliga/quinegraphs/blob/gh-pages/quine-graph-doc.pdf) 
 
 
 ## Demos
