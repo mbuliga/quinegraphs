@@ -9,6 +9,12 @@ We invite you to  explore some of their properties, with examples taken from lam
 * [All chemlambda projects](https://chemlambda.github.io/index.html) 
 
 
+## Technical notes:
+
+* [draft 29.03.2020](https://mbuliga.github.io/quinegraphs/quine-graph-doc.pdf) 
+
+
+
 ## Demos
 
 
