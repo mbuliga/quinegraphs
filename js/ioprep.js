@@ -347,3 +347,111 @@ function screenShot() {
 */
 }
 
+
+
+// parser from IC to chemlambda
+// author: Marius Buliga
+// last updated: 05.05.2020
+
+function ic2chem() {
+
+
+// take the mol from "molexportafter", if it is not void, else take it from "molexport"
+  
+  var molString =  document.getElementById("molexportafter").innerHTML;
+  if (molString == "") { molString =  document.getElementById("molexport").innerHTML;}
+  var molStringVect = molString.split("<br>");
+
+// transform it into an array 
+  var molArray = [], molLine = [];
+
+  for (var i=0; i<molStringVect.length; i++) {
+    molLine = molStringVect[i].trim().split(" ");
+    if (molLine[0] == '') continue;
+    molArray.push(molLine);
+  }
+
+  var edgesSeen = [], molNodeType, countIC = 0, porta, portb, portc, 
+      portSigna = [], portSignb = [], portSignc = [], 
+      portSignLeft = "L", portSignRight = "R", 
+      translation = "";
+
+  function edgePar(a) {
+    var edgePa = 0, output;
+    for (var i=0; i<edgesSeen.length; i++) {
+      if (a == edgesSeen[i]) {
+        edgePa = 1;
+        break;
+      }
+    }
+    if (edgePa == 0) {
+      edgesSeen.push(a);
+      output = [portSignLeft,portSignRight];
+    } else {
+      output = [portSignRight,portSignLeft];
+    }
+    return output;
+  }
+
+  for (var i=0; i<molArray.length; i++) {
+    molNodeType = molArray[i][0]; 
+    switch (molNodeType) {
+      case "GAMMA":
+      porta = molArray[i][1]; portSigna = edgePar(porta);
+      portb = molArray[i][2]; portSignb = edgePar(portb);
+      portc = molArray[i][3]; portSignc = edgePar(portc);
+      translation += "FOE " + portSigna[0] + porta + " " + portSignb[1] + portb + " " +  portSignc[1] + portc + "<br>";
+      translation += "FI " + portSignb[0] + portb + " " + portSignc[0] + portc + " " +  portSigna[1] + porta + "<br>";
+      countIC = 1;
+      break;
+
+      case "DELTA":
+      porta = molArray[i][1]; portSigna = edgePar(porta);
+      portb = molArray[i][2]; portSignb = edgePar(portb);
+      portc = molArray[i][3]; portSignc = edgePar(portc);
+      translation += "A " + portSigna[0] + porta + " " + portSignb[0] + portb + " " +  portSignc[1] + portc + "<br>";
+      translation += "L " + portSignc[0] + portc + " " + portSignb[1] + portb + " " +  portSigna[1] + porta + "<br>";
+      countIC = 1;
+      break;
+
+      case "Arrow":
+      porta = molArray[i][1]; portSigna = edgePar(porta);
+      portb = molArray[i][2]; portSignb = edgePar(portb);
+      translation += "Arrow " + portSigna[0] + porta + " " + portSignb[1] + portb  + "<br>";
+      translation += "Arrow " + portSigna[1] + porta + " " + portSignb[0] + portb  + "<br>";
+      break;
+
+      case "T":
+      porta = molArray[i][1]; portSigna = edgePar(porta);
+      translation += "T " + portSigna[0] + porta + "<br>";
+      translation += "T " + portSigna[1] + porta + "<br>";
+      break;
+    }
+
+  }
+
+
+  if (countIC == 1) {
+    translation = translation.replace(/<br>/g, "^");
+  } else {
+    translation = molString.replace(/<br>/g, "^");
+
+}
+document.getElementById("molyoulookat").innerHTML = translation;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

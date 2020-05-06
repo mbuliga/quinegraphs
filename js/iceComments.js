@@ -8,6 +8,12 @@ comments of the mol library. For more mol files see my original library https://
 function molComments(molName) {
 
 switch (molName) {
+
+  case "icvschem":
+  var mol = "IC>chem&lambda; button transforms a Lafont' <a href=\"https://pdfs.semanticscholar.org/6cfe/09aa6e5da6ce98077b7a048cb1badd78cc76.pdf\">Interaction Combinators</a> graph into a Directed IC graph.<br><br> Here Directed IC is a variant of Asperti' <a href=\"https://github.com/asperti/BOHM1.1\">BOHM machine</a> graph rewrite system, which is very close to chemlambda, but without conflicting rewrites.<br><br> You can pass from chemlambda to Directed IC chemistry by using the 2nd \"change\" button from the top down.<br><br>We compare here IC quines with chemlambda quines, on a common ground.<br><br>";
+  break;
+
+
   case "lambdanote":
   var mol = "In the textarea is PRED ((POW 3) 4)<br><br>This is a parser from lambda calculus to chemlambda<br><br>Examples:<br><br>(\\x.x x) (\\x.x x) is OK! <br>(\\x.xx) (\\x.xx) is NOT OK, because it believes \"xx\" is a variable<br><br>(\\x.\\y.x) z  works OK! <br><br>Part of the repository <a href=\"https://github.com/mbuliga/quinegraphs\">Quine graphs</a>.<br><br>Type terms in textarea, click buttons!<br><br>Hover with the mouse over nodes to trigger rewrites.<br><br>Click+drag the nodes to arrange the graph.<br><br>Click on the background and drag to translate the graph.<br><br> Mouse wheel to resize the graph.<br><br>Use gravity slider to expand or contract the graph.<br><br>";
   break;

@@ -4,6 +4,28 @@ page look (buttons, etc), import-export mol
 // last updated: 17.03.2020
 
 var versusVar = "<br><br> VS. <br><br>";
+var transformList = [];
+
+function chemistryChoice() {
+
+// added chemistryChoice
+  if (isChemlambda == 1) {
+// which chemistries (i.e. graph rewrite systems) we use?
+    graphRewriteSystems = ["T","COMB","IC","CHEMLAMBDABARE","CHEMLAMBDAEND"];
+  } else {
+    graphRewriteSystems = ["T","COMB","IC","CHEMLAMBDABARE","DICMOD"];
+  }
+  transformList = [];
+  for (var ichem=0; ichem<graphRewriteSystems.length; ichem++) {
+    var addChemistry = chemistry(graphRewriteSystems[ichem]);
+    for (var ichemadd=0; ichemadd<addChemistry.length; ichemadd++) {
+    transformList.push(addChemistry[ichemadd]);
+    }
+  }
+
+}
+
+
 
 function selectionLambda() {
 
@@ -28,6 +50,11 @@ setComb(1);setSpeed(1); setStart(1); loop();
 
 
 function selectionStarter() {
+
+
+  chemistryChoice();
+
+
   setSpeed(0); 
   setStart(0); 
   setAge(0);
@@ -54,7 +81,7 @@ selectionStarter();
 
 var ButtonOriginal = [
   {"Id":"button3", "Class":"image2", "Visibility":"hidden", "Onclick": function () {selectionStarter();}, "Text":"new"},
-  {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1);  loop(); }, "Text":"start"},
+  {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1); chemistryChoice(); loop(); }, "Text":"start"},
   {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); reloadCode();}, "Text":"reload"},
