@@ -129,11 +129,11 @@ var ButtonLambda = [
 ];
 
 var ButtonICLambda = [
-  {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);  ic2chem();  reloadCode(); setComb(1);setSpeed(1); setStart(1); chemistryChoice(); loop();}, "Text":"IC>chem&lambda;"}, 
+  {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);   ic2chem(); reloadCode();   setComb(1);setSpeed(1); setStart(1); chemistryChoice(); loop();}, "Text":"IC>chem&lambda;"}, 
   {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1); chemistryChoice(); loop();}, "Text":"start"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2(); }, "Text":"step"},
-  {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); molSelect();}, "Text":"reload"},
+  {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); molSelect(); exportMolToScreen()}, "Text":"reload"},
   {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"}, 
   {"Id":"whichChem", "Class":"image2", "Visibility":"visible", "Onclick": function () {setChem();}, "Text":"change"},
 //  {"Id":"buttonShot", "Class":"image2", "Visibility":"visible", "Onclick": function () {screenShot();}, "Text":"photo"}  
