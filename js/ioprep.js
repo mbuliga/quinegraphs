@@ -356,9 +356,9 @@ function screenShot() {
 function ic2chem() {
 
 
-// take the mol from "molexportafter", if it is not void, else take it from "molexport"
+// take the mol from "molexport", if it is not void, else take it from "molexportafter"
   
-  var molString =  document.getElementById("molexportafter").innerHTML;
+  var molString =  document.getElementById("molexport").innerHTML;
   if (molString == "") { molString =  document.getElementById("molexport").innerHTML;}
   var molStringVect = molString.split("<br>");
 
