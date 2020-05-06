@@ -27,18 +27,19 @@ last modified: 05.05.2020
 <div class="header">
   <span3>Cite as: <br></span3><div>Alife properties of directed interaction combinators vs. chemlambda.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2020), https://mbuliga.github.io/quinegraphs/ic-vs-chem.html<span id="citeas"></span></div>
 <span3>See also:</span3><br> <a href="https://chemlambda.github.io/index.html">All chemlambda projects</a><br><br>
+<span3>
 This page allows experiments with graph quines under two artificial chemistries: directed interaction combinators and <a href="https://chemlambda.github.io/index.html">chemlambda</a>. The main conclusion of these experiments is that graph rewrites systems which allow conflicting rewrites are better than those which don't, as concerns their artificial life properties. This is in contradiction with the search for good graph rewrite systems for decentralized computing, where non-conflicting graph rewrite systems are historically preferred. Therefore we propose conflicting graph rewrite systems and a very simple algorithm of rewrite as a model for molecular computers.<br><br>
 Define a molecular computer as one molecule which transforms, by random chemical reactions mediated by a collection of enzymes, into a predictable other molecule, such that the output molecule can be conceived as the result of a computation encoded in the initial molecule.[<a href="https://arxiv.org/abs/1811.04960">arXiv:1811.04960</a>]<br><br>
 The goal is to be able to make real life molecular computers. We use artificial chemistry to understand how to do this.<br><br>
 Molecules are <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.18.5446&rep=rep1&type=pdf">port graphs in the sense of Bawden</a> with nodes decorated with a finite set of node types. 
-The chemical reactions are <a href="eprints.adm.unipi.it/1950/1/TR-96-17.ps.gz">double push-out</a> graph rewrites mediated by enzymes: <br><br>
-(LEFT PATTERN) + (TOKEN_1) + (ENZYME) = (RIGHT PATTERN) + (TOKEN_2) + (ENZYME) <br><br>
-where (TOKEN_1) and (TOKEN_2) are molecules which serve to make the reaction to conserve the nodes and links. Here we do not represent these tokens in the simulations, see the <a href="https://github.com/mbuliga/hapax">hapax repository</a> for this.<br><br> 
+The chemical reactions are <a href="eprints.adm.unipi.it/1950/1/TR-96-17.ps.gz">double push-out</a> graph rewrites mediated by enzymes: </span3><br><br><br>
+(LEFT PATTERN) + (TOKEN_1) + (ENZYME) = (RIGHT PATTERN) + (TOKEN_2) + (ENZYME) <br><br><br>
+<span3>where</span3> (TOKEN_1) <span3>and</span3> (TOKEN_2) <span3>are molecules which serve to make the reaction to conserve the nodes and links.<br><br> Here we do not represent these tokens in the simulations, see the <a href="https://github.com/mbuliga/hapax">hapax repository</a> for this.<br><br> 
 The graph rewrites belong to a universal family, whose members appear everywhere in mathematics and physics and computer science. All of them are of the kind encountered in Interaction Nets, but they may differ by the choice of node types or port types. <br><br>
 Here we compare two graph rewrites systems. The first is chemlambda. The second is Directed Interaction Combinators, which has a double origin. In Lafont' <a href="https://pdfs.semanticscholar.org/6cfe/09aa6e5da6ce98077b7a048cb1badd78cc76.pdf">Interaction Combinators</a> is also described a directed version. We used this proposal to provide a parsing from IC to chemlambda, which works well if essentially one chemlambda rewrite is modified. The resulting graph rewrite system is very close to Asperti' <a href="https://github.com/asperti/BOHM1.1">BOHM machine</a> graph rewrite system. <br><br>
-For the purposes of this work, the main difference between these two graph rewrite systems is that chemlambda has conflicting rewrite (patterns) and Directed IC does not have such patterns. The cause of this difference is that some chemlambda nodes have two active ports while all Directed IC nodes (as the original IC nodes) have only one active port. <br><br> 
-1st hypothesis: these rewrites can also be used to make real molecular computers.<br>
-2nd hypothesis: the enzymes are local machines. <br><br>
+For the purposes of this work, the main difference between these two graph rewrite systems is that chemlambda has conflicting rewrite (patterns) and Directed IC does not have such patterns. The cause of this difference is that some chemlambda nodes have two active ports while all Directed IC nodes (as the original IC nodes) have only one active port. <br><br><br> 
+</span3>1st hypothesis:<span> these rewrites can also be used to make real molecular computers.</span><span3><br><br>
+</span3>2nd hypothesis:<span> the enzymes are local machines.</span><span3> <br><br>
 Here a local machine is a defined as a Turing machine with two tapes: the IO tape and the work tape. Molecules are encoded as mol patterns, which are vectors of mol nodes, where each mol node is a vector of node types and tags of edges connected to the node ports. The tapes of the machine have cells, each cell of a tape can contain a node type, a port type, an edge tag or a finite set of special characters. <br><br>
 The machine can read from on the IO tape a cell, write a whole mol node at the end of the mol pattern, or delete a whole mol node.  
 For each read/write or delete from/to the IO tape the machine writes the same on the work tape.  
@@ -48,15 +49,15 @@ The constraints are: <br><br>
 - the machine can perform any graph rewrite on any molecule <br>
 - at each moment the IO tape contains only a well written mol pattern <br>
 - the work tape has finite length.<br><br>
-Problem: find those graph rewrite systems which admit artificial life, i.e. graphs (molecules) with the properties <br><br>
+</span3>Problem:<span> find those graph rewrite systems which admit artificial life, i.e. graphs (molecules) with the properties <br><br>
 - they have metabolism (graph quines)<br>
 - they can duplicate<br>
-- they can die.<br><br>
+- they can die.</span><span3><br><br>
 Here a graph quine is a molecule which admits a periodic evolution under graph rewrites, provided the local machine is constrained to rewrite older graph rewrites patterns first and to choose one among the possible strategies:  whenever possible to prefer the rewrites which grow the number of nodes ("GROW") vs those which reduce the numebr of nodes ("SLIM") or inversely. <br><br>
 Once we have a graph quine, we are interested if such a molecule can duplicate or die if the local machine is not constrained by the age of the rewrites patterns or by the choice of a strategy. <br><br>
 Death of a quine graph is understood as the evolution to a state where no more graph rewrites are possible.<br><br>
 We see in these experiments that the choice of the graph rewrite system is important if we want to have graphs with these artificial life properties. <br><br>
-
+</span3>
 
 </div>
 
