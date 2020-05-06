@@ -30,7 +30,7 @@ switch (id) {
 
 // chemlambda-v2 rewrites
 
-  case "CHEMLAMBDA":
+  case "CHEMLAMBDABARE":
     var out = [
   {left:"L",right:"A",action:"beta-arrow-X", named:"L-A", t1:"Arrow",t2:"Arrow", kind:"BETA"},      // action modified from "beta" to "beta-arrow-X" which is the original beta rewrite from chemlambda
   {left:"FI",right:"FOE",action:"beta-arrow", named:"FI-FOE", t1:"Arrow",t2:"Arrow", kind:"BETA"},  // action modified from "beta" to "beta-arrow" which is the original FI-FOE rewrite from chemlambda
@@ -38,24 +38,37 @@ switch (id) {
   {left:"L",right:"FOE",action:"DIST7", named:"L-FOE", t1:"FOE",t2:"FI",t3:"L",t4:"L",blocks:["FOE-L"], kind:"DIST"},
   {left:"L",right:"FO",action:"DIST7", named:"L-FO", t1:"FOE",t2:"FI",t3:"L",t4:"L",blocks:["FO-L"], kind:"DIST"}, // 
 //
-  {left:"A",right:"FOE",action:"DIST1", named:"A-FOE", t1:"FOE",t2:"FOE",t3:"A",t4:"A",blocks:["FOE-A"], kind:"DIST"},
-  {left:"A",right:"FO",action:"DIST1", named:"A-FO", t1:"FOE",t2:"FOE",t3:"A",t4:"A",blocks:["FOE-A"], kind:"DIST"}, // 
-//
   {left:"FI",right:"FO",action:"DIST1", named:"FI-FO", t1:"FO",t2:"FO",t3:"FI",t4:"FI",blocks:["FO-FI"], kind:"DIST"}, // 
 //
   {left:"FO",right:"FOE",action:"DIST7", named:"FO-FOE", t1:"FOE",t2:"FI",t3:"FO",t4:"FO",blocks:["FOE-FO"], kind:"DIST"}, //       
 // Pruning rewrites
-  {left:"FO",right:"T",action:"term1", named:"FO-T", kind:"TERMINATION"},  // 
-  {left:"T",right:"FO",action:"termin2", named:"T-FO", kind:"TERMINATION"}, // 
-  {left:"T",right:"FOE",action:"termin2", named:"T-FOE", kind:"TERMINATION"}, //  
   {left:"FRIN",right:"FO",action:"terminfrin", named:"FRIN-FO", kind:"TERMINATION"}, //    
 //  {left:"FRIN",right:"FOE",action:"terminfrin", named:"FRIN-FOE", kind:"TERMINATION"}, // 
   {left:"FRIN",right:"FI",action:"termFI", named:"FRIN-FI", kind:"TERMINATION"}, // 
 //
-  {left:"L",right:"T",action:"termL", named:"L-T", kind:"TERMINATION"},
-  {left:"A",right:"T",action:"term", named:"A-T", kind:"TERMINATION"},
   {left:"FI",right:"T",action:"term", named:"FI-T", kind:"TERMINATION"},
+  {left:"T",right:"FO",action:"termin2", named:"T-FO", kind:"TERMINATION"}, // 
+  {left:"T",right:"FOE",action:"termin2", named:"T-FOE", kind:"TERMINATION"}, //  
+];
+  break;
+
+// DIC = CHEMLAMBDABARE + DICMOD
+  case "DICMOD":
+    var out = [
+  {left:"L",right:"T",action:"termLD", named:"L-T", kind:"TERMINATION"},
+ {left:"A",right:"T",action:"term3", named:"T-A", kind:"TERMINATION"},
+ {left:"FI",right:"A",action:"DIST3", named:"FI-A", t1:"A",t2:"A",t3:"FOE",t4:"FI",blocks:["A-FI"], kind:"DIST"}
+];
+  break;
+// CHEMLAMBDA = CHEMLAMBDABARE + CHEMLAMBDAEND
+  case "CHEMLAMBDAEND":
+    var out = [
+  {left:"L",right:"T",action:"termL", named:"L-T", kind:"TERMINATION"},
   {left:"FOE",right:"T",action:"term1", named:"FOE-T", kind:"TERMINATION"}, // 
+  {left:"FO",right:"T",action:"term1", named:"FO-T", kind:"TERMINATION"},  // 
+  {left:"A",right:"T",action:"term", named:"A-T", kind:"TERMINATION"},
+  {left:"A",right:"FOE",action:"DIST1", named:"A-FOE", t1:"FOE",t2:"FOE",t3:"A",t4:"A",blocks:["FOE-A"], kind:"DIST"}, // 
+  {left:"A",right:"FO",action:"DIST1", named:"A-FO", t1:"FOE",t2:"FOE",t3:"A",t4:"A",blocks:["FOE-A"], kind:"DIST"}, // 
 ];
   break;
 
@@ -78,7 +91,40 @@ switch (id) {
 ];
   break;
 
+// chemlambda-v2 + directed IC = KALI
 
+  case "KALI":
+    var out = [
+  {left:"L",right:"A",action:"beta-arrow-X", named:"L-A", t1:"Arrow",t2:"Arrow", kind:"BETA"},      // action modified from "beta" to "beta-arrow-X" which is the original beta rewrite from chemlambda
+  {left:"FI",right:"FOE",action:"beta-arrow", named:"FI-FOE", t1:"Arrow",t2:"Arrow", kind:"BETA"},  // action modified from "beta" to "beta-arrow" which is the original FI-FOE rewrite from chemlambda
+  {left:"D",right:"FOX",action:"beta-arrow", named:"D-FOX", t1:"Arrow",t2:"Arrow", kind:"BETA"},  // added for directed IC
+
+// DIST rewrites
+  {left:"L",right:"FOE",action:"DIST7", named:"L-FOE", t1:"FOE",t2:"FI",t3:"L",t4:"L",blocks:["FOE-L"], kind:"DIST"},
+  {left:"L",right:"FO",action:"DIST7", named:"L-FO", t1:"FOE",t2:"FI",t3:"L",t4:"L",blocks:["FO-L"], kind:"DIST"}, // 
+//
+  {left:"A",right:"FOE",action:"DIST1", named:"A-FOE", t1:"FOE",t2:"FOE",t3:"A",t4:"A",blocks:["FOE-A"], kind:"DIST"},  // 
+  {left:"A",right:"FO",action:"DIST1", named:"A-FO", t1:"FOE",t2:"FOE",t3:"A",t4:"A",blocks:["FOE-A"], kind:"DIST"}, 
+  {left:"D",right:"FOE",action:"DIST1", named:"D-FOE", t1:"FOE",t2:"FOE",t3:"D",t4:"D",blocks:["FOE-D"], kind:"DIST"}, // added for directed IC
+//
+  {left:"FI",right:"FO",action:"DIST1", named:"FI-FO", t1:"FO",t2:"FO",t3:"FI",t4:"FI",blocks:["FO-FI"], kind:"DIST"}, // 
+  {left:"FI",right:"FOX",action:"DIST1", named:"FI-FOX", t1:"FOX",t2:"FOX",t3:"FI",t4:"FI",blocks:["FOX-FI"], kind:"DIST"}, // added for directed IC
+//
+  {left:"FO",right:"FOE",action:"DIST7", named:"FO-FOE", t1:"FOE",t2:"FI",t3:"FO",t4:"FO",blocks:["FOE-FO"], kind:"DIST"}, //       
+// Pruning rewrites
+  {left:"FO",right:"T",action:"term1", named:"FO-T", kind:"TERMINATION"},  // 
+  {left:"T",right:"FO",action:"termin2", named:"T-FO", kind:"TERMINATION"}, // 
+  {left:"T",right:"FOE",action:"termin2", named:"T-FOE", kind:"TERMINATION"}, //  
+  {left:"FRIN",right:"FO",action:"terminfrin", named:"FRIN-FO", kind:"TERMINATION"}, //    
+//  {left:"FRIN",right:"FOE",action:"terminfrin", named:"FRIN-FOE", kind:"TERMINATION"}, // 
+  {left:"FRIN",right:"FI",action:"termFI", named:"FRIN-FI", kind:"TERMINATION"}, // 
+//
+  {left:"L",right:"T",action:"termL", named:"L-T", kind:"TERMINATION"},
+  {left:"A",right:"T",action:"term", named:"A-T", kind:"TERMINATION"},
+  {left:"FI",right:"T",action:"term", named:"FI-T", kind:"TERMINATION"},
+  {left:"FOE",right:"T",action:"term1", named:"FOE-T", kind:"TERMINATION"}, // 
+];
+  break;
 
   default:
   var out = "";
@@ -164,7 +210,7 @@ function findTransform(n1) {
 */
     if (trans.left == n2type && trans.right == n1.type) {
       switch (trans.action) {
-        case "beta": case "beta-arrow": case "beta-arrow-X": case "DIST0": case "DIST1": case "DIST2":  case "DIST3": case "DIST4": case "DIST5": case "DIST6": case "DIST7": case "termsplit": case "term": case "termL": 
+        case "beta": case "beta-arrow": case "beta-arrow-X": case "DIST0": case "DIST1": case "DIST2":  case "DIST3": case "DIST4": case "DIST5": case "DIST6": case "DIST7": case "termsplit": case "term": case "termL": case "termLD":
 /*
 only matters if n1type, n2type match and if the node port e2 is of type "out"
                                
@@ -833,7 +879,7 @@ cross.
       removeNodeAndEdges(n2);
       break;
 
-// termination erwrites, i.e. those which involve a node T
+// termination rewrites, i.e. those which involve a node T
 
     case "term3":
       // Terminator transition for GAMMA and DELTA
@@ -866,9 +912,20 @@ cross.
       removeNodeAndEdges(n2);
       break;
     case "termL":
-      // Terminator transition for L
+      // Terminator transition for L, for chemlambda
       // Make a FRIN
       na = addNodeAndEdges("FRIN",n2.x,n2.y);
+      
+      moveLink1(a,e1.id)
+      moveLink1(b,na[1])
+      
+      removeNodeAndEdges(n2);
+      break;
+
+   case "termLD":
+      // Terminator transition for L, but for directed IC
+      // Make a FRIN
+      na = addNodeAndEdges("T",n2.x,n2.y);
       
       moveLink1(a,e1.id)
       moveLink1(b,na[1])

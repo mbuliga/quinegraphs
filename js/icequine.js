@@ -7,7 +7,7 @@
 // author: Marius Buliga http://imar.ro/~mbuliga/index.html
 //
 //
-// last modified: 16.03.2020
+// last modified: 05.05.2020
 // 
 
 
@@ -22,20 +22,17 @@ var transformCache = []; // rewrites cache
 
 
 
-// which chemistries (i.e. graph rewrite systems) we use?
-var graphRewriteSystems = ["CHEMLAMBDA","IC","T","COMB"];
+// which chemistries (i.e. graph rewrite systems) we use? UPDATE: moved to pagelook.js, selectionStarter(), selectionLambda()
+var graphRewriteSystems = [];
+
+
 
 //priority of rewrites, for the moment only COMB
 var combPriority = 1;
 
-// build the list of graph rewrites
-var transformList = [];
-for (var ichem=0; ichem<graphRewriteSystems.length; ichem++) {
-  var addChemistry = chemistry(graphRewriteSystems[ichem]);
-  for (var ichemadd=0; ichemadd<addChemistry.length; ichemadd++) {
-  transformList.push(addChemistry[ichemadd]);
-  }
-}
+// build the list of graph rewrites UPDATE: moved to pagelook.js, selectionStarter(), selectionLambda()
+
+
 
 // build the d3 graph
 graph = myGraph("#svgdiv")
@@ -43,6 +40,8 @@ graph = myGraph("#svgdiv")
 // main loop
 function loop(dt) {
   var anyMoves = false;
+
+
 
 // added age increase
   age +=1;

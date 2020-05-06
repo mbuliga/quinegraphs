@@ -41,6 +41,11 @@ var fightersVar = 0;
 var combOnly = 0;
 var olderFirst = 0;
 
+// transform chemlambda into directed IC and back parameter
+
+var isChemlambda = 1;
+
+
 // age
 
 var age = 0;

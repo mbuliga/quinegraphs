@@ -47,29 +47,6 @@ function selectionICLambda() {
     location.hash = "#arena";
   }
   document.getElementById("citeas").innerHTML = location.hash;
-
-/*
-chemistryChoice();
-
-
-setSpeed(0); 
-setStart(0); 
-var lambdatext = document.getElementById('listofmols').value; 
-  location.hash = "#" + lambdatext;
-  document.getElementById("citeas").innerHTML = location.hash;
-document.getElementById('inputlambda').value = termLibrary(lambdatext); 
-if (termLibrary(lambdatext) == "") {
-  voidMolToScreenAfter(); 
-  molSelect(); 
-  exportMolToScreen();
-} else {
-ic2chem(); 
-reloadCode();
-var molCom = molComments(lambdatext);
-document.getElementById("comments").innerHTML = molCom; 
-}
-setComb(1);setSpeed(1); setStart(1); loop();
-*/
 }
 
 
@@ -156,17 +133,18 @@ var ButtonICLambda = [
   {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1); chemistryChoice(); loop();}, "Text":"start"},
   {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
   {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2(); }, "Text":"step"},
-//  {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); decoratorLambda();}, "Text":"mol>&lambda;"},
+  {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); molSelect();}, "Text":"reload"},
   {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"}, 
   {"Id":"whichChem", "Class":"image2", "Visibility":"visible", "Onclick": function () {setChem();}, "Text":"change"},
 //  {"Id":"buttonShot", "Class":"image2", "Visibility":"visible", "Onclick": function () {screenShot();}, "Text":"photo"}  
 ];
 
 var ButtonRandomGraph = [
+  {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);  ic2chem();  reloadCode(); setComb(1);setSpeed(1); setStart(1); chemistryChoice(); loop();}, "Text":"IC>chem&lambda;"}, 
   {"Id":"button3", "Class":"image2", "Visibility":"visible", "Onclick": function () {selectionStarter();}, "Text":"new"},
-  {"Id":"button0", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1);  loop();}, "Text":"start"},
-  {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
-  {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
+  {"Id":"button1", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(1); setStart(1);  loop();}, "Text":"start"},
+  {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0);}, "Text":"stop"},
+//  {"Id":"button2", "Class":"image2", "Visibility":"visible", "Onclick": function () {setStart(0); loop2();}, "Text":"step"},
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); reloadCode();}, "Text":"reload"},
   {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"},
 //  {"Id":"buttonImportMol", "Class":"image2", "Visibility":"visible", "Onclick": function () {importMolTextarea("inputmol");}, "Text":"input mol"},
@@ -213,7 +191,7 @@ function whichButtons(choiceButtons) {
 //  var choiceButtons = document.getElementById("listofmols").value;
   switch (choiceButtons) {
 
-    case "dirvschem":
+    case "icvschem":
     var selectedButtons = ButtonICLambda;
     break;
 
@@ -251,7 +229,7 @@ function whichButtons(choiceButtons) {
     break;
 
     default:
-    var selectedButtons = ButtonOriginal;
+    var selectedButtons = ButtonICLambda;
     break;
   }
   showAllButtons(selectedButtons);
