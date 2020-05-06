@@ -3,7 +3,7 @@
 
 <!-- based on a modification of the js version https://github.com/ishanpm/chemlambda-editor of my chemlambda v2, see the issue https://github.com/chorasimilarity/chemlambda-gui/issues/9 
 author: Marius Buliga
-last modified: 11.03.2020
+last modified: 05.05.2020
 //
 -->
 
@@ -30,7 +30,13 @@ last modified: 11.03.2020
 </div>
 
 <div class="row">
-  <div class="col-1 menu" style="text-align: left;"><div class="scol-12"> <span3 id="agetext">random choices </span3><br><br> <span3  id="buttonAge" class="image2" ></span3></div>
+  <div class="col-1 menu" style="text-align: left;">
+    <div class="scol-12">
+      <span3 id="agetext">random choices </span3><br><br>
+      <span3  id="buttonAge" class="image2" ></span3> <br><br><br>
+      <span3 id="chemtext">chemlambda</span3><br><br>
+      <span3  id="whichChem" class="image2" ></span3>
+    </div>
   </div>
   <div class="col-7 menu">
     <ul>
@@ -134,6 +140,7 @@ last modified: 11.03.2020
 <script src="js/icequine.js"></script>
 <script src="js/0parser.js"></script>
 <script src="js/lambdaTerms.js"></script>
+
 
 <script>
 var whichP = location.hash;
