@@ -3,7 +3,7 @@
 
 <!-- Comparison of alife properties of directed combinators vs chemlambda
 author: Marius Buliga
-last modified: 12.05.2020
+last modified: 20.05.2020
 //
 -->
 
@@ -28,7 +28,7 @@ last modified: 12.05.2020
 
 <div class="header">
   <span3>Cite as: <br></span3><div>Alife properties of directed interaction combinators vs. chemlambda.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2020), https://mbuliga.github.io/quinegraphs/ic-vs-chem.html<span id="citeas"></span></div><br><br>
-<span3>associated with <a href="https://arxiv.org/abs/2005.06060">arXiv:2005.06060</a></span3><br><br>
+<span3>Draft, version 12.05.2020</span3><br><br>
 <span3>See also:</span3><br> <a href="https://chemlambda.github.io/index.html">All chemlambda projects</a><br><br><br><br>
 <span3>
 This is a framework for experimentation with two artificial chemistries: directed interaction combinators (dirIC, defined here) and <a href="https://chemlambda.github.io/index.html">chemlambda</a> [<a href="https://arxiv.org/abs/2003.14332">arXiv:2003.14332</a>]. We are interested if these chemistries allow for artificial life behaviour: replication, metabolism and death.<br><br>
@@ -90,26 +90,44 @@ In these simulations we use a random rewrite algorithm and we also randomize as 
 - they have metabolism (graph quines)<br>
 - they can duplicate<br>
 - they can die.</span><span3><br><br>
-Here a graph quine is a molecule which admits a periodic evolution under graph rewrites, provided the local machine is constrained to rewrite older graph rewrites patterns first and to choose one among the possible strategies:  whenever possible to prefer the rewrites which grow the number of nodes ("GROW") vs those which reduce the numebr of nodes ("SLIM") or inversely. <br><br>
+Here a graph quine is a molecule which admits a periodic evolution under graph rewrites, provided the local machine is constrained to rewrite older graph rewrites patterns first and to choose one among the possible strategies:  whenever possible to prefer the rewrites which grow the number of nodes ("GROW") vs those which reduce the number of nodes ("SLIM") or inversely. <br><br>
 Once we have a graph quine, we are interested if such a molecule can duplicate or die if the local machine is not constrained by the age of the rewrites patterns or by the choice of a strategy. <br><br>
+</span3>Comment:<span> this definition of metabolism is very low level. Indeed, according to it, the citric acid cycle defines a graph quine. [<a href="https://en.wikipedia.org/wiki/Citric_acid_cycle#/media/File:Citric_acid_cycle_with_aconitate_2.svg">image source: wikipedia</a>]
+</span><span3><br><br>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/1024px-Citric_acid_cycle_with_aconitate_2.svg.png" alt="citric acid cycle" style="width:700px;border:0"> <br><br>
+</div>
+</div>
+
+
 Death of a quine graph is understood as the evolution to a state where no more graph rewrites are possible.<br><br>
 We see in these experiments that the choice of the graph rewrite system is important if we want to have graphs with these artificial life properties. <br><br>
-We can experiment with 10 chemlambda quines and with 5 Interaction Combinators quines, on the same ground. There are comments relevant for each quine, which appear when the user chooses a quine from the menu. We use the same list of quines as those initially presented in [<a href="https://mbuliga.github.io/quinegraphs/ice.html#howto">IC &amp; chemlamdba quines. Marius Buliga (2019-2020), https://mbuliga.github.io/quinegraphs/ice.html#howto</a>].<br><br>
-There are examples which show that a chemlambda quine may be as big as we wish (the "ouroboros quine"), that it can duplicate (the 10_nodes quine), that there exist non-connected quines (the 16_quine_A_L_FI-FO) which are not made by connected components which are quines.<br><br>
+We can experiment with 10 chemlambda quines and with 5 Interaction Combinators quines, on the same ground. There are comments relevant for each quine, which appear when the user chooses a quine from the menu. We use a list of quines which contain those initially presented in <br>[<a href="https://mbuliga.github.io/quinegraphs/ice.html#howto">IC &amp; chemlambda quines. Marius Buliga (2019-2020), https://mbuliga.github.io/quinegraphs/ice.html#howto</a>].<br>
+For a graphically more lively, with more examples, but with less explanations page, see the older<br>
+[<a href="https://mbuliga.github.io/find-the-quine.html">Find a quine. Marius Buliga (2019), https://mbuliga.github.io/find-the-quine.html</a>]<br><br>
+There are examples which show that:<br><br>
+- a chemlambda quine may be as big as we wish (the "ouroboros quine"). This is the first discovered chemlambda quine, from the graphical reduction of the predecessor of a Church number, as explained in <br>[<a href="https://mbuliga.github.io/quinegraphs/ouroboros.html#howto">The Ouroboros. Marius Buliga (2019-2020), https://mbuliga.github.io/quinegraphs/ouroboros.html#howto</a>]<br>
+- some chemlambda quines can duplicate (the 10_nodes quine),<br>
+- there exist non-connected quines (the 16_quine_A_L_FI-FO) which are not made by connected components which are quines,<br>
+- there exist chemlambda graphs which can evolve into two different quine graphs (nature vs. nurture),<br>
+- quines can be combined into bigger quines, by "hybridization", see here hybrids and the first explanation in the commented animation<br>
+[<a href="https://chemlambda.github.io/collection.html#4">How big an artificial living molecule can be? Chemlambda collection of animations. Marius Buliga (2017-2020), https://chemlambda.github.io/collection.html#4</a>]<br><br>
 IC quines are given as well, starting with Lafont' quine, which appears in the foundational article about interaction combinators, and continuing with IC quines discovered from random search in a big family of IC graphs.<br><br>
 There are also options to search for new quines among random graphs. <br><br>
 For the IC quines we can transform them into dirIC graphs, which have nodes compatible with chemlambda. For any of these quines we can see their evolution under chemlambda or under dirIC. <br><br>
-In order to verify if a graph is a quine we need to do the following, as described in [<a href="https://mbuliga.github.io/quinegraphs/quinecheck.html">How to test a quine. Marius Buliga (2019-2020), https://mbuliga.github.io/quinegraphs/quinegraph.html#howtoquine</a>]: <br><br>
+In order to verify if a graph is a quine we need to do the following, as described in <br>[<a href="https://mbuliga.github.io/quinegraphs/quinecheck.html">How to test a quine. Marius Buliga (2019-2020), https://mbuliga.github.io/quinegraphs/quinegraph.html#howtoquine</a>]: <br><br>
 - click on the first "change" button on the left to see the message "older is first".<br>
 - choose among the two extremal strategies "GROW" or "SLIM" by moving the rewrites weights slider. For chemlambda or IC quines the choice is "GROW".<br>
 - choose among the chemistries dirIC or chemlambda by using the second "change" buton. <br><br>
 If the evolution of the graph is periodic then we have a quine. <br><br>
 These quines have a metabolism, in the following sense. We use the first "change" button in order to have "random choices" and we move the rewrites weights slider to the middle (or we can position it as we like in different experiments, or even during the evolution of the graph). We are now in the random rewrites algorithm. A graph (in particular a quine graph) exhibits metabolism if it has an approximately periodic evolution for an ammount of time, followed perhaps by death. Death is lack of rewrites available. <br><br>
+Use the third "change" button to move from "colored nodes" to "uncolored nodes", to see how the new nodes replace the old nodes of the graph. If we are set on "uncolored nodes" then all the new nodes will have the same color. When you click again on the third "change" button, you see the text "colored nodes" and the effect is that the new nodes will have the standard (different according to their type) colors.<br><br>
 We see that chemlambda quines as well as  dirIC quines exhibit metabolism, but only chemlambda quines may die. The lack of conflicting rewrite patterns induces a unique final state of  a graph, when it exists, which is a desired property in distributed computing. The same unicity is not desired in artificial life.<br><br>
 We achieved replication in chemlambda but not in dirIC, probably due to a lack of enough experiments. <br><br>
 A curious phenomenon is that some IC quines do not translate to dirIC quines. This is due to the fact that the translation from IC to dirIC works as expected for graph which have a final state where there is no possible reduction left. In the case of an IC quine, the reduction does not terminate, it is periodic. When translated to a dirIC graph we know that the reduction can't terminate, but there is no guarantee that the reduction is periodic. We only know that if we synchronize the rewrites (so as to respect the fact that a rewrite in IC is two rewrites in dirIC) then we shall have a periodic evolution.<br><br>
 Some chemlambda quines are dirIC quines as well and inversely. But more times (as shown by experiments) a chemlambda quine dies fast in the process of quine checking (i.e. "GROW" strategy and "older is first"). Namely this happens for chemlambda quines which can die (attain a final state) under the rewrites from CHEMLAMBDABARE.<br><br>
-Finally, if we want to explore the computational properties of these chemistries, see [<a href="https://mbuliga.github.io/quinegraphs/lambda2mol.html">Lambda calculus to chemlambda. Marius Buliga (2019-2020), https://mbuliga.github.io/quinegraphs/lambda2mol.html#lambdanote</a>], which a parser and reducer which has the option to choose the chemistry for reduction of lambda calculus terms. Under this simple rewriting algorithm, chemlambda is better than dirIC, but nevertheless the dirIC has many cases where it reduces lambda terms as well.<br><br>
+Finally, if we want to explore the computational properties of these chemistries, see <br>[<a href="https://mbuliga.github.io/quinegraphs/lambda2mol.html">Lambda calculus to chemlambda. Marius Buliga (2019-2020), https://mbuliga.github.io/quinegraphs/lambda2mol.html#lambdanote</a>],<br> which is a parser and reducer which has the option to choose the chemistry for reduction of lambda calculus terms. Under this simple rewriting algorithm, chemlambda is better than dirIC, but nevertheless the dirIC has many cases where it reduces lambda terms as well.<br><br>
 
 
 </span3>
@@ -118,12 +136,6 @@ Finally, if we want to explore the computational properties of these chemistries
 
 <div class="row">
   <div class="col-1 menu" style="text-align: left;">
-    <div class="scol-12">
-      <span3 id="agetext">random choices </span3><br><br>
-      <span3  id="buttonAge" class="image2" ></span3> <br><br><br>
-      <span3 id="chemtext">chem&lambda;</span3><br><br>
-      <span3  id="whichChem" class="image2" ></span3>
-    </div>
   </div>
   <div class="col-7 menu">
     <ul>
@@ -144,6 +156,10 @@ Finally, if we want to explore the computational properties of these chemistries
             <option value="10_quine_bubbles">chemlambda quine: "10_quine_bubbles"</option>
             <option value="16_quine_A_L_FI_FO">chemlambda quine: "16_quine_A_L_FI_FO"</option>
             <option value="16_quine_A_L_FI_FO_duplicate">"16_quine_A_L_FI_FO_duplicate"</option>
+            <option value="alexo_example">"alexo_example"</option>
+            <option value="shuffle_10_290C1735B6A4DE8">10 nodes sometimes becomes quine from [graph A-L-FI-FOE 540213]</option>
+            <option value="square_quine">hybrid of two "sparkFOE_540213" gives "square_quine"</option>
+            <option value="shuffle_10_3D25C769B1E804A">"shuffle_10_3D25C769B1E804A"</option>
             <option value="shuffle_10_0A8E7D9132C546B">"shuffle_10_0A8E7D9132C546B"</option>
             <option value="shuffle_10_51D3E60BA74C928">"shuffle_10_51D3E60BA74C928"</option>
             <option value="shuffle_10_D870619BC345AE2">"shuffle_10_D870619BC345AE2"</option>
@@ -162,6 +178,18 @@ Finally, if we want to explore the computational properties of these chemistries
          <span3>rewrites weights slider</span3> <div class="slidecontainer">GROW &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &nbsp; SLIM</div>
       </li>
     </ul>
+      <div class="slidecontainer">
+        <div class="sscol-4">
+          <span3 id="agetext">random choices </span3><br><br>
+          <span3  id="buttonAge" class="image2" ></span3></div>
+        <div class="sscol-4">
+          <span3 id="chemtext">chem&lambda;</span3><br><br>
+          <span3  id="whichChem" class="image2" ></span3></div>
+        <div class="sscol-4">
+          <span3 id="metabotext">colored nodes</span3><br><br>
+          <span3  id="whichMetabo" class="image2" ></span3>
+        </div>
+        </div>
   </div>
   <div class="col-4 menu" style="text-align: left;">
     <span3 style="text-align: left;"> nodes &sim; </span3><span id="nodenumber"></span><br><br>
