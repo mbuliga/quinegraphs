@@ -238,7 +238,14 @@ Each link has a source and a target. It also has a value (to be used for graphic
       return "Node;" + d.id;
     })
       .attr("class", "nodeStrokeClass")
-      .attr("fill", function(d) { return color(d.type); })
+      .attr("fill", function(d) {
+// added metabolism colors 
+      if (metabo == 0) { 
+        return color(d.type);
+      } else {
+        return whiteCol;
+      }
+      })
 
     node.exit().remove();
     

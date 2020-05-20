@@ -125,6 +125,7 @@ var ButtonLambda = [
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); decoratorLambda();}, "Text":"mol>&lambda;"},
   {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"}, 
   {"Id":"whichChem", "Class":"image2", "Visibility":"visible", "Onclick": function () {setChem();}, "Text":"change"},
+//  {"Id":"whichMetabo", "Class":"image2", "Visibility":"visible", "Onclick": function () {setMetabo();}, "Text":"change"},
 //  {"Id":"buttonShot", "Class":"image2", "Visibility":"visible", "Onclick": function () {screenShot();}, "Text":"photo"}  
 ];
 
@@ -136,6 +137,7 @@ var ButtonICLambda = [
   {"Id":"button4", "Class":"image2", "Visibility":"visible", "Onclick": function () {setSpeed(0); setStart(0); molSelect(); exportMolToScreen()}, "Text":"reload"},
   {"Id":"buttonAge", "Class":"image2", "Visibility":"visible", "Onclick": function () {setOlder();}, "Text":"change"}, 
   {"Id":"whichChem", "Class":"image2", "Visibility":"visible", "Onclick": function () {setChem();}, "Text":"change"},
+  {"Id":"whichMetabo", "Class":"image2", "Visibility":"visible", "Onclick": function () {setMetabo();}, "Text":"change"},
 //  {"Id":"buttonShot", "Class":"image2", "Visibility":"visible", "Onclick": function () {screenShot();}, "Text":"photo"}  
 ];
 
@@ -287,6 +289,18 @@ function setChem() {
     isChemlambda = 1;
       chemistryChoice();
     document.getElementById("chemtext").innerHTML = "chem&lambda;";
+  }
+
+}
+
+
+function setMetabo() {
+  if (metabo == 1) {
+    metabo = 0;
+    document.getElementById("metabotext").innerHTML = "colored nodes";
+  } else {
+    metabo = 1;
+    document.getElementById("metabotext").innerHTML = "uncolored nodes";
   }
 
 }
