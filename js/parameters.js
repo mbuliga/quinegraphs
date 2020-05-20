@@ -49,3 +49,7 @@ var isChemlambda = 1;
 // age
 
 var age = 0;
+
+// node colors for metabolism
+
+var metabo = 0;
