@@ -136,6 +136,13 @@ html {
   text-align: center;
 }
 
+[class*="sscol-"] {
+  width: 33.33%;
+  padding: 8px; 
+  margin-bottom: 1px;
+  text-align: center;
+}
+
 
 @media only screen and (min-width: 940px) {
   /* For desktop: */
