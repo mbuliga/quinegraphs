@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!-- History of chemlambda
+author: Marius Buliga
+last modified: 21.05.2020
+//
+-->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<link rel="stylesheet" type="text/css" href="css/icequine-on-white.css">
+
+
+<title>History of chemlambda</title>
+</head>
+
+
+<body style="overflow: scroll;">
+
+
+<div class="header">
+  <span3>Cite as: <br></span3><div>Graph rewrites, from emergent algebras to chemlambda.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2020), https://mbuliga.github.io/quinegraphs/history-of-chemlambda.html</div><br><br>
+<span3>Version 21.05.2020</span3><br><br>
+<span3>See also:</span3><br> <a href="https://chemlambda.github.io/index.html">All chemlambda projects</a><br><br><br><br>
+
+<h3>Context</h3>
+The chemlambda project context and relevant previous work are explaint in Section 4 (About this project) of [<a href="">arXiv:2003.14332</a>]. See also, for more mathematical background,<br>
+[<a href="https://mbuliga.github.io/emergent-10-years/presentation.html">A kaleidoscope of graph rewrite systems in topology, metric geometry and computer science. Marius Buliga (2019), https://mbuliga.github.io/emergent-10-years/presentation.html</a>]<br><br>
+
+ Here I report about the modifications of the various formalisms which appeared under the name chemlambda. 
+
+<h3>Graphic lambda calculus</h3> [<a href="https://arxiv.org/abs/1305.5786">arXiv:1305.5786</a>]<span3> has the following rewrites:
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/beta_move_9.jpg" alt="glc: beta" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/commr.jpg" alt="glc: co-comm" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/assocr.jpg" alt="glc: co-assoc" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/fanoutr.jpg" alt="glc: global fanout" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/lambdapr.jpg" alt="glc: local pruning" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/epsipr.jpg" alt="glc: local pruning" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/globalpr.jpg" alt="glc: global pruning" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/r1amove.jpg" alt="glc: R1 a" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/r1bmove.jpg" alt="glc: R1 b" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/r2move.jpg" alt="glc: R2" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/ext2r.jpg" alt="glc: ext 2" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+Graphic lambda calculus does not have an algorithm of application of rewrites. <br><br>
+There is an algorithm for conversion of untyped lambda terms into glc graphs. Here are two examples of reductions:<br><br>
+- reduction of the Omega combinator<br><br>
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/omega_manip.jpg" alt="glc: Omega combinator" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+- reduction of the term SKK<br><br>
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/skk.jpg" alt="glc: SKK" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+
+Graphic lambda calculus is interesting because it can also represent the graphical version of emergent algebras via decorated tangle diagrams explained in [<a href="https://arxiv.org/abs/1103.6007">arXiv:1103.6007</a>]. It can therefore be used to represent and compute (reduce) differential calculus in metric spaces endowed with dilation structures [<a href="https://arxiv.org/abs/0810.5042">arXiv:0810.5042</a>].<br><br>
+ This is done via the identification of decorated crossings as<br><br>
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/cross_emer_1.jpg" alt="glc: emergent algebras decorated crossings" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+
+Another, different identification of undecorated crossings, which can be done with GLC, uses the application and abstraction nodes<br><br>
+
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/cross_beta_1.jpg" alt="glc: lambda calculus and decorated crossings" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+
+Both these identifications apply for a notion of tangle diagrams which differs from the usual one. Namely we use tangle diagrams which are not constrained to be planar graphs. <br><br>
+More precisely, here a tangle diagram is an oriented <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.18.5446&rep=rep1&type=pdf">port graph in the sense of Bawden</a>, with nodes which are 4-valent and oriented links. The nodes can be either undecorated, i.e. of the two kinds of oriented crossings, or decorated, i.e. the two kinds of decorated crossings are supplementary decorated with an element of a commutative group.<br><br>
+The difference from usual (oriented and with decorated crossings) tangle diagrams is that as graphs these diagrams are not supposed to be planar. By <a href="https://en.wikipedia.org/wiki/Kuratowski%27s_theorem">Kuratowski theorem</a>, a graph is planar if it does not contain certain local patterns. In the terms of local machines explained in<br>
+[<a href="https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem">Alife properties of directed interaction combinators vs. chemlambda. Marius Buliga (2020), https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem</a>]<br>
+we can't detect with a local machine the absence of a local pattern in a graph, only the presence of it.<br><br>
+
+Under this identification the equivalent of the beta rewrite in terms of tangle diagrams becomes equivalent with the "splice" and "loop" graph rewrites<br><br>
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/glc/splice_1.jpg" alt="glc: splice and loop" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+
+In joint work with L.H. Kauffman [<a href="https://arxiv.org/abs/1312.4333">arXiv:1312.4333</a>], in section 5 Kauffman calls for a topological version of GLC, based exclusively on manipulations of tangle diagrams.
+</span3>
+
+<h3>Chemlambda v1 (chemical concrete machine)</h3>[<a href="https://arxiv.org/abs/1309.6914">arXiv:1309.6914</a>]<span3> is a modification of GLC which contains only local rewrites. It also proposes for the first time to see the graphs as molecules and the rewrites as chemical reactions mediated by rewriting enzymes. Beyond that, chemlambda v1 still lacks a clearly defined algorithm of rewriting.<br><br>
+The elements of chemlambda v1 are<br><br>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/ess_101.jpg" alt="chemlambda v1: elements" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/ess_102.jpg" alt="chemlambda v1: enzymes" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+The graphs are called molecules and the rewrites are mediated by enzymes.<br><br>
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/ess_3.jpg" alt="chemlambda v1: rewrites as chemical reactions" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+
+
+The elements of GLC as translated into chemlambda are:<br><br>
+
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/convention_1.jpg" alt="chemlambda v1: glc nodes as chemlambda v1 nodes" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+
+
+
+The rewrites are:<br><br>
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/convention_2.jpg" alt="chemlambda v1: beta and fanin" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/convention_3.jpg" alt="chemlambda v1: co-comm and co-assoc" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/convention_4.jpg" alt="chemlambda v1: local pruning" style="padding: 20px; margin-bottom: 18px; width:350px;border:0">
+</div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/convention_5.jpg" alt="chemlambda v1: elimination of loops" style="padding: 20px; margin-bottom: 18px; width:250px;border:0"><br><br>
+</div>
+
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/convention_6.jpg" alt="chemlambda v1: DIST rewrites" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+With these rewrites we can do some lambda calculus reductions, by using the same parsing of lambda calculus terms to (chemlambda) graphs as in GLC. For example<br><br>
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/bckw_112.jpg" alt="chemlambda v1: IFTHENELSE reduction" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+
+A rewrite which is introduced later in the article is DISENTANGLE<br><br>
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/bckw_5.jpg" alt="chemlambda v1: DISENTANGLE rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+With this supplementary rewrite  I can prove that the BCKW combinators system<br><br>
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/bckw_2.jpg" alt="chemlambda v1: BCKW combinators" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+can be implemented, in the sense that the combinators can duplicate (example here for B)<br><br>
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/bckw_3.jpg" alt="chemlambda v1: B duplication" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+and that all needed reductions among B,C,K,W combinators can be done (example here for K)<br><br>
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/bckw_6.jpg" alt="chemlambda v1: K reduction" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+
+This graph rewrite system has conflicting rewrites, but it has no algorithm of application of rewrites. Especially the status of DISENTANGLE is unclear. This will be solved in chemlambda v2.<br><br>
+
+The first published (in the usual ways) article which contains the name "chemlambda" is joint with L.H. Kauffman, in the ALIFE-14 conference, [<a href="https://arxiv.org/abs/1403.8046">arXiv:1403.8046</a>]. Here Kauffman pushes again for a more topological version [<a href="https://mbuliga.github.io/emergent-10-years/pdf/ALIFETalk-copy.pdf">Kauffman'  slides</a>] which mixes tangle diagrams with chemlambda nodes, in order to be able to do computations (in the logical sense).The emergent algebras part of GLC, which is still present in chemlambda, used such tangle diagrams manipulations for differential calculus computations, instead. In these articles the emergent algebras aspects and interest are hidden. <br><br>
+
+Together with Kauffman, we experimented a lot with the power of chemlambda v1. Our essays on paper were not going too far, due to the lack of a program which could make much easier such exploration. In the background this was because of a lack of a clear rewrite application algorithm. <br><br>
+During this period I became aware of the existence of chemlambda quines. See as an example the tedious manipulation of reductions for the predecessor of a Church number (taken from [<a href="https://chorasimilarity.wordpress.com/2014/08/27/ouroboros-predecessor-iii-the-walking-machine/">this chorasimilarity post</a>]<br><br>
+
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/pred_round_9.jpg" alt="chemlambda v1: ouroboros reduction" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+
+Meanwhile Kauffmann started to use Mathematica for doing chemlambda v1 reductions.
+
+<div>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/chemical-concrete-machine/louis-second.png" alt="chemlambda v1: Mathematica reductions by L.H. Kauffman" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div></div>
+He introduced the "Arrow" 2-valent node, which is useful for easy application of several rewrites in the same time. <br><br><br>
+
+<h3>Chemlambda v2</h3>
+is an artificial chemistry, in the sense that it is a purely local graph rewrite system together with an algorithm of applications which can be done by local machines. See [<a href="https://arxiv.org/abs/2005.06060">arXiv:2005.06060</a>] for more explanations.<br><br>
+Motivated by the first essays by Kauffman, I wrote the needed programs for exploration of chemlambda, in awk and html+d3.js for visualization. The <a href="http://chorasimilarity.github.io/chemlambda-gui/index.html">first chemlambda project site</a> contains demonstrations made with these programs. The github repository is 
+<a href="https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md">chemlambda-gui</a>.<br><br>
+The latest chemlambda project site, which contains several repositories from various contributors, is <a href="https://chemlambda.github.io/index.html">this</a>. With the help of contributors, now we can reduce chemlambda molecules directly in js, as you can see in the more recent demonstrations.<br><br>
+Chemlambda can now be <a href="https://mbuliga.github.io/quinegraphs/ice.html#howto">compared with Interaction Combinators</a> and there is a <a href="https://mbuliga.github.io/quinegraphs/lambda2mol.html#lambdanote">lambda calculus to chemlambda parser and reducer</a>. <br><br>
+The chemlambda v2 rewrites solve the problem of the curious DISENTANGLE rewrite by introducing two fanout nodes (FO and FOE) instead of one and by a modified set of graph rewrites. These are the following. We use the mol notation for clarity and we describe the rewrites by giving the LHS and RHS patterns:<br><br>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/FI-FOE.jpg" alt="chemlambda v2: FI-FOE" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/L-A.jpg" alt="chemlambda v2: L-A, or beta rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/A-FO.jpg" alt="chemlambda v2: A-FO DIST rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/A-FOE.jpg" alt="chemlambda v2: A-FOE DIST rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/FI-FO.jpg" alt="chemlambda v2: FI-FO DIST rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/FO-FOE.jpg" alt="chemlambda v2: FO-FOE DIST rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/L-FO.jpg" alt="chemlambda v2: L-FO DIST rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/L-FOE.jpg" alt="chemlambda v2: L-FOE DIST rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/remove4-T-T.jpg" alt="chemlambda v2: remove rewrites" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term1-FOE-T.jpg" alt="chemlambda v2: FOE-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term1-FO-T.jpg" alt="chemlambda v2: FO-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term-A-T.jpg" alt="chemlambda v2: A-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term-FI-T.jpg" alt="chemlambda v2: FI-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/termL-L-T.jpg" alt="chemlambda v2: L-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/termin2-T-FO.jpg" alt="chemlambda v2: T-FO rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/termin2-T-FOE.jpg" alt="chemlambda v2: T-FOE rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/termFI-FRIN-FI.jpg" alt="chemlambda v2: FRIN-FI rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/terminfrin-FRIN-FO.jpg" alt="chemlambda v2: FRIN-FO rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+and the COMB rewrites which eliminate Arrow nodes. <br><br>
+
+The DISENTANGLE rewrite is no longer needed, because it's effect can be achieved by the SHUFFLE move, which is a sequence of two chemlambda v2 rewrites: FO-FOE and FI-FOE.<br><br>
+
+For completeness, here are the graph rewrites of Lafont' Interaction combinators, as they appear in the chemlambda v2 js programs, chemistry IC in <a href="https://github.com/mbuliga/quinegraphs/blob/master/js/chemistry.js">chemistry.js</a>: 
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/DELTA-DELTA-arrow1.jpg" alt="IC: DELTA-DELTA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/DELTA-DELTA-arrow1.jpg" alt="IC: DELTA-DELTA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/GAMMA-GAMMA-arrow1.jpg" alt="IC: GAMMA-GAMMA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/GAMMA-DELTA.jpg" alt="IC: GAMMA-DELTA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term3-DELTA-T.jpg" alt="IC: DELTA-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term3-GAMMA-T.jpg" alt="IC: GAMMA-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/remove4-T-T.jpg" alt="chemlambda v2: remove rewrites" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+FRIN and FROUT 1-valent nodes are introduced (also in chemlambda) for the free half-edges. We use also the Arrow 2-valent node and the COMB rewrites for eliminating them. <br><br>
+
+All LHS patterns, of chemlambda and IC, are made of two nodes connected through their active ports. The main difference between chemlambda v2 rewrites and IC rewrites is that several chemlambda nodes have two active ports, while IC nodes have only one active port. This leads to conflicting rewrites in chemlambda, which as argued <a href="https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem">here</a>, are needed for life. 
+
+
+
+
+
+
+</body>
+</html>
+
+
