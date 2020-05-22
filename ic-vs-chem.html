@@ -3,7 +3,7 @@
 
 <!-- Comparison of alife properties of directed combinators vs chemlambda
 author: Marius Buliga
-last modified: 20.05.2020
+last modified: 22.05.2020
 //
 -->
 
@@ -51,7 +51,46 @@ Here we compare two graph rewrites systems. The first is chemlambda. The second 
 <div class="col-6 menu" style="text-align: center;">
 </div>
 </div>
-which works well if we renounce at the chemlambda rewrites A-FO and A-FOE <br><br>
+We can prove that the nodes DELTA and GAMMA nodes (and the corresponding  nodes T, FRIN, FROUT and Arrow which are simply pairs of usual nodes T and Arrow) satisfy the Interaction Combinators rewrites: 
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/DELTA-DELTA-arrow1.jpg" alt="IC: DELTA-DELTA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/DELTA-DELTA-arrow1.jpg" alt="IC: DELTA-DELTA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/GAMMA-GAMMA-arrow1.jpg" alt="IC: GAMMA-GAMMA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/GAMMA-DELTA.jpg" alt="IC: GAMMA-DELTA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term3-DELTA-T.jpg" alt="IC: DELTA-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term3-GAMMA-T.jpg" alt="IC: GAMMA-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/remove4-T-T.jpg" alt="chemlambda v2: remove rewrites" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+provided that we renounce at the chemlambda rewrites A-FO and A-FOE <br><br>
 <div class="row">
 <div class="col-6 menu" style="text-align: center;">
 <img src="img/A-FO.jpg" alt="chemlambda rewrite A-FO" style="width:350px;border:0">
@@ -69,7 +108,42 @@ and we replace them by a rewrite FI-A.<br><br>
 <div class="col-6 menu" style="text-align: center;">
 </div>
 </div>
-Some termination rewrites are modified as well. More precisely, these rewrites are described in the file <a href="https://github.com/mbuliga/quinegraphs/blob/master/js/chemistry.js">chemistry.js</a>. Chemlambda rewrites are obtained by concatenation of CHEMLAMBDABARE with CHEMLAMBDAEND and dirIC rewrites are obtained from concatenation of CHEMLAMBDABARE with DICMOD. 
+Some termination rewrites are modified as well. More precisely, these termination rewrites from chemlambda v2 are eliminated:
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/termL-L-T.jpg" alt="chemlambda v2: L-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term1-FOE-T.jpg" alt="chemlambda v2: FOE-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+</div>
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term1-FO-T.jpg" alt="chemlambda v2: FO-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term-A-T.jpg" alt="chemlambda v2: A-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+</div>
+
+and replaced by these different termination rewrites:
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/termLD-L-T.jpg" alt="dirIC: L-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/term3-A-T.jpg" alt="dirIC: A-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+</div>
+
+
+The chemistries are described in the file <a href="https://github.com/mbuliga/quinegraphs/blob/master/js/chemistry.js">chemistry.js</a>. Chemlambda rewrites are obtained by concatenation of "CHEMLAMBDABARE" with "CHEMLAMBDAEND" and dirIC rewrites are obtained from concatenation of "CHEMLAMBDABARE" with "DICMOD". General pure termination rewrites "T" and the "COMB" rewrites which manage the Arrow nodes are part of both chemistries.
 
 
 The resulting graph rewrite system is very close to Asperti' <a href="https://github.com/asperti/BOHM1.1">BOHM machine</a> graph rewrite system. <br><br>
