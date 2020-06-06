@@ -3,7 +3,7 @@
 
 <!-- Introduction to Pure See
 author: Marius Buliga
-last modified: 05.06.2020
+last modified: 06.06.2020
 //
 -->
 
@@ -28,7 +28,7 @@ last modified: 05.06.2020
 
 <div class="header">
   <span3>Cite as: <br></span3><div>Introduction to Pure See.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2020), https://mbuliga.github.io/quinegraphs/puresee.html<span id="citeas"></span></div><br><br>
-<span3>Draft!  Version 05.06.2020</span3><br><br>
+<span3>Draft!  Version 06.06.2020</span3><br><br>
 <span3>See also:</span3><br> <a href="https://chemlambda.github.io/index.html">All chemlambda projects</a><br><br><br><br>
 <span3>
 
@@ -41,7 +41,7 @@ last modified: 05.06.2020
 <h4><a href="#VariablesAndTerms">Variables and terms</a></h4>
 <h4><a href="#Commands">Commands</a></h4>
 <h4><a href="#MultiplicationByScalarsOrigin">Multiplication by scalars. Origin</a></h4>
-<h4><a href="#ConversionBetweenCommandsAndFunctionalForms">Conversion between commands and functional forms</a></h4>
+<h4><a href="#ConversionBetweenCommandsAndAlgebraicForms">Conversion between commands, functional and algebraic forms</a></h4>
 <h4><a href="#ReductionOfTrigrams">Reduction of trigrams</a></h4>
 <h4><a href="#ReductionByPassingToTheLimit">Reduction by passing to the limit</a></h4>
 <h4><a href="#EmergentRewrites">Emergent rewrites</a></h4>
@@ -90,10 +90,10 @@ last modified: 05.06.2020
 </tr>
 </table>
 <span3>
-The scalar "in" is also denoted by "1", or it can be missed in onvious situations to be explained. Two other scalars are considered: 
-0 (which can be seen as the constant rational function equal to 0) and &infin;. Any number of other constant functions, for which we use Greek letters, may be considered as scalars.<br><br>
+There are three special scalars. The scalar "in" is also denoted by "1". The two other special scalars are: 
+0 (which can be seen as the constant rational function equal to 0) and &infin;. Any number of other constant functions may be considered as scalars.<br><br>
 
-These scalars generate all the scalars via two operations: composition of scalars and multiplication of scalars.<br><br>
+These scalars (with the exception of those special ones) generate all the scalars via two operations: composition of scalars and multiplication of scalars.<br><br>
 
 Composition of scalars is defined as composition of functions<br><br>
 </span3>
@@ -104,7 +104,7 @@ Multiplication of scalars is defined as multiplication of functions<br><br>
 </span3>
 <p style="padding: 20px; margin-bottom: 18px; width:350px;border:0"> [k l][z] = k[z] l[z], for k,l scalars </p>
 <span3>
-
+Composition and multiplication of scalars 0 and &infin; with any other scalar is undefined.<br><br>
 
 
 
@@ -427,7 +427,7 @@ in ((k l) C)  as (k (l C));</p>
 
 
 
-<h3 id="ConversionBetweenCommandsAndFunctionalForms">Conversion between commands and functional forms</h3>
+<h3 id="ConversionBetweenCommandsAndAlgebraicForms">Conversion between commands, functional and algebraic forms</h3>
 <h4>(<a href="#Contents">back to contents</a>)</h4>
 
 <span3>
@@ -441,7 +441,7 @@ is the command </span3>as b from e see a;<span3> multiplied by the scalar </span
 <p style="padding: 20px; margin-bottom: 18px; width:350px;border:0">
 (apply as) (as b from e see a);</p> 
 <span3>
-<span3>We can pass from algebraic forms to commands by the following rewrite:<br><br>
+<span3>We can pass from algebraic forms to commands by the following rewrite (ALG):<br><br>
 <table style="padding: 20px; margin-bottom: 18px; width:350px; border:0">
 <tr>
   <td>b = a;
@@ -459,7 +459,7 @@ Examples:
 <tr>
   <th style="text-align: left;">command
   </th>
-  <th style="text-align: left;">functional form
+  <th style="text-align: left;">algebraic form
   </th>
   <th style="text-align: left;">replace by
   </th>
@@ -513,27 +513,336 @@ Examples:
   </td> 
 </tr>
 </table>
-
+Another rewrite is (COMB) which eliminates Arrow commands:<br><br>
+</span3>
+<table style="padding: 20px; margin-bottom: 18px; width:750px; border:0">
+<tr>
+  <th style="text-align: left;">LHS pattern
+  </th>
+  <th style="text-align: left;">action
+  </th>
+</tr>
+<tr>
+  <td>in a as b;
+  </td>
+  <td> delete the command,<br> replace b by a
+  </td>
+</tr>
+</table>
+<span3>
+with the exception: delete in a as a;<br><br>
+(ALG) and (COMB) may be combined into an evaluation rewrite (EVAL), for example<br><br>
+</span3>
+<table style="padding: 20px; margin-bottom: 18px; width:750px; border:0">
+<tr>
+  <th style="text-align: left;">LHS pattern
+  </th>
+  <th style="text-align: left;">action
+  </th>
+</tr>
+<tr>
+  <td>see a from e as b;
+  </td>
+  <td> delete the command,<br> replace b by &lambda; e. a
+  </td>
+</tr>
+</table>
+<span3>
 
 
 <h3 id="ReductionOfTrigrams">Reduction of trigrams</h3>
 <h4>(<a href="#Contents">back to contents</a>)</h4>
+
+A trigram is any triple of commands of the form:<br><br>
+</span3>
+<table style="padding: 20px; margin-bottom: 18px; width:750px; border:0">
+<tr>
+  <td> &alpha; (for[&epsilon;] a see[&epsilon;] b as[&epsilon;] e);
+  </td>
+</tr>
+<tr>
+  <td> &beta; (for[&mu;] e see[&mu;] c as[&mu;] d);
+  </td>
+</tr>
+<tr>
+  <td> &gamma; (for[&epsilon;] u see[&epsilon;] w as[&epsilon;] c);
+  </td>
+</tr>
+</table>
+<span3>
+where &alpha;, &beta;, &gamma;, &mu;, &epsilon; are scalars.<br><br>
+The main rewrite (schema) of Pure See  is (SHUFFLE), which replaces a trigram by another trigram:<br><br>
+</span3>
+<table style="padding: 20px; margin-bottom: 18px; width:750px; border:0">
+<tr>
+  <th style="text-align: left;">LHS pattern
+  </th>
+  <th style="text-align: left;">RHS pattern
+  </th>
+</tr>
+
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+
+<tr>
+  <td>
+    <table>
+    <tr>
+      <td> &alpha; (for[&epsilon;] a see[&epsilon;] b as[&epsilon;] e);
+      </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+      <td> &beta; (for[&mu;] e see[&mu;] c as[&mu;] d);
+      </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+      <td> &gamma; (for[&epsilon;] u see[&epsilon;] w as[&epsilon;] c);
+      </td>
+    </tr>
+    </table>
+  </td>
+  <td> 
+    <table>
+    <tr>
+      <td> &alpha;' (for[&mu;] a see[&mu;] u as[&mu;] v);
+      </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+      <td> &beta;' (for[&epsilon;] v see[&epsilon;] p as[&epsilon;] d);
+      </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+      <td> &gamma;' (for[&epsilon;] b see[&epsilon;] w as[&epsilon;] p);
+      </td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<span3>
 
 <div class="row">
 <div class="col-6 menu" style="text-align: center;">
 <img src="img/puresee/trigram-dist1.jpg" alt="trigram for a DIST1" style="padding: 20px; margin-bottom: 18px; width:450px;border:0">
 </div>
 <div class="col-6 menu" style="text-align: center;">
-<img src="img/puresee/dist1-commented.jpg" alt="DIST1 rewrite" style="padding: 20px; margin-bottom: 18px; width:450px;border:0">
 </div>
 </div>
 
+
+
+
 <h3 id="ReductionByPassingToTheLimit">Reduction by passing to the limit</h3>
 <h4>(<a href="#Contents">back to contents</a>)</h4>
+We are allowed to "pass to the limit" with scalars, to one of the special scalars 0, 1, &infin;. This passage to the limit is a rewrite.<br><br>
+<table style="padding: 20px; margin-bottom: 18px; width:750px; border:0">
+<tr>
+  <th style="text-align: left;">LHS pattern
+  </th>
+    <th style="text-align: left; width:120px;">
+  </th>
+  <th style="text-align: left;">RHS pattern
+  </th>
+</tr>
+
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+
+
+<tr>
+  <td>from[&mu;] e see[&mu;] a as[&mu;] b; 
+  </td>
+  <td>&mu; &rarr; 1</td>
+  <td> in e; in a as b;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; 0</td>
+  <td>in a; in e as b;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; &infin;</td>
+  <td>in e free a as b;
+  </td>
+</tr>
+
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+
+<tr>
+  <td>see[&mu;] a from[&mu;] e as[&mu;] b; 
+  </td>
+  <td>&mu; &rarr; 1</td>
+  <td> as e; in a as b;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; 0</td>
+  <td>in a as e free b;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; &infin;</td>
+  <td>as b; in a as e;
+  </td>
+</tr>
+
+
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+
+<tr>
+  <td>as[&mu;] b from[&mu;] e see[&mu;] a; 
+  </td>
+  <td>&mu; &rarr; 1</td>
+  <td> in e; in b as a;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; 0</td>
+  <td>in b free e as a;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; &infin;</td>
+  <td>as b; in e as a;
+  </td>
+</tr>
+
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+
+<tr>
+  <td>see[&mu;] a as[&mu;] b from[&mu;] e; 
+  </td>
+  <td>&mu; &rarr; 1</td>
+  <td> in a free b as e;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; 0</td>
+  <td>in a; in b as e;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; &infin;</td>
+  <td>in b; in a as e;
+  </td>
+</tr>
+
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+
+<tr>
+  <td>from[&mu;] e as[&mu;] b see[&mu;] a; 
+  </td>
+  <td>&mu; &rarr; 1</td>
+  <td> in e as b free a;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; 0</td>
+  <td>as a; in e as b;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; &infin;</td>
+  <td>as b; in e as a;
+  </td>
+</tr>
+
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+
+<tr>
+  <td>as[&mu;] b see[&mu;] a from[&mu;] e; 
+  </td>
+  <td>&mu; &rarr; 1</td>
+  <td> as e; in b as a;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; 0</td>
+  <td>as a; in b as e;
+  </td>
+</tr>
+<tr>
+  <td>
+  </td>
+  <td>&mu; &rarr; &infin;</td>
+  <td>in b; as a free e;
+  </td>
+</tr>
+</table>
+<span3>
+
+<!--
+
+We are also allowed to pass to the limit in the following quadrigram (this corresponds to axiom A4 of dilation structures <a href="https://arxiv.org/abs/0810.5042">[arXiv:0810.5042]</a>)<br><br>
+</span3>
+<table style="padding: 20px; margin-bottom: 18px; width:750px; border:0">
+<tr>
+  <th style="text-align: left;">LHS pattern
+  </th>
+    <th style="text-align: left; width:120px;">
+  </th>
+  <th style="text-align: left;">RHS pattern
+  </th>
+</tr>
+
+
+<tr>
+  <td> &alpha; (for[&mu;] a see[&mu;] b as[&mu;] e);</td>
+  <td>  </td>
+  <td>  </td>
+</tr>
+<tr>
+  <td> &beta; (over[&mu;] e apply[&mu;] c as[&mu;] d);</td>
+  <td> &mu; &rarr; 0 </td>
+  <td> in a as b in w as d;</td>
+</tr>
+<tr>
+  <td> &gamma; (for[&mu;] a see[&mu;] w as[&mu;] c);</td>
+  <td>  </td>
+  <td>  </td>
+</tr>
+</table>
+<span3>
+
+-->
 
 <h3 id="EmergentRewrites">Emergent rewrites</h3>
 <h4>(<a href="#Contents">back to contents</a>)</h4>
 
+Here is exemplified the rewrite L-A (or the beta rewrite) as an emergent rewrite. You see the rewrite described in graphical form and in trigram form:<br><br>
+</span3>
 <div class="row">
 <div class="col-6 menu" style="text-align: center;">
 <img src="img/puresee/emergent-LA.jpg" alt="emergent BETA" style="padding: 20px; margin-bottom: 18px; width:550px;border:0">
@@ -542,10 +851,32 @@ Examples:
 <img src="img/puresee/trigram-LA.jpg" alt="trigram for LA" style="padding: 20px; margin-bottom: 18px; width:550px;border:0">
 </div>
 </div>
+<span3>
+COMB rewrites are also applied.<br><br>
+Look in diagonal, from the top left to the bottom right  of the figure which shows the graphical form of L-A as emergent.  We may interpret the  FOE node as the rewrite enzyme.<br><br>
+
+DIST rewrites of chemlambda, dirIC or even those of <a href="https://mbuliga.github.io/kali24.html">kali24</a> are described in the file <a href="https://github.com/mbuliga/quinegraphs/blob/master/js/chemistry.js">chemistry.js</a>. They are particular forms of the possible DIST rewrites which are compatible with the SHUFFLE. <a href="https://mbuliga.github.io/rhs.html">Here is a tool</a> which generates all possible such rewrites. <br><br>
+Let's concentrate on the dist1 rewrite. The following figure shows the graphical form of this rewrite:<br><br>
+</span3>
+<p style="padding: 20px; margin-bottom: 18px; border:0">
+<img src="img/puresee/dist1-commented.jpg" alt="dist1 rewrite commented" style="padding: 20px; margin-bottom: 18px; width:550px;border:0">
+</p>
+<span3>
+In trigram form, the various nodes (i.e. commands) appear as lines: <br><br>
+</span3>
+<p style="padding: 20px; margin-bottom: 18px; border:0">
+<img src="img/puresee/trigram-dist1.jpg" alt="trigram for a dist1" style="padding: 20px; margin-bottom: 18px; width:550px;border:0">
+</p>
+<span3>
+But the LHS pattern of a dist1 has 2 nodes and the RHS pattern has 4 nodes. We can't use directly a SHUFFLE (which transforms 3 nodes into 3 nodes) in order to obtain this rewrite. We need first to create the term "c" (in the previous figure, the one which corresponds to the horizontal line from the bottom). Once created, this new line (i.e command) will allow the use of a SHUFFLE. <br><br>
+
+The creation of this new line can be achieved by an emergent Reidemeister 2 rewrite:<br><br>
 
 <p style="padding: 20px; margin-bottom: 18px; border:0">
 <img src="img/puresee/emergent-dist1-2.jpg" alt="emergent R2-" style="padding: 20px; margin-bottom: 18px; width:750px;border:0">
 </p>
+
+And the SHUFFLE which finishes the dist1 rewrite is in the next figure. The right column of the figure shows the rewrite in terms of D nodes (dilations) and the column from the left shows the rewrite A-FOE from chemlambda, which is a particular dist1 rewrite.<br><br>
 
 <p style="padding: 20px; margin-bottom: 18px; border:0">
 <img src="img/puresee/emergent-dist1.jpg" alt="emergent DIST1" style="padding: 20px; margin-bottom: 18px; width:550px;border:0">
