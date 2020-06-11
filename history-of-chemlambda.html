@@ -33,7 +33,16 @@ The chemlambda project context and relevant previous work are explained in Secti
 
  Here I report about the modifications of the various formalisms which appeared under the name chemlambda. 
 
-<h3>Graphic lambda calculus</h3> [<a href="https://arxiv.org/abs/1305.5786">arXiv:1305.5786</a>]<span3> has the following rewrites:
+<h3 id="Contents">Contents</h3>
+<h4><a href="#GraphicLambdaCalculus">Graphic lambda calculus</a></h4>
+<h4><a href="#ChemlambdaV1">Chemlambda v1 (chemical concrete machine)</a></h4>
+<h4><a href="#ChemlambdaV2">Chemlambda v2</a></h4>
+<h4><a href="#IC">Interaction Combinators, as they appear in chemlambda v2 programs</a></h4>
+
+
+<br><br>
+
+<h3 id="GraphicLambdaCalculus">Graphic lambda calculus</h3> [<a href="https://arxiv.org/abs/1305.5786">arXiv:1305.5786</a>]<span3> has the following rewrites:
 <div class="row">
 <div class="col-6 menu" style="text-align: center;">
 <img src="img/glc/beta_move_9.jpg" alt="glc: beta" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
@@ -142,7 +151,11 @@ Under this identification the equivalent of the beta rewrite in terms of tangle 
 In joint work with L.H. Kauffman [<a href="https://arxiv.org/abs/1312.4333">arXiv:1312.4333</a>], in section 5 Kauffman calls for a topological version of GLC, based exclusively on manipulations of tangle diagrams.
 </span3>
 
-<h3>Chemlambda v1 (chemical concrete machine)</h3>[<a href="https://arxiv.org/abs/1309.6914">arXiv:1309.6914</a>]<span3> is a modification of GLC which contains only local rewrites. It also proposes for the first time to see the graphs as molecules and the rewrites as chemical reactions mediated by rewriting enzymes. Beyond that, chemlambda v1 still lacks a clearly defined algorithm of rewriting.<br><br>
+
+
+
+
+<h3 id="ChemlambdaV1">Chemlambda v1 (chemical concrete machine)</h3>[<a href="https://arxiv.org/abs/1309.6914">arXiv:1309.6914</a>]<span3> is a modification of GLC which contains only local rewrites. It also proposes for the first time to see the graphs as molecules and the rewrites as chemical reactions mediated by rewriting enzymes. Beyond that, chemlambda v1 still lacks a clearly defined algorithm of rewriting.<br><br>
 The elements of chemlambda v1 are<br><br>
 
 
@@ -277,7 +290,7 @@ Meanwhile Kauffmann started to use Mathematica for doing chemlambda v1 reduction
 </div>
 He introduced the "Arrow" 2-valent node, which is useful for easy application of several rewrites in the same time. <br><br><br>
 
-<h3>Chemlambda v2</h3>
+<h3 id="ChemlambdaV2">Chemlambda v2</h3>
 is an artificial chemistry, in the sense that it is a purely local graph rewrite system together with an algorithm of applications which can be done by local machines. See [<a href="https://arxiv.org/abs/2005.06060">arXiv:2005.06060</a>] for more explanations.<br><br>
 Motivated by the first essays by Kauffman, I wrote the needed programs for exploration of chemlambda, in awk and html+d3.js for visualization. The <a href="http://chorasimilarity.github.io/chemlambda-gui/index.html">first chemlambda project site</a> contains demonstrations made with these programs. The github repository is 
 <a href="https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md">chemlambda-gui</a>.<br><br>
@@ -396,6 +409,8 @@ The chemlambda v2 rewrites solve the problem of the curious DISENTANGLE rewrite 
 and the COMB rewrites which eliminate Arrow nodes. <br><br>
 
 The DISENTANGLE rewrite is no longer needed, because it's effect can be achieved by the SHUFFLE move, which is a sequence of two chemlambda v2 rewrites: FO-FOE and FI-FOE.<br><br>
+
+<h3 id="IC">Interaction Combinators, as they appear in chemlambda v2 programs</h3>
 
 For completeness, here are the graph rewrites of Lafont' Interaction combinators, as they appear in the chemlambda v2 js programs, chemistry IC in <a href="https://github.com/mbuliga/quinegraphs/blob/master/js/chemistry.js">chemistry.js</a>: 
 
