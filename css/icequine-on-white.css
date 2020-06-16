@@ -145,7 +145,7 @@ html {
 }
 
 
-@media only screen and (min-width: 940px) {
+@media only screen and (min-width: 1064px) {
   /* For desktop: */
   .col-1 {width: 8.33%;
   padding: 8px; 
