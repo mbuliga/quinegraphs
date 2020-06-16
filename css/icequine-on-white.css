@@ -61,6 +61,7 @@ select option {
 body {
   background-color: white;
   color: #6495ED;
+  margin:5%;
 }
 
 .row::after {
