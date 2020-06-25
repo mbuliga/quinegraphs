@@ -61,8 +61,24 @@ select option {
 body {
   background-color: white;
   color: #6495ED;
-  margin:5%;
+  margin-left:5%;
+  margin-right:5%;
+  margin-top:4%;
+  margin-bottom:2%;  
+/*  margin:5%;*/
+  
 }
+
+a:active, a:link, a:visited		{color: #336699; font-weight: bold; font-family: Verdana, Helvetica, Arial, Geneva, Swiss, SunSans-Regular, sans-serif; text-decoration: none }
+a:hover	{color: rgb(255, 102, 0); font-weight: bold; font-family: Verdana, Helvetica, Arial, Geneva, Swiss, SunSans-Regular, sans-serif; text-decoration: none }
+
+body 			{ color: rgb(102, 102, 102)}
+p			{ color: rgb(102, 102, 102); font-size: 16px; font-family: Verdana, Helvetica, Arial, Geneva, Swiss, SunSans-Regular, sans-serif }
+td			{ color: rgb(102, 102, 102); font-size: 16px; font-family: Verdana, Helvetica, Arial, Geneva, Swiss, SunSans-Regular, sans-serif }
+th			{ color: rgb(102, 102, 102); font-weight: bold; font-size: 16px; font-family: Verdana, Helvetica, Arial, Geneva, Swiss, SunSans-Regular, sans-serif; text-align: center }
+h1                      { color: black; font-size: 1.2em; font-weight: bold; margin: 0; padding-top: 4px; padding-bottom: 4px; }
+h2                      { color: black; font-size: 1.2em; font-weight: bold; margin: 0; padding-top: 4px; padding-bottom: 4px }
+h3                      { color: #555555; font-size: 1.2em; font-weight: bold; margin: 0; padding-top: 4px; padding-bottom: 4px; clear: both }
 
 .row::after {
   content: "";
@@ -81,7 +97,8 @@ body {
 }
 
 html {
-  font-family: "Lucida Sans", sans-serif;
+/*  font-family: "Lucida Sans", sans-serif; font-weight: bold; */ font-size: 16px;
+ font-family: Verdana, Helvetica, Arial, Geneva, Swiss, SunSans-Regular, sans-serif; text-decoration: none;
 }
 
 .header {
@@ -220,8 +237,10 @@ html {
   border: 2px solid #ff5; 
 }
 
-a:active, a:link, a:visited  {color: #b80000;}
+/*
+a:active, a:link, a:visited  {color: #336699; font-weight: bold; font-family: Verdana, Helvetica, Arial, Geneva, Swiss, SunSans-Regular, sans-serif; text-decoration: none;}
 
+*/
 select option {
   background-color: white; 
   color: #010101;
