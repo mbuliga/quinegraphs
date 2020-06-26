@@ -3,7 +3,7 @@
 
 <!-- History of chemlambda
 author: Marius Buliga
-last modified: 22.06.2020
+last modified: 25.06.2020
 //
 -->
 
@@ -24,14 +24,14 @@ last modified: 22.06.2020
 
 <div class="header">
   <span3>Cite as: <br></span3><div>Graph rewrites, from emergent algebras to chemlambda.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2020), https://mbuliga.github.io/quinegraphs/history-of-chemlambda.html</div><br><br>
-<span3>Version 22.06.2020</span3><br><br>
+<span3>Version 25.06.2020</span3><br><br>
 <span3>See also:</span3><br> <a href="https://chemlambda.github.io/index.html">All chemlambda projects</a><br><br><br><br>
 
 <h3>Context</h3>
 The chemlambda project context and relevant previous work are explained in Section 4 (About this project) of [<a href="">arXiv:2003.14332</a>]. See also, for more mathematical background,the presentation<br>
 [<a href="https://mbuliga.github.io/novo/presentation.html">Emergent rewrites in knot theory and logic. Marius Buliga (2020), https://mbuliga.github.io/novo/presentation.html</a>]<br><br>
 
- Here I report about the modifications of the various formalisms which appeared under the name chemlambda. 
+ Here I report about the modifications of the various formalisms which appeared under the name chemlambda. <br><br><br>
 
 <h3 id="Contents">Contents</h3>
 <h4><a href="#GraphicLambdaCalculus">Graphic lambda calculus</a></h4>
@@ -226,7 +226,7 @@ With these rewrites we can do some lambda calculus reductions, by using the same
 </div>
 </div>
 
-A rewrite which is introduced later in the article is DISENTANGLE<br><br>
+A rewrite which is introduced later in the article is DISENTANGLE  (as a pattern it appears later as SHUFFLE)<br><br>
 
 <div class="row">
 <div class="col-6 menu" style="text-align: center;">
@@ -288,11 +288,11 @@ Meanwhile Kauffmann started to use Mathematica for doing chemlambda v1 reduction
 <div class="col-6 menu" style="text-align: center;">
 </div>
 </div>
-He introduced the "Arrow" 2-valent node, which is useful for easy application of several rewrites in the same time. <br><br><br>
+He introduced the "Arrow" 2-valent node, which is useful for easy application of several rewrites in the same time. <br><br><br><br>
 
 <h3 id="ChemlambdaV2">Chemlambda v2</h3>
 is an artificial chemistry, in the sense that it is a purely local graph rewrite system together with an algorithm of applications which can be done by local machines. See [<a href="https://arxiv.org/abs/2005.06060">arXiv:2005.06060</a>] for more explanations.<br><br>
-Motivated by the first essays by Kauffman, I wrote the needed programs for exploration of chemlambda, in awk and html+d3.js for visualization. The <a href="http://chorasimilarity.github.io/chemlambda-gui/index.html">first chemlambda project site</a> contains demonstrations made with these programs. The github repository is 
+Motivated by the first programming essays by Kauffman for <a href="#ChemlambdaV1">chemlambda v1</a>, I wrote the needed programs for  chemlambda v2, in awk and html+d3.js used for visualization. The <a href="http://chorasimilarity.github.io/chemlambda-gui/index.html">first chemlambda project site</a> contains demonstrations made with these programs. The github repository is 
 <a href="https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md">chemlambda-gui</a>.<br><br>
 The latest chemlambda project site, which contains several repositories from various contributors, is <a href="https://chemlambda.github.io/index.html">this</a>. With the help of contributors, now we can reduce chemlambda molecules directly in js, as you can see in the more recent demonstrations.<br><br>
 Chemlambda can now be <a href="https://mbuliga.github.io/quinegraphs/ice.html#howto">compared with Interaction Combinators</a> and there is a <a href="https://mbuliga.github.io/quinegraphs/lambda2mol.html#lambdanote">lambda calculus to chemlambda parser and reducer</a>. <br><br>
@@ -410,6 +410,18 @@ and the COMB rewrites which eliminate Arrow nodes. <br><br>
 
 The DISENTANGLE rewrite is no longer needed, because it's effect can be achieved by the SHUFFLE move, which is a sequence of two chemlambda v2 rewrites: FO-FOE and FI-FOE.<br><br>
 
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/shuffle.jpg" alt="chemlambda v2: SHUFFLE composite rewrite" style="padding: 20px; margin-bottom: 18px; width:450px;border:0"><br><br>
+</div>
+
+
+<div class="col-6 menu" style="text-align: center;">
+</div>
+</div>
+<br><br><br><br>
+
+
 <h3 id="IC">Interaction Combinators, as they appear in chemlambda v2 programs</h3>
 
 For completeness, here are the graph rewrites of Lafont' Interaction combinators, as they appear in the chemlambda v2 js programs, chemistry IC in <a href="https://github.com/mbuliga/quinegraphs/blob/master/js/chemistry.js">chemistry.js</a>: 
@@ -419,20 +431,24 @@ For completeness, here are the graph rewrites of Lafont' Interaction combinators
 <img src="img/DELTA-DELTA-arrow1.jpg" alt="IC: DELTA-DELTA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
 </div>
 
-<div class="row">
-<div class="col-6 menu" style="text-align: center;">
-<img src="img/DELTA-DELTA-arrow1.jpg" alt="IC: DELTA-DELTA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
-</div>
 
-<div class="row">
 <div class="col-6 menu" style="text-align: center;">
 <img src="img/GAMMA-GAMMA-arrow1.jpg" alt="IC: GAMMA-GAMMA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
 </div>
+</div>
+
 
 <div class="row">
 <div class="col-6 menu" style="text-align: center;">
 <img src="img/GAMMA-DELTA.jpg" alt="IC: GAMMA-DELTA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
 </div>
+
+
+<div class="col-6 menu" style="text-align: center;">
+<br><br>
+</div>
+</div>
+
 
 <div class="row">
 <div class="col-6 menu" style="text-align: center;">
@@ -440,15 +456,15 @@ For completeness, here are the graph rewrites of Lafont' Interaction combinators
 </div>
 
 
-<div class="row">
 <div class="col-6 menu" style="text-align: center;">
 <img src="img/term3-GAMMA-T.jpg" alt="IC: GAMMA-T rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
 </div>
-
+</div>
 
 <div class="row">
 <div class="col-6 menu" style="text-align: center;">
 <img src="img/remove4-T-T.jpg" alt="chemlambda v2: remove rewrites" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
 </div>
 
 FRIN and FROUT 1-valent nodes are introduced (also in chemlambda) for the free half-edges. We use also the Arrow 2-valent node and the COMB rewrites for eliminating them. <br><br>
