@@ -469,7 +469,19 @@ For completeness, here are the graph rewrites of Lafont' Interaction combinators
 
 FRIN and FROUT 1-valent nodes are introduced (also in chemlambda) for the free half-edges. We use also the Arrow 2-valent node and the COMB rewrites for eliminating them. <br><br>
 
-All LHS patterns, of chemlambda and IC, are made of two nodes connected through their active ports. The main difference between chemlambda v2 rewrites and IC rewrites is that several chemlambda nodes have two active ports, while IC nodes have only one active port. This leads to conflicting rewrites in chemlambda, which as argued <a href="https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem">here</a>, are needed for life. 
+All LHS patterns, of chemlambda and IC, are made of two nodes connected through their active ports. The main difference between chemlambda v2 rewrites and IC rewrites is that several chemlambda nodes have two active ports, while IC nodes have only one active port.<br><br>
+It is possible to modify the chemlambda v2 chemistry such that there are no conflicts. We obtain a chemistry called "dirIC", or directed interaction combinators, explained in <br>
+[<a href="https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem">Alife properties of directed interaction combinators vs. chemlambda. Marius Buliga (2020), https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem</a>]<br>
+over the same set of nodes as chemlambda v2. With the chemistry dirIC, there is a translation between IC nodes of Lafont to chemlambda nodes: 
+
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/dirIC.jpg" alt="translation between IC and chemlambda nodes" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+</div>
+
+As argued <a href="https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem">here</a>, the existence of conflicting rewrites in chemlambda v2, compared with dirIC, creates much more interesting alife behaviours. 
+
 
 
 
