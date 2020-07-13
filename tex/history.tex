@@ -1,0 +1,770 @@
+\documentclass{article}
+\vspace{.5cm}
+
+
+%\usepackage{amssymb,latexsym,amsmath}
+\usepackage{amssymb,latexsym}
+%\usepackage{makeidx} 
+%\makeindex
+
+%\usepackage[dvips,matrix,arrow,ps,color,line,curve,frame]{xy}
+\vspace{.5cm}
+%\usepackage{graphicx}
+\vspace{.5cm}
+\usepackage[pdftex]{graphicx}
+\vspace{.5cm}
+%\usepackage{parsetree}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+\vspace{.5cm}
+
+\hoffset-0.64cm
+\voffset-2.14cm
+
+
+\textheight23.8cm
+
+\setlength{\textwidth}{14.cm}
+\vspace{.5cm}
+
+
+\begin{document}
+\vspace{.5cm}
+
+\pagestyle{plain}
+\vspace{.5cm}
+
+
+
+
+
+
+
+
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{proposition}[theorem]{Proposition}
+\vspace{.5cm}
+\newtheorem{lemma}[theorem]{Lemma}
+\vspace{.5cm}
+\newtheorem{corollary}[theorem]{Corollary}
+\vspace{.5cm}
+\newtheorem{definition}[theorem]{Definition}
+\vspace{.5cm}
+\newtheorem{remark}[theorem]{Remark}
+\vspace{.5cm}
+\newtheorem{exempl}{Example}[section]
+
+\newenvironment{example}{\begin{exempl}  \em}{\hfill $\square$
+
+\end{exempl}}  \vspace{.5cm}
+\vspace{.5cm}
+
+
+
+
+
+
+
+
+\renewcommand{\contentsname}{ }
+\vspace{.5cm}
+
+
+
+\title{Graph rewrites, from graphic lambda calculus, to chemlambda, to directed interaction combinators}
+\vspace{.5cm}
+\author{Marius Buliga \\ 
+\\
+Institute of Mathematics, Romanian Academy \\
+P.O. BOX 1-764, RO 014700\\
+Bucure\c sti, Romania\\ 
+{\footnotesize Marius.Buliga@imar.ro , mbuliga@protonmail.ch}}  \vspace{.5cm}
+\vspace{.5cm}
+
+
+
+
+
+
+\date{06.07.2020}
+\vspace{.5cm}
+
+
+
+
+
+\maketitle
+
+
+\begin{abstract}
+Here I report about the modifications of and relations between graphic lambda calculus,  various formalisms which appeared under the name chemlambda and a version of directed interaction combinators.
+
+This is part of the study and experiments with the artificial chemistry chemlambda and the relations with lambda calculus or interaction combinators, as described in \href{https://arxiv.org/abs/2003.14332}{arXiv:2003.14332} and available from the entry page \href{https://chemlambda.github.io/index.html}{chemlambda.github.io} \cite{entry}.
+\end{abstract}
+\vspace{.5cm}
+
+
+\section*{Context}
+The chemlambda project context and relevant previous work are explained in Section 4 (About this project) of \cite{buligachemlambda} \href{https://arxiv.org/abs/2003.14332}{arXiv:2003.14332}  See also, for more mathematical background, the presentation \cite{buliganovo} \href{https://mbuliga.github.io/novo/presentation.html}{Emergent rewrites in knot theory and logic}.
+
+
+
+ Here I report about the modifications of the various formalisms which are related to chemlambda.   The online varsion of this article, which will be kept up to date, is \href{https://mbuliga.github.io/quinegraphs/history-of-chemlambda.html}{Graph rewrites, from emergent algebras to chemlambda}. See also the site of \href{https://chemlambda.github.io/index.html}{all chemlambda projects}.
+
+
+\tableofcontents
+
+\section{Graphic lambda calculus}
+\label{GraphicLambdaCalculus}
+Introduced in \cite{buligaglc}  \href{https://arxiv.org/abs/1305.5786}{arXiv:1305.5786}, graphic lambda calculus  has the following doupbel push-out (DPO \cite{dpo}) graph rewrites:
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.75\textwidth]{../img/glc/beta_move_9.jpg}
+%\caption{glc: beta}
+}
+\vspace{.5cm}
+
+
+\vspace{.5cm}
+\centerline{\includegraphics[width=0.5\textwidth]{../img/glc/commr.jpg}
+%\caption{glc: co-comm}
+}
+\vspace{.5cm}
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.6\textwidth]{../img/glc/assocr.jpg}
+%\caption{glc: co-assoc}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.6\textwidth]{../img/glc/fanoutr.jpg}
+%\caption{glc: global fanout}
+}
+\vspace{.5cm}
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/glc/lambdapr.jpg}
+%\caption{glc: local pruning}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.6\textwidth]{../img/glc/epsipr.jpg}
+%\caption{glc: local pruning}
+}
+\vspace{.5cm}
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.6\textwidth]{../img/glc/globalpr.jpg}
+%\caption{glc: global pruning}
+}
+\vspace{.5cm}
+
+
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.6\textwidth]{../img/glc/r1amove.jpg}
+%\caption{glc: R1 a}
+}
+\vspace{.5cm}
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.6\textwidth]{../img/glc/r1bmove.jpg}
+%\caption{glc: R1 b}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.6\textwidth]{../img/glc/r2move.jpg}
+%\caption{glc: R2}
+}
+\vspace{.5cm}
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.6\textwidth]{../img/glc/ext2r.jpg}
+%\caption{glc: ext 2}
+}
+\vspace{.5cm}
+Graphic lambda calculus does not have an algorithm of application of rewrites. 
+
+There is an algorithm for conversion of untyped lambda terms into glc graphs. Here are two examples of reductions:
+\begin{enumerate}
+\item[-] reduction of the Omega combinator
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/glc/omega_manip.jpg}
+%\caption{glc: Omega combinator}
+}
+\vspace{.5cm}
+\item[-] reduction of the term SKK
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.9\textwidth]{../img/glc/skk.jpg}
+%\caption{glc: SKK}
+}
+\end{enumerate}
+\vspace{.5cm}
+Graphic lambda calculus is interesting because it can also represent the graphical version of emergent algebras via decorated tangle diagrams explained in \href{https://arxiv.org/abs/1103.6007}{arXiv:1103.6007}. It can therefore be used to represent and compute (reduce) differential calculus in metric spaces endowed with dilation structures \href{https://arxiv.org/abs/0810.5042}{arXiv:0810.5042}.
+
+
+ This is done via the identification of decorated crossings as
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.6\textwidth]{../img/glc/cross_emer_1.jpg}
+%\caption{glc: emergent algebras decorated crossings}
+}
+\vspace{.5cm}
+
+Another, different identification of undecorated crossings, which can be done with GLC, uses the application and abstraction nodes
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.6\textwidth]{../img/glc/cross_beta_1.jpg}
+%\caption{glc: lambda calculus and decorated crossings}
+}
+\vspace{.5cm}
+
+ Under this identifications the equivalent of the beta rewrite in terms of tangle diagrams becomes equivalent with the "splice" and "loop" graph rewrites.
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.7\textwidth]{../img/glc/splice_1.jpg}
+%\caption{glc: splice and loop}
+}
+
+\vspace{.5cm}
+
+Both these identifications apply for a notion of tangle diagrams which differs from the usual one. Namely we use tangle diagrams which are not constrained to be planar graphs. 
+More precisely, here a tangle diagram is an oriented \href{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.18.5446&rep=rep1&type=pdf}{port graph in the sense of Bawden} \cite{bawden1} \cite{bawden2}, with nodes which are 4-valent and oriented links. The nodes can be either undecorated, i.e. of the two kinds of oriented crossings, or decorated, i.e. the two kinds of decorated crossings are supplementary decorated with an element of a commutative group.
+
+
+The difference from usual (oriented and with decorated crossings) tangle diagrams is that as graphs these diagrams are not supposed to be planar. By Kuratowski theorem, a graph is planar if it does not contain certain local patterns. In the terms of local machines explained in \cite{buligaalife} 
+\href{https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem}{Alife properties of directed interaction combinators vs. chemlambda} 
+we can't detect with a local machine the absence of a local pattern in a graph, only the presence of it.
+
+
+ In joint work with L.H. Kauffman  \cite{buligakauffmanglc} \href{https://arxiv.org/abs/1312.4333}{arXiv:1312.4333}, in section 5 Kauffman calls for a topological version of GLC, based exclusively on manipulations of tangle diagrams.
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Chemlambda v1 (chemical concrete machine)}
+\label{ChemlambdaV1}
+Introduced in \cite{buligachem} \href{https://arxiv.org/abs/1309.6914}{arXiv:1309.6914}, chemlambda v1 or the chemical concrete machine is a modification of GLC which contains only local rewrites. It also proposes for the first time to see the graphs as molecules and the rewrites as chemical reactions mediated by rewriting enzymes. Beyond that, chemlambda v1 still lacks a clearly defined algorithm of rewriting.
+
+
+The elements of chemlambda v1 are
+
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.6\textwidth]{../img/chemical-concrete-machine/ess_101.jpg}
+%\caption{chemlambda v1: elements}
+}
+\centerline{\includegraphics[width=0.5\textwidth]{../img/chemical-concrete-machine/ess_102.jpg}
+%\caption{chemlambda v1: enzymes}
+}
+\vspace{.5cm}
+The graphs are called molecules and the rewrites are mediated by enzymes.
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.9\textwidth]{../img/chemical-concrete-machine/ess_3.jpg}
+%\caption{chemlambda v1: rewrites as chemical reactions}
+}
+\vspace{.5cm}
+
+
+The elements of GLC as translated into chemlambda are:
+
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.7\textwidth]{../img/chemical-concrete-machine/convention_1.jpg}
+%\caption{chemlambda v1: glc nodes as chemlambda v1 nodes}
+}
+\vspace{.5cm}
+
+
+
+The rewrites are:
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.9\textwidth]{../img/chemical-concrete-machine/convention_2.jpg}
+%\caption{chemlambda v1: beta and fanin}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.7\textwidth]{../img/chemical-concrete-machine/convention_3.jpg}
+%\caption{chemlambda v1: co-comm and co-assoc}
+}
+\vspace{.5cm}
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.7\textwidth]{../img/chemical-concrete-machine/convention_4.jpg}
+%\caption{chemlambda v1: local pruning}
+}
+\vspace{.5cm}
+
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.4\textwidth]{../img/chemical-concrete-machine/convention_5.jpg}
+%\caption{chemlambda v1: elimination of loops}
+}
+\vspace{.5cm}
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.7\textwidth]{../img/chemical-concrete-machine/convention_6.jpg}
+%\caption{chemlambda v1: DIST rewrites}
+}
+\vspace{.5cm}
+
+With these rewrites we can do some lambda calculus reductions, by using the same parsing of lambda calculus terms to (chemlambda) graphs as in GLC. For example the ENELSE lambda term.
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/chemical-concrete-machine/bckw_112.jpg}
+%\caption{chemlambda v1: IFTHENELSE reduction}
+}
+\vspace{.5cm}
+
+
+A rewrite which is introduced later in the article is DISENTANGLE  (as a pattern it appears later as SHUFFLE)
+
+
+
+\vspace{.5cm}
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.8\textwidth]{../img/chemical-concrete-machine/bckw_5.jpg}
+%\caption{chemlambda v1: DISENTANGLE rewrite}
+}
+\vspace{.5cm}
+
+\vspace{.5cm}
+With this supplementary rewrite  I can prove that the BCKW combinators system
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/chemical-concrete-machine/bckw_2.jpg}
+%\caption{chemlambda v1: BCKW combinators}
+}
+\vspace{.5cm}
+
+can be implemented, in the sense that the combinators can duplicate (example here for B)
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.8\textwidth]{../img/chemical-concrete-machine/bckw_3.jpg}
+%\caption{chemlambda v1: B duplication}
+}
+\vspace{.5cm}
+
+and that all needed reductions among B,C,K,W combinators can be done (example here for K)
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.7\textwidth]{../img/chemical-concrete-machine/bckw_6.jpg}
+%\caption{chemlambda v1: K reduction}
+}
+\vspace{.5cm}
+
+This graph rewrite system has conflicting rewrites, but it has no algorithm of application of rewrites. Especially the status of DISENTANGLE is unclear. This will be solved in chemlambda v2.
+
+
+
+The first published (in the usual ways) article which contains the name "chemlambda" is joint with L.H. Kauffman, in the ALIFE-14 conference, \href{https://arxiv.org/abs/1403.8046}{arXiv:1403.8046}. Here Kauffman pushes again for a more topological version \href{https://mbuliga.github.io/emergent-10-years/pdf/ALIFETalk-copy.pdf}{Kauffman'  slides} \cite{kauffmanslides} which mixes tangle diagrams with chemlambda nodes, in order to be able to do computations (in the logical sense).The emergent algebras part of GLC, which is still present in chemlambda, used such tangle diagrams manipulations for differential calculus computations, instead. In these articles the emergent algebras aspects and interest are hidden. 
+
+
+
+Together with Kauffman, we experimented a lot with the power of chemlambda v1. Our essays on paper were not going too far, due to the lack of a program which could make much easier such exploration. In the background this was because of a lack of a clear rewrite application algorithm. 
+
+
+During this period I became aware of the existence of chemlambda quines. See as an example the tedious manipulation of reductions for the predecessor of a Church number taken from \href{https://chorasimilarity.wordpress.com/2014/08/27/ouroboros-predecessor-iii-the-walking-machine/}{this chorasimilarity post}
+\vspace{.5cm}
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.6\textwidth]{../img/chemical-concrete-machine/pred_round_9.jpg}
+%\caption{chemlambda v1: ouroboros reduction}
+}
+\vspace{.5cm}
+Meanwhile Kauffmann started to use Mathematica for doing chemlambda v1 reductions, as described in his slides \cite{kauffmanslides}. 
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.8\textwidth]{../img/chemical-concrete-machine/louis-second.png}
+%\caption{chemlambda v1: Mathematica reductions by L.H. Kauffman}
+}
+He introduced the "Arrow" 2-valent node, which is useful for easy application of several rewrites in the same time. 
+
+
+
+
+\section{Chemlambda v2}
+\label{ChemlambdaV2}
+is an artificial chemistry, in the sense that it is a purely local graph rewrite system together with an algorithm of applications which can be done by local machines. This notion of artificial chemistry is proposed in \cite{tomita}. See \href{https://arxiv.org/abs/2005.06060}{arXiv:2005.06060} for more explanations.
+
+
+Motivated by the first programming essays by Kauffman for chemlambda v1, I wrote the needed programs for  chemlambda v2, in awk and html+d3.js used for visualization. The \href{http://chorasimilarity.github.io/chemlambda-gui/index.html}{first chemlambda project site} \cite{first} contains demonstrations made with these programs from the github repository
+\href{https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md}{chemlambda-gui} \cite{firstrepo}.
+
+
+The latest chemlambda project site, which contains several repositories from various contributors, is \href{https://chemlambda.github.io/index.html}{this} \cite{entry}. The project received help from several contributors, or validators, therefore now we can reduce chemlambda molecules in haskell, python or javascript, as you can see in the more recent demonstrations.
+
+
+Chemlambda can now be \href{https://mbuliga.github.io/quinegraphs/ice.html#howto}{compared with Interaction Combinators} \cite{buligaalife} and there is a \href{https://mbuliga.github.io/quinegraphs/lambda2mol.html#lambdanote}{lambda calculus to chemlambda parser and reducer} \cite{lambda2mol}. 
+
+
+The chemlambda v2 rewrites solve the problem of the curious DISENTANGLE rewrite by introducing two fanout nodes (FO and FOE) instead of one and by a modified set of graph rewrites. These are the following. We use the mol notation for clarity and we describe the rewrites by giving the LHS and RHS patterns:
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/FI-FOE.jpg}
+%\caption{chemlambda v2: FI-FOE}
+}
+\vspace{.5cm}
+\centerline{\includegraphics[width=0.5\textwidth]{../img/L-A.jpg}
+%\caption{chemlambda v2: L-A, or beta rewrite}
+}
+\vspace{.5cm}
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/A-FO.jpg}
+%\caption{chemlambda v2: A-FO DIST rewrite}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.5\textwidth]{../img/A-FOE.jpg}
+%\caption{chemlambda v2: A-FOE DIST rewrite}
+}
+\vspace{.5cm}
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/FI-FO.jpg}
+%\caption{chemlambda v2: FI-FO DIST rewrite}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.5\textwidth]{../img/FO-FOE.jpg}
+%\caption{chemlambda v2: FO-FOE DIST rewrite}
+}
+\vspace{.5cm}
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/L-FO.jpg}
+%\caption{chemlambda v2: L-FO DIST rewrite}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.5\textwidth]{../img/L-FOE.jpg}
+%\caption{chemlambda v2: L-FOE DIST rewrite}
+}
+\vspace{.5cm}
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/remove4-T-T.jpg}
+%\caption{chemlambda v2: remove rewrites}
+}
+\vspace{.5cm}
+
+
+\centerline{\includegraphics[width=0.5\textwidth]{../img/term1-FOE-T.jpg}
+%\caption{chemlambda v2: FOE-T rewrite}
+}
+\vspace{.5cm}
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/term1-FO-T.jpg}
+%\caption{chemlambda v2: FO-T rewrite}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.5\textwidth]{../img/term-A-T.jpg}
+%\caption{chemlambda v2: A-T rewrite}
+}
+\vspace{.5cm}
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/term-FI-T.jpg}
+%\caption{chemlambda v2: FI-T rewrite}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.5\textwidth]{../img/termL-L-T.jpg}
+%\caption{chemlambda v2: L-T rewrite}
+}
+\vspace{.5cm}
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/termin2-T-FO.jpg}
+%\caption{chemlambda v2: T-FO rewrite}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.5\textwidth]{../img/termin2-T-FOE.jpg}
+%\caption{chemlambda v2: T-FOE rewrite}
+}
+\vspace{.5cm}
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/termFI-FRIN-FI.jpg}
+%\caption{chemlambda v2: FRIN-FI rewrite}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.5\textwidth]{../img/terminfrin-FRIN-FO.jpg}
+%\caption{chemlambda v2: FRIN-FO rewrite}
+}
+\vspace{.5cm}
+
+and the COMB rewrites which eliminate Arrow nodes. 
+
+
+
+The DISENTANGLE rewrite is no longer needed, because it's effect can be achieved by the SHUFFLE move, which is a sequence of two chemlambda v2 rewrites: FO-FOE and FI-FOE.
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/shuffle-FO-FOE.jpg}
+%\caption{chemlambda v2: SHUFFLE composite rewrite}
+}
+\vspace{.5cm}
+
+
+
+
+\section{Interaction Combinators and directed interaction combinators (dirIC)}
+\label{IC}
+\vspace{.5cm}
+For completeness, here are the graph rewrites of Lafont' Interaction combinators \cite{lafont-comb}, as they appear in the chemlambda v2 js programs, chemistry IC in \href{https://github.com/mbuliga/quinegraphs/blob/master/js/chemistry.js}{chemistry.js}: 
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/DELTA-DELTA-arrow1.jpg}
+%\caption{IC: DELTA-DELTA rewrite}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.5\textwidth]{../img/GAMMA-GAMMA-arrow1.jpg}
+%\caption{IC: GAMMA-GAMMA rewrite}
+}
+\vspace{.5cm}
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/GAMMA-DELTA.jpg}
+%\caption{IC: GAMMA-DELTA rewrite}
+}
+\vspace{.5cm}
+
+
+
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/term3-DELTA-T.jpg}
+%\caption{IC: DELTA-T rewrite}
+}
+\vspace{.5cm}
+
+\centerline{\includegraphics[width=0.5\textwidth]{../img/term3-GAMMA-T.jpg}
+%\caption{IC: GAMMA-T rewrite}
+}
+\vspace{.5cm}
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/remove4-T-T.jpg}
+%\caption{chemlambda v2: remove rewrites}
+}
+\vspace{.5cm}
+
+FRIN and FROUT 1-valent nodes are introduced (as in chemlambda) for the free half-edges. We use also the Arrow 2-valent node and the COMB rewrites for eliminating them. 
+
+
+
+All LHS patterns, of chemlambda and IC, are made of two nodes connected through their active ports. The main difference between chemlambda v2 rewrites and IC rewrites is that several chemlambda nodes have two active ports, while IC nodes have only one active port.
+
+
+It is possible to modify the chemlambda v2 chemistry such that there are no conflicts. We obtain a chemistry called "dirIC", or directed interaction combinators, explained in \cite{buligaalife} \href{https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem}{Alife properties of directed interaction combinators vs. chemlambda}, over the same set of nodes as chemlambda v2. With the chemistry dirIC, there is a translation between IC nodes of Lafont to chemlambda nodes: 
+
+\vspace{.5cm}
+ 
+\centerline{\includegraphics[width=0.5\textwidth]{../img/dirIC.jpg}
+%\caption{translation between IC and chemlambda nodes}
+}
+\vspace{.5cm}
+
+As argued \href{https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem}{here} \cite{buligaalife}, the existence of conflicting rewrites in chemlambda v2, compared with dirIC, creates much more interesting alife behaviours. 
+
+
+
+\begin{thebibliography}{99}
+\vspace{.5cm}
+%\bibitem{bohm} A. Asperti, C. Giovannetti, A. Naletto, The Bologna optimal higher-order machine. {\it Journal of Functional Programming}, {\bf 6}(6), 763-810, (1996)
+
+%\bibitem{banzhaf} W. Banzhaf, L. Yamamoto, Artificial Chemistries, MIT Press, Cambridge, (2015) 
+\bibitem{bawden1} A. Bawden, Connection graphs, In: Proceedings of the 1986 ACM conference on LISP and functional programming, 258-265, ACM Press, (1986)
+\bibitem{bawden2} A. Bawden, \href{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.18.5446&rep=rep1&type=pdf}{Implementing Distributed Systems Using Linear Naming}, A.I. Technical Report No. 1627, MIT, (1993)
+
+\bibitem{buligaglc} M. Buliga, \href{https://arxiv.org/abs/1305.5786}{Graphic lambda calculus}, {\it Complex Systems} {\bf 22}, 4, 311-360, (2013)
+
+\bibitem{buligachemlambda} M. Buliga, \href{https://arxiv.org/abs/2003.14332}{Artificial chemistry experiments with chemlambda, lambda calculus, interaction combinators}, arXiv:2003.14332, (2020)
+
+\bibitem{buligaalife} M. Buliga, Artificial life properties of directed interaction combinators vs. chemlambda, \href{https://arxiv.org/abs/2005.06060}{arXiv:2005.06060} (2020)\\
+\href{https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem}{https://mbuliga.github.io/quinegraphs/ic-vs-chem.html\#icvschem}
+
+\bibitem{buliganovo} M. Buliga, \href{https://mbuliga.github.io/novo/presentation.html}{Emergent rewrites in knot theory and logic} (2020)\\ \href{https://mbuliga.github.io/novo/presentation.html}{https://mbuliga.github.io/novo/presentation.html}
+
+\bibitem{buligakauffmanglc} M. Buliga, L.H. Kauffman, \href{https://arxiv.org/abs/1312.4333}{GLC actors, artificial chemical connectomes, topological issues and knots}, arXiv:1312.4333, (2013)
+
+
+%\bibitem{ice} M. Buliga, \href{https://mbuliga.github.io/quinegraphs/ice.html#howto}{IC \& chemlambda quines}. (2019-2020), \\ \href{https://mbuliga.github.io/quinegraphs/ice.html#howto}{https://mbuliga.github.io/quinegraphs/ice.html\#howto}
+
+%\bibitem{quinegraph} M. Buliga, \href{https://mbuliga.github.io/quinegraphs/quinegraph.html#howtoquine}{How to test a quine}.(2019-2020), \\ \href{https://mbuliga.github.io/quinegraphs/quinegraph.html#howtoquine}{https://mbuliga.github.io/quinegraphs/quinegraph.html\#howtoquine}
+
+\bibitem{lambda2mol} M. Buliga, \href{https://mbuliga.github.io/quinegraphs/lambda2mol.html#lambdanote}{Lambda calculus to chemlambda}. (2019-2020), \\ \href{https://mbuliga.github.io/quinegraphs/lambda2mol.html#lambdanote}{https://mbuliga.github.io/quinegraphs/lambda2mol.html\#lambdanote}
+
+\bibitem{buligachem}  M. Buliga,  \href{http://dx.doi.org/10.6084/m9.figshare.830457}{Chemical concrete machine},  Figshare, (2013), \href{https://arxiv.org/abs/1309.6914}{arXiv:1309.6914}
+
+\bibitem{chemlambda1} M. Buliga, L.H. Kauffman,  \href{https://arxiv.org/abs/1403.8046}{Chemlambda, universality and self-multiplication}, ALIFE 2014: The Fourteenth International Conference on the Synthesis and Simulation of Living Systems July 2014, MIT Press, 490-497, (2014) 
+
+\bibitem{kauffmanslides} L.H. Kauffman, \href{https://mbuliga.github.io/emergent-10-years/pdf/ALIFETalk-copy.pdf}{Chemlambda, universality and self-multiplication, slides} (2014)
+
+%\bibitem{molecular} M. Buliga, \href{https://arxiv.org/abs/1811.04960}{Molecular computers}, arXiv:1811.04960, (2015-2018)
+
+\bibitem{entry} M. Buliga, Chemlambda page, \href{https://chemlambda.github.io/index.html}{https://chemlambda.github.io/index.html} (2020)
+
+\bibitem{first} M. Buliga, Chemlambda project \href{http://chorasimilarity.github.io/chemlambda-gui/index.html}{http://chorasimilarity.github.io/chemlambda-gui/index.html} (2015-2017)
+
+\bibitem{firstrepo} M. Buliga, \href{https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md}{Chemlambda-gui repository}, Github (2015-2017)\\ 
+\href{https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md}{https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md}
+
+
+%\bibitem{cham} G. Berry, G. Boudol, \href{http://www.lix.polytechnique.fr/~fvalenci/papers/cham.pdf}{The chemical abstract machine}, {\it Theoretical Computer Science} {\bf 96}, 1, 217-248, (1992)
+
+
+\bibitem{dpo} A. Corradini, U. Montanari, F. Rossi, H. Ehrig, R. Heckel, M. Loewe, 
+\href{http://eprints.adm.unipi.it/1950/1/TR-96-17.ps.gz}{Algebraic approaches to graph transformation, part I}: Basic concepts and double push-out approach, Handbook of Graph Grammars and Computing by Graph Transformation,  163-245 (1997)
+
+%\bibitem{dittrich} Dittrich, P., Ziegler, J., \& Banzhaf, W. (2001). \href{https://www.cs.mun.ca/~banzhaf/papers/alchemistry_review_MIT.pdf}{Artificial Chemistries—A Review}. {\it Artificial Life}, {\bf 7} (3), 225-275
+
+%\bibitem{fontana1} W. Fontana and L. W. Buss, \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC43028/pdf/pnas01533-0337.pdf}{What would be conserved if `the tape were played twice'?}, {\it Proc. Natl. Acad. Sci. USA} 91, 757-761, (1994)
+
+%\bibitem{fontana2} W. Fontana and L. W. Buss, \href{https://scholar.harvard.edu/files/walterfontana/files/arrival.pdf}{'The Arrival of the Fittest': Toward a Theory of Biological Organization}, Bull. Math. Biol., 56, 1-64 (1994)
+
+
+%\bibitem{kauffman1} L.H. Kauffman, Knot  automata.   In Proceedings of TheTwenty-Fourth International Symposium on Multiple-Valued Logic, Boston, Massachusetts, 328-333, (1994)
+
+%\bibitem{kauffman2} L.H. Kauffman,  Knot logic.  In Kauffman, L., editor, Knot sand Applications, 1–110. World Scientific Pub. (1994)
+
+
+
+
+\bibitem{lafont-comb} Y. Lafont, \href{https://pdfs.semanticscholar.org/6cfe/09aa6e5da6ce98077b7a048cb1badd78cc76.pdf}{Interaction Combinators}, {\it Information and Computation} {\bf 137}, 1, 69-101, (1997)
+
+
+
+
+\bibitem{tomita} K. Tomita, H. Kurokawa, S. Murata, \href{https://link.springer.com/chapter/10.1007/978-3-642-01284-6_14}{Graph-rewriting automata as a natural extension of cellular automata}. Chapter 14 in: Adaptive Networks, Understanding Complex Systems, T. Gross, H. Sayama (eds.), NECSI Cambridge/Massachusetts (2009)
+
+\end{thebibliography}
+\vspace{.5cm}
+\end{document}
+\vspace{.5cm}
+
+\bibitem{church} A. Church, \href{https://www.ics.uci.edu/~lopes/teaching/inf212W12/readings/church.pdf}{An unsolvable problem of elementary number theory}, {\it Amer. J. of Math.}, {\bf 58}, 2, (1936), 345-363
+
+
+
+\bibitem{flamm} M. Mann, H. Ekker, C. Flamm, \href{http://dx.doi.org/10.1007/978-3-642-38883-5_5}{The Graph Grammar Library - a generic framework for chemical graph rewrite systems}, In: Proceedings of the International Conference on Model Transformation (ICMT 2013), D. Varro and K. Duddy and G. Kappel (eds), Springer-Verlag Berlin Heidelberg, LNCS 7909, pp. 52-53, (2013)
+
+\bibitem{girard-linear} J.-Y. Girard (1987), \href{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.132.6410&rep=rep1&type=pdf}{Linear Logic}, {\it Theoretical computer Science} {\bf 50} 1, 1-101
+
+\bibitem{buliga1} M. Buliga, \href{https://arxiv.org/abs/math/0608536}{Dilatation structures I. Fundamentals}, {\it 
+J. Gen. Lie Theory Appl.},  {\bf 1},  2, 65-95, (2007)
+
+\bibitem{buliga2} M. Buliga, \href{https://arxiv.org/abs/0804.0135}{Infinitesimal affine geometry of metric spaces endowed with a dilatation structure}, {\it Houston Journal of Mathematics}, {\bf 36} 1, 91-136, (2010) 
+
+\bibitem{buliga3} M. Buliga, \href{https://arxiv.org/abs/0810.5042}{A characterization of sub-riemannian spaces as length dilation structures constructed via coherent projections}, {\it Commun. Math. Anal.} {\bf 11}, No. 2, 70-111, (2011)
+
+\bibitem{buliga4} M. Buliga, \href{https://arxiv.org/abs/1807.02058}{The em-convex rewrite system}, arXiv:1807.02058, (2018)
+
+
+
+\bibitem{stewart} C. Stewart (2002), \href{https://core.ac.uk/download/pdf/82142691.pdf}{Reducibility between classes of port graph grammar}, {\it Journal of Computer and System Sciences} {\bf 65},169-223, (2002)
+
+
+
