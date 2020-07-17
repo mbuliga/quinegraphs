@@ -1,19 +1,21 @@
 # Quine graphs
 
-Given a graph rewrite system, any graph has at least one maximal  collections of non-conflicting matches (MNCM) of left patterns of graphs rewrites. A graph G is a quine graph if it has a non-void MNCM such that after the rewrites from the collection are done in parallel we obtain a graph isomorphic with G. 
+Given a graph rewrite system. a graph G is a quine graph if it has a non-void maximal non-conflicting collection of rewrite patterns,  such that after the rewrites from the collection are done in parallel we obtain a graph isomorphic with G. 
 
-We invite you to  explore some of their properties, with examples taken from lambda calculus, interaction combinators and [chemlambda](https://github.com/chorasimilarity/chemlambda-gui/blob/gh-pages/dynamic/README.md). 
+We invite you to  explore some of their properties, with examples taken from lambda calculus, interaction combinators and [chemlambda](https://chemlambda.github.io/index.html). 
 
 ## Part of: 
 
-* [All chemlambda projects](https://chemlambda.github.io/index.html) 
+* [Chemlambda projects page](https://chemlambda.github.io/index.html) 
 
 
 ## Technical notes:
 
-* [draft 31.03.2020](https://mbuliga.github.io/quinegraphs/quine-graph-doc.pdf) 
+* [Artificial chemistry experiments with chemlambda, lambda calculus, interaction combinators](https://arxiv.org/abs/2003.1433) 
 
+* [Artificial life properties of directed interaction combinators vs. chemlambda](https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem) 
 
+* [Graph rewrites, from emergent algebras to chemlambda](https://mbuliga.github.io/quinegraphs/history-of-chemlambda.html)
 
 
 ## Demos
@@ -38,5 +40,3 @@ We invite you to  explore some of their properties, with examples taken from lam
 * Graphs figth arena (will turn into a tool to explore communities of quines):  https://mbuliga.github.io/quinegraphs/arena.html
 
 * Lambda terms reduced with chemlambda: https://mbuliga.github.io/quinegraphs/lambda.html 
-
-* Intro (pdf): Quine graphs: https://mbuliga.github.io/quinegraphs/quinegraph.pdf
