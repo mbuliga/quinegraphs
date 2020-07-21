@@ -1,3 +1,37 @@
+Your submission submit/3263806 has been assigned the permanent arXiv
+identifier 2007.10288 and is available at:
+
+[http://arxiv.org/abs/2007.10288](https://arxiv.org/abs/2007.10288)
+
+ 
+The paper password for this article is:
+Please share this with your co-authors. They may use it to claim ownership.
+
+
+Abstract will appear in today's mailing as:
+------------------------------------------------------------------------------
+\\
+arXiv:2007.10288
+From: Marius Buliga <>
+Date: Tue, 7 Jul 2020 19:31:07 GMT   (2941kb,D)
+
+Title: Graph rewrites, from graphic lambda calculus, to chemlambda, to directed
+  interaction combinators
+Authors: Marius Buliga
+Categories: cs.LO cs.AI math.LO
+Comments: arXiv admin note: text overlap with arXiv:2003.14332
+License: http://creativecommons.org/licenses/by/4.0/
+\\
+  Here I report about the modifications of and relations between graphic lambda
+calculus, various formalisms which appeared under the name chemlambda and a
+version of directed interaction combinators. This is part of the study and
+experiments with the artificial chemistry chemlambda and the relations with
+lambda calculus or interaction combinators, as described in arXiv:2003.14332
+and available from the entry page at https://chemlambda.github.io/index.html
+
+___
+
+
 Dear moderator,
 
 Indeed, the submission is a completion of arXiv:2003.14332. But there are several other parts of the project described in arXiv:2003.14332 which will be added. This is a project which spans over more than 10 years and connects domains like sub-riemannian geometry with logic. There are several problems with a monolithic submission.
