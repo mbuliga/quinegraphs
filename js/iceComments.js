@@ -8,6 +8,10 @@ comments of the mol library. For more mol files see my original library https://
 function molComments(molName) {
 
 switch (molName) {
+    
+  case "SIISII":
+  var mol = "SII(SII) is a chemSKI quine. It is the equivalent in SKI combinators calculus of the <a href=\"https://mbuliga.github.io/quinegraphs/ice.html#omega\">Omega combinator in chemlambda</a>";
+  break;
 
   case "icvschem":
   var mol = "IC>chem&lambda; button transforms a Lafont' <a href=\"https://pdfs.semanticscholar.org/6cfe/09aa6e5da6ce98077b7a048cb1badd78cc76.pdf\">Interaction Combinators</a> graph into a Directed IC graph.<br><br> Here Directed IC is a variant of Asperti' <a href=\"https://github.com/asperti/BOHM1.1\">BOHM machine</a> graph rewrite system, which is very close to chemlambda, but without conflicting rewrites.<br><br> You can pass from chemlambda to Directed IC chemistry by using the 2nd \"change\" button from the top down.<br><br>We compare here IC quines with chemlambda quines, on a common ground.<br><br>";
