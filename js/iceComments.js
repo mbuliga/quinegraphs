@@ -190,7 +190,7 @@ switch (molName) {
   break;
 
   case "omega":
-  var mol = "An example of a lambda calculus quine is the <br><br> &Omega; = (\\x.x x) (\\x.x x) <br><br> combinator.<br><br>It gives a  <a href=\"ice.html\">chemlambda quine</a> too.<br><br>In SKI combinators calculus the equivalent is <br><br> SII(SII)<br><br>which can be seen <a href\"https://mbuliga.github.io/chemski/chemski.html#SIISII\">here in chemSKI</a>.";
+  var mol = "An example of a lambda calculus quine is the <br><br> &Omega; = (\\x.x x) (\\x.x x) <br><br> combinator.<br><br>It gives a  <a href=\"ice.html\">chemlambda quine</a> too.<br><br>In SKI combinators calculus the equivalent is <br><br> SII(SII)<br><br>which can be seen <a href=\"https://mbuliga.github.io/chemski/chemski.html#SIISII\">here in chemSKI</a>.";
   break;
 
   case "4omega":
