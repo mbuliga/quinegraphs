@@ -1,7 +1,7 @@
 /* 
 page look (buttons, etc), import-export mol
 */
-// last updated: 17.03.2020
+// last updated: 16.03.2021
 
 var versusVar = "<br><br> VS. <br><br>";
 var transformList = [];
@@ -236,3 +236,9 @@ function setOlder() {
   }
 }
 
+function setBalanceOfNodes() {
+  for (var ibal=0;  ibal < balanceOfnodes.length; ibal++) {
+    balanceOfnodes[ibal] = 0;
+  }
+
+}

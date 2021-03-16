@@ -1,6 +1,6 @@
 // IO and preparation functions
 // see Acknowledgements in myD3Graph.js
-// last updated: 17.03.2020
+// last updated: 15.03.2021
 
 
 
@@ -444,6 +444,14 @@ document.getElementById("molyoulookat").innerHTML = translation;
 
 
 
+function showBalanceOfNodes() {
+  var textB = "";
+
+  for (var ibil=0; ibil < autoFilter.length; ibil++) {
+    textB = textB + autoFilter[ibil] + " " + balanceOfnodes[ibil] + "<br>";
+  }
+  document.getElementById("errors").innerHTML = textB; 
+}
 
 
 

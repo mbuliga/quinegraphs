@@ -1,6 +1,15 @@
 // chemistries
-// this version: 27.03.2020, 
-
+// this version: 15.03.2021, 
+// goal: to make the rewrites conservative.
+//
+// the idea is to create on the fly tokens (i.e. small molecules from a fixed family)
+// which are then used in the rewrite.
+// then the RHS of the rewrite is modified into a version where the nodes which should disappear 
+// are also converted into tokens, then these will disappear
+//
+// we want to keep the number of tokens limited, in order to limit the number of nodes onscreen,
+// but also to keep the tokens onscreen long enough so they will be visually noticed.
+// the tokens used and created (by some rewrites) will be counted during the reduction.
 
 // general COMB rewrites
 
@@ -23,7 +32,7 @@ switch (id) {
   {left:"FRIN",right:"T",action:"remove4", named:"FRIN-T", kind:"TERMINATION"},
   {left:"T",right:"FROUT",action:"remove4", named:"T-FROUT", kind:"TERMINATION"},
   {left:"null",right:"T",action:"remove1", named:"?-T", kind:"TERMINATION"},
-  {left:"null",right:"T",action:"remove1", kind:"TERMINATION"},
+ // {left:"null",right:"T",action:"remove1", kind:"TERMINATION"},
 ];
   break;
 
@@ -35,12 +44,12 @@ switch (id) {
   {left:"L",right:"A",action:"beta-arrow-X", named:"L-A", t1:"Arrow",t2:"Arrow", kind:"BETA"},      // action modified from "beta" to "beta-arrow-X" which is the original beta rewrite from chemlambda
   {left:"FI",right:"FOE",action:"beta-arrow", named:"FI-FOE", t1:"Arrow",t2:"Arrow", kind:"BETA"},  // action modified from "beta" to "beta-arrow" which is the original FI-FOE rewrite from chemlambda
 // DIST rewrites
-  {left:"L",right:"FOE",action:"DIST7", named:"L-FOE", t1:"FOE",t2:"FI",t3:"L",t4:"L",blocks:["FOE-L"], kind:"DIST"},
-  {left:"L",right:"FO",action:"DIST7", named:"L-FO", t1:"FOE",t2:"FI",t3:"L",t4:"L",blocks:["FO-L"], kind:"DIST"}, // 
+  {left:"L",right:"FOE",action:"DIST7", named:"L-FOE", t1:"FOE",t2:"FI",t3:"L",t4:"L",blocks:["FOE-L",],needs:["L","FI"],kind:"DIST"},
+  {left:"L",right:"FO",action:"DIST7-DEG", named:"L-FO", t1:"FOE",t2:"FI",t3:"L",t4:"L",blocks:["FO-L"],needs:["L","FI"],kind:"DIST"}, // 
 //
-  {left:"FI",right:"FO",action:"DIST1", named:"FI-FO", t1:"FO",t2:"FO",t3:"FI",t4:"FI",blocks:["FO-FI"], kind:"DIST"}, // 
+  {left:"FI",right:"FO",action:"DIST1", named:"FI-FO", t1:"FO",t2:"FO",t3:"FI",t4:"FI",blocks:["FO-FI",],needs:["FOE","FI"],kind:"DIST"},
 //
-  {left:"FO",right:"FOE",action:"DIST7", named:"FO-FOE", t1:"FOE",t2:"FI",t3:"FO",t4:"FO",blocks:["FOE-FO"], kind:"DIST"}, //       
+  {left:"FO",right:"FOE",action:"DIST7", named:"FO-FOE", t1:"FOE",t2:"FI",t3:"FO",t4:"FO",blocks:["FOE-FO",],needs:["FOX","FI"],kind:"DIST"},    
 // Pruning rewrites
   {left:"FRIN",right:"FO",action:"terminfrin", named:"FRIN-FO", kind:"TERMINATION"}, //    
 //  {left:"FRIN",right:"FOE",action:"terminfrin", named:"FRIN-FOE", kind:"TERMINATION"}, // 
@@ -55,10 +64,10 @@ switch (id) {
 // DIC = CHEMLAMBDABARE + DICMOD
   case "DICMOD":
     var out = [
-  {left:"L",right:"T",action:"termLD", named:"L-T", kind:"TERMINATION"},
+ {left:"L",right:"T",action:"termLD", named:"L-T", kind:"TERMINATION"},
  {left:"A",right:"T",action:"term3", named:"T-A", kind:"TERMINATION"},
- {left:"FI",right:"A",action:"DIST3", named:"FI-A", t1:"A",t2:"A",t3:"FOE",t4:"FI",blocks:["A-FI"], kind:"DIST"}
-];
+ {left:"FI",right:"A",action:"DIST3", named:"FI-A", t1:"A",t2:"A",t3:"FOE",t4:"FI",blocks:["A-FI",],needs:["FOE","A"],kind:"DIST"},
+ ];
   break;
 // CHEMLAMBDA = CHEMLAMBDABARE + CHEMLAMBDAEND
   case "CHEMLAMBDAEND":
@@ -67,9 +76,9 @@ switch (id) {
   {left:"FOE",right:"T",action:"term1", named:"FOE-T", kind:"TERMINATION"}, // 
   {left:"FO",right:"T",action:"term1", named:"FO-T", kind:"TERMINATION"},  // 
   {left:"A",right:"T",action:"term", named:"A-T", kind:"TERMINATION"},
-  {left:"A",right:"FOE",action:"DIST1", named:"A-FOE", t1:"FOE",t2:"FOE",t3:"A",t4:"A",blocks:["FOE-A"], kind:"DIST"}, // 
-  {left:"A",right:"FO",action:"DIST1", named:"A-FO", t1:"FOE",t2:"FOE",t3:"A",t4:"A",blocks:["FOE-A"], kind:"DIST"}, // 
-];
+  {left:"A",right:"FOE",action:"DIST1", named:"A-FOE", t1:"FOE",t2:"FOE",t3:"A",t4:"A",blocks:["FOE-A",],needs:["FOE","A"],kind:"DIST"},
+  {left:"A",right:"FO",action:"DIST1-DEG", named:"A-FO", t1:"FOE",t2:"FOE",t3:"A",t4:"A",blocks:["FOE-A",],needs:["FOE","A"],kind:"DIST"},
+  ];
   break;
 
 // IC rewrites
@@ -81,11 +90,11 @@ switch (id) {
 // action modified from "DELTA-DELTA" with 2 pairs Arrow-Arrow added, in order to be sure that COMB rewrite, as is, eliminates all arrows
 //  {left:"DELTA",right:"DELTA",action:"DELTA-DELTA-arrow", named:"DELTA-DELTA", t1:"Arrow",t2:"Arrow",t3:"Arrow",t4:"Arrow", kind:"BETA"}, 
 // action modified from "GAMMA-GAMMA" with 1 pair Arrow-Arrow added, asymmetric
-  {left:"GAMMA",right:"GAMMA",action:"GAMMA-GAMMA-arrow1", named:"GAMMA-GAMMA", t1:"Arrow",t2:"Arrow", kind:"BETA"}, 
+  {left:"GAMMA",right:"GAMMA",action:"GAMMA-GAMMA-arrow1", named:"GAMMA-GAMMA", t1:"Arrow",t2:"Arrow",kind:"BETA"}, 
 // action modified from "DELTA-DELTA" with 1 pair Arrow-Arrow added, asymmetric
-  {left:"DELTA",right:"DELTA",action:"DELTA-DELTA-arrow1", named:"DELTA-DELTA", t1:"Arrow",t2:"Arrow", kind:"BETA"}, 
+  {left:"DELTA",right:"DELTA",action:"DELTA-DELTA-arrow1", named:"DELTA-DELTA", t1:"Arrow",t2:"Arrow",kind:"BETA"}, 
 // notice that due to symmetry there is no need for DELTA-GAMMA
-  {left:"GAMMA",right:"DELTA",action:"GAMMA-DELTA", named:"GAMMA-DELTA", t1:"DELTA",t2:"DELTA",t3:"GAMMA",t4:"GAMMA", kind:"DIST"}, 
+  {left:"GAMMA",right:"DELTA",action:"GAMMA-DELTA", named:"GAMMA-DELTA", t1:"DELTA",t2:"DELTA",t3:"GAMMA",t4:"GAMMA",kind:"DIST"}, 
   {left:"GAMMA",right:"T",action:"term3", named:"GAMMA-T", kind:"TERMINATION"},
   {left:"DELTA",right:"T",action:"term3", named:"DELTA-T", kind:"TERMINATION"},
 ];
@@ -132,6 +141,21 @@ switch (id) {
 }
 return out;
 }
+
+// Tokens are the small molecules which make the rewrites conservative
+
+var fNFTokens = ["FOE-A","FOX-A","L-A","FOE-FI","FOX-FI","L-FI","FOE-D","FOX-D","L-D","Arrow"];
+
+// initial number of tokens of each kind
+
+var generalNumberOfTokens = 100;
+
+
+var balanceOftokens = [];
+for (var ibal=0;  ibal < fNFTokens.length; ibal++) {
+  balanceOftokens.push(generalNumberOfTokens);
+}
+
 
 
 // reactions, i.e. graph rewrites (find and do) transforms algorithms
@@ -210,7 +234,7 @@ function findTransform(n1) {
 */
     if (trans.left == n2type && trans.right == n1.type) {
       switch (trans.action) {
-        case "beta": case "beta-arrow": case "beta-arrow-X": case "DIST0": case "DIST1": case "DIST2":  case "DIST3": case "DIST4": case "DIST5": case "DIST6": case "DIST7": case "termsplit": case "term": case "termL": case "termLD":
+        case "beta": case "beta-arrow": case "beta-arrow-X": case "DIST0": case "DIST1": case "DIST1-DEG": case "DIST7-DEG": case "DIST2":  case "DIST3": case "DIST4": case "DIST5": case "DIST6": case "DIST7": case "termsplit": case "term": case "termL": case "termLD":
 /*
 only matters if n1type, n2type match and if the node port e2 is of type "out"
                                
@@ -382,7 +406,7 @@ at this stage we have
 
 but it is still possible that there is no e2 port node
 */
-  var n2, a, b, b1, c, d, a1;
+  var n2, a, b, b1, c, d, a1, indNodeType, indToken;
 
 /* the center node n1, if it is 3 valent then it has the ports 
  
@@ -459,7 +483,13 @@ which transforms into the mol node
 
 t ...d...
 */
-      break;
+
+      indNodeType  = autoFilter.indexOf("Arrow");
+      
+
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1;
+      
+    break;
 
 /*
 The following is the beta rewrite, but without using Arrow nodes. Not used.
@@ -472,7 +502,7 @@ The following is the beta rewrite, but without using Arrow nodes. Not used.
       
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
-      break;
+    break;
 
 /*
 This is a beta rewrite with Arrow nodes. 
@@ -507,6 +537,20 @@ This justifies the "beta-arrow-X" name.
     case "beta-arrow-X":
       // L-A transitions:
       // Arrow a d^Arrow c b
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1;
+
       var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
       var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
 
@@ -517,7 +561,7 @@ This justifies the "beta-arrow-X" name.
       
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
-      break;
+    break;
 
 /*
 This is another beta rewrite with Arrow nodes, where the Arrow nodes after the transform connect differently.
@@ -560,6 +604,21 @@ cross.
     case "beta-arrow":
       // D-FOX and FI-FOE transitions:
       // Arrow a d^Arrow b c
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1;
+
+
       var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
       var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
 
@@ -570,7 +629,7 @@ cross.
       
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
-      break;
+    break;
 
 // not used
     case "eta":
@@ -579,7 +638,7 @@ cross.
       
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
-      break;
+    break;
 // for the following DIST rewrites see the tool to choose DIST rewrites https://mbuliga.github.io/rhs.html
 
 //            THE LHS NOTATION
@@ -629,133 +688,290 @@ cross.
 
 
     case "DIST0":
-      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);
-      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);
-      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);
-      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);
+      var na = addNodeAndEdges(trans.t1,n2.x + xShift,n2.y + yShift);
+      var nc = addNodeAndEdges(trans.t3,n1.x + xShift,n1.y + yShift);
       addLink(na[3],nc[2],2);
+      moveLink1(a,na[1]);
+      moveLink1(c,nc[1]);
+
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t3);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+      var nb = addNodeAndEdges(trans.t2,n1.x,n1.y);  // n1
+      var nd = addNodeAndEdges(trans.t4,n2.x,n2.y);  // n2
+      addLink(nb[3],nd[2],2);
+      moveLink1(b,nb[1]);
+      moveLink1(d,nd[3]);
+
+      removeNodeAndEdges(n1);
+      removeNodeAndEdges(n2);
+
       addLink(na[2],nd[1],2);
       addLink(nb[2],nc[3],2);
-      addLink(nb[3],nd[2],2);
-      moveLink1(a,na[1]);
-      moveLink1(b,nb[1]);
-      moveLink1(c,nc[1]);
-      moveLink1(d,nd[3]);
-      removeNodeAndEdges(n1);
-      removeNodeAndEdges(n2);
-      break;
+    break;
+      
     case "DIST1":
-      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);
-      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);
-      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);
-      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);
+      var na = addNodeAndEdges(trans.t1,n2.x + xShift,n2.y + yShift);
+      var nc = addNodeAndEdges(trans.t3,n1.x + xShift,n1.y + yShift);
       addLink(na[2],nc[1],2);
-      addLink(na[3],nd[1],2);
-      addLink(nb[2],nc[2],2);
-      addLink(nb[3],nd[2],2);
       moveLink1(a,na[1]);
-      moveLink1(b,nb[1]);
       moveLink1(c,nc[3]);
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t3);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);  // n1 
+      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);  // n2
+      addLink(nb[3],nd[2],2);
+      moveLink1(b,nb[1]);
       moveLink1(d,nd[3]);
+      
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
-      break;
+
+      addLink(na[3],nd[1],2);
+      addLink(nb[2],nc[2],2);
+    break;
+
+    case "DIST1-DEG":
+      var na = addNodeAndEdges(trans.t1,n2.x + xShift,n2.y + yShift);
+      var nc = addNodeAndEdges(trans.t3,n1.x + xShift,n1.y + yShift);
+      addLink(na[2],nc[1],2);
+      moveLink1(a,na[1]);
+      moveLink1(c,nc[3]);
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t3);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+      
+
+      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);  // n1 
+      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);  // n2
+      addLink(nb[3],nd[2],2);
+      moveLink1(b,nb[1]);
+      moveLink1(d,nd[3]);
+      
+      removeNodeAndEdges(n1);
+      removeNodeAndEdges(n2);
+
+      addLink(na[3],nd[1],2);
+      addLink(nb[2],nc[2],2);
+    break;
+
     case "DIST2":
-      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);
-      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);
-      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);
-      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);
-      addLink(na[3],nc[1],2);
+      var na = addNodeAndEdges(trans.t1,n2.x + xShift,n2.y + yShift);
+      var nd = addNodeAndEdges(trans.t4,n1.x + xShift,n1.y + yShift);
       addLink(na[2],nd[2],2);
-      addLink(nb[2],nc[2],2);
-      addLink(nb[3],nd[1],2);
       moveLink1(a,na[1]);
+      moveLink1(d,nd[3]);
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t4);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+ 
+
+      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);  // n1
+      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);  // n2
+      addLink(nb[2],nc[2],2);
       moveLink1(b,nb[1]);
       moveLink1(c,nc[3]);
-      moveLink1(d,nd[3]);
+
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
-      break;
+
+      addLink(na[3],nc[1],2);
+      addLink(nb[3],nd[1],2);  
+    break;
+
     case "DIST3":
-      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);
-      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);
-      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);
-      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);
+      var na = addNodeAndEdges(trans.t1,n2.x + xShift,n2.y + yShift);
+      var nc = addNodeAndEdges(trans.t3,n1.x + xShift,n1.y + yShift);
       addLink(na[2],nc[3],2);
-      addLink(na[3],nd[1],2);
-      addLink(nb[2],nc[2],2);
+      moveLink1(a,na[1]);
+      moveLink1(c,nc[1]);
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t3);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);  // n1
+      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);  // n2
       addLink(nb[3],nd[2],2);
-      moveLink1(a,na[1]);
       moveLink1(b,nb[1]);
-      moveLink1(c,nc[1]);
       moveLink1(d,nd[3]);
+
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
-      break;
+      
+      addLink(na[3],nd[1],2);
+      addLink(nb[2],nc[2],2);
+    break;
+
     case "DIST4":
-      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);
-      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);
-      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);
-      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);
-      addLink(na[2],nc[2],2);
-      addLink(na[3],nd[1],2);
+      var nb = addNodeAndEdges(trans.t2,n2.x + xShift,n2.y + yShift);
+      var nc = addNodeAndEdges(trans.t3,n1.x + xShift,n1.y + yShift);
       addLink(nb[1],nc[3],2);
+      moveLink1(b,nb[3]);
+      moveLink1(c,nc[1]);
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t3);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+
+      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);  // n1
+      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);  // n2
+      addLink(na[3],nd[1],2);
+      moveLink1(a,na[1]);
+      moveLink1(d,nd[3]);
+
+      removeNodeAndEdges(n1);
+      removeNodeAndEdges(n2);
+
+      addLink(na[2],nc[2],2);
       addLink(nb[2],nd[2],2);
-      moveLink1(a,na[1]);
-      moveLink1(b,nb[3]);
-      moveLink1(c,nc[1]);
-      moveLink1(d,nd[3]);
-      removeNodeAndEdges(n1);
-      removeNodeAndEdges(n2);
-      break;
+    break;
+
     case "DIST5":
-      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);
-      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);
-      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);
-      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);
-      addLink(na[2],nc[3],2);
-      addLink(na[3],nd[1],2);
+      var nb = addNodeAndEdges(trans.t2,n2.x + xShift,n2.y + yShift);
+      var nc = addNodeAndEdges(trans.t3,n1.x + xShift,n1.y + yShift);
       addLink(nb[2],nc[2],2);
-      addLink(nb[1],nd[2],2);
-      moveLink1(a,na[1]);
       moveLink1(b,nb[3]);
       moveLink1(c,nc[1]);
-      moveLink1(d,nd[3]);
-      removeNodeAndEdges(n1);
-      removeNodeAndEdges(n2);
-      break;
-    case "DIST6":
-      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);
-      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);
-      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);
-      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);
-      addLink(na[2],nc[1],2);
-      addLink(na[3],nd[2],2);
-      addLink(nb[1],nc[2],2);
-      addLink(nb[2],nd[1],2);
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t3);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+
+      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);  // n1
+      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);  // n2
+      addLink(na[3],nd[1],2);
       moveLink1(a,na[1]);
-      moveLink1(b,nb[3]);
-      moveLink1(c,nc[3]);
       moveLink1(d,nd[3]);
+
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
-      break;
-    case "DIST7":
-      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);
-      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);
-      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);
-      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);
+
+      addLink(na[2],nc[3],2);
+      addLink(nb[1],nd[2],2);
+    break;
+
+    case "DIST6":
+      var nb = addNodeAndEdges(trans.t2,n2.x + xShift,n2.y + yShift);
+      var nd = addNodeAndEdges(trans.t4,n1.x + xShift,n1.y + yShift);
+      addLink(nb[2],nd[1],2);
+      moveLink1(b,nb[3]);
+      moveLink1(d,nd[3]);
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t3);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+
+      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);  // n1
+      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);  // n3
       addLink(na[2],nc[1],2);
+      moveLink1(a,na[1]);
+      moveLink1(c,nc[3]);
+      
+      removeNodeAndEdges(n1);
+      removeNodeAndEdges(n2);
+
+      addLink(na[3],nd[2],2);
+      addLink(nb[1],nc[2],2);  
+    break;
+
+    case "DIST7":
+      var nb = addNodeAndEdges(trans.t2,n2.x + xShift,n2.y + yShift);
+      var nd = addNodeAndEdges(trans.t4,n1.x +xShift,n1.y + yShift);
+      addLink(nb[1],nd[2],2);
+      moveLink1(b,nb[3]);
+      moveLink1(d,nd[3]);
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t4);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);  // n1
+      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);  // n2
+      addLink(na[2],nc[1],2);
+      moveLink1(a,na[1]);
+      moveLink1(c,nc[3]);
+      
+      removeNodeAndEdges(n1);
+      removeNodeAndEdges(n2);
+
       addLink(na[3],nd[1],2);
       addLink(nb[2],nc[2],2);
+    break;
+
+    case "DIST7-DEG":
+      var nb = addNodeAndEdges(trans.t2,n2.x + xShift,n2.y + yShift);
+      var nd = addNodeAndEdges(trans.t4,n1.x +xShift,n1.y + yShift);
       addLink(nb[1],nd[2],2);
-      moveLink1(a,na[1]);
       moveLink1(b,nb[3]);
-      moveLink1(c,nc[3]);
       moveLink1(d,nd[3]);
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t4);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);  // n1
+      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);  // n2
+      addLink(na[2],nc[1],2);
+      moveLink1(a,na[1]);
+      moveLink1(c,nc[3]);
+      
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
-      break;
+
+      addLink(na[3],nd[1],2);
+      addLink(nb[2],nc[2],2);
+    break;
 
 // Interaction Combinators GAMMA-GAMMA, without Arrow nodes, not used
 
@@ -774,6 +990,30 @@ cross.
     case "GAMMA-GAMMA-arrow":
       // GAMMA-GAMMA transition:
       // Arrow b f^Arrow d f^Arrow b1 g^Arrow c g
+
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+      indNodeType  = autoFilter.indexOf(trans.t3);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t4);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1;
+
+
+
+
       var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
       var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
       var ar4 = addNodeAndEdges(trans.t2,n2.x,n2.y);
@@ -791,11 +1031,28 @@ cross.
       removeNodeAndEdges(n2);
       break;
 
-// Interaction Combinators GAMMA-GAMMA, with Arrow nodes, 1 Arrow nodes needed
+// Interaction Combinators GAMMA-GAMMA, with Arrow nodes, 2 Arrow nodes needed
 
     case "GAMMA-GAMMA-arrow1":
       // GAMMA-GAMMA transition:
-      // Arrow b f^Arrow d f^Arrow b1 g^Arrow c g
+      // 
+
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1;
+
+
+
+
       var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
       var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
 
@@ -824,6 +1081,29 @@ cross.
     case "DELTA-DELTA-arrow":
       // DELTA-DELTA transition:
       // Arrow b1 f^Arrow d f^Arrow b g^Arrow c g
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+      
+
+      indNodeType  = autoFilter.indexOf(trans.t3);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t4);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1;
+
+
+
+
       var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
       var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
       var ar4 = addNodeAndEdges(trans.t2,n2.x,n2.y);
@@ -841,10 +1121,25 @@ cross.
       removeNodeAndEdges(n2);
       break;
 
-// Interaction Combinators DELTA-DELTA, with Arrow nodes, 4 Arrow nodes needed
+// Interaction Combinators DELTA-DELTA, with Arrow nodes, 2 Arrow nodes needed
     case "DELTA-DELTA-arrow1":
       // DELTA-DELTA transition:
-      // Arrow b1 f^Arrow d f^Arrow b g^Arrow c g
+      // 
+
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.t2);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1;
+
+
+
       var ar2 = addNodeAndEdges(trans.t2,n2.x,n2.y);
       var ar1 = addNodeAndEdges(trans.t1,n1.x,n1.y);
 
@@ -856,28 +1151,37 @@ cross.
       
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
-      break;
+    break;
 
     case "GAMMA-DELTA":
       //  DIST like transition GAMMA-DELTA,
 
-      var na = addNodeAndEdges(trans.t1,n2.x,n2.y);
-      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);
-      var nc = addNodeAndEdges(trans.t3,n1.x,n1.y);
-      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);
-      
-      addLink(na[2],nc[2],2);
-      addLink(na[3],nd[2],2);
-      addLink(nb[2],nc[3],2);
-      addLink(nb[3],nd[3],2);
+      indNodeType  = autoFilter.indexOf(trans.t1);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
 
+      indNodeType  = autoFilter.indexOf(trans.t3);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      var na = addNodeAndEdges(trans.t1,n2.x + xShift,n2.y + yShift);
+      var nc = addNodeAndEdges(trans.t3,n1.x + xShift,n1.y + yShift);
+      addLink(na[2],nc[2],2);
       moveLink1(b,na[1]);
-      moveLink1(b1,nb[1]);
       moveLink1(c,nc[1]);
+
+
+      var nb = addNodeAndEdges(trans.t2,n2.x,n2.y);
+      var nd = addNodeAndEdges(trans.t4,n1.x,n1.y);
+      addLink(nb[3],nd[3],2);
+      moveLink1(b1,nb[1]);
       moveLink1(d,nd[1]);
+
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
-      break;
+      
+      
+      addLink(na[3],nd[2],2);
+      addLink(nb[2],nc[3],2);
+    break;
 
 // termination rewrites, i.e. those which involve a node T
 
@@ -885,6 +1189,12 @@ cross.
       // Terminator transition for GAMMA and DELTA
       // Make another terminator
       na = addNodeAndEdges("T",n2.x,n2.y);
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
       
       moveLink1(b1,e1.id)
       moveLink1(b,na[1])
@@ -894,16 +1204,35 @@ cross.
 
     case "remove1":
       // Just remove an unconnected T
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+
       removeNodeAndEdges(n1);
       break;
     case "remove4":
       // Just remove the pair of nodes
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
     case "term":
       // Terminator transition for A and FI
       // Make another terminator
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+
       na = addNodeAndEdges("T",n2.x,n2.y);
       
       moveLink1(a,e1.id)
@@ -914,6 +1243,11 @@ cross.
     case "termL":
       // Terminator transition for L, for chemlambda
       // Make a FRIN
+      indNodeType  = autoFilter.indexOf("FRIN");
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
       na = addNodeAndEdges("FRIN",n2.x,n2.y);
       
       moveLink1(a,e1.id)
@@ -925,6 +1259,11 @@ cross.
    case "termLD":
       // Terminator transition for L, but for directed IC
       // Make a FRIN
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
       na = addNodeAndEdges("T",n2.x,n2.y);
       
       moveLink1(a,e1.id)
@@ -937,6 +1276,11 @@ cross.
       // Terminator transition for FRIN-FI
 
       moveLink2(c,d)
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
       
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
@@ -950,7 +1294,11 @@ cross.
       } else {
         moveLink2(a,b1)
       }
-      
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
@@ -959,7 +1307,11 @@ cross.
       // Terminator transition for T-FOX, T-D
       // Remove the node and terminator
       moveLink2(c,d)
-      
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
@@ -972,7 +1324,11 @@ cross.
       
       moveLink1(c,nb[1],2)
       moveLink1(d,na[1],2)
-      
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
       break;
@@ -985,6 +1341,12 @@ cross.
       
       moveLink1(c,nb[1],2)
       moveLink1(d,na[1],2)
+
+      indNodeType  = autoFilter.indexOf(trans.right);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] + 1; 
+
+      indNodeType  = autoFilter.indexOf(trans.left);
+      balanceOfnodes[indNodeType] = balanceOfnodes[indNodeType] - 1; 
       
       removeNodeAndEdges(n1);
       removeNodeAndEdges(n2);
@@ -1003,6 +1365,7 @@ cross.
 
   findAllTransforms();
 
+  
 // end function doTransform
 }
 

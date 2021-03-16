@@ -305,3 +305,9 @@ function setMetabo() {
 
 }
 
+function setBalanceOfNodes() {
+  for (var ibal=0;  ibal < balanceOfnodes.length; ibal++) {
+    balanceOfnodes[ibal] = 0;
+  }
+
+}

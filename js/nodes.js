@@ -1,5 +1,5 @@
 // nodes info
-// this version: 27.03.2020, 
+// this version: 15.03.2021, 
 
 /*
 In order to define mols (molecules) and mol patterns, we introduce mol node types and 
@@ -15,7 +15,12 @@ The mol nodes types are listed in the vector autofilter. For the theory, let NT 
 finite  set of mol node types.
 */
 
-var autoFilter = ["L","A","FI","D","FOE","FOX","FO","T","Arrow","GAMMA","DELTA"];
+var autoFilter = ["L","A","FI","D","FOE","FOX","FO","T","Arrow","GAMMA","DELTA","FRIN","FROUT"];
+
+var balanceOfnodes =  [];
+for (var ibal=0; ibal < autoFilter.length; ibal++) {
+  balanceOfnodes.push(0);
+}
 
 /*
 nodeValence associates to any mol node type a valence vector, with elements 0 or 1, whose length is the valence of the mol node. 
@@ -214,4 +219,5 @@ first found other port node)
 
 
 */
+
 
