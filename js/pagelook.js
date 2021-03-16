@@ -1,7 +1,7 @@
 /* 
 page look (buttons, etc), import-export mol
 */
-// last updated: 05.05.2020
+// last updated: 15.03.2021
 
 var versusVar = "<br><br> VS. <br><br>";
 var transformList = [];
@@ -95,7 +95,7 @@ reloadCode();
 var molCom = molComments(lambdatext);
 document.getElementById("comments").innerHTML = molCom; 
 }
-setComb(1);setSpeed(1); setStart(1); loop();
+setComb(1);setSpeed(1); setStart(1); setBalanceOfNodes();showBalanceOfNodes(); loop();
 }
 
 
@@ -120,6 +120,7 @@ function selectionStarter() {
     location.hash = "#arena";
   }
   document.getElementById("citeas").innerHTML = location.hash;
+  setBalanceOfNodes();showBalanceOfNodes();
 }
 
 function selectionLink(link) {
@@ -313,3 +314,9 @@ function setChem() {
 
 }
 
+function setBalanceOfNodes() {
+  for (var ibal=0;  ibal < balanceOfnodes.length; ibal++) {
+    balanceOfnodes[ibal] = 0;
+  }
+
+}

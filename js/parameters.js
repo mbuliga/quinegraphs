@@ -53,3 +53,12 @@ var age = 0;
 // node colors for metabolism
 
 var metabo = 0;
+
+// shift in x and y for the appearance of new nodes
+
+var xShift = 0;
+var yShift = 0;
+
+// balance of nodes 
+
+var balanceOfnodes = [];

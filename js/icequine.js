@@ -7,7 +7,7 @@
 // author: Marius Buliga http://imar.ro/~mbuliga/index.html
 //
 //
-// last modified: 05.05.2020
+// last modified: 15.03.2021
 // 
 
 
@@ -18,6 +18,7 @@ var addType = 0;
 var selection = null;
 var newNodeIndex = 0;
 var transformCache = []; // rewrites cache
+
 
 
 
@@ -205,7 +206,7 @@ function loop(dt) {
 
   document.getElementById("puttransformcachealtafter").innerHTML = putTransformCacheAlt;
   }
-  if (startVar == 1) requestAnimationFrame(loop);
+  if (startVar == 1) {requestAnimationFrame(loop); showBalanceOfNodes();} else {setBalanceOfNodes();}
 }
 
 loop();
