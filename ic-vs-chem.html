@@ -3,7 +3,7 @@
 
 <!-- Comparison of alife properties of directed combinators vs chemlambda
 author: Marius Buliga
-last modified: 22.05.2020
+last modified: 14.03.2021
 //
 -->
 
@@ -23,6 +23,8 @@ last modified: 22.05.2020
 
 <script src="js/d3.v5.9.4.min.js"></script>
 <script src="js/jquery.min.js"></script>
+<script src="js/parameters.js"></script>
+<script src="js/nodes.js"></script>
 <script src="js/pagelook-vs.js"></script>
 <script src="js/ioprep.js"></script>
 
@@ -57,11 +59,12 @@ We can prove that the nodes DELTA and GAMMA nodes (and the corresponding  nodes 
 <div class="col-6 menu" style="text-align: center;">
 <img src="img/DELTA-DELTA-arrow1.jpg" alt="IC: DELTA-DELTA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
 </div>
-
+<!--
 <div class="row">
 <div class="col-6 menu" style="text-align: center;">
 <img src="img/DELTA-DELTA-arrow1.jpg" alt="IC: DELTA-DELTA rewrite" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
 </div>
+-->
 
 <div class="row">
 <div class="col-6 menu" style="text-align: center;">
@@ -333,8 +336,6 @@ Finally, if we want to explore the computational properties of these chemistries
 
 <script src="js/iceMol.js"></script>
 <script src="js/iceComments.js"></script>
-<script src="js/parameters.js"></script>
-<script src="js/nodes.js"></script>
 <script src="js/chemistry.js"></script>
 <!-- <script src="js/reactions.js"></script> -->
 <script src="js/myD3Graph.js"></script>
@@ -353,6 +354,7 @@ document.getElementById("listofmols").value = "icvschem";
 }
 whichButtons("icvschem"); 
 selectionICLambda();
+setBalanceOfNodes();
 </script>
 
 </body>

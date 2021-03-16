@@ -3,7 +3,7 @@
 
 <!-- Introduction to Pure See
 author: Marius Buliga
-last modified: 06.06.2020
+last modified: 16.03.2021
 //
 -->
 
@@ -27,7 +27,7 @@ last modified: 06.06.2020
 <script src="js/ioprep.js"></script>
 
 <div class="header">
-  <span3>Cite as: <br></span3><div>Introduction to Pure See.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2020), https://mbuliga.github.io/quinegraphs/puresee.html<span id="citeas"></span></div><br><br>
+  <span3>Cite as: <br></span3><div>Introduction to Pure See.  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2020-2021), https://mbuliga.github.io/quinegraphs/puresee.html<span id="citeas"></span></div><br><br>
 <span3>Draft!  Version 06.06.2020</span3><br><br>
 <span3>See also:</span3><br> <a href="https://chemlambda.github.io/index.html">All chemlambda projects</a><br><br><br><br>
 <span3>
@@ -40,9 +40,9 @@ last modified: 06.06.2020
 <h4><a href="#Scalars">Scalars</a></h4>
 <h4><a href="#VariablesAndTerms">Variables and terms</a></h4>
 <h4><a href="#Commands">Commands</a></h4>
-<h4><a href="#MultiplicationByScalarsOrigin">Multiplication by scalars. Origin</a></h4>
 <h4><a href="#ConversionBetweenCommandsAndAlgebraicForms">Conversion between commands, functional and algebraic forms</a></h4>
 <h4><a href="#ReductionOfTrigrams">Reduction of trigrams</a></h4>
+<h4><a href="#MultiplicationByScalarsOrigin">Multiplication by scalars. Origin</a></h4>
 <h4><a href="#ReductionByPassingToTheLimit">Reduction by passing to the limit</a></h4>
 <h4><a href="#EmergentRewrites">Emergent rewrites</a></h4>
 
@@ -396,31 +396,7 @@ which correspond respectively to 1-valent nodes denoted respectively by FROUT, F
 
 
 
-<h3 id="MultiplicationByScalarsOrigin">Multiplication by scalars. Origin</h3>
-<h4>(<a href="#Contents">back to contents</a>)</h4>
 
-<span3>
-Let k be a scalar and let C be a command. The multiplication of the command C by the scalar k is then:<br><br>
-</span3>
-<p style="padding: 20px; margin-bottom: 18px; width:350px;border:0">
-from[k] origin see[k] C as (k C);</p>
-<span3>
-Let k be a scalar and let T be a term. The multiplication of the term T by the scalar k is then:<br><br>
-</span3>
-<p style="padding: 20px; margin-bottom: 18px; width:350px;border:0">
-k T = from[k] origin see[k] C</p>
-<span3>
-The special word </span3>origin<span3> is a term. We know about </span3>origin<span3> that for any scalar k<br><br>
-</span3>
-<p style="padding: 20px; margin-bottom: 18px; width:350px;border:0">
-in origin as (k origin);</p>
-<span3>
-and that for any command C and any scalars k, l, such that k l is not 1, 
-</span3>
-<p style="padding: 20px; margin-bottom: 18px; width:350px;border:0">
-in ((k l) C)  as (k (l C));</p>
-<span3>
-</span3>
 
 
 
@@ -557,20 +533,20 @@ A trigram is any triple of commands of the form:<br><br>
 </span3>
 <table style="padding: 20px; margin-bottom: 18px; width:750px; border:0">
 <tr>
-  <td> &alpha; (for[&epsilon;] a see[&epsilon;] b as[&epsilon;] e);
+  <td> for[&epsilon;] a see[&epsilon;] b as[&epsilon;] e;
   </td>
 </tr>
 <tr>
-  <td> &beta; (for[&mu;] e see[&mu;] c as[&mu;] d);
+  <td>  for[&mu;] e see[&mu;] c as[&mu;] d;
   </td>
 </tr>
 <tr>
-  <td> &gamma; (for[&epsilon;] u see[&epsilon;] w as[&epsilon;] c);
+  <td>  for[&epsilon;] u see[&epsilon;] w as[&epsilon;] c;
   </td>
 </tr>
 </table>
 <span3>
-where &alpha;, &beta;, &gamma;, &mu;, &epsilon; are scalars.<br><br>
+where &mu;, &epsilon; are scalars.<br><br>
 The main rewrite (schema) of Pure See  is (SHUFFLE), which replaces a trigram by another trigram:<br><br>
 </span3>
 <table style="padding: 20px; margin-bottom: 18px; width:750px; border:0">
@@ -588,17 +564,17 @@ The main rewrite (schema) of Pure See  is (SHUFFLE), which replaces a trigram by
   <td>
     <table>
     <tr>
-      <td> &alpha; (for[&epsilon;] a see[&epsilon;] b as[&epsilon;] e);
+      <td> from[&epsilon;] a see[&epsilon;] b as[&epsilon;] e;
       </td>
     </tr>
     <tr><td></td></tr>
     <tr>
-      <td> &beta; (for[&mu;] e see[&mu;] c as[&mu;] d);
+      <td> from[&mu;] e see[&mu;] c as[&mu;] d;
       </td>
     </tr>
     <tr><td></td></tr>
     <tr>
-      <td> &gamma; (for[&epsilon;] u see[&epsilon;] w as[&epsilon;] c);
+      <td> from[&epsilon;] u see[&epsilon;] w as[&epsilon;] c;
       </td>
     </tr>
     </table>
@@ -606,17 +582,17 @@ The main rewrite (schema) of Pure See  is (SHUFFLE), which replaces a trigram by
   <td> 
     <table>
     <tr>
-      <td> &alpha;' (for[&mu;] a see[&mu;] u as[&mu;] v);
+      <td> from[&mu;] a see[&mu;] u as[&mu;] v;
       </td>
     </tr>
     <tr><td></td></tr>
     <tr>
-      <td> &beta;' (for[&epsilon;] v see[&epsilon;] p as[&epsilon;] d);
+      <td> from[&epsilon;] v see[&epsilon;] p as[&epsilon;] d;
       </td>
     </tr>
     <tr><td></td></tr>
     <tr>
-      <td> &gamma;' (for[&epsilon;] b see[&epsilon;] w as[&epsilon;] p);
+      <td> from[&mu;] b see[&mu;] w as[&mu;] p;
       </td>
     </tr>
     </table>
@@ -634,7 +610,80 @@ The main rewrite (schema) of Pure See  is (SHUFFLE), which replaces a trigram by
 </div>
 
 
+<h3 id="MultiplicationByScalarsOrigin">Multiplication by scalars. Origin</h3>
+<h4>(<a href="#Contents">back to contents</a>)</h4>
 
+<span3>
+The special word </span3>origin<span3> is a term. With respect to the </span3>origin<span3> we define the multiplication by the scalar &mu; of the term T:<br><br>
+</span3>
+<p style="padding: 20px; margin-bottom: 18px; width:350px;border:0">
+from[&mu;] origin see[&mu;] T as (&mu; T);</p>
+
+<span3>
+The multiplication of a command<br><br>
+</span3>
+<p style="padding: 20px; margin-bottom: 18px; width:350px;border:0"> from[&epsilon;] u see[&epsilon;] w as[&epsilon;] c;</p>
+
+<span3> by the scalar &mu; is defined as<br><br>
+</span3>
+<p style="padding: 20px; margin-bottom: 18px; width:350px;border:0">
+from[&epsilon;] (&mu; u) see[&epsilon;] (&mu; w) as[&epsilon;] (&mu; c);</p>
+
+<span3>
+  via a SHUFFLE schema<br><br>
+</span3>
+<table style="padding: 20px; margin-bottom: 18px; width:750px; border:0">
+<tr>
+  <th style="text-align: left;">LHS pattern
+  </th>
+  <th style="text-align: left;">RHS pattern
+  </th>
+</tr>
+
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+
+<tr>
+  <td>
+    <table>
+    <tr>
+      <td> from[&epsilon;] origin see[&epsilon;] origin as[&epsilon;] origin;
+      </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+      <td> from[&mu;] origin see[&mu;] c as[&mu;] (&mu; c);
+      </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+      <td> from[&epsilon;] u see[&epsilon;] w as[&epsilon;] c;
+      </td>
+    </tr>
+    </table>
+  </td>
+  <td> 
+    <table>
+    <tr>
+      <td> from[&mu;] origin see[&mu;] u as[&mu;] (&mu; u);
+      </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+      <td> from[&epsilon;] (&mu; u) see[&epsilon;] (&mu; w) as[&epsilon;] (&mu; c);
+      </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+      <td> from[&mu;] origin see[&mu;] w as[&mu;] (&mu; w);
+      </td>
+    </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<span3>
+</span3>
 
 <h3 id="ReductionByPassingToTheLimit">Reduction by passing to the limit</h3>
 <h4>(<a href="#Contents">back to contents</a>)</h4>
