@@ -1,6 +1,6 @@
 // chemistries
 // this version: 15.03.2021, 
-// goal: to make the rewrites conservative.
+// next goal: to make the rewrites conservative.
 //
 // the idea is to create on the fly tokens (i.e. small molecules from a fixed family)
 // which are then used in the rewrite.
