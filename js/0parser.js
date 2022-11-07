@@ -1,6 +1,6 @@
-// parser for lambda calculus to mol
+// parser for lambda calculus to chemlambda
 // author: Marius Buliga
-// last updated: 10.03.2020
+// last updated: 07.11.2022
 
 var op = {
 "lparen": "(",
