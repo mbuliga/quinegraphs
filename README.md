@@ -2,7 +2,7 @@
 
 Given a graph rewrite system. a graph G is a quine graph if it has a non-void maximal non-conflicting collection of rewrite patterns,  such that after the rewrites from the collection are done in parallel we obtain a graph isomorphic with G. 
 
-We invite you to  explore some of their properties, with examples taken from lambda calculus, interaction combinators and [chemlambda](https://chemlambda.github.io/index.html). 
+We invite you to  explore some of their properties, with examples taken from lambda calculus, interaction combinators and chemlambda. 
 
 ## Part of: 
 
@@ -11,7 +11,7 @@ We invite you to  explore some of their properties, with examples taken from lam
 
 ## Technical notes:
 
-* [Artificial chemistry experiments with chemlambda, lambda calculus, interaction combinators](https://arxiv.org/abs/2003.1433) 
+* [Artificial chemistry experiments with chemlambda, lambda calculus, interaction combinators](https://arxiv.org/abs/2003.14332) 
 
 * [Artificial life properties of directed interaction combinators vs. chemlambda](https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem) 
 
