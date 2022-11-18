@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!-- modified from https://github.com/mbuliga/quinegraphs/blob/master/quinelab.html 
+last modified 18.11.2022
+-->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" type="text/css" href="css/icequine.css">
+
+<title>JD Replicator</title>
+</head>
+
+
+<body style="overflow: scroll;">
+
+<script src="js/d3.v5.9.4.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/pagelook-lab.js"></script>
+<script src="js/ioprep.js"></script>
+
+<div class="header">
+  <span3>Cite as: </span3><div>JD Replicator  <a href="http://imar.ro/~mbuliga/index.html">&copy; Marius Buliga</a> (2022), https://mbuliga.github.io/quinegraphs/jdreplicator.html<span id="citeas"></span></div>
+<span3>See also:</span3><br> <a href="https://chemlambda.github.io/index.html">All chemlambda projects</a><br><br>
+The JD replicator is a chemlambda molecule with the property that it produces a finite, but random length string of application A and fanout FOE nodes. <br><br>
+The JD replicator molecule looks like this: <br><br>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/jdc/jdreplicator-1.jpg" alt="JD Replicator" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+It has <a href="https://arxiv.org/abs/2003.14332">the code</a>:<br><br> <span3>L 0 8 12^FI 1 2 0^A 3 4 14^FI 5 6 10^FOE 8 2 6^FOE 9 5 4^A 10 in 1^FOE 12 13 3^A 13 14 9^Arrow a1 in</span3><br><br>
+If we let it reduce randomly, it can take random shapes, like this: <br><br>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/jdc/jdreplicator-2.jpg" alt="JD Replicator random 1" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><img src="img/jdc/jdreplicator-3.jpg" alt="JD Replicator random 2" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><img src="img/jdc/jdreplicator-4.jpg" alt="JD Replicator random 3" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+It can be used with any <a href="https://mbuliga.github.io/quinegraphs/lambda2mol.html#lambdanote">molecule obtained from a lambda term</a>. Mind that the JD replicator does not represent a lambda term! <br><br>
+It will produce a finite but random number of pairs of the initial template, even if the template molecule itself reduces in the same time. <br><br>  
+Indeed, let's glue the JD replicator to the 1-node molecule which represents the identity lambda term. The molecule obtained has <a href="https://arxiv.org/abs/2003.14332">the code</a>:<br><br>
+<span3>L 0 8 12^FI 1 2 0^A 3 4 14^FI 5 6 10^FOE 8 2 6^FOE 9 5 4^A 10 in 1^FOE 12 13 3^A 13 14 9^Arrow a1 in</span3>^L a7 a7 a1<br><br>
+and it looks like this:<br><br>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/jdc/jdreplicator-id-1.jpg" alt="JD Replicator with Id" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+If we let it reduce randomly, it produces a random number of pairs of Id molecules, like this: <br><br>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/jdc/jdreplicator-id-2.jpg" alt="JD Replicator with Id random 1" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><img src="img/jdc/jdreplicator-id-3.jpg" alt="JD Replicator with Id random 2" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><img src="img/jdc/jdreplicator-id-4.jpg" alt="JD Replicator with Id random 3" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+The same can be tried with the <a href="https://mbuliga.github.io/quinegraphs/lambda2mol.html#omega">Omega combinator molecule</a>. The molecule obtained has <a href="https://arxiv.org/abs/2003.14332">the code</a>:<br><br>
+<span3>L 0 8 12^FI 1 2 0^A 3 4 14^FI 5 6 10^FOE 8 2 6^FOE 9 5 4^A 10 in 1^FOE 12 13 3^A 13 14 9^Arrow a1 in</span3>^L a2 a3 a4^FO a3 a5 a6^A a5 a6 a2^A a4 a7 a1^L a8 a9 a7^FO a9 a10 a11^A a10 a11 a8<br><br>
+and it looks like this:<br><br>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/jdc/jdreplicator-omega-1.jpg" alt="JD Replicator with Omega" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+Differently from the Id molecule, the Omega molecule is a <a href="https://mbuliga.github.io/quinegraphs/ic-vs-chem.html#icvschem">chemlambda quine</a>. That means it reduces forever, it does not have a final shape.<br><br>
+If we let the JD replicator + Omega to reduce randomly, it produces a random number of pairs of Omega molecules, which are all in various stages of reduction themselves, and they will continue to reduce forever! Snapshots look like like this: <br><br>
+<div class="row">
+<div class="col-6 menu" style="text-align: center;">
+<img src="img/jdc/jdreplicator-omega-2.jpg" alt="JD Replicator with Omega random 1" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><img src="img/jdc/jdreplicator-omega-3.jpg" alt="JD Replicator with Omega random 2" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><img src="img/jdc/jdreplicator-omega-4.jpg" alt="JD Replicator with Omega random 3" style="padding: 20px; margin-bottom: 18px; width:350px;border:0"><br><br>
+</div>
+The ability of this replicator is that it produces copies of active molecules, while they continue to function. This is a far harder to achieve property than just replication. But Nature can do this, for sure: living cells reproduce while they also continue to have a metabolism. In Nature there is no clear separation between functioning (metabolism) and pure replication. <br><br> 
+You can run the simulations by yourself, just use the lower part of this page. <br><br> <br><br> 
+
+
+This page is a response to the kind request of JD, the creator of <a href="http://metalambda.org/">metalambda.org</a>, for his <a href="http://metaseminar.io">metaseminar 0</a> (link to be updated if transcript available). 
+<br><br> <br><br> 
+</div>
+
+<div class="row">
+  <div class="col-1 menu" style="text-align: left;"><div class="scol-12"> <span3 id="agetext">random choices </span3><br><br> <span3  id="buttonAge" class="image2" ></span3></div>
+  </div>
+  <div class="col-7 menu">
+    <ul>
+      <li>    
+        <span2> 
+          <select  class="theme-construction" id="listofmols" onchange="selectionStarter();">
+            <option value="howtolab">MENU</option>
+            <option value="jdreplicator">"JD Replicator"</option>
+            <option value="jdreplicatorId">"JD Replicator with Identity"</option>
+            <option value="jdreplicatorOmega">"JD Replicator with Omega"</option>
+          </select>
+        </span2> 
+      </li>
+      <li></li>
+      <li> <span3  id="buttonImportMol" class="image2" ></span3> &nbsp; <span3  id="buttonUpdateMol" class="image2" ></span3>
+      </li>
+      <li> <span3>for edges use only 0-9,a-z,A-Z</span3>
+      </li>
+      <li><div><textarea id="inputmol" class="image2" style="height: 80px; width: 80%;  background-color: #010101; 
+ color: #6495ED;  font-size: 14px;">L 0 8 12^FI 1 2 0^A 3 4 14^FI 5 6 10^FOE 8 2 6^FOE 9 5 4^A 10 in 1^FOE 12 13 3^A 13 14 9^Arrow a1 in</textarea> </div>
+      </li>
+      <li>
+         <span3>rewrites weights slider</span3> <div class="slidecontainer">GROW &nbsp;<input class="slider" type="range" min="0" max="100" value="50" id="rewritesRange"> &nbsp; SLIM</div>
+      </li>
+    </ul>
+  </div>
+  <div class="col-4 menu" style="text-align: left;">
+    <span3 style="text-align: left;"> nodes &sim; </span3><span id="nodenumber"></span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-1 menu">
+    <div class="scol-12"> <span3  id="button0" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button1" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button2" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button3" class="image2" ></span3></div>
+    <div class="scol-12"> <span3  id="button4" class="image2" ></span3></div>
+  </div>
+  <div class="col-7 menu">
+    <ul>
+      <li> <div id="svgdiv"> </div></li>
+      <li><span3>gravity slider</span3> <div class="slidecontainer">MIN &nbsp;<input class="slider" type="range" min="1" max="250" value="150" id="gravRange"> &nbsp; MAX</div></li>
+      <li><span2>CODE: </span2><span id="molyoulookat"></span></li>
+      <li><span> (Rewrites stop at max.  </span><span id="maxnodenumber">512</span> nodes<span>)</span></li>
+    </ul>
+  </div>
+  <div class="col-4 menu" style="text-align: left;">
+    <span id="comments" ></span><br><br>
+        <span3 style="text-align: left;" id="errors"></span3>
+  </div>
+</div>
+
+<div class="row">
+      <div class="scol-6" style="text-align: left;">
+        <span2>before:</span2><br><br>
+        <span id="puttransformcachealt"></span>
+      </div> 
+      <div class="scol-6" style="text-align: left;">
+        <span2>chosen:</span2><br><br>
+        <span id="chosentransform"></span>
+      </div>
+      <div class="scol-6" style="text-align: left;">
+        <span2>after:</span2><br><br>
+        <span id="puttransformcachealtafter"></span>
+      </div>
+    <div class="scol-6" style="text-align: left;">
+      <span2>mol before:</span2><br><br>
+      <span id="molexport"></span>
+    </div>
+    <div class="scol-6" style="text-align: left;">
+      <span2>mol after:</span2><br><br>
+      <span id="molexportafter"></span>
+    </div>
+</div>
+
+
+<script src="js/iceMol.js"></script>
+<script src="js/iceComments.js"></script>
+<script src="js/parameters.js"></script>
+<script src="js/nodes.js"></script>
+<script src="js/chemistry.js"></script>
+<!-- <script src="js/reactions.js"></script> -->
+<script src="js/myD3Graph.js"></script>
+<script src="js/icequine.js"></script>
+
+<script>
+var whichP = location.hash;
+whichP = whichP.replace(/#/g, "");
+if (whichP != "") {
+document.getElementById("listofmols").value = whichP;
+}
+whichButtons(whichP);
+selectionStarter();
+</script>
+
+</body>
+</html>
+
+
