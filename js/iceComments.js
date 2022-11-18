@@ -428,6 +428,17 @@ case "bigpred_bif":
   var mol = "In  \"<selectspan  onclick=\"selectionLink('bigpred_train_fun');\">ouroboros analyzed</selectspan>\" we have a propagator and a large, circular string of FOE-A gates.<br><br>It gives the impression that it is an immortal quine, which is false. Indeed in the \"<selectspan  onclick=\"selectionLink('bigpred_circularpropagator');\">circular propagation</selectspan>\" example we see that eventually the propagator will interact with itself, which ends the propagation.<br><br>In this example we take the shortest ouroboros: <span2>the propagator</span2> and the circular strings of gates is made of <span4>only one gate</span4>:<br><br><span2>A 1 2 3<br>L 3 2 4</span2><span4><br>FOE 4 5 1<br>A 5 6 6</span4><br><br>Use \"step\": there is only one rewrite possible, L-FOE. After that, you get this <span5>3 nodes pattern L-A-FOE</span5><br><br><span5>L 7 8 1<br>A 1 2 3<br>FOE 3 6 7</span5><br>L 6 9 4<br>A 4 5 5<br>FI 8 9 2<br><br> with two conflicting rewrites patterns: L-A and A-FOE.<br><br> The algorithm selects randomly:<br><br> if L-A then quine will die, <br>if A-FOE then quine lives for another day.";
   break;
 
+  case "jdreplicator":
+  var mol = "The <span2>JD replicator</span2> produces a string of A and FOE nodes, with random length.  <br><br> Pattern found by searching among the <a href=\"https://mbuliga.github.io/quinegraphs/quinelab.html#random_10_quine_bubbles\">billions of possible 10 nodes graphs</a><br><br>";
+  break;
+        
+  case "jdreplicatorId":
+  var mol = "The <span2>JD replicator</span2> attached to the identity lambda term molecule.  <br><br> It produces a random number of pairs of copies of this molecule";
+  break;
+
+  case "jdreplicatorOmega":
+  var mol = "The <span2>JD replicator</span2> attached to the Omega combinator molecule.  <br><br> It produces a random number of pairs of copies of this molecule";
+  break;
 
   default:
   var mol = "";
