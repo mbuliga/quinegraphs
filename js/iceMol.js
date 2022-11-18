@@ -647,6 +647,18 @@ case "random_egg_A_L_FI_FOE":
   var mol = "A 1 2 3^L 4 5 1^FI 6 55 4^FOE 33 2 6^A 11 22 33^L 44 55 11^FI 66 5 44^FOE 3 22 66";  //is barely a quine
   break;
 
+  case "jdreplicator":
+  var mol = "L 0 8 12^FI 1 2 0^A 3 4 14^FI 5 6 10^FOE 8 2 6^FOE 9 5 4^A 10 in 1^FOE 12 13 3^A 13 14 9^Arrow a1 in";
+  break;
+    
+  case "jdreplicatorId":
+  var mol = "L 0 8 12^FI 1 2 0^A 3 4 14^FI 5 6 10^FOE 8 2 6^FOE 9 5 4^A 10 in 1^FOE 12 13 3^A 13 14 9^Arrow a1 in^L a7 a7 a1";
+  break;
+
+  case "jdreplicatorOmega":
+  var mol = "L 0 8 12^FI 1 2 0^A 3 4 14^FI 5 6 10^FOE 8 2 6^FOE 9 5 4^A 10 in 1^FOE 12 13 3^A 13 14 9^Arrow a1 in^L a2 a3 a4^FO a3 a5 a6^A a5 a6 a2^A a4 a7 a1^L a8 a9 a7^FO a9 a10 a11^A a10 a11 a8";
+  break;
+
   default:
   var mol = "";
   break;
